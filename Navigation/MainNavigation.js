@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import {createAppContainer, create} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
@@ -11,21 +11,66 @@ import SettingsScreen from '../screens/SettingsScreen'
 import StatsScreen from '../screens/StatsScreen'
 
 import {Ionicons} from '@expo/vector-icons'
+import {ScrollView, Text, StyleSheet, Dimensions, Button} from 'react-native'
+
+import colors from '../constants/colors'
+
+import FilterScreen from '../components/FiltersModal'
+
 
 const CoursesStackNavigation = createStackNavigator({
-    Courses: CoursesScreen,
-    FullCourse: FullCourseScreen,
+    
+    Courses: {
+        screen: CoursesScreen,
+    },
+    FullCourse: {
+        screen:FullCourseScreen,},
+    Filters: {
+        screen:FilterScreen,
+        navigationOptions: {
+            headerTitle:'Filter Meditations',
+            headerTintColor: colors.primary,
+           
+        }
+    }
+       
 })
 
 const BottomTabs = createBottomTabNavigator(
     {
-        Home: HomeScreen,
-        Courses: CoursesStackNavigation,
-        Stats: StatsScreen,
-        Settings: SettingsScreen,
+        Home: {
+            screen: HomeScreen,
+            navigationOptions:{
+                tabBarIcon: <Ionicons color='black' size={25} name='ios-home'  />,
+            }
+        }
+            ,
+        Courses: {
+            screen: CoursesStackNavigation,
+            navigationOptions:{
+                tabBarIcon: <Ionicons color='black' size={25} name='ios-body'  />,
+                tabBarLabel:'Meditate'
+            }
+        }
+            ,
+        Stats: {
+            screen: StatsScreen,
+            navigationOptions: {
+                tabBarIcon:<Ionicons color='black' size={25} name='ios-stats'  />,
+                
+            }
+        },
+        Settings: {
+            screen: SettingsScreen,
+            navigationOptions: {
+             tabBarIcon: <Ionicons color='black' size={25} name='ios-settings'  />
+            
+            }
+        }
     },{
         navigationOptions:{
             headerTitle: 'hello world',
+
         }}
 )
 
@@ -39,3 +84,9 @@ const MainNavigation = createStackNavigator({ // did this for the header it prov
 
 
 export default createAppContainer(BottomTabs)
+
+const styles = StyleSheet.create({
+    courseScreensHeader : {
+        marginTop:30,
+    }
+})

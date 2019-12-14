@@ -21,10 +21,16 @@ import FilterScreen from '../components/FiltersModal'
 const CoursesStackNavigation = createStackNavigator({
     
     Courses: {
-        screen: CoursesScreen,
+        screen:CoursesScreen,
+        navigationOptions: {
+                headerTitle:'Meditate',
+                headerTintColor: colors.primary,
+            }
     },
     FullCourse: {
-        screen:FullCourseScreen,},
+        screen:FullCourseScreen,
+        
+    },
     Filters: {
         screen:FilterScreen,
         navigationOptions: {

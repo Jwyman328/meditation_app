@@ -16,6 +16,7 @@ import {ScrollView, Text, StyleSheet, Dimensions, Button} from 'react-native'
 import colors from '../constants/colors'
 
 import FilterScreen from '../components/FiltersModal'
+import IndividualMeditationScreen from '../screens/IndividualMeditationScreen'
 
 const CoursesStackNavigation = createStackNavigator({
     
@@ -30,6 +31,7 @@ const CoursesStackNavigation = createStackNavigator({
         screen:FullCourseScreen,
         
     },
+    IndividualMeditationScreen:IndividualMeditationScreen,
     Filters: {
         screen:FilterScreen,
         navigationOptions: {

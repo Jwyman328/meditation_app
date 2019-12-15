@@ -3,11 +3,12 @@ import React from 'react'
 
 import { View, Text, StyleSheet, Dimensions, ImageBackground, TouchableOpacity } from 'react-native'
 import colors from '../constants/colors'
+import { FlatList } from 'react-native-gesture-handler'
 
 function CourseCard(props) {
-
+    console.log(props.audioIds, 'id?')
     return (
-        <TouchableOpacity onPress={() => props.goToCourse(props.title, props.uri, props.catagories)}>
+        <TouchableOpacity onPress={() => props.goToCourse(props.title, props.uri, props.catagories, props.audioIds)}>
             <View style={styles.outerContainer}>
                 <ImageBackground imageStyle={{ borderRadius: 20 }} style={styles.backgroundImage} source={{ uri: props.uri }}>
                     <View style={styles.courseCard}>

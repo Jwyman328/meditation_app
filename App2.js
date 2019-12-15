@@ -110,7 +110,7 @@ export default class App extends React.Component {
 
 	render() {
 		return (
-			<View style={styles.container}>
+			<View style={{...styles.container, ...this.props.style}}>
 				<Image
 					style={styles.albumCover}
 					source={{ uri: 'http://www.archive.org/download/LibrivoxCdCoverArt8/hamlet_1104.jpg' }}
@@ -144,8 +144,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'center'
 	},
 	albumCover: {
-		//width: 250,
-		//height: 250
+		width: 250,
+		height: 250
 	},
 	trackInfo: {
 		padding: 40,

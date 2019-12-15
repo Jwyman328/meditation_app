@@ -2,46 +2,7 @@ import React from 'react'
 import { StyleSheet, TouchableOpacity, View, Image, Text } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { Audio } from 'expo-av'
-
-const audioBookPlaylist = [
-	{
-		title: 'Hamlet - Act I',
-		author: 'William Shakespeare',
-		source: 'Librivox',
-		uri:  require('./audio/Girl.wav'),
-		imageSource: 'http://www.archive.org/download/LibrivoxCdCoverArt8/hamlet_1104.jpg',
-		
-	},
-	{
-		title: 'Hamlet - Act II',
-		author: 'William Shakespeare',
-		source: 'Librivox',
-		uri:require('./audio/OldPine.mp3'),
-		imageSource: 'http://www.archive.org/download/LibrivoxCdCoverArt8/hamlet_1104.jpg'
-	},
-	{
-		title: 'Hamlet - Act III',
-		author: 'William Shakespeare',
-		source: 'Librivox',
-		uri: require('./audio/WorkInProgress.mp3'),
-		imageSource: 'http://www.archive.org/download/LibrivoxCdCoverArt8/hamlet_1104.jpg',
-
-	},
-	{
-		title: 'PositiveSelf',
-		author: 'William Burr',
-		source: 'Librivox',
-		uri: require('./audio/PositiveSelf.mp3'),
-		imageSource: 'http://www.archive.org/download/LibrivoxCdCoverArt8/hamlet_1104.jpg'
-	},
-	{
-		title: 'Hamlet - Act V',
-		author: 'William Shakespeare',
-		source: 'Librivox',
-		uri: require('./audio/Girl.wav'),
-		imageSource: 'http://www.archive.org/download/LibrivoxCdCoverArt8/hamlet_1104.jpg'
-	}
-]
+import audioBookPlaylist from './Data/AudioBookPlaylist'
 
 export default class App extends React.Component {
 	state = {
@@ -178,13 +139,13 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#fff',
+		//backgroundColor: '#fff',
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
 	albumCover: {
-		width: 250,
-		height: 250
+		//width: 250,
+		//height: 250
 	},
 	trackInfo: {
 		padding: 40,

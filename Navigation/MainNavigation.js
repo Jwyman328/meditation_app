@@ -17,7 +17,6 @@ import colors from '../constants/colors'
 
 import FilterScreen from '../components/FiltersModal'
 
-
 const CoursesStackNavigation = createStackNavigator({
     
     Courses: {
@@ -43,7 +42,7 @@ const CoursesStackNavigation = createStackNavigator({
 })
 
 const BottomTabs = createBottomTabNavigator(
-    {
+    {   
         Home: {
             screen: HomeScreen,
             navigationOptions:{

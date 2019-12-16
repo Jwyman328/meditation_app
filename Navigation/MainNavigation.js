@@ -23,8 +23,9 @@ const CoursesStackNavigation = createStackNavigator({
     Courses: {
         screen:CoursesScreen,
         navigationOptions: {
-                headerTitle:'Meditate',
+                headerTitle:'Courses',
                 headerTintColor: colors.primary,
+                
             }
     },
     FullCourse: {
@@ -37,10 +38,17 @@ const CoursesStackNavigation = createStackNavigator({
         navigationOptions: {
             headerTitle:'Filter Meditations',
             headerTintColor: colors.primary,
+            
            
         }
     }
        
+}, {
+    defaultNavigationOptions: {
+       headerStyle:{
+           backgroundColor: colors.lightSecondary,
+       }
+    }
 })
 
 const BottomTabs = createBottomTabNavigator(
@@ -78,7 +86,14 @@ const BottomTabs = createBottomTabNavigator(
         navigationOptions:{
             headerTitle: 'hello world',
 
-        }}
+        },
+        tabBarOptions: {
+            activeBackgroundColor: colors.lightSecondary,
+            inactiveBackgroundColor: colors.lightSecondary,
+            activeTintColor: '#001E85',
+
+        }
+   }
 )
 
 const MainNavigation = createStackNavigator({ // did this for the header it provides 

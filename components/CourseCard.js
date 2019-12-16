@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height * .4,
         width: Dimensions.get('window').width * .45,
         alignItems: 'center',
-        marginHorizontal: 2,
+        marginHorizontal: 3.5,
 
     },
     backgroundImage: {

@@ -37,7 +37,7 @@ const audioBookPlaylist = {
     },
     A4:
 	{
-        orderNumber:3,
+        orderNumber:4,
         id:'A4',
         title: 'Positive Self',
         time:'12:00',
@@ -47,7 +47,7 @@ const audioBookPlaylist = {
 		imageSource: 'http://www.archive.org/download/LibrivoxCdCoverArt8/hamlet_1104.jpg'
 	},
 	A5:{
-        orderNumber:3,
+        orderNumber:5,
         id:'A5',
         title: 'Anxiety Free',
         time:'12:00',

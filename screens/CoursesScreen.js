@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         //height:Dimensions.get('window').height * .797,
         justifyContent:'center',
         alignItems:'center',
-        marginTop:7,
+        marginTop:15,
         
     },
     quickBorder: {

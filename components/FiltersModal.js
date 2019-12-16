@@ -6,11 +6,6 @@ import {useDispatch,useSelector} from 'react-redux'
 import FilterMeditations from '../store/actions/filterMeditations'
 
 function FilterScreen(props) {
-    const [testAnxietyFilter, setTestAnxietyFilter] = useState(false)
-    const [testDepressionFilter, setTestDepresionFilter] = useState(false)
-    const [testBegginerFilter, setTestBegginerFilter] = useState(false)
-    const [testAdvancedFilter, setTestAdvancedFilter] = useState(false)
-    const [testConfidenceFilter, setTestConfidenceFilter] = useState(false)
 
     const filters = useSelector((state)=> state.meditations.filters)
 
@@ -46,8 +41,13 @@ function FilterScreen(props) {
         </View>
 
         <View style={styles.switchesContainer}>
-            <Text> Expert </Text>
+            <Text> Advanced </Text>
             <Switch trackColor={{true:colors.strongPrimary}} thumbColor={colors.secondary} value={filters.testAdvancedFilter} onValueChange={() => { setFilter('testAdvancedFilter') }} />
+        </View>
+
+        <View style={styles.switchesContainer}>
+            <Text> Favorites </Text>
+            <Switch trackColor={{true:colors.strongPrimary}} thumbColor={colors.secondary} value={filters.testFavoriteFilter} onValueChange={() => { setFilter('testFavoriteFilter') }} />
         </View>
 
         </ScrollView>

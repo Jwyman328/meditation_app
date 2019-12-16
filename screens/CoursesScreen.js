@@ -18,15 +18,15 @@ function CoursesScreen(props){
     //props.navigation.setParams({'filtersVisible': setfiltersVisible})
     const filteredCourses = useSelector((state) => state.meditations.filteredMeditations)
 
-    const goToCourse = (title, uri, catagories, AudioCoursesId) => {
-        props.navigation.navigate('FullCourse', {courseData: {title:title, uri:uri, catagories:catagories, AudioCoursesId : AudioCoursesId }})
+    const goToCourse = (title, uri, catagories, AudioCoursesId,courseId) => {
+        props.navigation.navigate('FullCourse', {courseData: {title:title, uri:uri, catagories:catagories, AudioCoursesId : AudioCoursesId, courseId:courseId }})
 
     }
 
     const createCards = (course) =>{
         return(
             <View style={{...styles.coursesContainer }}>
-                    <CourseCard goToCourse={goToCourse} audioIds={course.item.AudioCoursesId} audio={course.item.audio} title ={course.item.title} uri = {course.item.ImageUri} catagories={course.item.catagories} />
+                    <CourseCard goToCourse={goToCourse} audioIds={course.item.AudioCoursesId} audio={course.item.audio} title ={course.item.title} uri = {course.item.ImageUri} catagories={course.item.catagories} courseId={course.item.courseId} />
                 </View>
         )
     }

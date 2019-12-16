@@ -1,11 +1,16 @@
 import React from 'react'
 import { StyleSheet, Text, View, ImageBackground, Dimensions } from 'react-native';
 
-
+/**
+ * Landing screen after the user logs in.
+ * 
+ * 
+ */
 function HomeScreen(){
     return (
         <View styles={styles.imageContainer}>
-        <ImageBackground style={styles.backgroundImage} source = {{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0HIJBdanX2M1YcbL03E0dAm3CyFOLPQxvBor7fpIOaLqf85Owg&s'}}>
+        <ImageBackground style={styles.backgroundImage} 
+        source = {{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0HIJBdanX2M1YcbL03E0dAm3CyFOLPQxvBor7fpIOaLqf85Owg&s'}}>
 
        
         <View>

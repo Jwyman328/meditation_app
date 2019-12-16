@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 
 import { View, Text, StyleSheet, Dimensions, ImageBackground, TouchableOpacity } from 'react-native'
@@ -6,7 +7,6 @@ import colors from '../constants/colors'
 import { FlatList } from 'react-native-gesture-handler'
 
 function CourseCard(props) {
-    console.log(props.audioIds, 'id?')
     return (
         <TouchableOpacity onPress={() => props.goToCourse(props.title, props.uri, props.catagories, props.audioIds, props.courseId)}>
             <View style={styles.outerContainer}>
@@ -58,3 +58,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 2,
     }
 })
+
+
+CourseCard.propTypes = {
+    goToCourse : PropTypes.func,
+    title : PropTypes.string,
+    uri: PropTypes.string ,
+    catagories: PropTypes.array,
+    audioIds: PropTypes.array,
+    courseId: PropTypes.string,
+}

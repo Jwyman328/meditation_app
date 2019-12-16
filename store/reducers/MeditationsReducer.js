@@ -12,7 +12,8 @@ const initialState = {
         testAdvancedFilter:false,
         testConfidenceFilter: false,
         testFavoriteFilter:false,
-    }
+    },
+    audioBuffering: false,
 }
 
 const MeditationsReducer = (state=initialState, action) => {

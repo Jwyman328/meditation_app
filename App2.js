@@ -1,8 +1,13 @@
 import React from 'react'
-import { StyleSheet, TouchableOpacity, View, Image, Text } from 'react-native'
+import { StyleSheet, TouchableOpacity, View, Image, Text, ActivityIndicator, Dimensions } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { Audio } from 'expo-av'
 import audioBookPlaylist from './Data/AudioBookPlaylist'
+import { AppLoading } from 'expo';
+import { Asset } from 'expo-asset';
+import colors from './constants/colors'
+
+
 
 export default class App extends React.Component {
 	state = {
@@ -10,10 +15,12 @@ export default class App extends React.Component {
 		playbackInstance: null,
 		currentIndex: 0,
 		volume: 1.0,
-		isBuffering: true
+		isBuffering: true,
+		isReady: false,
 	}
 
-	meditation = this.props.meditationId
+	//meditation = this.props.meditationId
+  
 
 	async componentDidMount() {
 		try {
@@ -28,6 +35,7 @@ export default class App extends React.Component {
 			})
 
 			this.loadAudio()
+			this.handlePlayPause()
 		} catch (e) {
 			console.log(e)
 		}
@@ -93,8 +101,10 @@ export default class App extends React.Component {
 	}*/
 
 	renderFileInfo() {
+		
+
 		const { playbackInstance, currentIndex } = this.state
-		return playbackInstance ? (
+		return !this.state.isBuffering ? (
 			<View style={styles.trackInfo}>
 				<Text style={[styles.trackInfoText, styles.largeText]}>
 					{audioBookPlaylist[this.props.meditationId].title}
@@ -110,6 +120,17 @@ export default class App extends React.Component {
 	}
 
 	render() {
+		if (!this.state.isReady){
+			return <AppLoading 
+				startAsync={this._cacheResourceAsync}
+				onFinish={()=> this.setState({isReady:true})}
+				onError = {console.warn}
+			/>
+		}else{
+
+		}
+
+		if (!this.state.isBuffering){
 		return (
 			<View style={{...styles.container, ...this.props.style}}>
 				
@@ -129,13 +150,39 @@ export default class App extends React.Component {
 						<Ionicons name='ios-skip-forward' size={48} color='#444' />
 						</TouchableOpacity>*/}
 				</View>
-				{this.renderFileInfo()}
+				{!this.state.isBuffering? this.renderFileInfo():null}
 			</View>
-		)
+		)}else{
+			return (
+				<View style={{...styles.waitingContainer}}>
+					<ActivityIndicator size="large" color={'black'} />
+				</View>
+			)
+		}
+	}
+
+	async _cacheResourceAsync(){
+		const audios = [audioBookPlaylist[this.props.meditationId].uri]
+
+		const cacheAudios = audios.map(audio => {
+			return Asset.fromModule(audio).downloadAsync();
+		  }); 
+		  return Promise.all(cacheAudios);
 	}
 }
 
 const styles = StyleSheet.create({
+	waitingContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		height: Dimensions.get('window').height * .6,
+	  },
+	  waitingHorizontal: {
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+		padding: 10
+	  },
 	container: {
 		flex: 1,
 		//backgroundColor: '#fff',

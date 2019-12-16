@@ -11,7 +11,8 @@ import { FlatList } from 'react-native-gesture-handler';
  */
 function IndividualMeditationScreen(props) {
     const data = props.navigation.getParam('data')
-
+    
+    
     return (
         <ImageBackground style={{ width: '100%', height: '100%' }} source={{ uri: data.uri }}>
             <ScrollView >
@@ -21,7 +22,6 @@ function IndividualMeditationScreen(props) {
                 </View>
             </ScrollView>
         </ImageBackground>
-
     )
 }
 

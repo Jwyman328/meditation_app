@@ -5,7 +5,7 @@ const audioBookPlaylist = {
 	    {
         orderNumber: 1,
         title: 'Capable Shift',
-        time: 360, // in seconds
+        time: 411, // in seconds
 		author: 'Richard Burr',
 		source: 'Librivox',
 		uri:  require('../audio/CapableChange.mp3'),
@@ -16,7 +16,7 @@ const audioBookPlaylist = {
 	    {
         orderNumber:2,
         id:'A2',
-        time:360,
+        time:831,
 		title: 'Restful Sleep',
 		author: 'Richard Burr',
 		source: 'Librivox',
@@ -28,7 +28,7 @@ const audioBookPlaylist = {
         orderNumber:3,
         id:'A3',
         title: 'Work in Progress',
-        time:360,
+        time:581,
 		author: 'Richard Burr ',
 		source: 'Librivox',
 		uri: require('../audio/WorkInProgress.mp3'),
@@ -40,7 +40,7 @@ const audioBookPlaylist = {
         orderNumber:4,
         id:'A4',
         title: 'Positive Self',
-        time:360,
+        time:877,
 		author: 'Richard Burr',
 		source: 'Librivox',
 		uri: require('../audio/PositiveSelf.mp3'),
@@ -50,7 +50,7 @@ const audioBookPlaylist = {
         orderNumber:5,
         id:'A5',
         title: 'Anxiety Free',
-        time:360,
+        time:752,
 		author: 'Richard Burr',
 		source: 'Librivox',
 		uri: require('../audio/AnxietyFree.mp3'),

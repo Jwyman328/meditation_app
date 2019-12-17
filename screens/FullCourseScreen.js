@@ -65,6 +65,21 @@ function FullCourseScreen(props) {
         props.navigation.navigate('IndividualMeditationScreen', { data: { meditationId: meditaionId, uri: data.uri } })
     }
 
+    const convertSecToMinSec = (secs) => {
+        if (secs >= 60) {
+            var minutes = Math.floor(secs / 60)
+            var seconds = secs - minutes * 60
+            minutes = Math.floor(minutes)
+            let minutesCheck10 = minutes < 10 ? `${minutes}` : minutes
+            let secondsCheck10 = seconds < 10 ? `0${seconds}` : seconds
+            return `${minutesCheck10}:${secondsCheck10}`
+          } else {
+            // if you hacent reached a minue yet just display the seconds
+            let secondsCheck10 = secs < 10 ? `0${secs}` : secs
+            return `00:${secondsCheck10}`
+
+        }}
+
     /**
      * Create a display card for each meditation audio in the course.
      * 
@@ -74,18 +89,19 @@ function FullCourseScreen(props) {
      */
     const createMeditationCard = (item) => {
         const title = audioBookPlaylist[item].title
-        const time = audioBookPlaylist[item].time
+        const seconds = audioBookPlaylist[item].time
         const orderNumber = audioBookPlaylist[item].orderNumber
+        const time = convertSecToMinSec(seconds)
 
         return (
             <TouchableOpacity onPress={() => goToMeditation(item)} style={{ width: '100%' }} >
                 <View style={styles.meditationcard}>
                     <View style={{ marginLeft:6, width:40 ,height:'70%' ,borderWidth:2, borderColor:colors.darkStrongPrimary,
                         justifyContent:'center', alignItems:'center', borderStyle:'solid', borderRadius:600, backgroundColor:colors.primary}}>
-                        <Text style={{ color: 'black', fontSize: 20, }}>{orderNumber}</Text>
+                        <Text style={{ color: 'white', fontSize: 20, }}>{orderNumber}</Text>
                     </View>
-                    <Text style={{ fontFamily:'AppleSDGothicNeo-Bold', color: 'black', fontSize: 20 }}>{title}</Text>
-                    <Text style={{ fontSize: 20 }}>{time}</Text>
+                    <Text style={{ fontFamily:'AppleSDGothicNeo-Bold', color: 'white', fontSize: 20 }}>{title}</Text>
+                    <Text style={{ color:'white' , fontSize: 20 }}>{time}</Text>
                     <View style={{ marginRight: 4 }}>
                         <Ionicons size={30} onPress={() => goToMeditation(item)} name='ios-headset' title='play' />
                     </View>
@@ -154,7 +170,7 @@ FullCourseScreen.navigationOptions = (navData) => {
             headerRight:
                 <ScrollView style={{ marginTop: Dimensions.get('window').height * .02 }} horizontal={true}>
                     <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
-                        <Item title='filter' color={isInfavorites()} iconName={getHeartIcon()} onPress={addFavorite} />
+                        <Item size={25}  title='filter' color={isInfavorites()} iconName={getHeartIcon()} onPress={addFavorite} />
                     </HeaderButtons>
                 </ScrollView>,
         }

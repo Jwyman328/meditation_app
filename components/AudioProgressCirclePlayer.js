@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Text, Button } from 'react-native'
+import { Text, Button, View } from 'react-native'
 
 import ProgressCircle from 'react-native-progress-circle'
 import PropTypes from 'prop-types'
@@ -21,6 +21,11 @@ function AudioProgressCircle(props) {
    * and percent of song that has been played.
    */
   useEffect(() => {
+    if (props.playTime === props.songTime){
+      props.goToMeditationCompleted({meditationId: props.meditationId})
+    }else{
+      //
+    }
     if (props.isPlaying) {
       const interval = setInterval(() => {
         const newPlayTime = props.playTime + 1;
@@ -45,11 +50,17 @@ function AudioProgressCircle(props) {
       }, 1000);
       return () => clearInterval(interval);
     } else {
+      if (props.playTime === props.songTime){
+        props.goToMeditationCompleted()
+      }else{
+        //
+      }
       console.log('stopped playing')
     }
   }, [props.playTime]);
 
   return (
+    <View style={{opacity: .8}}>
     <ProgressCircle
       percent={percent}
       radius={90}
@@ -57,10 +68,12 @@ function AudioProgressCircle(props) {
       color={'#748AD6'}
       shadowColor={colors.base}
       bgColor={colors.primary}
+      
     >
       {props.children}
-      <Text style={{ fontSize: 18 }}>{props.displayTime}</Text>
+      <Text style={{color:colors.strongPrimary, fontSize: 23, fontFamily: 'AppleSDGothicNeo-Bold' }}>{props.displayTime}</Text>
     </ProgressCircle>
+    </View>
   )
 }
 

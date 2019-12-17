@@ -17,6 +17,7 @@ import colors from '../constants/colors'
 
 import FilterScreen from '../components/FiltersModal'
 import IndividualMeditationScreen from '../screens/IndividualMeditationScreen'
+import MetitationCompletedScreen from '../screens/meditationCompletedScreen'
 
 const CoursesStackNavigation = createStackNavigator({
     
@@ -33,6 +34,16 @@ const CoursesStackNavigation = createStackNavigator({
         
     },
     IndividualMeditationScreen:IndividualMeditationScreen,
+    MeditationCompleted: {
+       screen: MetitationCompletedScreen,
+       navigationOptions:{
+
+           headerStyle:{
+               backgroundColor:colors.primary
+           }
+       }
+    
+    },
     Filters: {
         screen:FilterScreen,
         navigationOptions: {

@@ -22,7 +22,7 @@ export default class AudioPlayer extends React.Component {
 		isBuffering: true,
 		isReady: false,
 		audioLength: null,
-		playTime : 0,
+		playTime : 409,
 		displayTime: '00:00',
 
 	}
@@ -164,7 +164,7 @@ export default class AudioPlayer extends React.Component {
 		if (!this.state.isBuffering){
 		return (
 			<View style={{...styles.container, ...this.props.style}}>
-				<AudioProgressCircle displayTimeChange={this.changeDisplayTime} displayTime={this.state.displayTime} playTime={this.state.playTime} songTimeChanger={this.changePlayTime} songTime={audioBookPlaylist[this.props.meditationId].time} isPlaying={this.state.isPlaying}>
+				<AudioProgressCircle meditationId={this.props.meditationId} goToMeditationCompleted={this.props.goToMeditationCompleted} displayTimeChange={this.changeDisplayTime} displayTime={this.state.displayTime} playTime={this.state.playTime} songTimeChanger={this.changePlayTime} songTime={audioBookPlaylist[this.props.meditationId].time} isPlaying={this.state.isPlaying}>
 
 				<View style={styles.controls}>
 					{/*<TouchableOpacity style={styles.control} onPress={this.handlePreviousTrack}>
@@ -172,9 +172,13 @@ export default class AudioPlayer extends React.Component {
 					</TouchableOpacity>*/}
 					<TouchableOpacity  style={styles.control} onPress={this.handlePlayPause}>
 						{this.state.isPlaying ? (
+							<View style={{paddingTop:30}}>
 							<Ionicons name='ios-pause' size={65} color={colors.base} />
+							</View>
 						) : (
+							<View style={{paddingTop:30}}>
 							<Ionicons name='ios-play-circle' size={70} color={colors.base} />
+							</View>
 						)}
 					</TouchableOpacity>
 
@@ -248,7 +252,7 @@ const styles = StyleSheet.create({
 		fontSize: 20
 	},
 	control: {
-		margin: 20,
+		margin: 10,
 		opacity: 1,
 		
 	},

@@ -12,8 +12,7 @@ import AudioProgressCircle from './components/AudioProgressCirclePlayer'
 
 
 
-export default class App extends React.Component {
-
+export default class AudioPlayer extends React.Component {
 	
 	state = {
 		isPlaying: false,
@@ -137,16 +136,14 @@ export default class App extends React.Component {
 	renderFileInfo() {
 		const { playbackInstance, currentIndex } = this.state
 		return !this.state.isBuffering ? (
-			<View style={styles.trackInfo}>
+			<View style={{...styles.trackInfo}}>
 				<Text style={[styles.trackInfoText, styles.largeText]}>
 					{audioBookPlaylist[this.props.meditationId].title}
 				</Text>
 				<Text style={[styles.trackInfoText, styles.smallText]}>
 					{audioBookPlaylist[this.props.meditationId].author}
 				</Text>
-				<Text style={[styles.trackInfoText, styles.smallText]}>
-					{audioBookPlaylist[this.props.meditationId].source}
-				</Text>
+
 
 
 			</View>
@@ -167,16 +164,17 @@ export default class App extends React.Component {
 		if (!this.state.isBuffering){
 		return (
 			<View style={{...styles.container, ...this.props.style}}>
-				
+				<AudioProgressCircle displayTimeChange={this.changeDisplayTime} displayTime={this.state.displayTime} playTime={this.state.playTime} songTimeChanger={this.changePlayTime} songTime={audioBookPlaylist[this.props.meditationId].time} isPlaying={this.state.isPlaying}>
+
 				<View style={styles.controls}>
 					{/*<TouchableOpacity style={styles.control} onPress={this.handlePreviousTrack}>
 						<Ionicons name='ios-skip-backward' size={48} color='#444' /> 
 					</TouchableOpacity>*/}
-					<TouchableOpacity style={styles.control} onPress={this.handlePlayPause}>
+					<TouchableOpacity  style={styles.control} onPress={this.handlePlayPause}>
 						{this.state.isPlaying ? (
-							<Ionicons name='ios-pause' size={48} color='#444' />
+							<Ionicons name='ios-pause' size={65} color={colors.base} />
 						) : (
-							<Ionicons name='ios-play-circle' size={48} color='#444' />
+							<Ionicons name='ios-play-circle' size={70} color={colors.base} />
 						)}
 					</TouchableOpacity>
 
@@ -184,14 +182,13 @@ export default class App extends React.Component {
 						<Ionicons name='ios-skip-forward' size={48} color='#444' />
 						</TouchableOpacity>*/}
 				</View>
-				<AudioProgressCircle displayTimeChange={this.changeDisplayTime} displayTime={this.state.displayTime} playTime={this.state.playTime} songTimeChanger={this.changePlayTime} songTime={audioBookPlaylist[this.props.meditationId].time} isPlaying={this.state.isPlaying} />
-
+				</AudioProgressCircle>
 				{!this.state.isBuffering? this.renderFileInfo():null}
 			</View>
 		)}else{
 			return (
 				<View style={{...styles.waitingContainer}}>
-					<ActivityIndicator size="large" color={'black'} />
+					<ActivityIndicator size="large" color={colors.base} />
 				</View>
 			)
 		}
@@ -223,30 +220,37 @@ const styles = StyleSheet.create({
 		flex: 1,
 		//backgroundColor: '#fff',
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		height: Dimensions.get('window').height * .78
 	},
 	albumCover: {
 		width: 250,
 		height: 250
 	},
 	trackInfo: {
-		padding: 40,
+		//padding: 40,
 		//backgroundColor: '#fff'
+		justifyContent: 'center',
+		alignItems: 'center',
+		flex:.4,
 	},
 
 	trackInfoText: {
 		textAlign: 'center',
 		flexWrap: 'wrap',
-		color: '#550088'
+		color: colors.base,
+		fontFamily:'AppleSDGothicNeo-Bold'
 	},
 	largeText: {
-		fontSize: 22
+		fontSize: 40
 	},
 	smallText: {
-		fontSize: 16
+		fontSize: 20
 	},
 	control: {
-		margin: 20
+		margin: 20,
+		opacity: 1,
+		
 	},
 	controls: {
 		flexDirection: 'row'
@@ -255,8 +259,6 @@ const styles = StyleSheet.create({
 		justifyContent:'space-between',
 		 flexDirection:'row', 
 		 width:Dimensions.get('window').width * .9,
-		  borderStyle:'solid', 
-		  borderColor:'red', 
-		  borderWidth:2
+
 	}
 })

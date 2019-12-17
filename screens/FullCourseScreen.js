@@ -84,7 +84,7 @@ function FullCourseScreen(props) {
                         justifyContent:'center', alignItems:'center', borderStyle:'solid', borderRadius:600, backgroundColor:colors.primary}}>
                         <Text style={{ color: 'black', fontSize: 20, }}>{orderNumber}</Text>
                     </View>
-                    <Text style={{ color: 'black', fontSize: 20 }}>{title}</Text>
+                    <Text style={{ fontFamily:'AppleSDGothicNeo-Bold', color: 'black', fontSize: 20 }}>{title}</Text>
                     <Text style={{ fontSize: 20 }}>{time}</Text>
                     <View style={{ marginRight: 4 }}>
                         <Ionicons size={30} onPress={() => goToMeditation(item)} name='ios-headset' title='play' />

@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, ImageBackground, ScrollView, Dimensions } from 'react-native';
 
-import App from '../App2'
+import AudioPlayer from '../AudioPlayer'
 import { FlatList } from 'react-native-gesture-handler';
 
 /**
@@ -18,7 +18,7 @@ function IndividualMeditationScreen(props) {
             <ScrollView >
                 <View >
                     <Text></Text>
-                    <App meditationId={data.meditationId} style={styles.quickBorder} />
+                    <AudioPlayer meditationId={data.meditationId}  />
                 </View>
             </ScrollView>
         </ImageBackground>

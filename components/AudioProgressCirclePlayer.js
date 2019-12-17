@@ -52,12 +52,13 @@ function AudioProgressCircle(props) {
   return (
     <ProgressCircle
       percent={percent}
-      radius={50}
+      radius={90}
       borderWidth={8}
       color={'#748AD6'}
       shadowColor={colors.base}
       bgColor={colors.primary}
     >
+      {props.children}
       <Text style={{ fontSize: 18 }}>{props.displayTime}</Text>
     </ProgressCircle>
   )

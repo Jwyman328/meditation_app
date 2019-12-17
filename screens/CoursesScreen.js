@@ -45,11 +45,22 @@ function CoursesScreen(props){
                 </View>
         )
     }
+    /**
+     * Create a single meditation course card
+     * @param {Object} course 
+     */
+    const createCard = (course) =>{
+        return(
+            <View style={{...styles.coursesContainer }}>
+                    <CourseCard goToCourse={goToCourse} audioIds={course.AudioCoursesId} audio={course.audio} title ={course.title} uri = {course.ImageUri} catagories={course.catagories} courseId={course.courseId} />
+                </View>
+        )
+    }
     return (
         <View style={{flex:1, justifyContent:'center', alignItems:'center', backgroundColor: colors.darkStrongPrimary}}>
-            <ScrollView contentContainerStyle={{justifyContent:'center', alignItems:'center'}} style={{width:'100%',flex: 1, ...styles.quickBorder }}>
-                {filteredCourses? <FlatList numColumns={2} data={filteredCourses} keyExtractor={(item=> item.title)} renderItem={(course) => createCards(course)} />: null}
-            </ScrollView> 
+            <View style={{width:'100%',flex: 1, ...styles.quickBorder, justifyContent:'center', alignItems:'center' }}>
+                {filteredCourses ? filteredCourses.length > 1 ? <FlatList numColumns={2} data={filteredCourses} keyExtractor={(item=> item.title)} renderItem={(course) => createCards(course)} />: createCard(filteredCourses[0]) : null}
+            </View> 
         </View>
     )
 }

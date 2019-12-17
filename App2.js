@@ -7,9 +7,14 @@ import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import colors from './constants/colors'
 
+import {useSelector} from 'react-redux'
+import Example from './components/AudioBarPlayer'
+
 
 
 export default class App extends React.Component {
+
+	
 	state = {
 		isPlaying: false,
 		playbackInstance: null,
@@ -17,11 +22,38 @@ export default class App extends React.Component {
 		volume: 1.0,
 		isBuffering: true,
 		isReady: false,
+		audioLength: null,
+		displayTimer : 0,
+		displayTime: 0,
+
 	}
 
-	//meditation = this.props.meditationId
-  
 
+	//audioState = useSelector((state)=> state.meditations.audioState)
+	//meditation = this.props.meditationId
+	changeDisplayTimer = (newValue) => {
+		this.setState({
+			displayTimer: newValue
+		})
+	}
+
+	changeDisplayTime = (newValue) => {
+		this.setState({
+			displayTime: newValue
+		})
+	}
+	async componentWillUnmount() {
+		console.log('here')
+		try {
+			if (this.state.isPlaying){
+				this.handlePlayPause()
+			}
+
+			
+		} catch (e) {
+			console.log(e)
+		}
+	}
 	async componentDidMount() {
 		try {
 			await Audio.setAudioModeAsync({
@@ -47,7 +79,8 @@ export default class App extends React.Component {
 		try {
 			const playbackInstance = new Audio.Sound()
 			const source = audioBookPlaylist[this.props.meditationId].uri
-			
+			const audioLength = audioBookPlaylist[this.props.meditationId].time
+			console.log(audioLength)
 			const status = {
 				shouldPlay: isPlaying,
 				volume: volume
@@ -56,7 +89,8 @@ export default class App extends React.Component {
 			playbackInstance.setOnPlaybackStatusUpdate(this.onPlaybackStatusUpdate)
 			await playbackInstance.loadAsync(source, status, false)
 			this.setState({
-				playbackInstance
+				playbackInstance,
+				audioLength: audioLength
 			})
 		} catch (e) {
 			console.log(e)
@@ -115,6 +149,12 @@ export default class App extends React.Component {
 				<Text style={[styles.trackInfoText, styles.smallText]}>
 					{audioBookPlaylist[this.props.meditationId].source}
 				</Text>
+
+				<View style={styles.audioPlayerBar}>
+						<Text>0:00</Text>
+						<Text>{this.state.audioLength}</Text>
+				</View>
+
 			</View>
 		) : null
 	}
@@ -150,6 +190,8 @@ export default class App extends React.Component {
 						<Ionicons name='ios-skip-forward' size={48} color='#444' />
 						</TouchableOpacity>*/}
 				</View>
+				<Example displayTimeChange={this.changeDisplayTime} displayTime={this.state.displayTime} playTime={this.state.displayTimer} songTimeChanger={this.changeDisplayTimer} songTime={audioBookPlaylist[this.props.meditationId].time} isPlaying={this.state.isPlaying} />
+
 				{!this.state.isBuffering? this.renderFileInfo():null}
 			</View>
 		)}else{
@@ -214,5 +256,13 @@ const styles = StyleSheet.create({
 	},
 	controls: {
 		flexDirection: 'row'
+	},
+	audioPlayerBar: {
+		justifyContent:'space-between',
+		 flexDirection:'row', 
+		 width:Dimensions.get('window').width * .9,
+		  borderStyle:'solid', 
+		  borderColor:'red', 
+		  borderWidth:2
 	}
 })

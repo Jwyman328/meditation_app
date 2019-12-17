@@ -13,7 +13,14 @@ const initialState = {
         testConfidenceFilter: false,
         testFavoriteFilter:false,
     },
-    audioBuffering: false,
+    audioState : {
+		isPlaying: false,
+		playbackInstance: null,
+		currentIndex: 0,
+		volume: 1.0,
+		isBuffering: true,
+		isReady: false,
+	}
 }
 
 const MeditationsReducer = (state=initialState, action) => {
@@ -88,6 +95,12 @@ const MeditationsReducer = (state=initialState, action) => {
           
             return {...state,favoriteMeditations: newFavorites }
             break;
+
+        case 'SetAudioState':
+            console.log('state wil be altered')
+            const newAudioState = [...state.audioState]
+            newAudioState[action.audioStateSetting] = !newAudioState[action.audioStateSetting] 
+            return {...state,audioState:  newAudioState}
     }
   
 

@@ -23,17 +23,17 @@ export default class App extends React.Component {
 		isBuffering: true,
 		isReady: false,
 		audioLength: null,
-		displayTimer : 0,
-		displayTime: 0,
+		playTime : 0,
+		displayTime: '00:00',
 
 	}
 
 
 	//audioState = useSelector((state)=> state.meditations.audioState)
 	//meditation = this.props.meditationId
-	changeDisplayTimer = (newValue) => {
+	changePlayTime = (newValue) => {
 		this.setState({
-			displayTimer: newValue
+			playTime: newValue
 		})
 	}
 
@@ -190,7 +190,7 @@ export default class App extends React.Component {
 						<Ionicons name='ios-skip-forward' size={48} color='#444' />
 						</TouchableOpacity>*/}
 				</View>
-				<Example displayTimeChange={this.changeDisplayTime} displayTime={this.state.displayTime} playTime={this.state.displayTimer} songTimeChanger={this.changeDisplayTimer} songTime={audioBookPlaylist[this.props.meditationId].time} isPlaying={this.state.isPlaying} />
+				<Example displayTimeChange={this.changeDisplayTime} displayTime={this.state.displayTime} playTime={this.state.playTime} songTimeChanger={this.changePlayTime} songTime={audioBookPlaylist[this.props.meditationId].time} isPlaying={this.state.isPlaying} />
 
 				{!this.state.isBuffering? this.renderFileInfo():null}
 			</View>

@@ -7,17 +7,11 @@ import PropTypes from 'prop-types'
  
 function Example (props){
     const [percent, setPercent] = useState(0)
-    const [playtime, setPlaytime] = useState(props.playTime)
+    //const [playtime, setPlaytime] = useState(props.playTime)
     const [songTime, setSongTime] = useState(props.songTime)
-    const [timeDisplay, setTimeDisplay] = useState(props.displayTime)
+    //const [timeDisplay, setTimeDisplay] = useState(props.displayTime)
 
     const displayerTime = props.playTime
-
-   
-    const changePercent = () => {
-      const newPercent = playtime + 1;
-      setPlaytime(newPercent);
-    }
 
     
 
@@ -25,26 +19,26 @@ function Example (props){
       //props.songTimeChanger(10)
       if (props.isPlaying){
         const interval = setInterval(() => {
-          const newPercent = displayerTime + 1;
-          props.songTimeChanger(newPercent)
-          setPlaytime(newPercent)
-          if (newPercent >= 60){
-            var minutes = Math.floor(newPercent / 60)
-            var seconds = newPercent - minutes * 60 
+          const newPlayTime = displayerTime + 1;
+          props.songTimeChanger(newPlayTime)
+          //setPlaytime(newPlayTime)
+          if (newPlayTime >= 60){
+            var minutes = Math.floor(newPlayTime / 60)
+            var seconds = newPlayTime - minutes * 60 
             //seconds = seconds.toFixed(0)
             minutes = Math.floor(minutes)
             let minutesCheck10 = minutes < 10? `0${minutes}`: minutes
             let secondsCheck10 = seconds < 10? `0${seconds}`: seconds
-            const realPercent = newPercent/songTime * 100
+            const realPercent = newPlayTime/props.songTime * 100
             setPercent(realPercent)
-            setTimeDisplay(`${minutesCheck10}:${secondsCheck10}`)
+            //setTimeDisplay(`${minutesCheck10}:${secondsCheck10}`)
             props.displayTimeChange(`${minutesCheck10}:${secondsCheck10}`)
             
           }else{
-            const realPercent = newPercent/songTime * 100
-            let secondsCheck10 = newPercent < 10? `0${newPercent}`: newPercent
+            const realPercent = newPlayTime/props.songTime* 100
+            let secondsCheck10 = newPlayTime < 10? `0${newPlayTime}`: newPlayTime
             setPercent(realPercent)
-            setTimeDisplay(`00:${secondsCheck10}`)
+            //setTimeDisplay(`00:${secondsCheck10}`)
             props.displayTimeChange(`00:${secondsCheck10}`)
           }
         }, 1000);
@@ -54,7 +48,7 @@ function Example (props){
       }
 
    
-    },[playtime]);
+    },[props.playTime]);
 
     return (
         <ProgressCircle

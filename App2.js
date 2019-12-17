@@ -8,7 +8,7 @@ import { Asset } from 'expo-asset';
 import colors from './constants/colors'
 
 import {useSelector} from 'react-redux'
-import Example from './components/AudioBarPlayer'
+import AudioProgressCircle from './components/AudioProgressCirclePlayer'
 
 
 
@@ -135,8 +135,6 @@ export default class App extends React.Component {
 	}*/
 
 	renderFileInfo() {
-		
-
 		const { playbackInstance, currentIndex } = this.state
 		return !this.state.isBuffering ? (
 			<View style={styles.trackInfo}>
@@ -150,10 +148,6 @@ export default class App extends React.Component {
 					{audioBookPlaylist[this.props.meditationId].source}
 				</Text>
 
-				<View style={styles.audioPlayerBar}>
-						<Text>0:00</Text>
-						<Text>{this.state.audioLength}</Text>
-				</View>
 
 			</View>
 		) : null
@@ -190,7 +184,7 @@ export default class App extends React.Component {
 						<Ionicons name='ios-skip-forward' size={48} color='#444' />
 						</TouchableOpacity>*/}
 				</View>
-				<Example displayTimeChange={this.changeDisplayTime} displayTime={this.state.displayTime} playTime={this.state.playTime} songTimeChanger={this.changePlayTime} songTime={audioBookPlaylist[this.props.meditationId].time} isPlaying={this.state.isPlaying} />
+				<AudioProgressCircle displayTimeChange={this.changeDisplayTime} displayTime={this.state.displayTime} playTime={this.state.playTime} songTimeChanger={this.changePlayTime} songTime={audioBookPlaylist[this.props.meditationId].time} isPlaying={this.state.isPlaying} />
 
 				{!this.state.isBuffering? this.renderFileInfo():null}
 			</View>

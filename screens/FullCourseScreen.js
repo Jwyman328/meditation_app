@@ -11,6 +11,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import addFavorite from '../store/actions/addFavorite'
 
+import colors from '../constants/colors'
 /**
  * Display all available meditaion audios for the selected course.
  * 
@@ -79,11 +80,14 @@ function FullCourseScreen(props) {
         return (
             <TouchableOpacity onPress={() => goToMeditation(item)} style={{ width: '100%' }} >
                 <View style={styles.meditationcard}>
-                    <Text style={{ color: 'black', fontSize: 20, marginLeft: 4 }}>{orderNumber}.</Text>
+                    <View style={{ marginLeft:6, width:40 ,height:'70%' ,borderWidth:2, borderColor:colors.darkStrongPrimary,
+                        justifyContent:'center', alignItems:'center', borderStyle:'solid', borderRadius:600, backgroundColor:colors.primary}}>
+                        <Text style={{ color: 'black', fontSize: 20, }}>{orderNumber}</Text>
+                    </View>
                     <Text style={{ color: 'black', fontSize: 20 }}>{title}</Text>
                     <Text style={{ fontSize: 20 }}>{time}</Text>
                     <View style={{ marginRight: 4 }}>
-                        <Ionicons size={35} onPress={() => goToMeditation(item)} name='ios-play-circle' title='play' />
+                        <Ionicons size={30} onPress={() => goToMeditation(item)} name='ios-headset' title='play' />
                     </View>
                 </View>
             </TouchableOpacity>)

@@ -1,5 +1,8 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { StyleSheet, Text, View, ImageBackground, Dimensions } from 'react-native';
+
+import FetchAllCourses from '../store/actions/FetchAllCourses'
+import {useDispatch} from 'react-redux'
 
 /**
  * Landing screen after the user logs in.
@@ -7,6 +10,13 @@ import { StyleSheet, Text, View, ImageBackground, Dimensions } from 'react-nativ
  * 
  */
 function HomeScreen(){
+    
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(FetchAllCourses())
+    }, [dispatch])
+
     return (
         <View styles={styles.imageContainer}>
         <ImageBackground style={styles.backgroundImage} 

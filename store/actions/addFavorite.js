@@ -31,6 +31,7 @@ const AddFavorite2 = (courseId) => {
     
     const responseData = await response.json()
     console.log(responseData, 'response data2')
+    dispatch({type: 'AddFavorite', products:responseData})
     }
 }
 
@@ -39,6 +40,8 @@ const AddFavorite = (courseId) => { //Original
         {type:'AddFavorite', courseId:courseId}
     )
 }
+
+
 
 
 export default AddFavorite2

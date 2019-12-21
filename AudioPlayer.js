@@ -76,8 +76,8 @@ export default class AudioPlayer extends React.Component {
 
 		try {
 			const playbackInstance = new Audio.Sound()
-			const source = audioBookPlaylist[this.props.meditationId].uri
-			const audioLength = audioBookPlaylist[this.props.meditationId].time
+			const source = audioBookPlaylist['A1'].uri
+			const audioLength = this.props.meditationData.time
 			const status = {
 				shouldPlay: isPlaying,
 				volume: volume
@@ -136,10 +136,10 @@ export default class AudioPlayer extends React.Component {
 		return !this.state.isBuffering ? (
 			<View style={{...styles.trackInfo}}>
 				<Text style={[styles.trackInfoText, styles.largeText]}>
-					{audioBookPlaylist[this.props.meditationId].title}
+					{this.props.meditationData.title}
 				</Text>
 				<Text style={[styles.trackInfoText, styles.smallText]}>
-					{audioBookPlaylist[this.props.meditationId].author}
+					{this.props.meditationData.author}
 				</Text>
 
 
@@ -162,7 +162,7 @@ export default class AudioPlayer extends React.Component {
 		if (!this.state.isBuffering){
 		return (
 			<View style={{...styles.container, ...this.props.style}}>
-				<AudioProgressCircle meditationId={this.props.meditationId} goToMeditationCompleted={this.props.goToMeditationCompleted} displayTimeChange={this.changeDisplayTime} displayTime={this.state.displayTime} playTime={this.state.playTime} songTimeChanger={this.changePlayTime} songTime={audioBookPlaylist[this.props.meditationId].time} isPlaying={this.state.isPlaying}>
+				<AudioProgressCircle meditationId={this.props.meditationData} goToMeditationCompleted={this.props.goToMeditationCompleted} displayTimeChange={this.changeDisplayTime} displayTime={this.state.displayTime} playTime={this.state.playTime} songTimeChanger={this.changePlayTime} songTime={this.props.meditationData.time} isPlaying={this.state.isPlaying}>
 
 				<View style={styles.controls}>
 					{/*<TouchableOpacity style={styles.control} onPress={this.handlePreviousTrack}>
@@ -197,7 +197,7 @@ export default class AudioPlayer extends React.Component {
 	}
 
 	async _cacheResourceAsync(){
-		const audios = [audioBookPlaylist[this.props.meditationId].uri]
+		const audios = [audioBookPlaylist['A1'].uri]
 
 		const cacheAudios = audios.map(audio => {
 			return Asset.fromModule(audio).downloadAsync();

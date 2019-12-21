@@ -11,6 +11,7 @@ import { FlatList } from 'react-native-gesture-handler';
  */
 function IndividualMeditationScreen(props) {
     const data = props.navigation.getParam('data')
+    console.log(data.meditationData, 'data')
     const goToMeditationCompleted = (dataToPass) => props.navigation.navigate('MeditationCompleted', dataToPass)
     
     return (
@@ -18,7 +19,7 @@ function IndividualMeditationScreen(props) {
             <ScrollView >
                 <View >
                     <Text></Text>
-                    <AudioPlayer goToMeditationCompleted={goToMeditationCompleted} meditationId={data.meditationId}  />
+                    <AudioPlayer goToMeditationCompleted={goToMeditationCompleted} meditationData={data.meditationData} meditationId={data.meditationId}  />
                 </View>
             </ScrollView>
         </ImageBackground>

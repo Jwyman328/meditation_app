@@ -1,11 +1,20 @@
 import FilterMeditations from '../actions/filterMeditations'
 import dummyData from '../../Data/dummyData'
 
+const fetchData = async() => {
+
+    const response = await fetch('https://intense-gorge-29567.herokuapp.com/all_meditation_courses/')
+    
+    const responseData = await response.json()
+    console.log(responseData[0].course_id, 'response data2')
+    return 
+}
 
 const initialState = {
-    meditations:dummyData, // courses
-    filteredMeditations:dummyData,
+    meditations: [], //fetchData(), //dummyData, // courses
+    filteredMeditations:[],// fetchData(),//dummyData,
     favoriteMeditations:[] ,
+    courseData:[],
     filters : {
         testAnxietyFilter:false,
         testDepressionFilter:false,
@@ -79,17 +88,28 @@ const MeditationsReducer = (state=initialState, action) => {
 
         case  'AddFavorite':
             // add and remove favorites here
-            var newFavorites = [...state.favoriteMeditations]
+            {/*var newFavorites = [...state.favoriteMeditations]
             // check if the favorite already exists
             if (newFavorites.includes(action.courseId)){
                 //if exists then remove it 
                 newFavorites = newFavorites.filter(courseId =>  courseId !== action.courseId )
             }else{
                 newFavorites.push(action.courseId)
-            }
+            } */}
+            //console.log(action.products, 'prop prop')
           
-            return {...state,favoriteMeditations: newFavorites }
+            return {...state,meditations: action.products, filteredMeditations: action.products }
             break;
+
+        case 'FetchAllCourses':
+            //fetch all meditation courses and set them as state 
+            return {...state,meditations: action.allMeditationCourses, filteredMeditations: action.allMeditationCourses }
+            break;
+
+        case 'FetchCourseData':
+                return {...state, courseData: action.CourseData }
+                break;
+    
 
         case 'SetAudioState':
             const newAudioState = [...state.audioState]

@@ -22,6 +22,7 @@ function CoursesScreen(props){
   
     const filteredCourses = useSelector((state) => state.meditations.filteredMeditations)
 
+    
     /**
      * Navigate to the Full course screen of the selected course.
      * @param {string} title course title
@@ -30,8 +31,8 @@ function CoursesScreen(props){
      * @param {Array} AudioCoursesId Ids refering to the audio files for this course
      * @param {string} courseId Id of the course
      */
-    const goToCourse = (title, uri, catagories, AudioCoursesId,courseId) => {
-        props.navigation.navigate('FullCourse', {courseData: {title:title, uri:uri, catagories:catagories, AudioCoursesId : AudioCoursesId, courseId:courseId }})
+    const goToCourse = (courseId, image_uri) => {
+        props.navigation.navigate('FullCourse', {courseData: {courseId:courseId, image_uri: image_uri }})
     }
 
     /**
@@ -39,9 +40,10 @@ function CoursesScreen(props){
      * @param {Array<Object>} course a meditation course
      */
     const createCards = (course) =>{
+        console.log(course, 'in din')
         return(
             <View style={{...styles.coursesContainer }}>
-                    <CourseCard goToCourse={goToCourse} audioIds={course.item.AudioCoursesId} audio={course.item.audio} title ={course.item.title} uri = {course.item.ImageUri} catagories={course.item.catagories} courseId={course.item.courseId} />
+                    <CourseCard goToCourse={goToCourse} course_id={course.item.id} />
                 </View>
         )
     }
@@ -50,16 +52,17 @@ function CoursesScreen(props){
      * @param {Object} course 
      */
     const createCard = (course) =>{
+        console.log(course.catagories, 'course here')
         return(
             <View style={{...styles.coursesContainer }}>
-                    <CourseCard goToCourse={goToCourse} audioIds={course.AudioCoursesId} audio={course.audio} title ={course.title} uri = {course.ImageUri} catagories={course.catagories} courseId={course.courseId} />
+                    <CourseCard goToCourse={goToCourse}  title ={course.title} uri = {course.image_uri} catagories={course.catagories} id={course.id} courseId={course.course_id} />
                 </View>
-        )
+        ) 
     }
     return (
         <View style={{flex:1, justifyContent:'center', alignItems:'center', backgroundColor: colors.darkStrongPrimary}}>
             <View style={{width:'100%',flex: 1, ...styles.quickBorder, justifyContent:'center', alignItems:'center' }}>
-                {filteredCourses ? filteredCourses.length > 1 ? <FlatList numColumns={2} data={filteredCourses} keyExtractor={(item=> item.title)} renderItem={(course) => createCards(course)} />: createCard(filteredCourses[0]) : null}
+                {filteredCourses ?  filteredCourses.length > 1 ? <FlatList numColumns={2} data={filteredCourses} keyExtractor={(item=> item.title)} renderItem={(course) => createCards(course)} />: createCard(filteredCourses[0]) : null}
             </View> 
         </View>
     )

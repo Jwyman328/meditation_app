@@ -10,6 +10,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 import { useDispatch, useSelector } from 'react-redux'
 import addFavorite from '../store/actions/addFavorite'
+import FetchCourseData from '../store/actions/fetchCourseData'
 
 import colors from '../constants/colors'
 /**
@@ -17,22 +18,22 @@ import colors from '../constants/colors'
  * 
  * @param {Array} data.AudioCoursesId Array of audios ids for this course
  * @param {String} data.courseId id for the entire course
- * @param {String} data.uri link refering to background image
+ * @param {String} data.image_uri link refering to background image
  * @param {String} data.title course title
  */
 function FullCourseScreen(props) {
     const data = props.navigation.getParam('courseData')
 
     const courseId = data.courseId
-
-    const disptach = useDispatch()
+    const courseData = useSelector((state)=> state.meditations.courseData)
+    const dispatch = useDispatch()
 
     /**
      * Adds this course to the array of favorited courses
      * @function addFavorite store action to add a course id to favorite courses
      */
     const addCourseToFavorites = () => {
-        disptach(addFavorite(courseId))
+        dispatch(addFavorite(courseId))
     }
 
     const favoriteMeditations = useSelector(state => state.meditations.favoriteMeditations)
@@ -46,6 +47,8 @@ function FullCourseScreen(props) {
      */
     useEffect(() => {
         if (data) {
+            console.log(data, 'later')
+            dispatch(FetchCourseData(data.courseId))
             props.navigation.setParams({ addCourseToFavorites: addCourseToFavorites, 
                 favoriteMeditations: favoriteMeditations, courseId: courseId })
         } else {
@@ -60,7 +63,7 @@ function FullCourseScreen(props) {
      * @param {String} meditaionId Id for the meditation audio selected
      */
     const goToMeditation = (meditaionId) => {
-        props.navigation.navigate('IndividualMeditationScreen', { data: { meditationId: meditaionId, uri: data.uri } })
+        props.navigation.navigate('IndividualMeditationScreen', { data: { meditationData: meditaionId, uri: data.image_uri } })
     }
 
     const convertSecToMinSec = (secs) => {
@@ -86,9 +89,9 @@ function FullCourseScreen(props) {
      * @param {String} item audioCourseId for the selected audio meditation
      */
     const createMeditationCard = (item) => {
-        const title = audioBookPlaylist[item].title
-        const seconds = audioBookPlaylist[item].time
-        const orderNumber = audioBookPlaylist[item].orderNumber
+        const title = item.title //audioBookPlaylist[item].title
+        const seconds = item.time //audioBookPlaylist[item].time
+        const orderNumber = item.orderNumber //audioBookPlaylist[item].orderNumber
         const time = convertSecToMinSec(seconds)
 
         return (
@@ -108,16 +111,17 @@ function FullCourseScreen(props) {
     }
 
     return (
+        courseData?
         <View style={{ flex: 1 }} >
-            <ImageBackground style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }} source={{ uri: data.uri }}>
+            <ImageBackground style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }} source={{ uri: data.image_uri }}>
                 <View style={{ justifyContent: 'center', alignItems: 'center', flex: .3 }}>
                     <Text style={{ textAlign: 'center', color: 'white', fontSize: 30 }}>{data.title}</Text>
                 </View>
                 <View style={{ flex: 1, marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
-                    <FlatList contentContainerStyle={{ alignItems: 'center' }} data={data.AudioCoursesId} renderItem={({ item }) => createMeditationCard(item)} />
+                    <FlatList contentContainerStyle={{ alignItems: 'center' }} data={courseData} renderItem={({ item }) => createMeditationCard(item)} />
                 </View>
             </ImageBackground>
-        </View>
+        </View>: null
     )
 }
 

@@ -23,9 +23,9 @@ function MeditationCompletedScreen(props) {
             <Text style={styles.headerText}> Meditation Completed</Text>
             <Text style={styles.titleText}> {meditationData.title}</Text>
             <Text style={styles.authorText}>by {meditationData.author}</Text>
-            <ScrollView contentContainerStyle={{justifyContent:'center', }}>
+            <View Style={{justifyContent:'center' }}>
                 <Image resizeMode='stretch' style={styles.image} source={{uri:imageUrls[getRandomInt(0,imageUrls.length)]}} />
-            </ScrollView>
+            </View>
         </View>
     )
 }
@@ -74,9 +74,11 @@ const styles = StyleSheet.create({
         width:Dimensions.get('window').width * .95,
         height: Dimensions.get('window').height * .4,
         borderWidth:1,
-         borderStyle:'solid',
-          borderColor:colors.base, 
-          borderRadius:200,
+        
+        borderColor:colors.base, 
+        borderRadius:20,
+       
         overflow:'hidden' 
-    }
+    },
+
 })

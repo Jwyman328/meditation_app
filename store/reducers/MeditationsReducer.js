@@ -1,9 +1,10 @@
 import FilterMeditations from '../actions/filterMeditations'
 import dummyData from '../../Data/dummyData'
 
+
 const initialState = {
-    meditations:dummyData,
-    filteredMeditations: dummyData,
+    meditations:dummyData, // courses
+    filteredMeditations:dummyData,
     favoriteMeditations:[] ,
     filters : {
         testAnxietyFilter:false,
@@ -68,36 +69,29 @@ const MeditationsReducer = (state=initialState, action) => {
                 }
 
                 if (newFilters.testFavoriteFilter && state.favoriteMeditations.includes(meditation.courseId)  ){
-                    console.log(state.favoriteMeditations, meditation.courseId)
                     return meditation
                 }else{
                     //
                 }
 
             })}
-
-            console.log(newFilteredMeditations.length)
             return {...state, filters: newFilters, filteredMeditations: newFilteredMeditations }
 
         case  'AddFavorite':
             // add and remove favorites here
-            console.log(action.courseId)
             var newFavorites = [...state.favoriteMeditations]
             // check if the favorite already exists
             if (newFavorites.includes(action.courseId)){
                 //if exists then remove it 
                 newFavorites = newFavorites.filter(courseId =>  courseId !== action.courseId )
-                console.log(newFavorites)
             }else{
                 newFavorites.push(action.courseId)
-                console.log(newFavorites)
             }
           
             return {...state,favoriteMeditations: newFavorites }
             break;
 
         case 'SetAudioState':
-            console.log('state wil be altered')
             const newAudioState = [...state.audioState]
             newAudioState[action.audioStateSetting] = !newAudioState[action.audioStateSetting] 
             return {...state,audioState:  newAudioState}

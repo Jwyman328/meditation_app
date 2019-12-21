@@ -42,7 +42,6 @@ export default class AudioPlayer extends React.Component {
 		})
 	}
 	async componentWillUnmount() {
-		console.log('here')
 		try {
 			if (this.state.isPlaying){
 				this.handlePlayPause()
@@ -79,7 +78,6 @@ export default class AudioPlayer extends React.Component {
 			const playbackInstance = new Audio.Sound()
 			const source = audioBookPlaylist[this.props.meditationId].uri
 			const audioLength = audioBookPlaylist[this.props.meditationId].time
-			console.log(audioLength)
 			const status = {
 				shouldPlay: isPlaying,
 				volume: volume

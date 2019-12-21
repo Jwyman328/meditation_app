@@ -22,7 +22,6 @@ import colors from '../constants/colors'
  */
 function FullCourseScreen(props) {
     const data = props.navigation.getParam('courseData')
-    console.log(data.AudioCoursesId, 'ids')
 
     const courseId = data.courseId
 
@@ -47,7 +46,6 @@ function FullCourseScreen(props) {
      */
     useEffect(() => {
         if (data) {
-            console.log(courseId, 'id')
             props.navigation.setParams({ addCourseToFavorites: addCourseToFavorites, 
                 favoriteMeditations: favoriteMeditations, courseId: courseId })
         } else {
@@ -138,7 +136,6 @@ FullCourseScreen.navigationOptions = (navData) => {
      * Add the course to the meditation Favorites.
      */
     const addFavorite = () => {
-        console.log(favoriteMeditations, 'favs')
         addCourseToFavorites()
     }
 

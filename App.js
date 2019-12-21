@@ -3,9 +3,10 @@ import { StyleSheet, Text, View } from 'react-native';
 import BottomTabs from './Navigation/MainNavigation'
 
 
-import {createStore,combineReducers} from 'redux'
+import {createStore,combineReducers, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import MeditationsReducer from './store/reducers/MeditationsReducer'
+import ReduxThunk from 'redux-thunk'
 
 
 export default function App() {
@@ -13,7 +14,7 @@ export default function App() {
     meditations: MeditationsReducer
   })
 
-  const store = createStore(rootReducers)
+  const store = createStore(rootReducers, applyMiddleware(ReduxThunk))
   return (
    <Provider store={store}><BottomTabs style={{flex:1, width:'100%'}}/></Provider>
   );

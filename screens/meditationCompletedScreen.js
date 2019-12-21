@@ -10,7 +10,14 @@ import imageUrls from '../images/inspirationalImages/image_urls'
 
 function MeditationCompletedScreen(props) {
     const meditationId = props.navigation.getParam('meditationId')
-    const meditationData = audioBookPlaylist[meditationId]
+    const meditationData = props.meditationId // audioBookPlaylist[meditationId]
+    //const data = props.
+
+    useEffect(() => {
+        console.log(props, 'props')
+        console.log(props.navigation.getParam('meditationId'), 'propss')
+
+    })
 
     const getRandomInt = (min, max) => {
         min = Math.ceil(min);
@@ -19,14 +26,17 @@ function MeditationCompletedScreen(props) {
     }
     // exit button that sends you to the main page?
     return(
-        <View style={styles.outerContainer}>
+        meditationId?
+         <View style={styles.outerContainer}>
+
             <Text style={styles.headerText}> Meditation Completed</Text>
-            <Text style={styles.titleText}> {meditationData.title}</Text>
-            <Text style={styles.authorText}>by {meditationData.author}</Text>
+            <Text style={styles.titleText}> {meditationId.title}</Text>
+            <Text style={styles.authorText}>by {meditationId.author}</Text>
             <View Style={{justifyContent:'center' }}>
                 <Image resizeMode='stretch' style={styles.image} source={{uri:imageUrls[getRandomInt(0,imageUrls.length)]}} />
             </View>
-        </View>
+            
+        </View> : null
     )
 }
 

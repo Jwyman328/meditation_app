@@ -9,8 +9,6 @@ import dummyData from '../Data/dummyData';
 
 import {useSelector} from 'react-redux';
 
-
-
 import FiltersModal from '../components/FiltersModal'
 
 /**
@@ -40,10 +38,10 @@ function CoursesScreen(props){
      * @param {Array<Object>} course a meditation course
      */
     const createCards = (course) =>{
-        console.log(course, 'in din')
         return(
             <View style={{...styles.coursesContainer }}>
-                    <CourseCard goToCourse={goToCourse} course_id={course.item.id} />
+                    <CourseCard goToCourse={goToCourse}  title ={course.item.title} uri = {course.item.image_uri} catagories={course.item.catagories} id={course.item.id} courseId={course.item.course_id} />
+
                 </View>
         )
     }
@@ -52,7 +50,6 @@ function CoursesScreen(props){
      * @param {Object} course 
      */
     const createCard = (course) =>{
-        console.log(course.catagories, 'course here')
         return(
             <View style={{...styles.coursesContainer }}>
                     <CourseCard goToCourse={goToCourse}  title ={course.title} uri = {course.image_uri} catagories={course.catagories} id={course.id} courseId={course.course_id} />

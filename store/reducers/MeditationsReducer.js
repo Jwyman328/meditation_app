@@ -103,6 +103,7 @@ const MeditationsReducer = (state=initialState, action) => {
 
         case 'FetchAllCourses':
             //fetch all meditation courses and set them as state 
+            console.log(action.allMeditationCourses[0], 'whot')
             return {...state,meditations: action.allMeditationCourses, filteredMeditations: action.allMeditationCourses }
             break;
 

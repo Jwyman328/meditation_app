@@ -1,7 +1,7 @@
 import React from 'react'
 
 const audioBookPlaylist = {
-    A1:
+    1:
 	    {
         orderNumber: 1,
         title: 'Capable Shift',
@@ -12,7 +12,7 @@ const audioBookPlaylist = {
 		imageSource: 'http://www.archive.org/download/LibrivoxCdCoverArt8/hamlet_1104.jpg',
 		
     },
-    A2:
+    2:
 	    {
         orderNumber:2,
         id:'A2',
@@ -23,7 +23,7 @@ const audioBookPlaylist = {
 		uri:require('../audio/restfulSleep.mp3'),
 		imageSource: 'http://www.archive.org/download/LibrivoxCdCoverArt8/hamlet_1104.jpg'
     },
-    A3:
+    3:
 	{
         orderNumber:3,
         id:'A3',
@@ -35,7 +35,7 @@ const audioBookPlaylist = {
 		imageSource: 'http://www.archive.org/download/LibrivoxCdCoverArt8/hamlet_1104.jpg',
 
     },
-    A4:
+    4:
 	{
         orderNumber:4,
         id:'A4',
@@ -46,7 +46,7 @@ const audioBookPlaylist = {
 		uri: require('../audio/PositiveSelf.mp3'),
 		imageSource: 'http://www.archive.org/download/LibrivoxCdCoverArt8/hamlet_1104.jpg'
 	},
-	A5:{
+	5:{
         orderNumber:5,
         id:'A5',
         title: 'Anxiety Free',

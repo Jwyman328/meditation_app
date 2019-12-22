@@ -76,7 +76,7 @@ export default class AudioPlayer extends React.Component {
 
 		try {
 			const playbackInstance = new Audio.Sound()
-			const source = audioBookPlaylist['A1'].uri
+			const source = audioBookPlaylist[this.props.meditationData.orderNumber].uri
 			const audioLength = this.props.meditationData.time
 			const status = {
 				shouldPlay: isPlaying,
@@ -197,7 +197,7 @@ export default class AudioPlayer extends React.Component {
 	}
 
 	async _cacheResourceAsync(){
-		const audios = [audioBookPlaylist['A1'].uri]
+		const audios = [audioBookPlaylist[this.props.meditationData.orderNumber].uri]
 
 		const cacheAudios = audios.map(audio => {
 			return Asset.fromModule(audio).downloadAsync();

@@ -43,38 +43,40 @@ const MeditationsReducer = (state=initialState, action) => {
             const newFilters = {...state.filters}
             newFilters[action.filterName] = newSwitchValue
             let newFilteredMeditations = state.meditations
+            
             // if all are false then no filters will be applied
             if ( !newFilters.testAnxietyFilter && !newFilters.testDepressionFilter && !newFilters.testBegginerFilter
                 && !newFilters.testAdvancedFilter && !newFilters.testConfidenceFilter && !newFilters.testFavoriteFilter ){
                     //
             }else{
                 newFilteredMeditations = state.meditations.filter(meditation => {
-                if (newFilters.testAnxietyFilter && meditation.catagories.includes('anxiety') ){
+                console.log(meditation.catagories,' catagories')
+                if (newFilters.testAnxietyFilter && meditation.catagories.includes(1) ){
                     return meditation
                 }else{
                     //
                 }
 
-                if (newFilters.testDepressionFilter && meditation.catagories.includes('depression') ){
+                if (newFilters.testDepressionFilter && meditation.catagories.includes(2) ){
                     return meditation
                 }else{
                     //
                 }
 
-                if (newFilters.testBegginerFilter && meditation.catagories.includes('begginer') ){
+                if (newFilters.testBegginerFilter && meditation.catagories.includes(3) ){
                     return meditation
                 }else{
                     //
                 }
 
-                if (newFilters.testAdvancedFilter && meditation.catagories.includes('expert') ){
+                if (newFilters.testAdvancedFilter && meditation.catagories.includes(4) ){
                     return meditation
                 }else{
                     //
                 }
 
 
-                if (newFilters.testConfidenceFilter && meditation.catagories.includes('confidence') ){
+                if (newFilters.testConfidenceFilter && meditation.catagories.includes(5) ){
                     return meditation
                 }else{
                     //
@@ -113,7 +115,7 @@ const MeditationsReducer = (state=initialState, action) => {
             break;
 
         case 'signIn':
-            return {...state, username: action.userName, password: action.passWord, token: action.token, loggedIn:true }
+            return {...state, username: action.username, password: action.password, token: action.token, loggedIn:true }
             break;
         
         case 'signUp':
@@ -122,7 +124,7 @@ const MeditationsReducer = (state=initialState, action) => {
         
         case 'logOut':
             // reset state to origin al empty state 
-            
+
             return {...state, meditations: [], filteredMeditations:[],
                 favoriteMeditations: [],courseData:[], 
                 filters : {

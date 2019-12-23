@@ -15,7 +15,7 @@ const LogInUser = (userName, passWord) => {
     const token = jsonResponse.token
     //AsyncStorage.setItem('token', token)
     console.log(jsonResponse, token)
-
+    //console.log(userName, 'users')
     if (token){
         dispatch({type: 'signIn', username:userName, password: passWord, token:token})
     }else{

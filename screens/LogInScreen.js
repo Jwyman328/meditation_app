@@ -15,15 +15,17 @@ function LoginScreen(props) {
     const dispatch = useDispatch()
 
     const token = useSelector((state) => state.meditations.token)
+    const username = useSelector((state) => state.meditations.username)
+
 
     useEffect(() => {
         console.log(token, 'tooklin')
         if (token) {
+            console.log(username, 'username')
             props.navigation.navigate('Tabs')
         }
     }, [token])
     const loginUser = () => {
-        console.log('in login user')
         dispatch(LogInUser(userName, passWord))
     }
     const fetchLogin = async () => {

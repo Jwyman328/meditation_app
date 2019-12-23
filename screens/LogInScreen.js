@@ -1,11 +1,14 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
-import {AsyncStorage, ScrollView,Text, StyleSheet, View, KeyboardAvoidingView, TextInput, Button} from 'react-native'
+import { AsyncStorage, ScrollView, Text, StyleSheet, View, KeyboardAvoidingView, TextInput, Button, Dimensions } from 'react-native'
 import LogInUser from '../store/actions/logInUser'
 
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import colors from '../constants/colors';
 
-function LoginScreen(props){
+import MainButton from '../components/MainButton'
+
+function LoginScreen(props) {
     const [userName, onChangeUserName] = React.useState('');
     const [passWord, onChangePassword] = React.useState('');
 
@@ -15,19 +18,20 @@ function LoginScreen(props){
 
     useEffect(() => {
         console.log(token, 'tooklin')
-        if (token){
+        if (token) {
             props.navigation.navigate('Tabs')
         }
     }, [token])
     const loginUser = () => {
         console.log('in login user')
-       dispatch(LogInUser(userName,passWord )) 
+        dispatch(LogInUser(userName, passWord))
     }
-    const fetchLogin = async() => {
-        const usernamePassword = {username: userName, password: passWord}
+    const fetchLogin = async () => {
+        const usernamePassword = { username: userName, password: passWord }
         let jsonUsername = JSON.stringify(usernamePassword)
-        let loginResponse = await fetch('http://intense-gorge-29567.herokuapp.com/sign_in',{method:'POST', //mode: 'cors'
-            body:jsonUsername, headers: {'Content-Type': 'application/json'}
+        let loginResponse = await fetch('http://intense-gorge-29567.herokuapp.com/sign_in', {
+            method: 'POST', //mode: 'cors'
+            body: jsonUsername, headers: { 'Content-Type': 'application/json' }
         });
         let jsonResponse = await loginResponse.json()
         //add token to local storage and use for requests
@@ -35,7 +39,7 @@ function LoginScreen(props){
         AsyncStorage.setItem('token', token)
         console.log(jsonResponse, token)
         //if (token){
-            //props.logIn();
+        //props.logIn();
         //}
     }
 
@@ -47,32 +51,33 @@ function LoginScreen(props){
         onChangePassword('')
     }
 
-    const handleSignUp= () => {
+    const handleSignUp = () => {
         props.navigation.navigate('Signup')
     }
 
 
     return (
-       <ScrollView contentContainerStyle={styles.outerJustify} style = {{...styles.outerContainer, ...styles.quickBorder}}>
-           <Text style={{margin:20}}> Login !</Text>
-           <View style={{...styles.formPair, ...styles.quickBorder}}>
-               <Text style={styles.formObj}>Username</Text>
-               <TextInput style={{...styles.formObj, ...styles.inputBox}}
-                onChangeText={text => onChangeUserName(text)} required errorMessage='enter a correct username'
-                value={userName} placeholder='username' autoCapitalize="none" />
-           </View>
-           <View style={{...styles.formPair, ...styles.quickBorder}}>
-               <Text style={styles.formObj}>password</Text>
-               <TextInput style={{...styles.formObj, ...styles.inputBox}}
-                onChangeText={text => onChangePassword(text)}
-                value={passWord} required errorMessage='enter a correct password' secureTextEntry={true} placeholder='password' autoCapitalize="none" />
-           </View>
-           <View>
-                <Text>{userName}</Text>
-                <Button onPress={handlePress} title={'Login'} />
-                <Button onPress={handleSignUp} title={'Switch to Sign Up'} />
-           </View>
-       </ScrollView>
+        <ScrollView contentContainerStyle={styles.outerJustify} style={{ ...styles.outerContainer, }}>
+            <View style={{ ...styles.logCard }}>
+                <Text style={styles.title} > Meditation Login !</Text>
+                <View style={{ ...styles.formPair }}>
+                    <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
+                        onChangeText={text => onChangeUserName(text)} required errorMessage='enter a correct username'
+                        value={userName} placeholder='username' autoCapitalize="none" />
+                </View>
+                <View style={{ ...styles.formPair }}>
+                    <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
+                        onChangeText={text => onChangePassword(text)}
+                        value={passWord} required errorMessage='enter a correct password' secureTextEntry={true} placeholder='password' autoCapitalize="none" />
+                </View>
+                <View>
+                    <MainButton style={styles.button} title='Login' onPress={handlePress} />
+                    <MainButton style={styles.signUpButton} title='Switch to Sign Up' onPress={handleSignUp} />
+                </View>
+
+            </View>
+        
+        </ScrollView>
     )
 }
 
@@ -80,36 +85,71 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
     outerContainer: {
-        flex:1,
-        width:'100%',
+        flex: 1,
+        width: '100%',
+        backgroundColor:colors.primary,
         //height:500,
     },
     outerJustify: {
-        justifyContent:'center',
-         alignItems:'center'
+        justifyContent: 'center',
+        alignItems: 'center',
+        
     },
     formPair: {
-        height:100,
         width: '90%',
-        flexDirection:'row',
-        margin: 30,
-        justifyContent:'space-evenly',
-        alignItems:'center',
+        flexDirection: 'row',
+        //margin: 5,
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        height: Dimensions.get('window').height * .13,
+
     },
-   
+
     formObj: {
-        margin: 10
+        //margin: 5,
+        height: Dimensions.get('window').height * .09, 
+
     },
     inputBox: {
-        borderStyle:'solid',
-        borderColor:'black',
-        borderWidth:2,
-        flex:1,
+        borderStyle: 'solid',
+        borderColor: colors.strongPrimary,
+        borderWidth: 1,
+        flex: 1,
+        fontSize: 18
     },
-    quickBorder:{
-        borderStyle:'solid',
-        borderColor:'black',
-        borderWidth:2,
-        flex:1,
-    }
+    quickBorder: {
+        borderStyle: 'solid',
+        borderColor: 'black',
+        borderWidth: 2,
+        flex: 1,
+    },
+    logCard: {
+        height:Dimensions.get('window').height * .65, 
+        width: Dimensions.get('window').width * .85,
+        justifyContent:'center',
+        alignItems:'center',
+        borderStyle: 'solid',
+        borderColor: 'black',
+        borderWidth: 0,
+
+        shadowColor:'black',
+        shadowOffset: {width: 5, height: 10 },
+        shadowOpacity: .75,
+        shadowRadius: 2,
+
+        marginTop: Dimensions.get('window').height * .06,
+        backgroundColor:colors.lightSecondary,
+
+    },
+    button :{
+        marginBottom: 25,
+    },
+    signUpButton: {
+        backgroundColor:colors.strongPrimary
+    },
+    title:{
+        fontSize:20,
+        fontFamily:'AppleSDGothicNeo-Bold'
+    },
+    
 })

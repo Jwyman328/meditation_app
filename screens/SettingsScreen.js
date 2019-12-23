@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux'
 import LogOutUser from '../store/actions/logOut'
 import AddFavorite2 from '../store/actions/addFavorite'
+import MainButton from '../components/MainButton'
 
 
 function SettingsScreen(props){
@@ -28,7 +29,7 @@ function SettingsScreen(props){
 
         <View style={{margin: 100}}>
             <Text>settings Page</Text>
-            <Button onPress={logOutUser} title='logout'/>
+            <MainButton onPress={logOutUser} title='logout'/>
         </View>
     )
 }

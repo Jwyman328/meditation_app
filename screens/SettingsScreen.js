@@ -2,30 +2,33 @@ import React, {useEffect} from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 import {useDispatch, useSelector} from 'react-redux'
-import fetchMeditationsAndAddToAllMeditations from '../store/actions/getFavorites'
+import LogOutUser from '../store/actions/logOut'
 import AddFavorite2 from '../store/actions/addFavorite'
 
 
-function SettingsScreen(){
+function SettingsScreen(props){
     // get the data whenever it loads 
+    const isLoggedIn = useSelector(state => state.meditations.loggedIn)
     const dispatch = useDispatch()
-    const tryIt = async() => {
-        const response = await fetch('http://127.0.0.1:8000/all_meditation_courses/')
-        const responseJson = await response.json()
-        console.log(responseJson, 'inside')
-
+    const logOutUser = () => {
+        console.log('logout')
+        dispatch(LogOutUser())
     }
 
-    //const favData = useSelector((state) => state.meditations.favoriteMeditations)
     useEffect(() => {
-        //const favData = dispatch(fetchMeditationsAndAddToAllMeditations())
-        //console.log(favData, 'her its is')
-        dispatch(AddFavorite2())
-    },[dispatch])
+        if (isLoggedIn){
+            console.log('logged in')
+        }else{
+            console.log('logged out')
+            props.navigation.navigate('Auth')
+        }
+    }, [isLoggedIn])
+
     return (
-        <View>
+
+        <View style={{margin: 100}}>
             <Text>settings Page</Text>
-            <Button title='try it' onPress={tryIt} />
+            <Button onPress={logOutUser} title='logout'/>
         </View>
     )
 }

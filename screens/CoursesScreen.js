@@ -19,6 +19,7 @@ function CoursesScreen(props){
     const [filtersVisible, setfiltersVisible] = useState(false)
   
     const filteredCourses = useSelector((state) => state.meditations.filteredMeditations)
+    const isLoggedIn = useSelector(state => state.meditations.loggedIn)
 
     
     /**
@@ -57,11 +58,12 @@ function CoursesScreen(props){
         ) 
     }
     return (
+        isLoggedIn?
         <View style={{flex:1, justifyContent:'center', alignItems:'center', backgroundColor: colors.darkStrongPrimary}}>
             <View style={{width:'100%',flex: 1, ...styles.quickBorder, justifyContent:'center', alignItems:'center' }}>
                 {filteredCourses ?  filteredCourses.length > 1 ? <FlatList numColumns={2} data={filteredCourses} keyExtractor={(item=> item.title)} renderItem={(course) => createCards(course)} />: createCard(filteredCourses[0]) : null}
             </View> 
-        </View>
+        </View>:null
     )
 }
 

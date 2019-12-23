@@ -47,7 +47,6 @@ function FullCourseScreen(props) {
      */
     useEffect(() => {
         if (data) {
-            console.log(data, 'later')
             dispatch(FetchCourseData(data.courseId))
             props.navigation.setParams({ addCourseToFavorites: addCourseToFavorites, 
                 favoriteMeditations: favoriteMeditations, courseId: courseId })

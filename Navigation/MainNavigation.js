@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
-import {createAppContainer, create} from 'react-navigation'
-import {createStackNavigator} from 'react-navigation-stack'
+import {createAppContainer, create, createSwitchNavigator} from 'react-navigation'
+import {createStackNavigator,} from 'react-navigation-stack'
 import {createBottomTabNavigator} from 'react-navigation-tabs'
 
 import CoursesScreen from '../screens/CoursesScreen'
@@ -9,6 +9,8 @@ import FullCourseScreen from '../screens/FullCourseScreen'
 import HomeScreen from '../screens/HomeScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import StatsScreen from '../screens/StatsScreen'
+import LoginScreen from '../screens/LogInScreen'
+import SignupScreen from '../screens/signUpScreen'
 
 import {Ionicons} from '@expo/vector-icons'
 import {ScrollView, Text, StyleSheet, Dimensions, Button} from 'react-native'
@@ -49,8 +51,6 @@ const CoursesStackNavigation = createStackNavigator({
         navigationOptions: {
             headerTitle:'Filter Meditations',
             headerTintColor: colors.primary,
-            
-           
         }
     }
        
@@ -102,12 +102,19 @@ const BottomTabs = createBottomTabNavigator(
             activeBackgroundColor: colors.lightSecondary,
             inactiveBackgroundColor: colors.lightSecondary,
             activeTintColor: '#001E85',
-
         }
    }
 )
 
-const MainNavigation = createStackNavigator({ // did this for the header it provides 
+const AuthNavigator = createStackNavigator({
+    Auth: LoginScreen,
+    Signup: SignupScreen,
+    logOut: SettingsScreen,
+})
+
+const MainNavigation = createSwitchNavigator({ // did this for the header it provides 
+    Login: AuthNavigator,
+    //SignUp: SignupScreen,
     Tabs:BottomTabs
 },{
     navigationOptions:{
@@ -116,7 +123,9 @@ const MainNavigation = createStackNavigator({ // did this for the header it prov
 });
 
 
-export default createAppContainer(BottomTabs)
+
+
+export default createAppContainer(MainNavigation)
 
 const styles = StyleSheet.create({
     courseScreensHeader : {

@@ -11,7 +11,6 @@ import { FlatList } from 'react-native-gesture-handler';
  */
 function IndividualMeditationScreen(props) {
     const data = props.navigation.getParam('data')
-    console.log(data.meditationData, 'data')
     const goToMeditationCompleted = (dataToPass) => props.navigation.navigate('MeditationCompleted', dataToPass)
     
     return (

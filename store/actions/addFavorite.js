@@ -24,18 +24,16 @@ const getFavorites = (courseId) => {getFavorites
     }
 }
 
-const AddFavorite2 = (courseId) => {
+const AddFavorite = (courseId) => {
     return async (dispatch) => {
 
     const response = await fetch('https://intense-gorge-29567.herokuapp.com/all_meditation_courses/')
-    
     const responseData = await response.json()
-    console.log(responseData, 'response data2')
     dispatch({type: 'AddFavorite', products:responseData})
     }
 }
 
-const AddFavorite = (courseId) => { //Original
+const AddFavorite2 = (courseId) => { //Original
     return(
         {type:'AddFavorite', courseId:courseId}
     )

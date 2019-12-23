@@ -6,7 +6,6 @@ const fetchData = async() => {
     const response = await fetch('https://intense-gorge-29567.herokuapp.com/all_meditation_courses/')
     
     const responseData = await response.json()
-    console.log(responseData[0].course_id, 'response data2')
     return 
 }
 
@@ -30,7 +29,11 @@ const initialState = {
 		volume: 1.0,
 		isBuffering: true,
 		isReady: false,
-	}
+    },
+    username : null,
+    password: null, 
+    token: null, 
+    loggedIn: false,
 }
 
 const MeditationsReducer = (state=initialState, action) => {
@@ -88,29 +91,52 @@ const MeditationsReducer = (state=initialState, action) => {
 
         case  'AddFavorite':
             // add and remove favorites here
-            {/*var newFavorites = [...state.favoriteMeditations]
+            var newFavorites = [...state.favoriteMeditations]
             // check if the favorite already exists
             if (newFavorites.includes(action.courseId)){
                 //if exists then remove it 
                 newFavorites = newFavorites.filter(courseId =>  courseId !== action.courseId )
             }else{
                 newFavorites.push(action.courseId)
-            } */}
-            //console.log(action.products, 'prop prop')
+            }
           
             return {...state,meditations: action.products, filteredMeditations: action.products }
             break;
 
         case 'FetchAllCourses':
             //fetch all meditation courses and set them as state 
-            console.log(action.allMeditationCourses[0], 'whot')
             return {...state,meditations: action.allMeditationCourses, filteredMeditations: action.allMeditationCourses }
             break;
 
         case 'FetchCourseData':
-                return {...state, courseData: action.CourseData }
+            return {...state, courseData: action.CourseData }
+            break;
+
+        case 'signIn':
+            return {...state, username: action.userName, password: action.passWord, token: action.token, loggedIn:true }
+            break;
+        
+        case 'signUp':
+                return {...state, username: action.userName, password: action.passWord, token: action.token, loggedIn: true }
                 break;
-    
+        
+        case 'logOut':
+            // reset state to origin al empty state 
+            
+            return {...state, meditations: [], filteredMeditations:[],
+                favoriteMeditations: [],courseData:[], 
+                filters : {
+                    testAnxietyFilter:false,
+                    testDepressionFilter:false,
+                    testBegginerFilter: false,
+                    testAdvancedFilter:false,
+                    testConfidenceFilter: false,
+                    testFavoriteFilter:false,
+                }, username : null,
+                password: null, 
+                token: null, 
+                loggedIn: false, }
+            
 
         case 'SetAudioState':
             const newAudioState = [...state.audioState]

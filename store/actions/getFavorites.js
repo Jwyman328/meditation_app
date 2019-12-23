@@ -8,7 +8,6 @@ const fetchMeditationsAndAddToAllMeditations = () => {
         // now here you can do any asynch code you want 
         const response = await fetch('http://127.0.0.1:8000/all_meditation_courses/')
         const responseJson = await response.json()
-        console.log(responseJson, 'inside')
         //dispatch({
             //type: 'setData',
             //mealId: mealId
@@ -21,9 +20,7 @@ const getAllmeditations = (courseId) => {
     return async (dispatch) => {
 
     const response = await fetch('http://127.0.0.1:8000/all_meditation_courses/')
-    
     const responseData = await response.json()
-    console.log(responseData, 'response data')
     return responseData
     }
 }

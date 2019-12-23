@@ -34,14 +34,18 @@ const AddFavorite = (courseId) => {
 }
 
 const AddFavorite2 = (courseId, token) => { //Original
-
+        // this fetch call will add a favorite if it doenst exist or it will remove the user form the favorite if it exists
         console.log(token, 'token here')
+        console.log(courseId, 'id')
+        //courseId = courseId.toString()
+        const id = courseId.toString()
         return async (dispatch) => {
-    
-        const response = await fetch(`https://intense-gorge-29567.herokuapp.com/course_meditations/add_favorite_course/${courseId}/`,{
+        console.log(id, 'id for shooting')
+        const response = await fetch(`https://intense-gorge-29567.herokuapp.com/course_meditations/add_favorite_course/${id}/`,{
          headers:{ Authorization: `JWT ${token}`,'Content-Type': 'application/json'}})
         const responseData = await response.json()
-        //dispatch({type: 'AddFavorite', products:responseData})
+        console.log(responseData)
+        dispatch({type: 'AddFavorite', allMeditations:responseData})
         }
     
 }

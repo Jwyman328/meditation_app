@@ -9,7 +9,7 @@ import MainHeaderButton from '../components/HeaderButton';
 import { Ionicons } from '@expo/vector-icons'
 
 import { useDispatch, useSelector } from 'react-redux'
-import addFavorite from '../store/actions/addFavorite'
+import addFavorite2 from '../store/actions/addFavorite'
 import FetchCourseData from '../store/actions/fetchCourseData'
 
 import colors from '../constants/colors'
@@ -27,13 +27,16 @@ function FullCourseScreen(props) {
     const courseId = data.courseId
     const courseData = useSelector((state)=> state.meditations.courseData)
     const dispatch = useDispatch()
+    const token = useSelector(state => state.meditations.token)
+
 
     /**
      * Adds this course to the array of favorited courses
      * @function addFavorite store action to add a course id to favorite courses
      */
     const addCourseToFavorites = () => {
-        dispatch(addFavorite(courseId))
+        console.log(courseId, token, 'hep')
+        dispatch(addFavorite2(courseId, token))
     }
 
     const favoriteMeditations = useSelector(state => state.meditations.favoriteMeditations)
@@ -47,9 +50,11 @@ function FullCourseScreen(props) {
      */
     useEffect(() => {
         if (data) {
+            const favoriteMeditationsIdArray = favoriteMeditations.map((item) => item.id)
+            console.log(favoriteMeditationsIdArray, 'rry')
             dispatch(FetchCourseData(data.courseId))
             props.navigation.setParams({ addCourseToFavorites: addCourseToFavorites, 
-                favoriteMeditations: favoriteMeditations, courseId: courseId })
+                favoriteMeditations: favoriteMeditationsIdArray, courseId: courseId })
         } else {
             //
         }

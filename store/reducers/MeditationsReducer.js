@@ -93,16 +93,18 @@ const MeditationsReducer = (state=initialState, action) => {
 
         case  'AddFavorite':
             // add and remove favorites here
-            var newFavorites = [...state.favoriteMeditations]
+            //var newFavorites = [...state.favoriteMeditations]
             // check if the favorite already exists
-            if (newFavorites.includes(action.courseId)){
+            //if (newFavorites.includes(action.courseId)){
                 //if exists then remove it 
-                newFavorites = newFavorites.filter(courseId =>  courseId !== action.courseId )
-            }else{
-                newFavorites.push(action.courseId)
-            }
-          
-            return {...state,meditations: action.products, filteredMeditations: action.products }
+                //newFavorites = newFavorites.filter(courseId =>  courseId !== action.courseId )
+            //}else{
+                //newFavorites.push(action.courseId)
+            //}
+            let allMeditations = action.allMeditations
+
+            // now query for the ids of just hte favorited meditations of this user
+            return {...state, favoriteMeditations: action.allMeditations }
             break;
 
         case 'FetchAllCourses':

@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react'
 import { StyleSheet, Text, View, ImageBackground, Dimensions } from 'react-native';
 
 import FetchAllCourses from '../store/actions/FetchAllCourses'
+import FetchFavorites from '../store/actions/fetchFavorites'
+
 import {useDispatch, useSelector} from 'react-redux'
 import colors from '../constants/colors';
 
@@ -14,9 +16,12 @@ function HomeScreen(){
     
     const dispatch = useDispatch()
     const username = useSelector((state) => state.meditations.username)
+    const token = useSelector((state) => state.meditations.token)
+
 
     useEffect(() => {
         dispatch(FetchAllCourses())
+        dispatch(FetchFavorites(token))
         console.log(username)
     }, [dispatch])
 

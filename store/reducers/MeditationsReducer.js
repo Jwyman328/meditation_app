@@ -50,7 +50,6 @@ const MeditationsReducer = (state=initialState, action) => {
                     //
             }else{
                 newFilteredMeditations = state.meditations.filter(meditation => {
-                console.log(meditation.catagories,' catagories')
                 if (newFilters.testAnxietyFilter && meditation.catagories.includes(1) ){
                     return meditation
                 }else{
@@ -81,9 +80,10 @@ const MeditationsReducer = (state=initialState, action) => {
                 }else{
                     //
                 }
-
-                if (newFilters.testFavoriteFilter && state.favoriteMeditations.includes(meditation.courseId)  ){
-                    return meditation
+                const favoritedIdsArray = state.favoriteMeditations.map((item) => item.id)
+                if (newFilters.testFavoriteFilter && state.favoriteMeditations && favoritedIdsArray.includes(meditation.id) ) {
+                    // get a list of all the 
+                        return meditation
                 }else{
                     //
                 }
@@ -112,6 +112,10 @@ const MeditationsReducer = (state=initialState, action) => {
 
         case 'FetchCourseData':
             return {...state, courseData: action.CourseData }
+            break;
+
+        case 'FetchFavorites':
+            return {...state, favoriteMeditations: action.FavoriteData }
             break;
 
         case 'signIn':
@@ -144,6 +148,9 @@ const MeditationsReducer = (state=initialState, action) => {
             const newAudioState = [...state.audioState]
             newAudioState[action.audioStateSetting] = !newAudioState[action.audioStateSetting] 
             return {...state,audioState:  newAudioState}
+        
+            
+
     }
   
 

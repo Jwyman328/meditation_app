@@ -33,10 +33,17 @@ const AddFavorite = (courseId) => {
     }
 }
 
-const AddFavorite2 = (courseId) => { //Original
-    return(
-        {type:'AddFavorite', courseId:courseId}
-    )
+const AddFavorite2 = (courseId, token) => { //Original
+
+        console.log(token, 'token here')
+        return async (dispatch) => {
+    
+        const response = await fetch(`https://intense-gorge-29567.herokuapp.com/course_meditations/add_favorite_course/${courseId}/`,{
+         headers:{ Authorization: `JWT ${token}`,'Content-Type': 'application/json'}})
+        const responseData = await response.json()
+        //dispatch({type: 'AddFavorite', products:responseData})
+        }
+    
 }
 
 

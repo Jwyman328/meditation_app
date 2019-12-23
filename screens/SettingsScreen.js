@@ -10,10 +10,16 @@ import MainButton from '../components/MainButton'
 function SettingsScreen(props){
     // get the data whenever it loads 
     const isLoggedIn = useSelector(state => state.meditations.loggedIn)
+    const token = useSelector(state => state.meditations.token)
+
     const dispatch = useDispatch()
     const logOutUser = () => {
         console.log('logout')
         dispatch(LogOutUser())
+    }
+
+    const fav = () => {
+        dispatch(AddFavorite2(1,token))
     }
 
     useEffect(() => {
@@ -29,6 +35,7 @@ function SettingsScreen(props){
 
         <View style={{margin: 100}}>
             <Text>settings Page</Text>
+            <Button title='fav' onPress={fav} />
             <MainButton onPress={logOutUser} title='logout'/>
         </View>
     )

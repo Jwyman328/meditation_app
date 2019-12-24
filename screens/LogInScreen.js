@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { AsyncStorage, ScrollView, Text, StyleSheet, View, KeyboardAvoidingView, TextInput, Button, Dimensions } from 'react-native'
+import { AsyncStorage, ScrollView, Text, StyleSheet, View, KeyboardAvoidingView, TextInput, Button, Dimensions, ImageBackground } from 'react-native'
 import LogInUser from '../store/actions/logInUser'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,6 +8,10 @@ import colors from '../constants/colors';
 
 import MainButton from '../components/MainButton'
 
+/**
+ * Login screen for existing users to login.
+ * 
+ */
 function LoginScreen(props) {
     const [userName, onChangeUserName] = React.useState('');
     const [passWord, onChangePassword] = React.useState('');
@@ -17,48 +21,40 @@ function LoginScreen(props) {
     const token = useSelector((state) => state.meditations.token)
     const username = useSelector((state) => state.meditations.username)
 
-
+    /**
+     * Go to the app when the user has successfully recieved a token from signing in.
+     */
     useEffect(() => {
-        console.log(token, 'tooklin')
         if (token) {
-            console.log(username, 'username')
             props.navigation.navigate('Tabs')
         }
     }, [token])
+
     const loginUser = () => {
         dispatch(LogInUser(userName, passWord))
     }
-    const fetchLogin = async () => {
-        const usernamePassword = { username: userName, password: passWord }
-        let jsonUsername = JSON.stringify(usernamePassword)
-        let loginResponse = await fetch('http://intense-gorge-29567.herokuapp.com/sign_in', {
-            method: 'POST', //mode: 'cors'
-            body: jsonUsername, headers: { 'Content-Type': 'application/json' }
-        });
-        let jsonResponse = await loginResponse.json()
-        //add token to local storage and use for requests
-        const token = jsonResponse.token
-        AsyncStorage.setItem('token', token)
-        console.log(jsonResponse, token)
-        //if (token){
-        //props.logIn();
-        //}
-    }
+
 
     const handlePress = () => {
-        console.log('submitted')
         //fetchLogin()
         loginUser()
         onChangeUserName('')
         onChangePassword('')
     }
 
+    /**
+     * Go to the signup screen.
+     */
     const handleSignUp = () => {
         props.navigation.navigate('Signup')
     }
 
 
     return (
+        <View styles={styles.imageContainer}>
+
+        <ImageBackground style={styles.backgroundImage}
+                source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0HIJBdanX2M1YcbL03E0dAm3CyFOLPQxvBor7fpIOaLqf85Owg&s' }}>
         <ScrollView contentContainerStyle={styles.outerJustify} style={{ ...styles.outerContainer, }}>
             <View style={{ ...styles.logCard }}>
                 <Text style={styles.title} > Meditation Login !</Text>
@@ -76,26 +72,37 @@ function LoginScreen(props) {
                     <MainButton style={styles.button} title='Login' onPress={handlePress} />
                     <MainButton style={styles.signUpButton} title='Switch to Sign Up' onPress={handleSignUp} />
                 </View>
-
             </View>
-        
         </ScrollView>
+        </ImageBackground>
+
+        </View>
     )
 }
 
 export default LoginScreen;
 
 const styles = StyleSheet.create({
+    backgroundImage: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+        resizeMode: 'contain',
+    },
+    imageContainer: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     outerContainer: {
         flex: 1,
         width: '100%',
-        backgroundColor:colors.primary,
+        //backgroundColor: colors.primary,
         //height:500,
     },
     outerJustify: {
         justifyContent: 'center',
         alignItems: 'center',
-        
+
     },
     formPair: {
         width: '90%',
@@ -108,8 +115,7 @@ const styles = StyleSheet.create({
     },
 
     formObj: {
-        //margin: 5,
-        height: Dimensions.get('window').height * .09, 
+        height: Dimensions.get('window').height * .09,
 
     },
     inputBox: {
@@ -126,32 +132,32 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     logCard: {
-        height:Dimensions.get('window').height * .65, 
+        height: Dimensions.get('window').height * .65,
         width: Dimensions.get('window').width * .85,
-        justifyContent:'center',
-        alignItems:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         borderStyle: 'solid',
         borderColor: 'black',
         borderWidth: 0,
-
-        shadowColor:'black',
-        shadowOffset: {width: 5, height: 10 },
+        opacity: .75,
+        shadowColor: 'black',
+        shadowOffset: { width: 5, height: 10 },
         shadowOpacity: .75,
         shadowRadius: 2,
 
         marginTop: Dimensions.get('window').height * .06,
-        backgroundColor:colors.lightSecondary,
+        backgroundColor: colors.lightSecondary,
 
     },
-    button :{
+    button: {
         marginBottom: 25,
     },
     signUpButton: {
-        backgroundColor:colors.strongPrimary
+        backgroundColor: colors.strongPrimary
     },
-    title:{
-        fontSize:20,
-        fontFamily:'AppleSDGothicNeo-Bold'
+    title: {
+        fontSize: 20,
+        fontFamily: 'AppleSDGothicNeo-Bold'
     },
-    
+
 })

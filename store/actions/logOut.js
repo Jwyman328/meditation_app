@@ -1,10 +1,11 @@
 import React from 'react'
 
 
-
+/**
+ * Logout the user.
+ */
 const LogOutUser = () => {
     return async (dispatch) => {
-   console.log('entered log out ')
     dispatch({type: 'logOut'})
 
     }

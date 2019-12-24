@@ -1,17 +1,11 @@
 import FilterMeditations from '../actions/filterMeditations'
 import dummyData from '../../Data/dummyData'
 
-const fetchData = async() => {
 
-    const response = await fetch('https://intense-gorge-29567.herokuapp.com/all_meditation_courses/')
-    
-    const responseData = await response.json()
-    return 
-}
 
 const initialState = {
-    meditations: [], //fetchData(), //dummyData, // courses
-    filteredMeditations:[],// fetchData(),//dummyData,
+    meditations: [], //dummyData, 
+    filteredMeditations:[], //dummyData,
     favoriteMeditations:[] ,
     courseData:[],
     filters : {
@@ -92,23 +86,14 @@ const MeditationsReducer = (state=initialState, action) => {
             return {...state, filters: newFilters, filteredMeditations: newFilteredMeditations }
 
         case  'AddFavorite':
-            // add and remove favorites here
-            //var newFavorites = [...state.favoriteMeditations]
-            // check if the favorite already exists
-            //if (newFavorites.includes(action.courseId)){
-                //if exists then remove it 
-                //newFavorites = newFavorites.filter(courseId =>  courseId !== action.courseId )
-            //}else{
-                //newFavorites.push(action.courseId)
-            //}
+            // add and remove favorites
             let allMeditations = action.allMeditations
 
-            // now query for the ids of just hte favorited meditations of this user
             return {...state, favoriteMeditations: action.allMeditations }
             break;
 
         case 'FetchAllCourses':
-            //fetch all meditation courses and set them as state 
+            //fetch all meditation courses
             return {...state,meditations: action.allMeditationCourses, filteredMeditations: action.allMeditationCourses }
             break;
 

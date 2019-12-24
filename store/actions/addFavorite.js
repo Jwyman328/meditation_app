@@ -1,56 +1,17 @@
 import React from 'react'
 /**
- * Add the selected course to the array of favorite courses
+ * Make a request that will add the select course to favorites or remove it if already favorited.
  * @param {string} courseId the id for the course
+ * @param {string} token the jwt token used for making http requests
  */
-const getFavorites = (courseId) => {getFavorites
-    return async (dispatch) => {
-
-    const response = await fetch('https://test-rn-1-875d5.firebaseio.com/products.json', {
-        method:'POST',
-        headers: {
-        'Content-Type': 'application/json',
-        },
-        body:JSON.stringify( {
-            courseId:  courseId
-        })
-    }
-    
-    )
-    const responseData = await response.json()
-    console.log(responseData, 'response data')
-
-        dispatch({type:'AddFavorite', courseId:courseId})
-    }
-}
-
-const AddFavorite = (courseId) => {
-    return async (dispatch) => {
-
-    const response = await fetch('https://intense-gorge-29567.herokuapp.com/all_meditation_courses/')
-    const responseData = await response.json()
-    dispatch({type: 'AddFavorite', products:responseData})
-    }
-}
 
 const AddFavorite2 = (courseId, token) => { //Original
-        // this fetch call will add a favorite if it doenst exist or it will remove the user form the favorite if it exists
-        console.log(token, 'token here')
-        console.log(courseId, 'id')
-        //courseId = courseId.toString()
         const id = courseId.toString()
         return async (dispatch) => {
-        console.log(id, 'id for shooting')
-        const response = await fetch(`https://intense-gorge-29567.herokuapp.com/course_meditations/add_favorite_course/${id}/`,{
-         headers:{ Authorization: `JWT ${token}`,'Content-Type': 'application/json'}})
-        const responseData = await response.json()
-        console.log(responseData)
-        dispatch({type: 'AddFavorite', allMeditations:responseData})
+            const response = await fetch(`https://intense-gorge-29567.herokuapp.com/course_meditations/add_favorite_course/${id}/`,{
+            headers:{ Authorization: `JWT ${token}`,'Content-Type': 'application/json'}})
+            const responseData = await response.json()
+            dispatch({type: 'AddFavorite', allMeditations:responseData})
         }
-    
 }
-
-
-
-
 export default AddFavorite2

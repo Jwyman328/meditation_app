@@ -1,9 +1,8 @@
 import React from 'react'
+
 /**
  * Fetch All Favorite meditation Courses
  */
-
-
 const FetchFavorites = (token) => {
     return async (dispatch) => {
     

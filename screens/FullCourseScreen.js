@@ -35,7 +35,6 @@ function FullCourseScreen(props) {
      * @function addFavorite store action to add a course id to favorite courses
      */
     const addCourseToFavorites = () => {
-        console.log(courseId, token, 'hep')
         dispatch(addFavorite2(courseId, token))
     }
 
@@ -51,7 +50,6 @@ function FullCourseScreen(props) {
     useEffect(() => {
         if (data) {
             const favoriteMeditationsIdArray = favoriteMeditations.map((item) => item.id)
-            console.log(favoriteMeditationsIdArray, 'rry')
             dispatch(FetchCourseData(data.courseId))
             props.navigation.setParams({ addCourseToFavorites: addCourseToFavorites, 
                 favoriteMeditations: favoriteMeditationsIdArray, courseId: courseId })
@@ -70,6 +68,12 @@ function FullCourseScreen(props) {
         props.navigation.navigate('IndividualMeditationScreen', { data: { meditationData: meditaionId, uri: data.image_uri } })
     }
 
+    /**
+     * Convert seconds to string representing minutes and seconds.
+     * 
+     * Example: '08:35'
+     * @param {number} secs 
+     */
     const convertSecToMinSec = (secs) => {
         if (secs >= 60) {
             var minutes = Math.floor(secs / 60)

@@ -1,13 +1,16 @@
 import React, {useState, useEffect} from 'react'
 
-import {AsyncStorage, ScrollView,Text, StyleSheet, View, KeyboardAvoidingView, TextInput, Button, Dimensions} from 'react-native'
+import {AsyncStorage, ScrollView,Text, StyleSheet, View, KeyboardAvoidingView, TextInput, Button, Dimensions, ImageBackground} from 'react-native'
 import SignUpUser from '../store/actions/signUpUser'
 
 import {useDispatch, useSelector} from 'react-redux'
 import MainButton from '../components/MainButton'
 import colors from '../constants/colors';
 
-
+/**
+ * Screen for allowing an existing user to login with their username and password.
+ * 
+ */
 function SignupScreen(props){
     const [userName, onChangeUserName] = React.useState('');
     const [passWord, onChangePassword] = React.useState('');
@@ -15,19 +18,16 @@ function SignupScreen(props){
     const token = useSelector((state) => state.meditations.token)
 
     useEffect(() => {
-        console.log(token, 'tooklin sign up')
         if (token){
             props.navigation.navigate('Tabs')
         }
     }, [token])
 
     const loginUser = () => {
-        console.log('in login user')
        dispatch(SignUpUser(userName,passWord )) 
     }
     
     const handlePress = () => {
-        console.log('submitted')
         loginUser()
         onChangeUserName('')
         onChangePassword('')
@@ -37,9 +37,11 @@ function SignupScreen(props){
         props.navigation.navigate('Auth')
     }
 
-
-
     return (
+        <View styles={styles.imageContainer}>
+
+        <ImageBackground style={styles.backgroundImage}
+                source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0HIJBdanX2M1YcbL03E0dAm3CyFOLPQxvBor7fpIOaLqf85Owg&s' }}>
        <ScrollView contentContainerStyle={styles.outerJustify} style = {{...styles.outerContainer, ...styles.quickBorder}}>
             <View style={{ ...styles.logCard }}>
                 <Text style={styles.title} > Meditation Sign Up !</Text>
@@ -60,17 +62,29 @@ function SignupScreen(props){
 
             </View>
        </ScrollView>
+</ImageBackground>
+
+</View>
     )
 }
 
 export default SignupScreen;
 
 const styles = StyleSheet.create({
+    backgroundImage: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+        resizeMode: 'contain',
+    },
+    imageContainer: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     outerContainer: {
         flex: 1,
         width: '100%',
-        backgroundColor:colors.primary,
-        //height:500,
+        //backgroundColor:colors.primary,
     },
     outerJustify: {
         justifyContent: 'center',
@@ -80,7 +94,6 @@ const styles = StyleSheet.create({
     formPair: {
         width: '90%',
         flexDirection: 'row',
-        //margin: 5,
         justifyContent: 'space-evenly',
         alignItems: 'center',
         height: Dimensions.get('window').height * .13,
@@ -88,7 +101,6 @@ const styles = StyleSheet.create({
     },
 
     formObj: {
-        //margin: 5,
         height: Dimensions.get('window').height * .09, 
 
     },
@@ -113,6 +125,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: 'black',
         borderWidth: 0,
+        opacity: .75,
 
         shadowColor:'black',
         shadowOffset: {width: 5, height: 10 },

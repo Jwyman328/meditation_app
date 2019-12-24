@@ -1,68 +1,71 @@
-import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, Button, Dimensions,Image, ScrollView  } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, Button, Dimensions, Image, ScrollView } from 'react-native';
 import audioBookPlaylist from '../Data/AudioBookPlaylist'
 import colors from '../constants/colors'
 import MainHeaderButton from '../components/HeaderButton'
-import {HeaderButtons, Item} from 'react-navigation-header-buttons'
-import {Ionicons} from '@expo/vector-icons'
+import { HeaderButtons, Item } from 'react-navigation-header-buttons'
+import { Ionicons } from '@expo/vector-icons'
 
 import imageUrls from '../images/inspirationalImages/image_urls'
 
+/**
+ * A screen showing the information of the completed meditation.
+ * 
+ * Show a motivational photo too.
+ * @param {*} props.meditationId the array of data for the completed meditation
+ */
 function MeditationCompletedScreen(props) {
     const meditationId = props.navigation.getParam('meditationId')
     const meditationData = props.meditationId // audioBookPlaylist[meditationId]
-    //const data = props.
 
-    useEffect(() => {
-        console.log(props, 'props')
-        console.log(props.navigation.getParam('meditationId'), 'propss')
-
-    })
-
+    /**
+     * Produce a random integer from the range given.
+     * 
+     * Used to pick a motivational image from an array of images.
+     * @param {number} min minimum value that can be returned
+     * @param {number} max Maximum value that can be returned
+     */
     const getRandomInt = (min, max) => {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-    // exit button that sends you to the main page?
-    return(
-        meditationId?
-         <View style={styles.outerContainer}>
-
-            <Text style={styles.headerText}> Meditation Completed</Text>
-            <Text style={styles.titleText}> {meditationId.title}</Text>
-            <Text style={styles.authorText}>by {meditationId.author}</Text>
-            <View Style={{justifyContent:'center' }}>
-                <Image resizeMode='stretch' style={styles.image} source={{uri:imageUrls[getRandomInt(0,imageUrls.length)]}} />
-            </View>
-            
-        </View> : null
+    return (
+        meditationId ?
+            <View style={styles.outerContainer}>
+                <Text style={styles.headerText}> Meditation Completed</Text>
+                <Text style={styles.titleText}> {meditationId.title}</Text>
+                <Text style={styles.authorText}>by {meditationId.author}</Text>
+                <View Style={{ justifyContent: 'center' }}>
+                    <Image resizeMode='stretch' style={styles.image} source={{ uri: imageUrls[getRandomInt(0, (imageUrls.length -1))] }} />
+                </View>
+            </View> : null
     )
 }
 
 export default MeditationCompletedScreen;
 
-MeditationCompletedScreen.navigationOptions =(navData) =>{
+MeditationCompletedScreen.navigationOptions = (navData) => {
     const handleNavigation = () => {
         navData.navigation.navigate('Courses')
     }
-   
+
     return ({
-        headerLeft:       
-    <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
-        <Item iconSize={40} title='filter' color='black' iconName='ios-close-circle' onPress={handleNavigation } />
-    </HeaderButtons>   ,
+        headerLeft:
+            <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
+                <Item iconSize={40} title='filter' color='black' iconName='ios-close-circle' onPress={handleNavigation} />
+            </HeaderButtons>,
     })
 }
 
 const styles = StyleSheet.create({
     outerContainer: {
         backgroundColor: colors.primary,
-        flex:1,
+        flex: 1,
         justifyContent: 'center',
-        alignItems:'center',
+        alignItems: 'center',
     },
-    headerText:{
+    headerText: {
         marginTop: 10,
         fontSize: 30,
         fontFamily: 'AppleSDGothicNeo-Bold',
@@ -81,14 +84,14 @@ const styles = StyleSheet.create({
     },
     image: {
         marginTop: 30,
-        width:Dimensions.get('window').width * .95,
+        width: Dimensions.get('window').width * .95,
         height: Dimensions.get('window').height * .4,
-        borderWidth:1,
-        
-        borderColor:colors.base, 
-        borderRadius:20,
-       
-        overflow:'hidden' 
+        borderWidth: 1,
+
+        borderColor: colors.base,
+        borderRadius: 20,
+
+        overflow: 'hidden'
     },
 
 })

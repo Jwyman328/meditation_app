@@ -9,7 +9,7 @@ import dummyData from '../Data/dummyData';
 
 import {useSelector} from 'react-redux';
 
-import FiltersModal from '../components/FiltersModal'
+import FiltersModal from './FiltersModal'
 
 /**
  * A screan that lists all available courses for the user to select. 

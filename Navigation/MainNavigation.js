@@ -17,7 +17,7 @@ import {ScrollView, Text, StyleSheet, Dimensions, Button} from 'react-native'
 
 import colors from '../constants/colors'
 
-import FilterScreen from '../components/FiltersModal'
+import FilterScreen from '../screens/FiltersModal'
 import IndividualMeditationScreen from '../screens/IndividualMeditationScreen'
 import MetitationCompletedScreen from '../screens/meditationCompletedScreen'
 

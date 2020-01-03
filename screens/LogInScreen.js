@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        fontFamily: 'AppleSDGothicNeo-Bold'
+        fontFamily: 'Helvetica-LightOblique'
     },
 
 })

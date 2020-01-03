@@ -68,18 +68,18 @@ const styles = StyleSheet.create({
     headerText: {
         marginTop: 10,
         fontSize: 30,
-        fontFamily: 'AppleSDGothicNeo-Bold',
+        fontFamily: 'Helvetica-LightOblique',
         color: colors.base
     },
     titleText: {
         marginTop: 20,
         fontSize: 25,
-        fontFamily: 'AppleSDGothicNeo-Bold',
+        fontFamily: 'Helvetica-LightOblique',
         color: colors.strongPrimary
     },
     authorText: {
         fontSize: 20,
-        fontFamily: 'AppleSDGothicNeo-Bold',
+        fontFamily: 'Helvetica-LightOblique',
         color: colors.secondary
     },
     image: {

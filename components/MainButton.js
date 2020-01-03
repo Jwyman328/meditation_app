@@ -36,6 +36,6 @@ const styles = StyleSheet.create({
     },
     text:{
         fontSize:18,
-        fontFamily:'AppleSDGothicNeo-Bold'
+        fontFamily:'Helvetica-LightOblique'
     }
 })

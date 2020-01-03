@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		flexWrap: 'wrap',
 		color: colors.base,
-		fontFamily:'AppleSDGothicNeo-Bold'
+		fontFamily:'Helvetica-LightOblique'
 	},
 	largeText: {
 		fontSize: 40

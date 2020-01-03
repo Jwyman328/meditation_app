@@ -71,7 +71,7 @@ function AudioProgressCircle(props) {
       
     >
       {props.children}
-      <Text style={{color:colors.strongPrimary, fontSize: 23, fontFamily: 'AppleSDGothicNeo-Bold' }}>{props.displayTime}</Text>
+      <Text style={{color:colors.strongPrimary, fontSize: 23, fontFamily: 'Helvetica-LightOblique' }}>{props.displayTime}</Text>
     </ProgressCircle>
     </View>
   )

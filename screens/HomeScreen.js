@@ -62,6 +62,6 @@ const styles = StyleSheet.create({
         marginTop: 20,
         color: colors.base,
         fontSize: 33,
-        fontFamily: 'AppleSDGothicNeo-Bold',
+        fontFamily: 'Helvetica-LightOblique',
     }
 })

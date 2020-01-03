@@ -122,10 +122,10 @@ function FullCourseScreen(props) {
         courseData?
         <View style={{ flex: 1 }} >
             <ImageBackground style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }} source={{ uri: data.image_uri }}>
-                <View style={{ justifyContent: 'center', alignItems: 'center', flex: .3 }}>
+                <View style={{ justifyContent: 'center', alignItems: 'center', flex: .2 }}>
                     <Text style={{ textAlign: 'center', color: 'white', fontSize: 30 }}>{data.title}</Text>
                 </View>
-                <View style={{ flex: 1, marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ flex: 1,  justifyContent: 'center', alignItems: 'center' }}>
                     <FlatList contentContainerStyle={{ alignItems: 'center' }} data={courseData} renderItem={({ item }) => createMeditationCard(item)} />
                 </View>
             </ImageBackground>

@@ -110,6 +110,10 @@ const AuthNavigator = createStackNavigator({
     Auth: LoginScreen,
     Signup: SignupScreen,
     logOut: SettingsScreen,
+},{
+    navigationOptions:{
+        headershown:false
+    }
 })
 
 const MainNavigation = createSwitchNavigator({ // did this for the header it provides 

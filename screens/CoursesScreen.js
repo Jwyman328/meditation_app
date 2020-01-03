@@ -30,8 +30,8 @@ function CoursesScreen(props){
      * @param {Array} AudioCoursesId Ids refering to the audio files for this course
      * @param {string} courseId Id of the course
      */
-    const goToCourse = (courseId, image_uri) => {
-        props.navigation.navigate('FullCourse', {courseData: {courseId:courseId, image_uri: image_uri }})
+    const goToCourse = (courseId, image_uri, title) => {
+        props.navigation.navigate('FullCourse', {courseData: {courseId:courseId, image_uri: image_uri, title:title }})
     }
 
     /**

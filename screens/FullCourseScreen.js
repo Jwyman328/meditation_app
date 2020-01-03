@@ -52,7 +52,7 @@ function FullCourseScreen(props) {
             const favoriteMeditationsIdArray = favoriteMeditations.map((item) => item.id)
             dispatch(FetchCourseData(data.courseId))
             props.navigation.setParams({ addCourseToFavorites: addCourseToFavorites, 
-                favoriteMeditations: favoriteMeditationsIdArray, courseId: courseId })
+                favoriteMeditations: favoriteMeditationsIdArray, courseId: courseId, courseTitle: data.title })
         } else {
             //
         }
@@ -140,7 +140,7 @@ export default FullCourseScreen;
  */
 FullCourseScreen.navigationOptions = (navData) => {
     const addCourseToFavorites = navData.navigation.getParam('addCourseToFavorites')
-
+    const courseTitle = navData.navigation.getParam('courseTitle')
     const favoriteMeditations = navData.navigation.getParam('favoriteMeditations')
     const courseId = navData.navigation.getParam('courseId')
 
@@ -148,6 +148,7 @@ FullCourseScreen.navigationOptions = (navData) => {
      * Add the course to the meditation Favorites.
      */
     const addFavorite = () => {
+        console.log(courseTitle)
         addCourseToFavorites()
     }
 
@@ -175,7 +176,12 @@ FullCourseScreen.navigationOptions = (navData) => {
         }
     }
     return (
-        {
+        {   headerTitle:courseTitle ,
+            headerTintColor: colors.primary,
+            headerTitleStyle:{
+                fontFamily:'Helvetica-Oblique',
+                fontSize: 24,
+            },
             headerRight:
                 <ScrollView style={{ marginTop: Dimensions.get('window').height * .02 }} horizontal={true}>
                     <HeaderButtons HeaderButtonComponent={MainHeaderButton}>

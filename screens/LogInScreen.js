@@ -161,8 +161,8 @@ const styles = StyleSheet.create({
         backgroundColor: colors.strongPrimary
     },
     title: {
-        fontSize: 20,
-        fontFamily: 'Helvetica-LightOblique'
+        fontSize: 24,
+        fontFamily: 'Helvetica-Oblique'
     },
 
 })

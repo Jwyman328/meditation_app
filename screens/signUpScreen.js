@@ -70,6 +70,10 @@ function SignupScreen(props){
 
 export default SignupScreen;
 
+SignupScreen.navigationOptions = {
+    header:null,
+}
+
 const styles = StyleSheet.create({
     backgroundImage: {
         width: Dimensions.get('window').width,
@@ -132,7 +136,7 @@ const styles = StyleSheet.create({
         shadowOpacity: .75,
         shadowRadius: 2,
 
-        marginTop: Dimensions.get('window').height * .06,
+        marginTop: Dimensions.get('window').height * .12,
         backgroundColor:colors.lightSecondary,
 
     },

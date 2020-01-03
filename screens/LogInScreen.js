@@ -57,7 +57,7 @@ function LoginScreen(props) {
                 source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0HIJBdanX2M1YcbL03E0dAm3CyFOLPQxvBor7fpIOaLqf85Owg&s' }}>
         <ScrollView contentContainerStyle={styles.outerJustify} style={{ ...styles.outerContainer, }}>
             <View style={{ ...styles.logCard }}>
-                <Text style={styles.title} > Meditation Login !</Text>
+                <Text style={styles.title} > Meditation Login!</Text>
                 <View style={{ ...styles.formPair }}>
                     <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
                         onChangeText={text => onChangeUserName(text)} required errorMessage='enter a correct username'
@@ -80,7 +80,12 @@ function LoginScreen(props) {
     )
 }
 
+
 export default LoginScreen;
+
+LoginScreen.navigationOptions = {
+    header: null,
+}
 
 const styles = StyleSheet.create({
     backgroundImage: {
@@ -145,7 +150,7 @@ const styles = StyleSheet.create({
         shadowOpacity: .75,
         shadowRadius: 2,
 
-        marginTop: Dimensions.get('window').height * .06,
+        marginTop: Dimensions.get('window').height * .12,
         backgroundColor: colors.lightSecondary,
 
     },

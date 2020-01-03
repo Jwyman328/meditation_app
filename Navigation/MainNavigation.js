@@ -28,8 +28,12 @@ const CoursesStackNavigation = createStackNavigator({
         navigationOptions: {
                 headerTitle:'Courses',
                 headerTintColor: colors.primary,
-                
+                headerTitleStyle:{
+                    fontFamily:'Helvetica-Oblique',
+                    fontSize: 24,
+                }
             }
+
     },
     FullCourse: {
         screen:FullCourseScreen,
@@ -49,8 +53,12 @@ const CoursesStackNavigation = createStackNavigator({
     Filters: {
         screen:FilterScreen,
         navigationOptions: {
-            headerTitle:'Filter Meditations',
+            headerTitle:'Filters',
             headerTintColor: colors.primary,
+            headerTitleStyle:{
+                fontFamily:'Helvetica-Oblique',
+                fontSize: 24,
+            }
         }
     }
        

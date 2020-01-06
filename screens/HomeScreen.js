@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ImageBackground, Dimensions } from 'react-nativ
 
 import FetchAllCourses from '../store/actions/FetchAllCourses'
 import FetchFavorites from '../store/actions/fetchFavorites'
+import FetchUserFriends from '../store/actions/FetchUserFriends'
 
 import { useDispatch, useSelector } from 'react-redux'
 import colors from '../constants/colors';
@@ -28,6 +29,7 @@ function HomeScreen() {
     useEffect(() => {
         dispatch(FetchAllCourses())
         dispatch(FetchFavorites(token))
+        dispatch(FetchUserFriends(token))
     }, [dispatch])
 
     return (

@@ -28,6 +28,8 @@ const initialState = {
     password: null, 
     token: null, 
     loggedIn: false,
+    friendsList: [],
+    allUsers:[],
 }
 
 const MeditationsReducer = (state=initialState, action) => {
@@ -128,15 +130,23 @@ const MeditationsReducer = (state=initialState, action) => {
                 }, username : null,
                 password: null, 
                 token: null, 
-                loggedIn: false, }
+                loggedIn: false,
+                friendsList:[],
+                allUsers: [] }
             
 
         case 'SetAudioState':
             const newAudioState = [...state.audioState]
             newAudioState[action.audioStateSetting] = !newAudioState[action.audioStateSetting] 
             return {...state,audioState:  newAudioState}
+
+        case 'FetchUserFriends':
+            const newFriendsList = action.friendsList
+            return {...state, friendsList : newFriendsList}
         
-            
+        case 'FetchAllUsers':
+            const newAllUsersList = action.allUsers
+            return {...state, allUsers : newAllUsersList}
 
     }
   

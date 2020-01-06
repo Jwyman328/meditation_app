@@ -11,6 +11,8 @@ import SettingsScreen from '../screens/SettingsScreen'
 import StatsScreen from '../screens/StatsScreen'
 import LoginScreen from '../screens/LogInScreen'
 import SignupScreen from '../screens/signUpScreen'
+import UserFriendsScreen from '../screens/UserFriendsScreen'
+import SearchUsersScreen from '../screens/SearchUsersScreen'
 
 import {Ionicons} from '@expo/vector-icons'
 import {ScrollView, Text, StyleSheet, Dimensions, Button} from 'react-native'
@@ -88,7 +90,7 @@ const BottomTabs = createBottomTabNavigator(
         }
             ,
         Stats: {
-            screen: StatsScreen,
+            screen: SearchUsersScreen,//UserFriendsScreen,//StatsScreen,
             navigationOptions: {
                 tabBarIcon:<Ionicons color='black' size={25} name='ios-stats'  />,
                 

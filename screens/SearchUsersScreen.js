@@ -5,7 +5,7 @@ import FetchAllCourses from '../store/actions/FetchAllCourses'
 import FetchAllUsers from '../store/actions/FetchAllUsers'
 import AddRemoveFriend from '../store/actions/addRemoveFriend'
 import FetchUserFriends from '../store/actions/FetchUserFriends'
-
+import SendFriendRequest from '../store/actions/sendFriendRequest'
 import { useDispatch, useSelector } from 'react-redux'
 import colors from '../constants/colors';
 
@@ -53,7 +53,7 @@ function SearchUsersScreen() {
     }, [friends]) //[dispatch]
 
     const addFriend = (username) => {
-        dispatch(AddRemoveFriend(username,token))
+        dispatch(SendFriendRequest(username,token))
         dispatch(FetchUserFriends(token))
         console.log('done')
     }
@@ -63,7 +63,7 @@ function SearchUsersScreen() {
             // check if this user is the current user 
             user.item.username === username?
                 // if is the same as the current user do nothing
-                //dont want yourself in a search for other users
+                //dont want yourself in a search for other users?
              null:
             // check if this user is a friend
             friendsUsernames.includes(user.item.username)?

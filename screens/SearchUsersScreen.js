@@ -60,6 +60,11 @@ function SearchUsersScreen() {
     const createFriendCards = (user) => {
         console.log(user.item.username, 'here')
         return (
+            // check if this user is the current user 
+            user.item.username === username?
+                // if is the same as the current user do nothing
+                //dont want yourself in a search for other users
+             null:
             // check if this user is a friend
             friendsUsernames.includes(user.item.username)?
             <View style={styles.friendCard}>

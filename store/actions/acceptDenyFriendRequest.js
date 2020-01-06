@@ -3,6 +3,10 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import FetchPendingFriendRequests from './fetchPendingFriendRequests'
 
+import FetchUserFriends from './FetchUserFriends'
+import FetchAllUsers from './FetchAllUsers'
+
+
 const AcceptDenyFriendRequest = (id, Bool, token) => { 
         return async (dispatch) => {
             const response = await fetch(`https://intense-gorge-29567.herokuapp.com/friends/${id}/${Bool}/`,{
@@ -11,6 +15,8 @@ const AcceptDenyFriendRequest = (id, Bool, token) => {
             console.log(responseData)
             //dispatch({type: 'AddFriend', addFriendsList:responseData})
             dispatch(FetchPendingFriendRequests(token))
+            dispatch(FetchUserFriends(token))
+            dispatch(FetchAllUsers(token))
 
         }
 }

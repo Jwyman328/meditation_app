@@ -58,7 +58,7 @@ export default UserFriendsScreen;
 const styles = StyleSheet.create({
     cardsContainer: {
         marginTop:Dimensions.get('window').height * .1,
-        height:Dimensions.get('window').height * .9,
+        height:Dimensions.get('window').height * .7,
         justifyContent:'center',
         alignItems: 'center',
         width: Dimensions.get('window').width ,

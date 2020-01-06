@@ -54,9 +54,13 @@ function SearchUsersScreen() {
 
     const addFriend = (username) => {
         dispatch(SendFriendRequest(username,token))
-        dispatch(FetchUserFriends(token))
         console.log('done')
     }
+    const removeFriend = (username) => {
+        dispatch(AddRemoveFriend(username,token))
+        console.log('done')
+    }
+
     const createFriendCards = (user) => {
         console.log(user.item.username, 'here')
         return (
@@ -73,7 +77,7 @@ function SearchUsersScreen() {
                     <Image style={{ width: 80, height: 80 }} source={{ uri: user.item.user_photo }} />
                 </View>
         
-                <TouchableOpacity onPress={() => addFriend(user.item.username)}>
+                <TouchableOpacity onPress={() => removeFriend(user.item.username)}>
                     <View>
                         <Ionicons name='ios-remove-circle-outline' size={75} color={'red'} />
                     </View>
@@ -115,7 +119,7 @@ export default SearchUsersScreen;
 const styles = StyleSheet.create({
     cardsContainer: {
         marginTop: Dimensions.get('window').height * .1,
-        height: Dimensions.get('window').height * .9,
+        height: Dimensions.get('window').height * .7,
         justifyContent: 'center',
         alignItems: 'center',
         width: Dimensions.get('window').width,

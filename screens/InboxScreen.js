@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, ImageBackground, Dimensions, FlatList, Image, T
 
 
 import FetchPendingFriendRequests from '../store/actions/fetchPendingFriendRequests'
+import AcceptDenyFriendRequest from '../store/actions/acceptDenyFriendRequest'
+
 
 import { useDispatch, useSelector } from 'react-redux'
 import colors from '../constants/colors';
@@ -25,8 +27,9 @@ function InboxScreen() {
 
     }, [dispatch])
 
-    const handleRequest = (acceptOrDeny) => {
-        console.log(acceptOrDeny)
+    const handleRequest = (id, bool) => {
+        dispatch(AcceptDenyFriendRequest(id, bool,token))
+        
     }
 
     const createSenderCards = (friendRequest) => {
@@ -37,12 +40,12 @@ function InboxScreen() {
                     <Text> {friendRequest.item.sender_username}</Text>
                     <Image style={{ width: 80, height: 80 }} source={{ uri: friendRequest.item.sender_profile_picture }} />
                 </View>
-                <TouchableOpacity onPress={() => handleRequest(true)}>
+                <TouchableOpacity onPress={() => handleRequest(friendRequest.item.id,1)}>
                     <View>
                         <Ionicons name='ios-checkmark-circle-outline' size={45} color={'green'} />
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleRequest(false)}>
+                <TouchableOpacity onPress={() => handleRequest(friendRequest.item.id, 0)}>
                     <View style={{marginLeft:20}}>
                         <Ionicons name='ios-remove-circle-outline' size={45} color={'red'} />
                     </View>

@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, ImageBackground, Dimensions, FlatList, Image, T
 import FetchAllCourses from '../store/actions/FetchAllCourses'
 import FetchAllUsers from '../store/actions/FetchAllUsers'
 import AddRemoveFriend from '../store/actions/addRemoveFriend'
+import FetchUserFriends from '../store/actions/FetchUserFriends'
 
 import { useDispatch, useSelector } from 'react-redux'
 import colors from '../constants/colors';
@@ -17,11 +18,13 @@ import { Ionicons } from '@expo/vector-icons'
  * As well necessarypost login actions like fetching meditations will take place
  */
 function SearchUsersScreen() {
-
+    const [friendsUsernames, setFriendsUsernames] = useState(undefined)
     const dispatch = useDispatch()
     const username = useSelector((state) => state.meditations.username)
     const token = useSelector((state) => state.meditations.token)
     const allUsers = useSelector((state) => state.meditations.allUsers)
+    const friends = useSelector((state) => state.meditations.friendsList)
+
 
     /**
      * Fetch all meditations and all favorited meditations for the user.
@@ -32,15 +35,48 @@ function SearchUsersScreen() {
      */
     useEffect(() => {
         dispatch(FetchAllUsers(token))
-    }, [dispatch])
+        if (allUsers){
+            //console.log(allUsers, 'all users')
+            //console.log(friends, 'all friends')
+
+            // map the friends 
+            const friendsUsernames = friends.map((friend) => friend.username)
+            setFriendsUsernames(friendsUsernames)
+            console.log(friendsUsernames, 'username list')
+
+        }else{
+
+        }
+
+
+        
+    }, [friends]) //[dispatch]
 
     const addFriend = (username) => {
-        dispatch(AddRemoveFriend(token))
+        dispatch(AddRemoveFriend(username,token))
+        dispatch(FetchUserFriends(token))
         console.log('done')
     }
     const createFriendCards = (user) => {
-        console.log(user.item.usernaqme, 'here')
+        console.log(user.item.username, 'here')
         return (
+            // check if this user is a friend
+            friendsUsernames.includes(user.item.username)?
+            <View style={styles.friendCard}>
+                <View>
+                    <Text> {user.item.username}</Text>
+                    <Image style={{ width: 80, height: 80 }} source={{ uri: user.item.user_photo }} />
+                </View>
+        
+                <TouchableOpacity onPress={() => addFriend(user.item.username)}>
+                    <View>
+                        <Ionicons name='ios-remove-circle-outline' size={75} color={'red'} />
+                    </View>
+                </TouchableOpacity>
+
+            </View>
+            :
+
             <View style={styles.friendCard}>
                 <View>
                     <Text> {user.item.username}</Text>
@@ -49,7 +85,7 @@ function SearchUsersScreen() {
            
                 <TouchableOpacity onPress={() => addFriend(user.item.username)}>
                     <View>
-                        <Ionicons name='md-person-add' size={75} color={colors.primary} />
+                        <Ionicons name='md-person-add' size={75} color={'green'} />
                     </View>
                 </TouchableOpacity>
 

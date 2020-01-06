@@ -148,6 +148,12 @@ const MeditationsReducer = (state=initialState, action) => {
             const newAllUsersList = action.allUsers
             return {...state, allUsers : newAllUsersList}
 
+        case 'AddFriend':
+            const newfriendsList = action.addFriendsList
+            return {...state, friendsList : newfriendsList}
+            break
+
+
     }
   
 

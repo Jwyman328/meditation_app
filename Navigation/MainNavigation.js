@@ -72,6 +72,12 @@ const CoursesStackNavigation = createStackNavigator({
     }
 })
 
+const CommunityStackNavigation = createStackNavigator({
+    
+    SearchUsers: {screen: SearchUsersScreen},
+    myFriends: {screen: UserFriendsScreen} ,
+ })
+
 const BottomTabs = createBottomTabNavigator(
     {   
         Home: {
@@ -89,8 +95,16 @@ const BottomTabs = createBottomTabNavigator(
             }
         }
             ,
+            Community: {
+                screen: CommunityStackNavigation,//UserFriendsScreen,//StatsScreen,
+                navigationOptions: {
+                    tabBarIcon:<Ionicons color='black' size={25} name='ios-people'  />,
+                    tabBarLabel:'Community'
+
+                    
+                }},
         Stats: {
-            screen: SearchUsersScreen,//UserFriendsScreen,//StatsScreen,
+            screen: UserFriendsScreen,//StatsScreen, 
             navigationOptions: {
                 tabBarIcon:<Ionicons color='black' size={25} name='ios-stats'  />,
                 

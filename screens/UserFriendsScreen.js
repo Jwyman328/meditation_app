@@ -31,7 +31,7 @@ function UserFriendsScreen() {
     }, [dispatch])
 
     const createFriendCards = (friend) =>{
-        console.log(friend.item.username)
+        console.log(friend.item.username, 'beep')
         return (
             <View style={styles.friendCard}>
                 <Text> {friend.item.username}</Text>

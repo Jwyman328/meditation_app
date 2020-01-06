@@ -133,7 +133,8 @@ const MeditationsReducer = (state=initialState, action) => {
                 token: null, 
                 loggedIn: false,
                 friendsList:[],
-                allUsers: [] }
+                allUsers: [],
+                pendingFriendRequests:[] }
             
 
         case 'SetAudioState':

@@ -3,6 +3,8 @@ import React, {useState} from 'react'
 import {createAppContainer, create, createSwitchNavigator} from 'react-navigation'
 import {createStackNavigator,} from 'react-navigation-stack'
 import {createBottomTabNavigator} from 'react-navigation-tabs'
+import {createMaterialTopTabNavigator} from 'react-navigation-tabs'
+
 
 import CoursesScreen from '../screens/CoursesScreen'
 import FullCourseScreen from '../screens/FullCourseScreen'
@@ -72,10 +74,9 @@ const CoursesStackNavigation = createStackNavigator({
     }
 })
 
-const CommunityStackNavigation = createStackNavigator({
-    
-    SearchUsers: {screen: SearchUsersScreen},
+const CommunityStackNavigation = createMaterialTopTabNavigator({
     myFriends: {screen: UserFriendsScreen} ,
+    SearchUsers: {screen: SearchUsersScreen},
  })
 
 const BottomTabs = createBottomTabNavigator(

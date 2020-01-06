@@ -30,6 +30,7 @@ const initialState = {
     loggedIn: false,
     friendsList: [],
     allUsers:[],
+    pendingFriendRequests: [],
 }
 
 const MeditationsReducer = (state=initialState, action) => {
@@ -152,6 +153,10 @@ const MeditationsReducer = (state=initialState, action) => {
             const newfriendsList = action.addFriendsList
             return {...state, friendsList : newfriendsList}
             break
+
+        case 'PendingFriendRequests':
+            const newPendingRequests = action.pendingFriendRequests
+            return {...state, pendingFriendRequests:newPendingRequests }
 
 
     }

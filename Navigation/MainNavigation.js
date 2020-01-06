@@ -15,6 +15,7 @@ import LoginScreen from '../screens/LogInScreen'
 import SignupScreen from '../screens/signUpScreen'
 import UserFriendsScreen from '../screens/UserFriendsScreen'
 import SearchUsersScreen from '../screens/SearchUsersScreen'
+import InboxScreen from '../screens/InboxScreen'
 
 import {Ionicons} from '@expo/vector-icons'
 import {ScrollView, Text, StyleSheet, Dimensions, Button} from 'react-native'
@@ -77,6 +78,7 @@ const CoursesStackNavigation = createStackNavigator({
 const CommunityStackNavigation = createMaterialTopTabNavigator({
     myFriends: {screen: UserFriendsScreen} ,
     SearchUsers: {screen: SearchUsersScreen},
+    Inbox : {screen: InboxScreen}
  })
 
 const BottomTabs = createBottomTabNavigator(

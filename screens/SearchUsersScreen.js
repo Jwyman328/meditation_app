@@ -35,7 +35,7 @@ function SearchUsersScreen() {
      */
     useEffect(() => {
         dispatch(FetchAllUsers(token))
-        if (allUsers){
+        if (allUsers && friends){
             //console.log(allUsers, 'all users')
             //console.log(friends, 'all friends')
 

@@ -76,10 +76,25 @@ const CoursesStackNavigation = createStackNavigator({
 })
 
 const CommunityStackNavigation = createMaterialTopTabNavigator({
-    myFriends: {screen: UserFriendsScreen} ,
-    SearchUsers: {screen: SearchUsersScreen},
+    myFriends: {screen: UserFriendsScreen,
+                navigationOptions:{
+                    tabBarLabel:'Friends'
+                }} ,
+    SearchUsers: {screen: SearchUsersScreen,
+        navigationOptions:{
+        tabBarLabel:'Search'}},
     Inbox : {screen: InboxScreen}
- })
+ },{ 
+    tabBarOptions: {
+        style:{
+            backgroundColor:colors.primary,
+            
+        },
+        activeTintColor: colors.strongPrimary, //strongPrimary
+        indicatorStyle: {backgroundColor:colors.strongPrimary}
+
+      }
+})
 
 const BottomTabs = createBottomTabNavigator(
     {   

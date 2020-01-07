@@ -25,6 +25,7 @@ import colors from '../constants/colors'
 import FilterScreen from '../screens/FiltersModal'
 import IndividualMeditationScreen from '../screens/IndividualMeditationScreen'
 import MetitationCompletedScreen from '../screens/meditationCompletedScreen'
+import CreateMessageScreen from '../screens/CreateMessageScreen'
 
 const CoursesStackNavigation = createStackNavigator({
     
@@ -75,20 +76,30 @@ const CoursesStackNavigation = createStackNavigator({
     }
 })
 
-const CommunityStackNavigation = createMaterialTopTabNavigator({
+const friendsStack = createStackNavigator({
     myFriends: {screen: UserFriendsScreen,
+        navigationOptions:{
+            header: null,
+        }},
+    CreateMessage: {screen:CreateMessageScreen,
+        navigationOptions:{
+            headerTitle: 'Send Message',
+        }},
+
+})
+const CommunityStackNavigation = createMaterialTopTabNavigator({
+    myFriends: {screen: friendsStack,
                 navigationOptions:{
                     tabBarLabel:'Friends'
                 }} ,
     SearchUsers: {screen: SearchUsersScreen,
         navigationOptions:{
         tabBarLabel:'Search'}},
-    Inbox : {screen: InboxScreen}
+    Inbox : {screen: InboxScreen},
  },{ 
     tabBarOptions: {
         style:{
             backgroundColor:colors.primary,
-            
         },
         activeTintColor: colors.strongPrimary, //strongPrimary
         indicatorStyle: {backgroundColor:colors.strongPrimary}

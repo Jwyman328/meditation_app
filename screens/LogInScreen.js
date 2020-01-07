@@ -69,13 +69,13 @@ function LoginScreen(props) {
                 source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0HIJBdanX2M1YcbL03E0dAm3CyFOLPQxvBor7fpIOaLqf85Owg&s' }}>
         <ScrollView contentContainerStyle={styles.outerJustify} style={{ ...styles.outerContainer, }}>
             <View style={{ ...styles.logCard }}>
-            {loginFail? <Text style={styles.loginFail}> Username or password is invalid</Text>: null}
                 <Text style={styles.title} > Meditation Login!</Text>
                 <View style={{ ...styles.formPair }}>
                     <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
                         onChangeText={text => onChangeUserName(text)} required errorMessage='enter a correct username'
                         value={userName} placeholder='username' autoCapitalize="none" />
                 </View>
+                {loginFail? <Text style={styles.loginFail}> Username or password is invalid</Text>: null}
                 <View style={{ ...styles.formPair }}>
                     <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
                         onChangeText={text => onChangePassword(text)}
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Helvetica-Oblique'
     },
     loginFail: {
-        fontSize: 24,
+        fontSize: 18,
         fontFamily: 'Helvetica-Oblique',
         color: 'red',
     }

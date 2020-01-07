@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, ImageBackground, Dimensions, FlatList, Image } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Dimensions, FlatList, Image, TouchableOpacity } from 'react-native';
 
 import FetchAllCourses from '../store/actions/FetchAllCourses'
 import FetchFavorites from '../store/actions/fetchFavorites'
@@ -7,12 +7,14 @@ import FetchFavorites from '../store/actions/fetchFavorites'
 import { useDispatch, useSelector } from 'react-redux'
 import colors from '../constants/colors';
 
+import { Ionicons } from '@expo/vector-icons'
+
 /**
  * Landing screen after the user logs in.
  * 
  * As well necessarypost login actions like fetching meditations will take place
  */
-function UserFriendsScreen() {
+function UserFriendsScreen(props) {
 
     const dispatch = useDispatch()
     const username = useSelector((state) => state.meditations.username)
@@ -30,12 +32,22 @@ function UserFriendsScreen() {
        
     }, [dispatch])
 
+    const sendMsg = (username) => {
+        console.log(username)
+        props.navigation.navigate('CreateMessage', {sendToUsername:username})
+    }
+
     const createFriendCards = (friend) =>{
         console.log(friend.item.username, 'beep')
         return (
             <View style={styles.friendCard}>
                 <Text> {friend.item.username}</Text>
                 <Image style={{width: 80, height: 80}} source={{uri:friend.item.user_photo}}/>
+                <TouchableOpacity onPress={() => sendMsg(friend.item.username)}>
+                    <View>
+                        <Ionicons name='ios-mail' size={45} color={'red'} />
+                    </View>
+                </TouchableOpacity>
 
             </View>
         )

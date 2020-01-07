@@ -23,7 +23,7 @@ const LogInUser = (userName, passWord) => {
         if (token) {
             dispatch({ type: 'signIn', username: userName, password: passWord, token: token })
         } else {
-            //
+            return 'error'
         }
     }
 }

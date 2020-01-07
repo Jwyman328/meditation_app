@@ -13,6 +13,7 @@ import MainButton from '../components/MainButton'
  * 
  */
 function LoginScreen(props) {
+    const [loginFail, setLoginFail] = React.useState(undefined);
     const [userName, onChangeUserName] = React.useState('');
     const [passWord, onChangePassword] = React.useState('');
 
@@ -30,8 +31,19 @@ function LoginScreen(props) {
         }
     }, [token])
 
+    const loginCheck = () => {
+        if (!token){
+            console.log('failed')
+            setLoginFail(true)
+        }else{
+            //
+        }
+    }
+
     const loginUser = () => {
         dispatch(LogInUser(userName, passWord))
+        setTimeout(loginCheck, 4000);
+           
     }
 
 
@@ -57,6 +69,7 @@ function LoginScreen(props) {
                 source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0HIJBdanX2M1YcbL03E0dAm3CyFOLPQxvBor7fpIOaLqf85Owg&s' }}>
         <ScrollView contentContainerStyle={styles.outerJustify} style={{ ...styles.outerContainer, }}>
             <View style={{ ...styles.logCard }}>
+            {loginFail? <Text style={styles.loginFail}> Username or password is invalid</Text>: null}
                 <Text style={styles.title} > Meditation Login!</Text>
                 <View style={{ ...styles.formPair }}>
                     <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
@@ -164,5 +177,10 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontFamily: 'Helvetica-Oblique'
     },
+    loginFail: {
+        fontSize: 24,
+        fontFamily: 'Helvetica-Oblique',
+        color: 'red',
+    }
 
 })

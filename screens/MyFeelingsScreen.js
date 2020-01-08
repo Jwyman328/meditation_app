@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, ImageBackground, Dimensions, Button } from 'react-native';
 
-import FetchAllCourses from '../store/actions/FetchAllCourses'
-import FetchFavorites from '../store/actions/fetchFavorites'
-import FetchUserFriends from '../store/actions/FetchUserFriends'
+
+import UpdateFeelings from '../store/actions/UpdateFeeling'
 import changeLocalMyFeelings from '../store/actions/changeLocalMyFeelings'
 import { useDispatch, useSelector } from 'react-redux'
 import colors from '../constants/colors';
@@ -43,11 +42,10 @@ function MyFeelingsScreen() {
 
     const handleChange = (feeling, num) => {
         dispatch(changeLocalMyFeelings(feeling, num))
-        console.log(num)
     }
 
     const handleNewValues = () => {
-        console.log('handle')
+        dispatch(UpdateFeelings( myFeelings, token))
     }
     return (
         <View style={{ justifyContent: 'center', alignItems: 'center' }} >

@@ -31,7 +31,7 @@ const initialState = {
     friendsList: [],
     allUsers:[],
     pendingFriendRequests: [],
-    singleMessages:[],
+    singleMessages:undefined,
 }
 
 const MeditationsReducer = (state=initialState, action) => {
@@ -136,7 +136,7 @@ const MeditationsReducer = (state=initialState, action) => {
                 friendsList:[],
                 allUsers: [],
                 pendingFriendRequests:[],
-                singleMessages:[] }
+                singleMessages:null }
             
 
         case 'SetAudioState':

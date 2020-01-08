@@ -31,8 +31,11 @@ function CreateMessageScreen(props) {
 
     }
 
+    let messages = undefined;
     const token = useSelector((state) => state.meditations.token)
-    const messages = useSelector((state) => state.meditations.singleMessages)
+    const username = useSelector((state) => state.meditations.username)
+
+    messages = useSelector((state) => state.meditations.singleMessages)
 
     const reciever_username = props.navigation.getParam('sendToUsername')
 
@@ -50,6 +53,24 @@ function CreateMessageScreen(props) {
 
     const msgData = () => {
         console.log(messages)
+        // create a message here 
+        const allMsgs = messages.map((message) => {
+            //styles.myMessage
+            //styles.friendMessage
+            return (
+                <View style={message.sender_username === username?styles.myMessage: styles.friendMessage}>
+                    <Text style={message.sender_username === username? styles.myMessageText: styles.friendMessageText}>{message.msg}</Text>
+                    <Text>{message.sender_username}</Text>
+                </View>
+            )
+        })
+        return (
+            <View>
+                {allMsgs}
+              
+            </View>
+
+        )
     }
 
     const handleKeyboard = () => {
@@ -57,27 +78,30 @@ function CreateMessageScreen(props) {
         setKeyboardVisible(true)
     }
     return (
-  
-            <View>
-                <TouchableWithoutFeedback onPress={removeKeyboard}>
-                    <View styles={styles.screenContainer}>
 
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <Text>msg to {reciever_username}</Text>
+        <View>
+            <TouchableWithoutFeedback onPress={removeKeyboard}>
+                <View styles={styles.screenContainer}>
+
+                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <Text>msg to {reciever_username}</Text>
+                    </View>
+
+                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+
+                        <View style={keyboardVisible ? styles.msgContainerModified : styles.msgContainer}>
+                            {messages ?
+                                <View>
+                                    <Text>Messages here </Text>
+                                    {msgData()}
+                                </View>
+
+                                : null}
                         </View>
+                    </View>
 
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-
-                            <View style={keyboardVisible?styles.msgContainerModified :styles.msgContainer}>
-                                {messages ? <Text>
-                                    Messages here
-                            {msgData()}
-                                </Text> : null}
-                            </View>
-                        </View>
-
-                        <TouchableOpacity onPress={handleKeyboard}> 
-                        <View style={{ flexDirection:'row', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                    <TouchableOpacity onPress={handleKeyboard}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
                             <InputScrollView>
                                 <TextInput
                                     onFocus={handleKeyboard}
@@ -88,14 +112,14 @@ function CreateMessageScreen(props) {
                             <Button title='submit' onPress={sendMessage} />
 
                         </View>
-                        </TouchableOpacity>
+                    </TouchableOpacity>
 
-                    </View>
+                </View>
 
-                </TouchableWithoutFeedback>
+            </TouchableWithoutFeedback>
 
-            </View>
-        
+        </View>
+
     )
 }
 
@@ -107,6 +131,28 @@ CreateMessageScreen.navigationOptions = (navData) => {
     }
 }
 const styles = StyleSheet.create({
+    myMessage:{
+        marginLeft:20,
+        marginBottom: 10,
+        borderStyle:'solid',
+        borderWidth:1,
+        width: 100,
+        backgroundColor:colors.base,
+    },
+    myMessageText:{
+        color:'green',
+    },
+    friendMessage: {
+        marginLeft:200,
+        marginBottom: 10,
+        borderStyle:'solid',
+        borderWidth:1,
+        width: 100,
+        backgroundColor:colors.darkStrongPrimary,
+    },
+    friendMessageText:{
+        color:'white',
+    },
     msgContainer: {
         height: Dimensions.get('window').height * .5,
         width: Dimensions.get('window').width,
@@ -140,8 +186,8 @@ const styles = StyleSheet.create({
         paddingTop: Dimensions.get('window').height * .005
 
     },
-    MoveTextInput:{
-        height: Dimensions.get('window').height ,
+    MoveTextInput: {
+        height: Dimensions.get('window').height,
         width: Dimensions.get('window').width * .999,
         borderColor: 'gray',
         borderWidth: 1,

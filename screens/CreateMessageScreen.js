@@ -9,11 +9,6 @@ import colors from '../constants/colors';
 import InputScrollView from 'react-native-input-scroll-view';
 
 
-/**
- * Landing screen after the user logs in.
- * 
- * As well necessarypost login actions like fetching meditations will take place
- */
 function CreateMessageScreen(props) {
 
     const [value, setValue] = useState('')
@@ -47,16 +42,16 @@ function CreateMessageScreen(props) {
     }
 
     useEffect(() => {
-
         dispatch(FetchMessages(reciever_username, token))
     }, [dispatch])
 
     const msgData = () => {
-        console.log(messages)
+        //console.log(messages)
         // create a message here 
+       
+
         const allMsgs = messages.map((message) => {
-            //styles.myMessage
-            //styles.friendMessage
+   
             return (
                 <View style={message.sender_username === username?styles.myMessage: styles.friendMessage}>
                     <Text style={message.sender_username === username? styles.myMessageText: styles.friendMessageText}>{message.msg}</Text>
@@ -71,7 +66,7 @@ function CreateMessageScreen(props) {
             </View>
 
         )
-    }
+}
 
     const handleKeyboard = () => {
         console.log('kyboard t')
@@ -82,10 +77,6 @@ function CreateMessageScreen(props) {
         <View>
             <TouchableWithoutFeedback onPress={removeKeyboard}>
                 <View styles={styles.screenContainer}>
-
-                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                        <Text>msg to {reciever_username}</Text>
-                    </View>
 
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
 
@@ -126,8 +117,10 @@ function CreateMessageScreen(props) {
 export default CreateMessageScreen;
 
 CreateMessageScreen.navigationOptions = (navData) => {
+    reciever_username = navData.navigation.getParam('sendToUsername')
+    console.log('wh',reciever_username )
     return {
-
+        headerTitle: reciever_username
     }
 }
 const styles = StyleSheet.create({

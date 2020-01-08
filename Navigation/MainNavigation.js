@@ -82,9 +82,7 @@ const friendsStack = createStackNavigator({
             header: null,
         }},
     CreateMessage: {screen:CreateMessageScreen,
-        navigationOptions:{
-            headerTitle: 'Send Message',
-        }},
+       },
 
 })
 const CommunityStackNavigation = createMaterialTopTabNavigator({

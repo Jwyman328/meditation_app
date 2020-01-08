@@ -163,10 +163,20 @@ const MeditationsReducer = (state=initialState, action) => {
             const singleMessages = action.SingleMessages
             return {...state, singleMessages:singleMessages }
         
-            case 'MyFeelings':
+        case 'MyFeelings':
                 const newFeelings = action.MyFeelings
                 console.log(newFeelings, 'nf')
                 return{...state, myFeelings:newFeelings[0]}
+        case 'changeMyFeeling':
+            const myFeeling = action.feeling
+            const newRating = action.newRating
+            const newestFeelings = {...state.myFeelings}
+           
+            newestFeelings[myFeeling] = newRating
+            console.log(newestFeelings)
+            return{...state, myFeelings:newestFeelings}
+
+
 
     }
   

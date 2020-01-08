@@ -32,6 +32,7 @@ const initialState = {
     allUsers:[],
     pendingFriendRequests: [],
     singleMessages:undefined,
+    myFeelings: undefined,
 }
 
 const MeditationsReducer = (state=initialState, action) => {
@@ -71,7 +72,6 @@ const MeditationsReducer = (state=initialState, action) => {
                 }else{
                     //
                 }
-
 
                 if (newFilters.testConfidenceFilter && meditation.catagories.includes(5) ){
                     return meditation
@@ -138,7 +138,6 @@ const MeditationsReducer = (state=initialState, action) => {
                 pendingFriendRequests:[],
                 singleMessages:undefined }
             
-
         case 'SetAudioState':
             const newAudioState = [...state.audioState]
             newAudioState[action.audioStateSetting] = !newAudioState[action.audioStateSetting] 
@@ -163,6 +162,11 @@ const MeditationsReducer = (state=initialState, action) => {
         case 'FetchSingleUserMessages':
             const singleMessages = action.SingleMessages
             return {...state, singleMessages:singleMessages }
+        
+            case 'MyFeelings':
+                const newFeelings = action.MyFeelings
+                console.log(newFeelings, 'nf')
+                return{...state, myFeelings:newFeelings[0]}
 
     }
   

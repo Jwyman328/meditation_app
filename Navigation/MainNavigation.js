@@ -16,6 +16,8 @@ import SignupScreen from '../screens/signUpScreen'
 import UserFriendsScreen from '../screens/UserFriendsScreen'
 import SearchUsersScreen from '../screens/SearchUsersScreen'
 import InboxScreen from '../screens/InboxScreen'
+import MyFeelingsScreen from '../screens/MyFeelingsScreen'
+
 
 import {Ionicons} from '@expo/vector-icons'
 import {ScrollView, Text, StyleSheet, Dimensions, Button} from 'react-native'
@@ -112,8 +114,15 @@ const BottomTabs = createBottomTabNavigator(
             navigationOptions:{
                 tabBarIcon: <Ionicons color='black' size={25} name='ios-home'  />,
             }
-        }
-            ,
+        },
+        Personal: {
+            screen:MyFeelingsScreen,
+            navigationOptions:{
+                tabBarIcon: <Ionicons color='black' size={25} name='md-happy'  />,
+                tabBarLabel:'Personal'
+            }
+        },
+            
         Courses: {
             screen: CoursesStackNavigation,
             navigationOptions:{

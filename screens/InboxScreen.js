@@ -30,8 +30,6 @@ function InboxScreen() {
     const handleRequest = (id, bool) => {
         dispatch(AcceptDenyFriendRequest(id, bool,token))
         //dispatch(FetchPendingFriendRequests(token))
-
-        
     }
 
     const createSenderCards = (friendRequest) => {

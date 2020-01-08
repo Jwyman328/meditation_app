@@ -24,7 +24,7 @@ function InboxScreen() {
 
     useEffect(() => {
         dispatch(FetchPendingFriendRequests(token))
-
+        
     }, [dispatch])
 
     const handleRequest = (id, bool) => {

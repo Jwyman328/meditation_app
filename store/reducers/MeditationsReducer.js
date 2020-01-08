@@ -31,6 +31,7 @@ const initialState = {
     friendsList: [],
     allUsers:[],
     pendingFriendRequests: [],
+    singleMessages:[],
 }
 
 const MeditationsReducer = (state=initialState, action) => {
@@ -134,7 +135,8 @@ const MeditationsReducer = (state=initialState, action) => {
                 loggedIn: false,
                 friendsList:[],
                 allUsers: [],
-                pendingFriendRequests:[] }
+                pendingFriendRequests:[],
+                singleMessages:[] }
             
 
         case 'SetAudioState':
@@ -158,7 +160,9 @@ const MeditationsReducer = (state=initialState, action) => {
         case 'PendingFriendRequests':
             const newPendingRequests = action.pendingFriendRequests
             return {...state, pendingFriendRequests:newPendingRequests }
-
+        case 'FetchSingleUserMessages':
+            const singleMessages = action.SingleMessages
+            return {...state, singleMessages:singleMessages }
 
     }
   

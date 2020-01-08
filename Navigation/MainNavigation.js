@@ -175,6 +175,7 @@ const AuthNavigator = createStackNavigator({
 const MainNavigation = createSwitchNavigator({ // did this for the header it provides 
     Login: AuthNavigator,
     //SignUp: SignupScreen,
+    Feelings: MyFeelingsScreen,
     Tabs:BottomTabs
 },{
     navigationOptions:{

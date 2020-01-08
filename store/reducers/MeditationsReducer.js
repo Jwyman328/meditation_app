@@ -32,7 +32,12 @@ const initialState = {
     allUsers:[],
     pendingFriendRequests: [],
     singleMessages:undefined,
-    myFeelings: undefined,
+    myFeelings: {  
+        "depressed": 1,
+        "anxious": 1,
+        "lost": 1,
+        "stressed": 1,
+        "excited": 1},
 }
 
 const MeditationsReducer = (state=initialState, action) => {
@@ -136,7 +141,13 @@ const MeditationsReducer = (state=initialState, action) => {
                 friendsList:[],
                 allUsers: [],
                 pendingFriendRequests:[],
-                singleMessages:undefined }
+                singleMessages:undefined,
+                myFeelings:{  
+                    "depressed": 1,
+                    "anxious": 1,
+                    "lost": 1,
+                    "stressed": 1,
+                    "excited": 1} }
             
         case 'SetAudioState':
             const newAudioState = [...state.audioState]
@@ -165,15 +176,14 @@ const MeditationsReducer = (state=initialState, action) => {
         
         case 'MyFeelings':
                 const newFeelings = action.MyFeelings
-                console.log(newFeelings, 'nf')
                 return{...state, myFeelings:newFeelings[0]}
+                
         case 'changeMyFeeling':
             const myFeeling = action.feeling
             const newRating = action.newRating
             const newestFeelings = {...state.myFeelings}
            
             newestFeelings[myFeeling] = newRating
-            console.log(newestFeelings)
             return{...state, myFeelings:newestFeelings}
 
 

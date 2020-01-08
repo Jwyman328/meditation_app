@@ -11,7 +11,6 @@ const CreateMessage = (reciever_username, msg, token) => {
             const response = await fetch(`http://intense-gorge-29567.herokuapp.com/friends/create_message/`,{
                 method:'POST',body:jsonUsername, headers:{ Authorization: `JWT ${token}`,'Content-Type': 'application/json'}})
             const responseData = await response.json()
-            console.log(responseData)
             //dispatch({type: 'AddFriend', addFriendsList:responseData})
             dispatch(FetchUserFriends(token))
         }

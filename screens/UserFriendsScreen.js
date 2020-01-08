@@ -33,12 +33,10 @@ function UserFriendsScreen(props) {
     }, [dispatch])
 
     const sendMsg = (username) => {
-        console.log(username)
         props.navigation.navigate('CreateMessage', {sendToUsername:username})
     }
 
     const createFriendCards = (friend) =>{
-        console.log(friend.item.username, 'beep')
         return (
             <View style={styles.friendCard}>
                 <Text> {friend.item.username}</Text>

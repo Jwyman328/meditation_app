@@ -36,13 +36,10 @@ function SearchUsersScreen() {
     useEffect(() => {
         dispatch(FetchAllUsers(token))
         if (allUsers && friends){
-            //console.log(allUsers, 'all users')
-            //console.log(friends, 'all friends')
 
             // map the friends 
             const friendsUsernames = friends.map((friend) => friend.username)
             setFriendsUsernames(friendsUsernames)
-            console.log(friendsUsernames, 'username list')
 
         }else{
 
@@ -54,15 +51,12 @@ function SearchUsersScreen() {
 
     const addFriend = (username) => {
         dispatch(SendFriendRequest(username,token))
-        console.log('done')
     }
     const removeFriend = (username) => {
         dispatch(AddRemoveFriend(username,token))
-        console.log('done')
     }
 
     const createFriendCards = (user) => {
-        console.log(user.item.username, 'here')
         return (
             // check if this user is the current user 
             user.item.username === username?

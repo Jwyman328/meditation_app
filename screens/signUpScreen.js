@@ -7,6 +7,11 @@ import {useDispatch, useSelector} from 'react-redux'
 import MainButton from '../components/MainButton'
 import colors from '../constants/colors';
 
+import FetchMyFeelings from '../store/actions/FetchMyFeelings'
+import UpdateFeelings from '../store/actions/UpdateFeeling'
+
+
+
 /**
  * Screen for allowing an existing user to login with their username and password.
  * 
@@ -19,7 +24,17 @@ function SignupScreen(props){
 
     useEffect(() => {
         if (token){
-            props.navigation.navigate('Tabs')
+            // set up feelings 
+            let feelings = {
+                "anxious": 1,
+                "depressed": 1,
+                "excited": 1,
+                "lost": 1,
+                "stressed": 1,
+              }
+            dispatch(UpdateFeelings( feelings, token))
+            props.navigation.navigate('Feelings',{firstTime:true})
+            //props.navigation.navigate('Tabs')
         }
     }, [token])
 

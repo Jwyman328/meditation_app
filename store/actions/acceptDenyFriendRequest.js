@@ -12,7 +12,6 @@ const AcceptDenyFriendRequest = (id, Bool, token) => {
             const response = await fetch(`https://intense-gorge-29567.herokuapp.com/friends/${id}/${Bool}/`,{
             headers:{ Authorization: `JWT ${token}`,'Content-Type': 'application/json'}})
             const responseData = await response.json()
-            console.log(responseData)
             //dispatch({type: 'AddFriend', addFriendsList:responseData})
             dispatch(FetchPendingFriendRequests(token))
             dispatch(FetchUserFriends(token))

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, ImageBackground, Dimensions, Button } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Dimensions, Button, ShadowPropTypesIOS } from 'react-native';
 
 
 import UpdateFeelings from '../store/actions/UpdateFeeling'
@@ -15,23 +15,21 @@ import FetchMyFeelings from '../store/actions/FetchMyFeelings'
  * 
  * As well necessarypost login actions like fetching meditations will take place
  */
-function MyFeelingsScreen() {
+function MyFeelingsScreen(props) {
 
-   
- 
     const dispatch = useDispatch()
     
     const username = useSelector((state) => state.meditations.username)
     const token = useSelector((state) => state.meditations.token)
     const myFeelings = useSelector((state) => state.meditations.myFeelings)
     
+    const firstTime = props.navigation.getParam('firstTime')
 
 
     useEffect(() => {
     }, [])
 
     const handleColor = (num, feeling) => {
-        console.log(num)
         if (num <= myFeelings[feeling]) {
             return 'pink'
         }
@@ -46,6 +44,11 @@ function MyFeelingsScreen() {
 
     const handleNewValues = () => {
         dispatch(UpdateFeelings( myFeelings, token))
+    }
+
+    const handleLater = () => {
+
+        props.navigation.navigate('Tabs')
     }
     return (
         <View style={{ justifyContent: 'center', alignItems: 'center' }} >
@@ -101,6 +104,8 @@ function MyFeelingsScreen() {
             
             :null}
             <Button title='submit' onPress = {handleNewValues} />
+            {firstTime?<Button title='Do later' onPress = {handleLater} />:null}
+
 
         </View>
     )

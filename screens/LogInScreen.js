@@ -173,9 +173,11 @@ const styles = StyleSheet.create({
     },
     button: {
         marginBottom: 25,
+
     },
     signUpButton: {
-        backgroundColor: colors.strongPrimary
+        backgroundColor: colors.strongPrimary,
+        marginBottom: 15,
     },
     title: {
         fontSize: 24,

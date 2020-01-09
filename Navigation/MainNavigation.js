@@ -108,10 +108,21 @@ const CommunityStackNavigation = createMaterialTopTabNavigator({
       }
 })
 
+const HomeStack = createStackNavigator({
+    Home: HomeScreen,    
+    IndividualMeditationScreen:IndividualMeditationScreen,
+
+
+}, {defaultNavigationOptions:
+  
+        {header:null}
+    }
+)
+
 const BottomTabs = createBottomTabNavigator(
     {   
         Home: {
-            screen: HomeScreen,
+            screen: HomeStack,
             navigationOptions:{
                 tabBarIcon: <Ionicons color='black' size={25} name='ios-home'  />,
             }

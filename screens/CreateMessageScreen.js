@@ -76,16 +76,17 @@ function CreateMessageScreen(props) {
 
         <View>
             <TouchableWithoutFeedback onPress={removeKeyboard}>
+                <ScrollView>
                 <View styles={styles.screenContainer}>
 
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
 
                         <View style={keyboardVisible ? styles.msgContainerModified : styles.msgContainer}>
                             {messages ?
-                                <View>
+                                <ScrollView>
                                     <Text>Messages here </Text>
                                     {msgData()}
-                                </View>
+                                </ScrollView>
 
                                 : null}
                         </View>
@@ -106,6 +107,7 @@ function CreateMessageScreen(props) {
                     </TouchableOpacity>
 
                 </View>
+                </ScrollView>
 
             </TouchableWithoutFeedback>
 
@@ -118,7 +120,6 @@ export default CreateMessageScreen;
 
 CreateMessageScreen.navigationOptions = (navData) => {
     reciever_username = navData.navigation.getParam('sendToUsername')
-    console.log('wh',reciever_username )
     return {
         headerTitle: reciever_username
     }

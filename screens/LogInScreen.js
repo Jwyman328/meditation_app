@@ -33,7 +33,6 @@ function LoginScreen(props) {
 
     const loginCheck = () => {
         if (!token){
-            console.log('failed')
             setLoginFail(true)
         }else{
             //

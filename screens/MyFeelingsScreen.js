@@ -25,10 +25,6 @@ function MyFeelingsScreen(props) {
     
     const firstTime = props.navigation.getParam('firstTime')
 
-
-    useEffect(() => {
-    }, [])
-
     const handleColor = (num, feeling) => {
         if (num <= myFeelings[feeling]) {
             return 'pink'
@@ -44,6 +40,7 @@ function MyFeelingsScreen(props) {
 
     const handleNewValues = () => {
         dispatch(UpdateFeelings( myFeelings, token))
+        props.navigation.navigate('Home')
     }
 
     const handleLater = () => {

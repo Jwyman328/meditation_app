@@ -18,6 +18,7 @@ import SearchUsersScreen from '../screens/SearchUsersScreen'
 import InboxScreen from '../screens/InboxScreen'
 import MyFeelingsScreen from '../screens/MyFeelingsScreen'
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen'
+import Fitness from '../screens/FitnessCounter'
 
 
 import {Ionicons} from '@expo/vector-icons'
@@ -152,7 +153,7 @@ const BottomTabs = createBottomTabNavigator(
                     
                 }},
         Stats: {
-            screen: UserFriendsScreen,//StatsScreen, 
+            screen: Fitness,//StatsScreen, 
             navigationOptions: {
                 tabBarIcon:<Ionicons color='black' size={25} name='ios-stats'  />,
                 

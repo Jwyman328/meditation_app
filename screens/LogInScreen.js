@@ -60,6 +60,10 @@ function LoginScreen(props) {
         props.navigation.navigate('Signup')
     }
 
+    const handleForgotPassword = () => {
+        props.navigation.navigate('ForgotPassword')
+    }
+
 
     return (
         <View styles={styles.imageContainer}>
@@ -72,7 +76,7 @@ function LoginScreen(props) {
                 <View style={{ ...styles.formPair }}>
                     <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
                         onChangeText={text => onChangeUserName(text)} required errorMessage='enter a correct username'
-                        value={userName} placeholder='username' autoCapitalize="none" />
+                        value={userName} placeholder='email' autoCapitalize="none" />
                 </View>
                 {loginFail? <Text style={styles.loginFail}> Username or password is invalid</Text>: null}
                 <View style={{ ...styles.formPair }}>
@@ -83,6 +87,7 @@ function LoginScreen(props) {
                 <View>
                     <MainButton style={styles.button} title='Login' onPress={handlePress} />
                     <MainButton style={styles.signUpButton} title='Switch to Sign Up' onPress={handleSignUp} />
+                    <Button title='Forgot Password?' onPress={handleForgotPassword} />
                 </View>
             </View>
         </ScrollView>

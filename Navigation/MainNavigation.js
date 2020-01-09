@@ -17,6 +17,7 @@ import UserFriendsScreen from '../screens/UserFriendsScreen'
 import SearchUsersScreen from '../screens/SearchUsersScreen'
 import InboxScreen from '../screens/InboxScreen'
 import MyFeelingsScreen from '../screens/MyFeelingsScreen'
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen'
 
 
 import {Ionicons} from '@expo/vector-icons'
@@ -170,6 +171,7 @@ const AuthNavigator = createStackNavigator({
     Auth: LoginScreen,
     Signup: SignupScreen,
     logOut: SettingsScreen,
+    ForgotPassword: ForgotPasswordScreen,
 })
 
 const MainNavigation = createSwitchNavigator({ // did this for the header it provides 

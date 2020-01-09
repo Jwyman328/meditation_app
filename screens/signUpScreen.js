@@ -63,7 +63,7 @@ function SignupScreen(props){
                 <View style={{ ...styles.formPair }}>
                     <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
                         onChangeText={text => onChangeUserName(text)} required errorMessage='enter a correct username'
-                        value={userName} placeholder='username' autoCapitalize="none" />
+                        value={userName} placeholder='email' autoCapitalize="none" />
                 </View>
                 <View style={{ ...styles.formPair }}>
                     <TextInput style={{ ...styles.formObj, ...styles.inputBox }}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, ImageBackground, Dimensions, Button } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
 
 import FetchAllCourses from '../store/actions/FetchAllCourses'
 import FetchFavorites from '../store/actions/fetchFavorites'
@@ -44,28 +44,34 @@ function HomeScreen(props) {
     const goToDailyMeditation = () => {
 
         const image_uri = dummyData[0].ImageUri
-        props.navigation.navigate('IndividualMeditationScreen', { data: { meditationData: dailyMeditationData, uri: image_uri } })    
+        props.navigation.navigate('IndividualMeditationScreen', { data: { meditationData: dailyMeditationData, uri: image_uri } })
     }
 
-    
+
 
     const getDailyMeditation = () => {
         // get random number
 
         const image_uri = dummyData[0].ImageUri
-        const meditationNumber = getRandomInt(1,19)
+        const meditationNumber = getRandomInt(1, 19)
         setDailyMeditationData(audioBookPlaylist[meditationNumber])
         const meditaionId = audioBookPlaylist[meditationNumber]
+
         console.log(audioBookPlaylist[meditationNumber])
     }
 
     const createDailyMeditationCard = () => {
         return (
-        <View style={styles.dailyCard}>
-            <Text>{dailyMeditationData.title}</Text>
-            <Text>{dailyMeditationData.author}</Text>
-            <Button title='Meditate' onPress={goToDailyMeditation} />
-        </View>
+            <TouchableOpacity onPress={goToDailyMeditation}>
+                <View style={styles.dailyCard}>
+                    <Image style={{ width: 90, height: 85, borderRadius:20, }} source={{ uri: dailyMeditationData.imageSource }} />
+                    <View>
+                        <Text>{dailyMeditationData.title}</Text>
+                        <Text>{dailyMeditationData.author}</Text>
+                    </View>
+
+                </View>
+            </TouchableOpacity>
         )
     }
     useEffect(() => {
@@ -76,7 +82,7 @@ function HomeScreen(props) {
         dispatch(FetchMyFeelings(token))
         dispatch(FetchDailyStepGoal(token))
 
-        
+
     }, [dispatch])
 
 
@@ -89,7 +95,10 @@ function HomeScreen(props) {
                     <Text style={styles.title}>Welcome {username}</Text>
                 </View>
                 <View style={styles.cardContainer}>
-                {dailyMeditationData?createDailyMeditationCard():null }
+                    <View style={styles.dailyMeditationTitleContainer}>
+                        <Text style={styles.dailyMeditationTitle}>Daily Meditation</Text>
+                    </View>
+                    {dailyMeditationData ? createDailyMeditationCard() : null}
                 </View>
             </ImageBackground>
         </View>
@@ -121,14 +130,25 @@ const styles = StyleSheet.create({
         fontFamily: 'Helvetica-LightOblique',
     },
     dailyCard: {
-        width: Dimensions.get('window').width * .6,
-        height: Dimensions.get('window').height *.25,
-        borderColor:'black',
+        flexDirection: 'row',
+        width: Dimensions.get('window').width * .8,
+        height: Dimensions.get('window').height * .17,
+        borderColor: 'black',
         borderStyle: 'solid',
-        borderWidth:3,
-        backgroundColor:'white',
+        borderWidth: 3,
+        borderRadius:20,
+        backgroundColor: 'white',
     },
     cardContainer: {
-        marginBottom: 200,
+        marginBottom: 100,
+        marginLeft: Dimensions.get('window').width * .1,
     },
+    dailyMeditationTitleContainer: {
+        marginLeft:Dimensions.get('window').width * .1,
+    },
+    dailyMeditationTitle: {
+        fontSize:30,
+        fontFamily:'Helvetica-LightOblique',
+        color: colors.base
+    }
 })

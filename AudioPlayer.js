@@ -76,7 +76,6 @@ export default class AudioPlayer extends React.Component {
 
 		try {
 			const playbackInstance = new Audio.Sound()
-			console.log(audioBookPlaylist[this.props.meditationData.orderNumber].uri)
 			const source = audioBookPlaylist[this.props.meditationData.orderNumber].uri
 			const audioLength = this.props.meditationData.time
 			const status = {

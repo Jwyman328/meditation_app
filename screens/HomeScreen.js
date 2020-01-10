@@ -57,7 +57,6 @@ function HomeScreen(props) {
         setDailyMeditationData(audioBookPlaylist[meditationNumber])
         const meditaionId = audioBookPlaylist[meditationNumber]
 
-        console.log(audioBookPlaylist[meditationNumber])
     }
 
     const createDailyMeditationCard = () => {

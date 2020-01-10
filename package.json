@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-community/art": "^1.0.3",
+    "@react-native-community/slider": "^2.0.8",
     "expo": "~36.0.0",
     "expo-av": "^8.0.0",
     "expo-sensors": "^8.0.0",

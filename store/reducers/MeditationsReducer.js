@@ -38,6 +38,7 @@ const initialState = {
         "lost": 1,
         "stressed": 1,
         "excited": 1},
+    dailyStepGoal: 10000,
 }
 
 const MeditationsReducer = (state=initialState, action) => {
@@ -147,7 +148,8 @@ const MeditationsReducer = (state=initialState, action) => {
                     "anxious": 1,
                     "lost": 1,
                     "stressed": 1,
-                    "excited": 1} }
+                    "excited": 1},
+                    dailyStepGoal:10000, }
             
         case 'SetAudioState':
             const newAudioState = [...state.audioState]
@@ -186,7 +188,13 @@ const MeditationsReducer = (state=initialState, action) => {
             newestFeelings[myFeeling] = newRating
             return{...state, myFeelings:newestFeelings}
 
+        case 'FetchDailyStepGoal':
+            const myDailyStepGoal = action.dailyStepGoal
+            return{...state, dailyStepGoal:myDailyStepGoal}
 
+        case 'setNewStepGoal':
+            const newDailyStepGoal = action.newDailyStepGoal
+            return{...state, dailyStepGoal:newDailyStepGoal}
 
     }
   

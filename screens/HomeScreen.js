@@ -5,6 +5,7 @@ import FetchAllCourses from '../store/actions/FetchAllCourses'
 import FetchFavorites from '../store/actions/fetchFavorites'
 import FetchUserFriends from '../store/actions/FetchUserFriends'
 import FetchMyFeelings from '../store/actions/FetchMyFeelings'
+import FetchDailyStepGoal from '../store/actions/fetchDailyStepGoal'
 
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -73,6 +74,7 @@ function HomeScreen(props) {
         dispatch(FetchFavorites(token))
         dispatch(FetchUserFriends(token))
         dispatch(FetchMyFeelings(token))
+        dispatch(FetchDailyStepGoal(token))
 
         
     }, [dispatch])

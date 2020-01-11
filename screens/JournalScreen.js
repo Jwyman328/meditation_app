@@ -33,7 +33,6 @@ function JournalScreen(props) {
 
     const handleCreateJournal = () => {
         props.navigation.navigate('WriteJournalScreen')
-        console.log('hello')
     }
 
     const DateChoosen = () => {

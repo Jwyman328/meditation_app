@@ -39,6 +39,10 @@ const initialState = {
         "stressed": 1,
         "excited": 1},
     dailyStepGoal: 10000,
+    moodPastWeek : undefined,
+    moodPastMonth : undefined,
+    moodDates : undefined,
+
 }
 
 const MeditationsReducer = (state=initialState, action) => {
@@ -195,6 +199,16 @@ const MeditationsReducer = (state=initialState, action) => {
         case 'setNewStepGoal':
             const newDailyStepGoal = action.newDailyStepGoal
             return{...state, dailyStepGoal:newDailyStepGoal}
+
+        case 'FetchMoodData':
+            const newMoodData = action.MoodData
+            const moodDataPastWeek = action.MoodData[0].moods_range[0]
+            const moodDataPastMonth = action.MoodData[0].moods_range[1]
+            const moodDataDates = action.MoodData[0].moods_range[2]   
+            console.log({moodPastWeek:moodDataPastWeek ,moodPastMonth:moodDataPastMonth, moodDates: moodDataDates}) 
+            return{...state, moodPastWeek:moodDataPastWeek ,moodPastMonth:moodDataPastMonth, moodDates: moodDataDates}
+        
+
 
     }
   

@@ -21,6 +21,7 @@ import ForgotPasswordScreen from '../screens/ForgotPasswordScreen'
 import Fitness from '../screens/FitnessCounter'
 import JournalScreen from '../screens/JournalScreen'
 import WriteJournalScreen from '../screens/WriteJournalScreen'
+import JournalProgressScreen from '../screens/journalProgressScreen'
 
 
 import {Ionicons} from '@expo/vector-icons'
@@ -123,6 +124,7 @@ const HomeStack = createStackNavigator({
 )
 
 const JournalStack = createStackNavigator({
+    JournalProgressScreen: JournalProgressScreen,
     JournalScreen: JournalScreen,
     WriteJournalScreen:WriteJournalScreen
 }, {

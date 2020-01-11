@@ -20,6 +20,7 @@ import MyFeelingsScreen from '../screens/MyFeelingsScreen'
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen'
 import Fitness from '../screens/FitnessCounter'
 import JournalScreen from '../screens/JournalScreen'
+import WriteJournalScreen from '../screens/WriteJournalScreen'
 
 
 import {Ionicons} from '@expo/vector-icons'
@@ -121,6 +122,15 @@ const HomeStack = createStackNavigator({
     }
 )
 
+const JournalStack = createStackNavigator({
+    JournalScreen: JournalScreen,
+    WriteJournalScreen:WriteJournalScreen
+}, {
+    defaultNavigationOptions:{
+        headerTitle: 'Journal'
+    }
+})
+
 const BottomTabs = createBottomTabNavigator(
     {   
         Home: {
@@ -129,7 +139,7 @@ const BottomTabs = createBottomTabNavigator(
                 tabBarIcon: <Ionicons color='black' size={25} name='ios-home'  />,
             }
         },
-        JournalScreen:JournalScreen,
+        JournalScreen: JournalStack,
         Personal: {
             screen:MyFeelingsScreen,
             navigationOptions:{

@@ -77,14 +77,24 @@ CoursesScreen.navigationOptions = (navData) => {
     const navigateToFiltersPage = () => {
         navData.navigation.navigate('Filters')
     }
+    const navigateToMyFeelingFilter = () => {
+        navData.navigation.navigate('FeelingsFilter')
+    }
    return (
        {
            headerRight: 
                 <ScrollView style={{marginTop:Dimensions.get('window').height * .02}} horizontal={true}>
                 <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
-                    <Item title='filter' color='black' iconName='ios-funnel' onPress={ navigateToFiltersPage } />
+                    <Item title='filter' color={colors.darkStrongPrimary} iconName='ios-funnel' onPress={ navigateToFiltersPage } />
                 </HeaderButtons>      
                 </ScrollView>,
+            headerLeft:
+            <ScrollView style={{marginTop:Dimensions.get('window').height * .02}} horizontal={true}>
+            <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
+                <Item title='filter' color={colors.darkStrongPrimary} iconName='ios-color-filter' onPress={ navigateToMyFeelingFilter } />
+            </HeaderButtons>      
+            </ScrollView>,
+
        }
    )
         

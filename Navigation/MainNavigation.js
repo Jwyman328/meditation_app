@@ -73,7 +73,17 @@ const CoursesStackNavigation = createStackNavigator({
                 fontSize: 24,
             }
         }
-    }
+    },
+    FeelingsFilter:{
+        screen:MyFeelingsScreen,
+        navigationOptions: {
+            headerTitle:"I'm Feeling" ,
+            headerTintColor: colors.primary,
+            headerTitleStyle:{
+                fontFamily:'Helvetica-Oblique',
+                fontSize: 24,
+            }
+    }},
        
 }, {
     defaultNavigationOptions: {
@@ -112,6 +122,27 @@ const CommunityStackNavigation = createMaterialTopTabNavigator({
       }
 })
 
+const FitnessStack = createStackNavigator({
+    Fitness:{
+        screen: Fitness
+    },
+    Community: {
+        screen: CommunityStackNavigation,//UserFriendsScreen,//StatsScreen,
+        navigationOptions: {
+            tabBarIcon:<Ionicons color='black' size={25} name='ios-people'  />,
+            tabBarLabel:'Community'
+        }},
+    Settings: {
+        screen: SettingsScreen,
+        navigationOptions: {
+            tabBarIcon: <Ionicons color='black' size={25} name='ios-settings'  />
+            
+            }
+        }
+   
+
+})
+
 const HomeStack = createStackNavigator({
     Home: HomeScreen,    
     IndividualMeditationScreen:IndividualMeditationScreen,
@@ -141,15 +172,6 @@ const BottomTabs = createBottomTabNavigator(
                 tabBarIcon: <Ionicons color='black' size={25} name='ios-home'  />,
             }
         },
-        JournalScreen: JournalStack,
-        Personal: {
-            screen:MyFeelingsScreen,
-            navigationOptions:{
-                tabBarIcon: <Ionicons color='black' size={25} name='md-happy'  />,
-                tabBarLabel:'Personal'
-            }
-        },
-            
         Courses: {
             screen: CoursesStackNavigation,
             navigationOptions:{
@@ -158,28 +180,25 @@ const BottomTabs = createBottomTabNavigator(
             }
         }
             ,
-            Community: {
-                screen: CommunityStackNavigation,//UserFriendsScreen,//StatsScreen,
-                navigationOptions: {
-                    tabBarIcon:<Ionicons color='black' size={25} name='ios-people'  />,
-                    tabBarLabel:'Community'
-
-                    
-                }},
-        Stats: {
-            screen: Fitness,//StatsScreen, 
+        Fitness: {
+            screen: FitnessStack,//StatsScreen, 
             navigationOptions: {
-                tabBarIcon:<Ionicons color='black' size={25} name='ios-stats'  />,
+                tabBarIcon:<Ionicons color='black' size={25} name='ios-fitness'  />,
                 
             }
         },
-        Settings: {
-            screen: SettingsScreen,
-            navigationOptions: {
-             tabBarIcon: <Ionicons color='black' size={25} name='ios-settings'  />
-            
+
+        Feeling: {
+            screen:JournalStack,
+            navigationOptions:{
+                tabBarIcon: <Ionicons color='black' size={25} name='md-happy'  />,
+                tabBarLabel:'Mental'
             }
-        }
+        },
+            
+      
+        
+
     },{
         navigationOptions:{
             headerTitle: 'hello world',

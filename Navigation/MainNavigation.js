@@ -23,6 +23,9 @@ import JournalScreen from '../screens/JournalScreen'
 import WriteJournalScreen from '../screens/WriteJournalScreen'
 import JournalProgressScreen from '../screens/journalProgressScreen'
 
+import IntroToQuestionsScreen from '../screens/GetUserInfoStack/IntroToQuestionsScreen'
+import ChooseGenderScreen from '../screens/GetUserInfoStack/chooseGenderScreen'
+
 
 import {Ionicons} from '@expo/vector-icons'
 import {ScrollView, Text, StyleSheet, Dimensions, Button} from 'react-native'
@@ -211,8 +214,25 @@ const BottomTabs = createBottomTabNavigator(
         }
    }
 )
+const getUserInfoStack = createStackNavigator({
+        introToQuestions: {
+            screen:IntroToQuestionsScreen,
+            navigationOptions:{
+                header: null,
+            }
+        },
+        chooseGender: {
+            screen:ChooseGenderScreen,
+           
+        }
+})
 
 const AuthNavigator = createStackNavigator({
+    introQuestionsStack: {
+        screen: getUserInfoStack ,
+        navigationOptions:{
+            header:null,
+        }},
     Auth: LoginScreen,
     Signup: SignupScreen,
     logOut: SettingsScreen,

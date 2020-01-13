@@ -71,16 +71,15 @@ class App2 extends React.Component {
         this._subscription = null;
     };
 
+
+
     showFitnessCard = () => {
         const totalDailySteps = (this.state.pastStepCount + this.state.currentStepCount)
         const distance = totalDailySteps / 2200
 
         return (
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: .5 }}>
 
-                <Text>
-                    Distance: {distance} miles
-                </Text>
                 <ProgressCircle
                     percent={(totalDailySteps / this.props.dailyStepGoal) * 100}
                     radius={90}
@@ -89,12 +88,31 @@ class App2 extends React.Component {
                     shadowColor={colors.base}
                     bgColor={colors.primary}
                 >
-                    <Ionicons size={70} name='ios-walk' title='play' />
+                    <Ionicons size={50} name='ios-walk' title='play' />
 
-                    <Text>
-                        Today's Steps: {totalDailySteps}
+                    <Text style={styles.stepTextLarge}>
+                        {totalDailySteps}
                     </Text>
                 </ProgressCircle>
+                <View >
+
+                    <ProgressCircle
+                        percent={(totalDailySteps / this.props.dailyStepGoal) * 100}
+                        radius={30}
+                        borderWidth={8}
+                        color={'#748AD6'}
+                        shadowColor={colors.base}
+                        bgColor={colors.primary}
+                    >
+                        <Ionicons size={30} name='ios-pin' title='play' />
+
+                    </ProgressCircle>
+                    <Text>
+                     {distance.toFixed(2)} miles
+                    </Text>
+                </View>
+
+                
             </View>
         )
     }
@@ -105,7 +123,7 @@ class App2 extends React.Component {
         //style={styles.minicard}
         return (
             <View style={styles.minicard}>
-               <ProgressCircle
+                <ProgressCircle
                     percent={(totalDailySteps / this.props.dailyStepGoal) * 100}
                     radius={60}
                     borderWidth={6}
@@ -113,15 +131,14 @@ class App2 extends React.Component {
                     shadowColor={colors.base}
                     bgColor={colors.primary}
                     opacity={.5}
-                
                 >
                     <Ionicons size={49} name='ios-walk' title='play' />
 
                     <Text style={styles.stepText}>
-                       {totalDailySteps}
+                        {totalDailySteps}
                     </Text>
                 </ProgressCircle>
-             
+
             </View>
         )
 
@@ -143,10 +160,13 @@ export default App2;
 
 
 const styles = StyleSheet.create({
-    stepText: {
-        fontSize:29,
+    stepTextLarge: {
+        fontSize: 39,
     },
-    minicard:{
+    stepText: {
+        fontSize: 29,
+    },
+    minicard: {
         //justifyContent:'center',
         //alignItems: 'center',
         //width:Dimensions.get('window').width * .6,
@@ -155,12 +175,12 @@ const styles = StyleSheet.create({
         //borderWidth:2,
         //backgroundColor: 'white',
         //borderRadius: 600,
-        opacity:.7
-        
+        opacity: .7
+
     },
     container: {
-        flex: 1,
-        marginTop: 15,
+        //flex: 1,
+        //marginTop: 15,
         alignItems: "center",
         justifyContent: "center"
     },

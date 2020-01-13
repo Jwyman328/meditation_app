@@ -10,11 +10,8 @@ import currentStepCount from '../store/actions/setCurrentStepCount'
 
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 
-import MainHeaderButton from '../components/HeaderButton';
+import MainHeaderButtonLarge from '../components/HeaderButtonLarge';
 import App2 from '../screens/App2'
-
-
-
 
 
 function App() {
@@ -25,7 +22,7 @@ function App() {
 
     return (
         <View style={{ flex: 1 }}>
-            <View>
+            <View style={styles.stepCircle}>
             {dailyStepGoal ? <App2 card={true} dailyStepGoal={dailyStepGoal} /> : null}
             </View>
         </View>
@@ -46,14 +43,14 @@ App.navigationOptions = (navData) => {
    return (
        {
            headerRight: 
-                <ScrollView style={{marginTop:Dimensions.get('window').height * .02}} horizontal={true}>
-                <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
+                <ScrollView style={{marginTop:Dimensions.get('window').height * .001}} horizontal={true}>
+                <HeaderButtons HeaderButtonComponent={MainHeaderButtonLarge}>
                     <Item title='filter' color={colors.darkStrongPrimary} iconName='ios-mail' onPress={ navigateToMessaging } />
                 </HeaderButtons>      
                 </ScrollView>,
             headerLeft:
-            <ScrollView style={{marginTop:Dimensions.get('window').height * .02}} horizontal={true}>
-            <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
+            <ScrollView style={{marginTop:Dimensions.get('window').height * .001}} horizontal={true}>
+            <HeaderButtons HeaderButtonComponent={MainHeaderButtonLarge}>
                 <Item title='filter' color={colors.darkStrongPrimary} iconName='ios-settings' onPress={ navigateToSettings } />
             </HeaderButtons>      
             </ScrollView>,
@@ -65,9 +62,16 @@ App.navigationOptions = (navData) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 15,
+        //marginTop: 15,
         alignItems: "center",
         justifyContent: "center"
     },
+    stepCircle:{
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * .4,
+        justifyContent:'center',
+        alignItems:'center',
+        marginLeft: Dimensions.get('window').width * .13,
+    }
 
 });

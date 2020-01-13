@@ -42,6 +42,7 @@ const initialState = {
     moodPastWeek : undefined,
     moodPastMonth : undefined,
     moodDates : undefined,
+    currentStepCount: undefined,
 
 }
 
@@ -153,7 +154,8 @@ const MeditationsReducer = (state=initialState, action) => {
                     "lost": 1,
                     "stressed": 1,
                     "excited": 1},
-                    dailyStepGoal:10000, }
+                    dailyStepGoal:10000,
+                    currentStepCount:0, }
             
         case 'SetAudioState':
             const newAudioState = [...state.audioState]
@@ -207,6 +209,10 @@ const MeditationsReducer = (state=initialState, action) => {
             const moodDataDates = action.MoodData[0].moods_range[2]   
             console.log({moodPastWeek:moodDataPastWeek ,moodPastMonth:moodDataPastMonth, moodDates: moodDataDates}) 
             return{...state, moodPastWeek:moodDataPastWeek ,moodPastMonth:moodDataPastMonth, moodDates: moodDataDates}
+        
+        case 'setCurrentSteps':
+            const newCurrentStepCount = action.currentSteps
+            return{...state, currentStepCount:newCurrentStepCount}
         
 
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, ImageBackground, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import FetchAllCourses from '../store/actions/FetchAllCourses'
 import FetchFavorites from '../store/actions/fetchFavorites'
@@ -15,6 +16,9 @@ import colors from '../constants/colors';
 import audioBookPlaylist from '../Data/AudioBookPlaylist'
 import dummyData from '../Data/dummyData'
 
+import App2 from '../screens/App2'
+
+
 /**
  * Landing screen after the user logs in.
  * 
@@ -26,6 +30,10 @@ function HomeScreen(props) {
     const username = useSelector((state) => state.meditations.username)
     const token = useSelector((state) => state.meditations.token)
     const [dailyMeditationData, setDailyMeditationData] = useState(undefined)
+
+    let dailyStepGoal = useSelector((state) => state.meditations.dailyStepGoal)
+
+    const [dailyGoalLocal, setdailyGoalLocal] = dailyStepGoal ? useState(dailyStepGoal) : null
 
 
     /**
@@ -40,6 +48,13 @@ function HomeScreen(props) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    const goToJournalScreen = () => {
+        props.navigation.navigate('Feeling')
+    }
+    const goToFitnessScreen = () => {
+        props.navigation.navigate('Fitness')
     }
 
     const goToDailyMeditation = () => {
@@ -63,14 +78,16 @@ function HomeScreen(props) {
     const createDailyMeditationCard = () => {
         return (
             <TouchableOpacity onPress={goToDailyMeditation}>
-                <View style={styles.dailyCard}>
-                    <Image style={{ width: 90, height: 85, borderRadius:20, }} source={{ uri: dailyMeditationData.imageSource }} />
-                    <View>
-                        <Text>{dailyMeditationData.title}</Text>
-                        <Text>{dailyMeditationData.author}</Text>
-                    </View>
+                <ImageBackground imageStyle={{ borderRadius: 90 }} style={{ width: Dimensions.get('window').width * .75, height: 85, borderRadius: 90, }} source={{ uri: dailyMeditationData.imageSource }}>
+                    <View style={styles.dailyCard}>
+                        <View>
+                            <Text style={styles.DailyTitle}>{dailyMeditationData.title}</Text>
+                            {/*<Text>{dailyMeditationData.author}</Text>*/}
+                        </View>
 
-                </View>
+                    </View>
+                </ImageBackground>
+
             </TouchableOpacity>
         )
     }
@@ -92,14 +109,30 @@ function HomeScreen(props) {
         <View styles={styles.imageContainer}>
             <ImageBackground style={styles.backgroundImage}
                 source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0HIJBdanX2M1YcbL03E0dAm3CyFOLPQxvBor7fpIOaLqf85Owg&s' }}>
-                <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' }}>
-                    <Text style={styles.title}>Welcome {username}</Text>
-                </View>
-                <View style={styles.cardContainer}>
-                    <View style={styles.dailyMeditationTitleContainer}>
-                        <Text style={styles.dailyMeditationTitle}>Daily Meditation</Text>
+                <View style={{ height: Dimensions.get('window').height * .9, justifyContent: 'space-evenly', alignItems: 'center' }}>
+                    {/*<View style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' }}>
+                        <Text style={styles.title}>Welcome {username}</Text>
+                    </View>*/}
+                    <View style={styles.emotionFace}>
+                        <Text style={{ ...styles.title, color: colors.base }}>I'm feeling?</Text>
+                        <TouchableOpacity onPress={goToJournalScreen}>
+                            <MaterialCommunityIcons size={130} color={colors.lightSecondary} name={'emoticon-happy'} title='play' />
+                        </TouchableOpacity>
                     </View>
-                    {dailyMeditationData ? createDailyMeditationCard() : null}
+                        <View style={{ flex: .5 }}>
+                        <TouchableOpacity onPress={goToFitnessScreen}>
+                            <View>
+                                {dailyStepGoal ? <App2 card={false} dailyStepGoal={dailyStepGoal} /> : null}
+                            </View>
+                            </TouchableOpacity>
+                        </View>
+                    <View style={styles.cardContainer}>
+                        {/*<View style={styles.dailyMeditationTitleContainer}>
+                        <Text style={styles.dailyMeditationTitle}>Daily Meditation</Text>
+                 </View>*/}
+                        {dailyMeditationData ? createDailyMeditationCard() : null}
+                    </View>
+
                 </View>
             </ImageBackground>
         </View>
@@ -111,15 +144,22 @@ export default HomeScreen;
 //HomeScreen.navigationOptions = {header:null}
 
 const styles = StyleSheet.create({
+    DailyTitle: {
+        fontSize: 30,
+        fontFamily: 'Helvetica-LightOblique',
+        color: 'white',
+    },
     backgroundImage: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        height: Dimensions.get('window').height * .93,
         resizeMode: 'contain',
     },
     imageContainer: {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * .9,
     },
     welcomeContainer: {
 
@@ -131,25 +171,35 @@ const styles = StyleSheet.create({
         fontFamily: 'Helvetica-LightOblique',
     },
     dailyCard: {
-        flexDirection: 'row',
-        width: Dimensions.get('window').width * .8,
+        //flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: Dimensions.get('window').width * .75,
         height: Dimensions.get('window').height * .17,
+        height: 85,
         borderColor: 'black',
         borderStyle: 'solid',
         borderWidth: 3,
-        borderRadius:20,
-        backgroundColor: 'white',
+        borderRadius: 90
+        //backgroundColor: 'white',
     },
     cardContainer: {
-        marginBottom: 100,
-        marginLeft: Dimensions.get('window').width * .1,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        //marginBottom: 60,
+        //marginLeft: Dimensions.get('window').width * .1,
     },
     dailyMeditationTitleContainer: {
-        marginLeft:Dimensions.get('window').width * .1,
+        //marginLeft: Dimensions.get('window').width * .1,
     },
     dailyMeditationTitle: {
-        fontSize:30,
-        fontFamily:'Helvetica-LightOblique',
+        fontSize: 30,
+        fontFamily: 'Helvetica-LightOblique',
         color: colors.base
+    },
+    emotionFace: {
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 })

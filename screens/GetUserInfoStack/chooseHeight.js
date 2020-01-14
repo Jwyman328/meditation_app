@@ -13,13 +13,24 @@ function ChooseHeight(props) {
     const [inch, setInches] = useState([])
 
 
-    const [feetChoosen, setfeetChoosen] = useState(150)
-    const [inchChoosen, setinchChoosen] = useState(150)
+    const [feetChoosen, setfeetChoosen] = useState(5)
+    const [inchChoosen, setinchChoosen] = useState(5)
+
+    const firstTime = props.navigation.getParam('firstTime')
     const dispatch = useDispatch()
 
+    // token healthData and firstTime required to make api request ot change data
+    const token = useSelector((state) => state.meditations.token)
+    const healthData = useSelector((state) => state.meditations.userHealthData)
+
     const goToChooseDOB = () => {
-        dispatch(SetUserHealthData('height',{feet:feetChoosen, inch:inchChoosen}))
-        props.navigation.navigate('ChooseDOB')
+        healthData.height = {feet:feetChoosen, inch:inchChoosen}
+
+        firstTime?   dispatch(SetUserHealthData('height',{feet:feetChoosen, inch:inchChoosen}))
+            : dispatch(SetUserHealthData('height',{feet:feetChoosen, inch:inchChoosen},true, healthData, token))
+
+        //dispatch(SetUserHealthData('height',{feet:feetChoosen, inch:inchChoosen}))
+        firstTime? props.navigation.navigate('ChooseDOB',{firstTime:true}) : props.navigation.navigate('ProfileDataScreen')
     }
     useEffect(() => {
         let feetSet = [];

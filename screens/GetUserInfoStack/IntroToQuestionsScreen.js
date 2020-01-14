@@ -5,7 +5,7 @@ import colors from '../../constants/colors'
 
 function IntroToQuestionsScreen(props) {
     const goToChooseGender = () => {
-        props.navigation.navigate('chooseGender')
+        props.navigation.navigate('chooseGender',{firstTime:true})
     }
     
     return (

@@ -35,6 +35,10 @@ function SettingsScreen(props) {
         dispatch(LogOutUser())
     }
 
+    const goToProfileDataScreen = () =>{
+        props.navigation.navigate('ProfileDataScreen')
+    }
+
     isLoggedIn? useEffect(() => {
         if (isLoggedIn) {
             //
@@ -67,7 +71,7 @@ function SettingsScreen(props) {
 
                 <Button title='set Daily step goal' onPress={handleSubmitChangeStepGoal} />
             </View>
-
+            <Button title='ProfileData' onPress={goToProfileDataScreen} />
 
         </View>
     )

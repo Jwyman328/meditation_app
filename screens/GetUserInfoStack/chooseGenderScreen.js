@@ -8,13 +8,19 @@ import SetUserHealthData from '../../store/actions/setUserHealthData'
 
 function ChooseGenderScreen(props) {
     const [gender, setGender] = useState('Male')
+    const firstTime = props.navigation.getParam('firstTime')
+    const healthData = useSelector((state) => state.meditations.userHealthData)
+    const token = useSelector((state) => state.meditations.token)
     const dispatch = useDispatch()
+
     const changeGender = (gender) => {
         setGender(gender)
+        healthData.gender = gender
     }
     const goToChooseGender = () => {
-        dispatch(SetUserHealthData('gender',gender))
-        props.navigation.navigate('ChooseWeight')
+        firstTime?  dispatch(SetUserHealthData('gender',gender, false))
+            : dispatch(SetUserHealthData('gender',gender, true, healthData, token))
+        firstTime?props.navigation.navigate('ChooseWeight', {firstTime:true}) : props.navigation.navigate('ProfileDataScreen')
     }
 
     return (

@@ -24,7 +24,6 @@ function MyFeelingsScreen(props) {
     const myFeelings = useSelector((state) => state.meditations.myFeelings)
     const healthData = useSelector((state) => state.meditations.userHealthData)
 
-
     const firstTime = props.navigation.getParam('firstTime')
 
     const handleColor = (num, feeling) => {

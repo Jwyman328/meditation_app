@@ -14,11 +14,21 @@ function ChooseHeight(props) {
 
     const [monthChoosen, setmonthChoosen] = useState(150)
     const [yearChoosen, setyearChoosen] = useState(150)
+    const firstTime = props.navigation.getParam('firstTime')
     const dispatch = useDispatch()
 
+    // token healthData and firstTime required to make api request ot change data
+    const token = useSelector((state) => state.meditations.token)
+    const healthData = useSelector((state) => state.meditations.userHealthData)
+
+     
     const goToChooseDOB = () => {
-        dispatch(SetUserHealthData('DOB',{month:monthChoosen, year:yearChoosen}))
-        props.navigation.navigate('Feelings',{firstTime:true})
+        healthData.DOB = {month:monthChoosen, year:yearChoosen}
+
+        firstTime?   dispatch(SetUserHealthData('DOB',{month:monthChoosen, year:yearChoosen}))
+        : dispatch(SetUserHealthData('DOB',{month:monthChoosen, year:yearChoosen},true, healthData, token))    
+
+        firstTime? props.navigation.navigate('Feelings',{firstTime:true}): props.navigation.navigate('ProfileDataScreen')
     }
     useEffect(() => {
         let monthSet = [];

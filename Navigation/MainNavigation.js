@@ -10,6 +10,7 @@ import CoursesScreen from '../screens/CoursesScreen'
 import FullCourseScreen from '../screens/FullCourseScreen'
 import HomeScreen from '../screens/HomeScreen'
 import SettingsScreen from '../screens/SettingsScreen'
+import ProfileDataScreen from '../screens/ProfileDataScreen'
 import StatsScreen from '../screens/StatsScreen'
 import LoginScreen from '../screens/LogInScreen'
 import SignupScreen from '../screens/signUpScreen'
@@ -144,7 +145,18 @@ const FitnessStack = createStackNavigator({
             tabBarIcon: <Ionicons color='black' size={25} name='ios-settings'  />
             
             }
-        }
+        },
+    ProfileDataScreen:ProfileDataScreen,
+    chooseGender: {
+        screen:ChooseGenderScreen,
+       
+    },
+    ChooseWeight: {
+        screen:ChooseWeight
+    },
+    ChooseHeight:ChooseHeight,
+    ChooseDOB:ChooseDOB,
+
    
 
 })

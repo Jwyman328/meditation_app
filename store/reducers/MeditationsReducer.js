@@ -165,7 +165,10 @@ const MeditationsReducer = (state=initialState, action) => {
                     "stressed": 1,
                     "excited": 1},
                     dailyStepGoal:10000,
-                    currentStepCount:0, }
+                    currentStepCount:0,
+                    userHealthData:undefined,
+                    generalUserData:undefined,
+                 }
             
         case 'SetAudioState':
             const newAudioState = [...state.audioState]

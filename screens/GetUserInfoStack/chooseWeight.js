@@ -6,14 +6,26 @@ import { useDispatch, useSelector } from 'react-redux'
 import SetUserHealthData from '../../store/actions/setUserHealthData'
 
 
+
 function ChooseWeight(props) {
     const [weight, setWeights] = useState([])
     const [weightChoosen, setweightChoosen] = useState(150)
     const dispatch = useDispatch()
+
+    // token healthData and firstTime required to make api request ot change data
+    const token = useSelector((state) => state.meditations.token)
+    const healthData = useSelector((state) => state.meditations.userHealthData)
+    const firstTime = props.navigation.getParam('firstTime')
+
     const goToChooseHeight= () => {
-        dispatch(SetUserHealthData('weight',weightChoosen))
-        props.navigation.navigate('ChooseHeight')
+        healthData.weight = weightChoosen
+
+         firstTime?  dispatch(SetUserHealthData('weight',weightChoosen))
+            : dispatch(SetUserHealthData('weight',weightChoosen, true, healthData, token))
+        
+        firstTime? props.navigation.navigate('ChooseHeight',{firstTime:true}): props.navigation.navigate('ProfileDataScreen')
     }
+
     useEffect(() => {
         let weightSet = [];
 
@@ -42,8 +54,8 @@ function ChooseWeight(props) {
                   }}
                   onValueChange={(data, selectedIndex) => {
                       //
-                      console.log(selectedIndex + 1)
                       setweightChoosen(selectedIndex + 1)
+
                   }}
                 
                   wrapperHeight={250}

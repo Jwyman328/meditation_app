@@ -45,7 +45,7 @@ function SignupScreen(props){
 
     const loginUser = () => {
         if (passWord === passWordTwo){
-            dispatch(SignUpUser(userName,passWord )) 
+            dispatch(SignUpUser(userName,passWord,firstName, lastName, )) 
         }else{
             console.log('passwords do not match')
         }

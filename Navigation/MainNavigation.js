@@ -29,7 +29,7 @@ import ChooseGenderScreen from '../screens/GetUserInfoStack/chooseGenderScreen'
 import ChooseWeight from '../screens/GetUserInfoStack/chooseWeight'
 import ChooseHeight from '../screens/GetUserInfoStack/chooseHeight'
 import ChooseDOB from '../screens/GetUserInfoStack/chooseDOB'
-
+import ChangeStepGoalScreen from '../screens/changeStepGoalScreen'
 
 import {Ionicons} from '@expo/vector-icons'
 import {ScrollView, Text, StyleSheet, Dimensions, Button} from 'react-native'
@@ -156,6 +156,7 @@ const FitnessStack = createStackNavigator({
     },
     ChooseHeight:ChooseHeight,
     ChooseDOB:ChooseDOB,
+    ChangeStepGoalScreen:ChangeStepGoalScreen,
 
    
 

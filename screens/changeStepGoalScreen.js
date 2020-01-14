@@ -10,8 +10,9 @@ import changeDailyStepGoal from '../store/actions/changeDailyStepGoal'
 
 
 
-function SettingsScreen(props) {
+function ChangeStepGoalScreen(props) {
     // get the data whenever it loads 
+    
 
     const isLoggedIn = useSelector(state => state.meditations.loggedIn)
     const token = useSelector(state => state.meditations.token)
@@ -54,55 +55,30 @@ function SettingsScreen(props) {
     return (
 
         <View >
-            <TouchableWithoutFeedback onPress={() => handleTouch()}>
-                <View style={styles.box}>
-                    <Text>settings Page</Text>
-                </View>
-            </TouchableWithoutFeedback>
-            <View style={styles.boxContainer}>
-                {dailyStepGoal ? <TextInput
-                    style={styles.inputBox}
+             <View style={styles.dataContainer}>
+                    <Text style={styles.textData}>Daily Steps</Text>
+                    {dailyStepGoal ? <TextInput
+                    style={styles.inputcontainer}
                     onChangeText={value => handleChangeStepGoal(value)}
                     required
                     value={dailyGoalLocal.toString()} keyboardType='number-pad' autoCapitalize="none" /> : null}
-
-
-                <Button title='set Daily step goal' onPress={handleSubmitChangeStepGoal} />
             </View>
-            <Button title='ProfileData' onPress={goToProfileDataScreen} />
+
+
+              <View style={styles.button}>
+                <MainButton title='set Daily step goal' onPress={handleSubmitChangeStepGoal} />
+                </View>
 
         </View>
     )
 }
 
-export default SettingsScreen;
+export default ChangeStepGoalScreen;
 
 const styles = StyleSheet.create({
-    box:{
-        marginTop:10,
-        width: 500,
-        height: 200,
-        borderStyle: 'solid',
-        borderColor: 'black',
-        borderWidth: 1,
-    },
-    container: {
-        flex: 1,
-        marginTop: 15,
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    inputBox: {
-        //height: Dimensions.get('window').height * .09,
-        flex: 1,
-        width: 100,
-        height: 10,
-        borderStyle: 'solid',
-        borderColor: 'black',
-        borderWidth: 1,
 
-        fontSize: 18
-    },
+
+
     boxContainer: {
        // marginTop: 100,
         marginLeft: 50,
@@ -112,5 +88,35 @@ const styles = StyleSheet.create({
         borderColor: colors.strongPrimary,
         borderWidth: 1,
         fontSize: 18
-    }
+    },
+    dataContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: Dimensions.get('window').width * .9,
+        height: Dimensions.get('window').height * .05,
+        marginTop: Dimensions.get('window').height * .01,
+    },
+    textData: {
+        fontSize: 20,
+        fontFamily: 'Helvetica-LightOblique',
+        textAlign:'center',
+        width: Dimensions.get('window').width * .45,
+    },
+    inputcontainer: {
+        //marginLeft: 50,
+        width: 150,
+        height: 30,
+        borderStyle: 'solid',
+        borderColor: colors.strongPrimary,
+        borderWidth: 1,
+        fontSize: 20,
+        textAlign:'center',
+    },
+    button: {
+        width:Dimensions.get('window').width,
+        justifyContent:'center',
+        alignItems:'center',
+        marginTop: Dimensions.get('window').height * .05
+    },
+
 });

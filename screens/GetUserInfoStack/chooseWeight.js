@@ -2,12 +2,16 @@ import React, {useEffect, useState} from 'react'
 import { StyleSheet, Text, View, Button, Dimensions, TouchableOpacity } from 'react-native';
 import colors from '../../constants/colors'
 import ScrollPicker from 'react-native-wheel-scroll-picker';
+import { useDispatch, useSelector } from 'react-redux'
+import SetUserHealthData from '../../store/actions/setUserHealthData'
 
 
 function ChooseWeight(props) {
     const [weight, setWeights] = useState([])
     const [weightChoosen, setweightChoosen] = useState(150)
+    const dispatch = useDispatch()
     const goToChooseHeight= () => {
+        dispatch(SetUserHealthData('weight',weightChoosen))
         props.navigation.navigate('ChooseHeight')
     }
     useEffect(() => {

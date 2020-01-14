@@ -43,6 +43,12 @@ const initialState = {
     moodPastMonth : undefined,
     moodDates : undefined,
     currentStepCount: undefined,
+    userHealthData: {
+        weight: undefined,
+        height: undefined,
+        DOB: {month:undefined, year:undefined},
+        gender: undefined,
+    }
 
 }
 
@@ -213,9 +219,15 @@ const MeditationsReducer = (state=initialState, action) => {
         case 'setCurrentSteps':
             const newCurrentStepCount = action.currentSteps
             return{...state, currentStepCount:newCurrentStepCount}
-        
 
-
+        case 'setUserHealthData':
+            const newHealthDataType = action.healthDataType
+            const newHealthDataValue = action.healthDataValue
+            //duplicate old object
+            const newUserHealthData = {...state.userHealthData }
+            newUserHealthData[newHealthDataType] = newHealthDataValue
+            console.log(newUserHealthData)
+            return {...state, userHealthData: newUserHealthData }
     }
   
 

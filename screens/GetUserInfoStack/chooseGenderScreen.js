@@ -2,15 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button, Dimensions, TouchableOpacity } from 'react-native';
 import colors from '../../constants/colors'
 import { Ionicons } from '@expo/vector-icons'
+import { useDispatch, useSelector } from 'react-redux'
+import SetUserHealthData from '../../store/actions/setUserHealthData'
 
 
 function ChooseGenderScreen(props) {
     const [gender, setGender] = useState('Male')
-
+    const dispatch = useDispatch()
     const changeGender = (gender) => {
         setGender(gender)
     }
     const goToChooseGender = () => {
+        dispatch(SetUserHealthData('gender',gender))
         props.navigation.navigate('ChooseWeight')
     }
 

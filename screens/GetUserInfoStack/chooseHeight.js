@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button, Dimensions, TouchableOpacity } from 'react-native';
 import colors from '../../constants/colors'
 import ScrollPicker from 'react-native-wheel-scroll-picker';
+import { useDispatch, useSelector } from 'react-redux'
+import SetUserHealthData from '../../store/actions/setUserHealthData'
+
+
 
 
 function ChooseHeight(props) {
@@ -11,8 +15,10 @@ function ChooseHeight(props) {
 
     const [feetChoosen, setfeetChoosen] = useState(150)
     const [inchChoosen, setinchChoosen] = useState(150)
+    const dispatch = useDispatch()
 
     const goToChooseDOB = () => {
+        dispatch(SetUserHealthData('height',{feet:feetChoosen, inch:inchChoosen}))
         props.navigation.navigate('ChooseDOB')
     }
     useEffect(() => {

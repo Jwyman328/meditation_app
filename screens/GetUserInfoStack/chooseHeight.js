@@ -9,12 +9,6 @@ import SetUserHealthData from '../../store/actions/setUserHealthData'
 
 
 function ChooseHeight(props) {
-    const [feet, setFeet] = useState([])
-    const [inch, setInches] = useState([])
-
-
-    const [feetChoosen, setfeetChoosen] = useState(5)
-    const [inchChoosen, setinchChoosen] = useState(5)
 
     const firstTime = props.navigation.getParam('firstTime')
     const dispatch = useDispatch()
@@ -22,6 +16,12 @@ function ChooseHeight(props) {
     // token healthData and firstTime required to make api request ot change data
     const token = useSelector((state) => state.meditations.token)
     const healthData = useSelector((state) => state.meditations.userHealthData)
+
+    const [feet, setFeet] = useState([])
+    const [inch, setInches] = useState([])
+    const [feetChoosen, setfeetChoosen] = firstTime? useState(5) :useState(healthData.height.feet)
+    const [inchChoosen, setinchChoosen] = firstTime?  useState(5) : useState(healthData.height.inch)
+
 
     const goToChooseDOB = () => {
         healthData.height = {feet:feetChoosen, inch:inchChoosen}
@@ -62,7 +62,7 @@ function ChooseHeight(props) {
                             dataSource={
                                 feet
                             }
-                            selectedIndex={5}
+                            selectedIndex={feetChoosen -1}
                             renderItem={(data, index, isSelected) => {
                                 //
                             }}
@@ -87,7 +87,7 @@ function ChooseHeight(props) {
                             dataSource={
                                 inch
                             }
-                            selectedIndex={6}
+                            selectedIndex={inchChoosen - 1}
                             renderItem={(data, index, isSelected) => {
                                 //
                             }}

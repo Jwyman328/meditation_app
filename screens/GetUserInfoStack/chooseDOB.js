@@ -7,19 +7,19 @@ import SetUserHealthData from '../../store/actions/setUserHealthData'
 
 
 
-function ChooseHeight(props) {
+function ChooseDOB(props) {
+    const healthData = useSelector((state) => state.meditations.userHealthData)
+    const firstTime = props.navigation.getParam('firstTime')
+
     const [month, setmonth] = useState([])
     const [year, setyeares] = useState([])
 
-
-    const [monthChoosen, setmonthChoosen] = useState(150)
-    const [yearChoosen, setyearChoosen] = useState(150)
-    const firstTime = props.navigation.getParam('firstTime')
+    const [monthChoosen, setmonthChoosen] = firstTime? useState(6) : useState(healthData.DOB.month)
+    const [yearChoosen, setyearChoosen] = firstTime? useState(6) : useState(healthData.DOB.year)
     const dispatch = useDispatch()
 
     // token healthData and firstTime required to make api request ot change data
     const token = useSelector((state) => state.meditations.token)
-    const healthData = useSelector((state) => state.meditations.userHealthData)
 
      
     const goToChooseDOB = () => {
@@ -63,7 +63,7 @@ function ChooseHeight(props) {
                             dataSource={
                                 month
                             }
-                            selectedIndex={6}
+                            selectedIndex={monthChoosen - 1}
                             renderItem={(data, index, isSelected) => {
                                 //
                             }}
@@ -88,7 +88,7 @@ function ChooseHeight(props) {
                             dataSource={
                                 year
                             }
-                            selectedIndex={55}
+                            selectedIndex={yearChoosen-1935}
                             renderItem={(data, index, isSelected) => {
                                 //
                             }}
@@ -123,7 +123,7 @@ function ChooseHeight(props) {
     )
 }
 
-export default ChooseHeight;
+export default ChooseDOB;
 
 const styles = StyleSheet.create({
     pickerContainer: {

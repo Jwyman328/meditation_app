@@ -8,14 +8,16 @@ import SetUserHealthData from '../../store/actions/setUserHealthData'
 
 
 function ChooseWeight(props) {
-    const [weight, setWeights] = useState([])
-    const [weightChoosen, setweightChoosen] = useState(150)
-    const dispatch = useDispatch()
+
 
     // token healthData and firstTime required to make api request ot change data
     const token = useSelector((state) => state.meditations.token)
     const healthData = useSelector((state) => state.meditations.userHealthData)
     const firstTime = props.navigation.getParam('firstTime')
+
+    const [weight, setWeights] = useState([])
+    const [weightChoosen, setweightChoosen] = firstTime? useState(150) : useState(healthData.weight - 1)
+    const dispatch = useDispatch()
 
     const goToChooseHeight= () => {
         healthData.weight = weightChoosen
@@ -48,7 +50,7 @@ function ChooseWeight(props) {
                   dataSource={
                     weight
                   }
-                  selectedIndex={149}
+                  selectedIndex={weightChoosen}
                   renderItem={(data, index, isSelected) => {
                       //
                   }}

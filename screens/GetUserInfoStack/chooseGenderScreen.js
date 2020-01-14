@@ -7,9 +7,9 @@ import SetUserHealthData from '../../store/actions/setUserHealthData'
 
 
 function ChooseGenderScreen(props) {
-    const [gender, setGender] = useState('Male')
     const firstTime = props.navigation.getParam('firstTime')
     const healthData = useSelector((state) => state.meditations.userHealthData)
+    const [gender, setGender] = firstTime? useState("Male") :useState(healthData.gender)
     const token = useSelector((state) => state.meditations.token)
     const dispatch = useDispatch()
 

@@ -17,8 +17,12 @@ import UpdateFeelings from '../store/actions/UpdateFeeling'
  * 
  */
 function SignupScreen(props){
+    const [firstName, onChangeUserFirstName] = React.useState('');
+    const [lastName, onChangeUserLastName] = React.useState('');
     const [userName, onChangeUserName] = React.useState('');
     const [passWord, onChangePassword] = React.useState('');
+    const [passWordTwo, onChangePasswordTwo] = React.useState('');
+
     const dispatch = useDispatch()
     const token = useSelector((state) => state.meditations.token)
 
@@ -40,13 +44,20 @@ function SignupScreen(props){
     }, [token])
 
     const loginUser = () => {
-       dispatch(SignUpUser(userName,passWord )) 
+        if (passWord === passWordTwo){
+            dispatch(SignUpUser(userName,passWord )) 
+        }else{
+            console.log('passwords do not match')
+        }
     }
     
     const handlePress = () => {
         loginUser()
         onChangeUserName('')
         onChangePassword('')
+        onChangeUserFirstName('')
+        onChangeUserLastName('')
+        onChangePasswordTwo('')
     }
 
     const handleLogin= () => {
@@ -64,6 +75,16 @@ function SignupScreen(props){
                 <Text style={styles.title} > Meditation Sign Up !</Text>
                 <View style={{ ...styles.formPair }}>
                     <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
+                        onChangeText={text => onChangeUserFirstName(text)} required errorMessage='enter a correct username'
+                        value={firstName} placeholder='First Name' autoCapitalize="none" />
+                </View>
+                <View style={{ ...styles.formPair }}>
+                    <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
+                        onChangeText={text => onChangeUserLastName(text)} required errorMessage='enter a correct username'
+                        value={lastName} placeholder='Last Name' autoCapitalize="none" />
+                </View>
+                <View style={{ ...styles.formPair }}>
+                    <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
                         onChangeText={text => onChangeUserName(text)} required errorMessage='enter a correct username'
                         value={userName} placeholder='email' autoCapitalize="none" />
                 </View>
@@ -71,6 +92,11 @@ function SignupScreen(props){
                     <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
                         onChangeText={text => onChangePassword(text)}
                         value={passWord} required errorMessage='enter a correct password' secureTextEntry={true} placeholder='password' autoCapitalize="none" />
+                </View>
+                <View style={{ ...styles.formPair }}>
+                    <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
+                        onChangeText={text => onChangePasswordTwo(text)}
+                        value={passWordTwo} required errorMessage='enter a correct password' secureTextEntry={true} placeholder='repeat password' autoCapitalize="none" />
                 </View>
                 <View>
                     <MainButton style={styles.button} title='Sign up' onPress={handlePress} />
@@ -117,12 +143,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        height: Dimensions.get('window').height * .13,
+        height: Dimensions.get('window').height * .10,
 
     },
 
     formObj: {
-        height: Dimensions.get('window').height * .09, 
+        height: Dimensions.get('window').height * .08, 
 
     },
     inputBox: {
@@ -139,7 +165,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     logCard: {
-        height:Dimensions.get('window').height * .65, 
+        height:Dimensions.get('window').height * .75, 
         width: Dimensions.get('window').width * .85,
         justifyContent:'center',
         alignItems:'center',
@@ -153,7 +179,7 @@ const styles = StyleSheet.create({
         shadowOpacity: .75,
         shadowRadius: 2,
 
-        marginTop: Dimensions.get('window').height * .12,
+        marginTop: Dimensions.get('window').height * .10,
         backgroundColor:colors.lightSecondary,
 
     },

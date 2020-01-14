@@ -5,53 +5,56 @@ import ScrollPicker from 'react-native-wheel-scroll-picker';
 
 
 function ChooseHeight(props) {
-    const [feet, setFeet] = useState([])
-    const [inch, setInches] = useState([])
+    const [month, setmonth] = useState([])
+    const [year, setyeares] = useState([])
 
 
-    const [feetChoosen, setfeetChoosen] = useState(150)
-    const [inchChoosen, setinchChoosen] = useState(150)
+    const [monthChoosen, setmonthChoosen] = useState(150)
+    const [yearChoosen, setyearChoosen] = useState(150)
 
     const goToChooseDOB = () => {
-        props.navigation.navigate('ChooseDOB')
+        props.navigation.navigate('Feelings',{firstTime:true})
     }
     useEffect(() => {
-        let feetSet = [];
-        let inchSet = []
+        let monthSet = [];
+        let yearSet = []
 
-        for (let i = 1; i <= 13; i++) {
-            feetSet.push(<Text style={{ fontSize: 28 }}>{i}</Text>);
-            inchSet.push(<Text style={{ fontSize: 28 }}>{i}</Text>);
+        for (let i = 1; i <= 14; i++) {
+            monthSet.push(<Text style={{ fontSize: 28 }}>{i}</Text>);
         }
-        setFeet(feetSet)
-        setInches(inchSet)
+        for (let i = 1935; i <= 2020; i++) {
+            yearSet.push(<Text style={{ fontSize: 28 }}>{i}</Text>);
+        }
+
+        setmonth(monthSet)
+        setyeares(yearSet)
     }, [])
 
 
     return (
         <View style={styles.container}>
             <View style={styles.textContainer}>
-                <Text style={styles.textIntro}>Your height</Text>
+                <Text style={styles.textIntro}>Your Age</Text>
             </View>
             <View style={{ marginBottom: 10, width:200, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text style={styles.textIntro}>Feet</Text>
-                <Text style={styles.textIntro}>Inches</Text>
+                <Text style={styles.textIntro}>Month</Text>
+                <Text style={styles.textIntro}>Year</Text>
 
             </View>
-            {feet ?
+            {month ?
                 <View style={{ width:200, flexDirection: 'row', justifyContent: 'space-evenly', alignItems:'center' }}>
                     <View style={styles.pickerContainer}>
                         <ScrollPicker
                             dataSource={
-                                feet
+                                month
                             }
-                            selectedIndex={5}
+                            selectedIndex={6}
                             renderItem={(data, index, isSelected) => {
                                 //
                             }}
                             onValueChange={(data, selectedIndex) => {
                                 //
-                                setfeetChoosen(selectedIndex + 1)
+                                setmonthChoosen(selectedIndex + 1)
                             }}
 
                             wrapperHeight={250}
@@ -68,16 +71,15 @@ function ChooseHeight(props) {
 
                         <ScrollPicker
                             dataSource={
-                                inch
+                                year
                             }
-                            selectedIndex={6}
+                            selectedIndex={55}
                             renderItem={(data, index, isSelected) => {
                                 //
                             }}
                             onValueChange={(data, selectedIndex) => {
                                 //
-                                
-                                setinchChoosen(selectedIndex + 1)
+                                setyearChoosen(selectedIndex + 1935)
                             }}
 
                             wrapperHeight={250}

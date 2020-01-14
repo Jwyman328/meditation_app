@@ -33,7 +33,8 @@ function SignupScreen(props){
                 "stressed": 1,
               }
             dispatch(UpdateFeelings( feelings, token))
-            props.navigation.navigate('Feelings',{firstTime:true})
+            props.navigation.navigate('introQuestionsStack')
+            //props.navigation.navigate('Feelings',{firstTime:true})
             //props.navigation.navigate('Tabs')
         }
     }, [token])
@@ -50,6 +51,7 @@ function SignupScreen(props){
 
     const handleLogin= () => {
         props.navigation.navigate('Auth')
+
     }
 
     return (

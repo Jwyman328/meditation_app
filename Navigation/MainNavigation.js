@@ -27,6 +27,7 @@ import IntroToQuestionsScreen from '../screens/GetUserInfoStack/IntroToQuestions
 import ChooseGenderScreen from '../screens/GetUserInfoStack/chooseGenderScreen'
 import ChooseWeight from '../screens/GetUserInfoStack/chooseWeight'
 import ChooseHeight from '../screens/GetUserInfoStack/chooseHeight'
+import ChooseDOB from '../screens/GetUserInfoStack/chooseDOB'
 
 
 import {Ionicons} from '@expo/vector-icons'
@@ -231,16 +232,18 @@ const getUserInfoStack = createStackNavigator({
             screen:ChooseWeight
         },
         ChooseHeight:ChooseHeight,
+        ChooseDOB:ChooseDOB,
 })
 
 const AuthNavigator = createStackNavigator({
+    
+    Auth: LoginScreen,
+    Signup: SignupScreen,
     introQuestionsStack: {
         screen: getUserInfoStack ,
         navigationOptions:{
             header:null,
         }},
-    Auth: LoginScreen,
-    Signup: SignupScreen,
     logOut: SettingsScreen,
     ForgotPassword: ForgotPasswordScreen,
 })
@@ -248,6 +251,11 @@ const AuthNavigator = createStackNavigator({
 const MainNavigation = createSwitchNavigator({ // did this for the header it provides 
     Login: AuthNavigator,
     //SignUp: SignupScreen,
+    introQuestionsStack: {
+        screen: getUserInfoStack ,
+        navigationOptions:{
+            header:null,
+        }},
     Feelings: MyFeelingsScreen,
     Tabs:BottomTabs
 },{

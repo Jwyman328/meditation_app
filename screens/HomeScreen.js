@@ -8,7 +8,7 @@ import FetchUserFriends from '../store/actions/FetchUserFriends'
 import FetchMyFeelings from '../store/actions/FetchMyFeelings'
 import FetchDailyStepGoal from '../store/actions/fetchDailyStepGoal'
 import FetchMoodData from '../store/actions/FetchMoodData'
-
+import FetchProfileData from '../store/actions/FetchProfileData'
 
 import { useDispatch, useSelector } from 'react-redux'
 import colors from '../constants/colors';
@@ -99,8 +99,8 @@ function HomeScreen(props) {
         dispatch(FetchMyFeelings(token))
         dispatch(FetchDailyStepGoal(token))
         dispatch(FetchMoodData(token))
-
-
+        dispatch(FetchProfileData(token))
+        
     }, [dispatch])
 
 

@@ -48,6 +48,10 @@ const initialState = {
         height: undefined,
         DOB: {month:undefined, year:undefined},
         gender: undefined,
+    },
+    generalUserData:{
+        first_name: undefined,
+        last_name:undefined
     }
 
 }
@@ -228,6 +232,22 @@ const MeditationsReducer = (state=initialState, action) => {
             newUserHealthData[newHealthDataType] = newHealthDataValue
             console.log(newUserHealthData)
             return {...state, userHealthData: newUserHealthData }
+        
+            case 'FetchProfileData':
+                const profileData = action.ProfileData[0]
+
+                const newgeneralUserData = {...state.generalUserData }
+                
+                newgeneralUserData.first_name = profileData.first_name
+                newgeneralUserData.last_name = profileData.last_name
+                
+                const newUserHealthData2 = {...state.userHealthData }
+                newUserHealthData2.weight = profileData.weight
+                newUserHealthData2.height = {feet:profileData.height_feet,
+                                            inch:profileData.height_inches}
+                newUserHealthData2.DOB = {month:profileData.birth_month, year:profileData.birth_year}
+                newUserHealthData2.gender = profileData.gender
+                return {...state, userHealthData: newUserHealthData2, generalUserData:newgeneralUserData  }
     }
   
 

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import colors from '../constants/colors';
 import { Ionicons } from '@expo/vector-icons'
 import FetchMyFeelings from '../store/actions/FetchMyFeelings'
-
+import PostUserHealthData from '../store/actions/postUserHealthData'
 
 /**
  * Landing screen after the user logs in.
@@ -22,6 +22,8 @@ function MyFeelingsScreen(props) {
     const username = useSelector((state) => state.meditations.username)
     const token = useSelector((state) => state.meditations.token)
     const myFeelings = useSelector((state) => state.meditations.myFeelings)
+    const healthData = useSelector((state) => state.meditations.userHealthData)
+
 
     const firstTime = props.navigation.getParam('firstTime')
 
@@ -40,6 +42,12 @@ function MyFeelingsScreen(props) {
 
     const handleNewValues = () => {
         dispatch(UpdateFeelings(myFeelings, token))
+        // check if this is a signup process
+        if (firstTime){
+            dispatch(PostUserHealthData(healthData, token))
+        }else{
+            //
+        }
         props.navigation.navigate('Home')
     }
 

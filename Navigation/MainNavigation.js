@@ -25,6 +25,8 @@ import JournalProgressScreen from '../screens/journalProgressScreen'
 
 import IntroToQuestionsScreen from '../screens/GetUserInfoStack/IntroToQuestionsScreen'
 import ChooseGenderScreen from '../screens/GetUserInfoStack/chooseGenderScreen'
+import ChooseWeight from '../screens/GetUserInfoStack/chooseWeight'
+import ChooseHeight from '../screens/GetUserInfoStack/chooseHeight'
 
 
 import {Ionicons} from '@expo/vector-icons'
@@ -224,7 +226,11 @@ const getUserInfoStack = createStackNavigator({
         chooseGender: {
             screen:ChooseGenderScreen,
            
-        }
+        },
+        ChooseWeight: {
+            screen:ChooseWeight
+        },
+        ChooseHeight:ChooseHeight,
 })
 
 const AuthNavigator = createStackNavigator({

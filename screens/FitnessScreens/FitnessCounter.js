@@ -18,12 +18,20 @@ function App() {
     let dailyStepGoal = useSelector((state) => state.Fitness.dailyStepGoal)
 
     const [dailyGoalLocal,setdailyGoalLocal] = dailyStepGoal? useState(dailyStepGoal) : null
+    const userWeight = useSelector((state) => state.ProfileData.userHealthData.weight)
+    const token = useSelector((state) => state.AuthData.token)
+
+    useEffect(() => {
+        console.log(userWeight)
+    },[userWeight])
+    console.log(userWeight, 'ehat')
+    //Get weight and pass it to the class component pedometer
 
 
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.stepCircle}>
-            {dailyStepGoal ? <PedometerCircle card={true} dailyStepGoal={dailyStepGoal} /> : null}
+            {dailyStepGoal && userWeight ? <PedometerCircle weight={userWeight} card={true} dailyStepGoal={dailyStepGoal} /> : null}
             </View>
         </View>
     )

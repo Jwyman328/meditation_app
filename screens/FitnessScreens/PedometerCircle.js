@@ -13,6 +13,7 @@ import MainHeaderButton from '../../components/HeaderButton';
 import currentStepCount from '../../store/actions/setCurrentStepCount'
 
 
+
 class PedometerCircle extends React.Component {
     state = {
         isPedometerAvailable: "checking",
@@ -75,7 +76,8 @@ class PedometerCircle extends React.Component {
     showFitnessCard = () => {
         const totalDailySteps = (this.state.pastStepCount + this.state.currentStepCount)
         const distance = totalDailySteps / 2200
-
+        const caloriesBurned = 0.05 * totalDailySteps * (this.props.weight / 155) //.005 * steps * (weight/165) (165 = 1, any one over will burn more so do weight/165)
+        console.log(caloriesBurned)
         return (
             <View style={{ flex: .5 }}>
 
@@ -107,11 +109,29 @@ class PedometerCircle extends React.Component {
 
                     </ProgressCircle>
                     <Text>
-                     {distance.toFixed(2)} miles
+                        {distance.toFixed(2)} miles
                     </Text>
                 </View>
 
-                
+                <View >
+
+                    <ProgressCircle
+                        percent={(totalDailySteps / this.props.dailyStepGoal) * 100} //this is a proxy for calories
+                        radius={30}
+                        borderWidth={8}
+                        color={'#748AD6'}
+                        shadowColor={colors.base}
+                        bgColor={colors.primary}
+                    >
+                        <Ionicons size={30} name='md-bonfire' title='play' />
+
+                    </ProgressCircle>
+                    <Text>
+                        {caloriesBurned.toFixed()} calories
+                    </Text>
+                </View>
+
+
             </View>
         )
     }

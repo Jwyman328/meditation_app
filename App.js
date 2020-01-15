@@ -3,8 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import BottomTabs from './Navigation/MainNavigation'
 
 
-import {createStore,combineReducers, applyMiddleware} from 'redux'
-import {Provider} from 'react-redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
 import FitnessReducer from './store/reducers/FitnessReducer'
 import MeditationReducer from './store/reducers/meditationReducer'
 import ProfileDataReducer from './store/reducers/ProfileDataReducer'
@@ -21,13 +21,13 @@ export default function App() {
     Fitness: FitnessReducer,
     ProfileData: ProfileDataReducer,
     FriendsAndMsgs: FriendsAndMsgsReducer,
-    AuthData:AuthDataReducer,
-    Mood:MoodReducer,
+    AuthData: AuthDataReducer,
+    Mood: MoodReducer,
   })
 
   const store = createStore(rootReducers, applyMiddleware(ReduxThunk))
   return (
-   <Provider store={store}><BottomTabs style={{flex:1, width:'100%'}}/></Provider>
+    <Provider store={store}><BottomTabs style={{ flex: 1, width: '100%' }} /></Provider>
   );
 }
 

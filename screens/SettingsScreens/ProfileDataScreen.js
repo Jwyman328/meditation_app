@@ -1,10 +1,10 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
 import colors from '../../constants/colors'
 import MainButton from '../../components/MainButton'
-//import LogOutUser from '../../store/actions/logOut'
+import LogOutUser from '../../store/actions/logOut'
 
 
 function ProfileDataScreen(props) {
@@ -27,7 +27,9 @@ function ProfileDataScreen(props) {
     const isLoggedIn = useSelector(state => state.AuthData.loggedIn)
     const token = useSelector(state => state.AuthData.token)
     const dispatch = useDispatch()
+
     const logOutUser = () => {
+        props.navigation.navigate('Auth')
         dispatch(LogOutUser())
     }
 
@@ -46,9 +48,16 @@ function ProfileDataScreen(props) {
     const changeStepGoal = () => {
         props.navigation.navigate('ChangeStepGoalScreen')
     }
+    useEffect(() => {
+        if (isLoggedIn) {
+            //
+        } else {
+            props.navigation.navigate('Auth')
+        }
+    }, [isLoggedIn])
 
     return (
-        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        isLoggedIn?<View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <View style={styles.titleContainer}>
                 <Text style={styles.TitleText}>Profile Data</Text>
             </View>
@@ -119,7 +128,7 @@ function ProfileDataScreen(props) {
             </View>
 
 
-        </View>
+        </View>:null
     )
 }
 

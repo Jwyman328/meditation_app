@@ -19,15 +19,6 @@ function SettingsScreen(props) {
     let dailyStepGoal = useSelector((state) => state.Fitness.dailyStepGoal)
     const [dailyGoalLocal, setdailyGoalLocal] = useState(dailyStepGoal)
 
-    const handleChangeStepGoal = (value) => {
-        setdailyGoalLocal(value)
-    }
-
-    const handleSubmitChangeStepGoal = () => {
-
-        dispatch(changeDailyStepGoal(parseInt(dailyGoalLocal), token))
-    }
-
     const dispatch = useDispatch()
     const logOutUser = () => {
         dispatch(LogOutUser())
@@ -37,17 +28,7 @@ function SettingsScreen(props) {
         props.navigation.navigate('ProfileDataScreen')
     }
 
-    isLoggedIn? useEffect(() => {
-        if (isLoggedIn) {
-            //
-        } else {
-            props.navigation.navigate('Auth')
-        }
-    }, [isLoggedIn]): null
 
-    const handleTouch = () => {
-        Keyboard.dismiss()
-    }
 
     return (
 

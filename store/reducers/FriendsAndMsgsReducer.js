@@ -35,7 +35,11 @@ const FriendsAndMsgsReducer = (state=initialState, action) => {
             const singleMessages = action.SingleMessages
             return {...state, singleMessages:singleMessages }
 
-        
+        case 'logOut':
+            return {...state,  friendsList: [],
+                allUsers:[],
+                pendingFriendRequests: [],
+                singleMessages:undefined,}
         
     }
   

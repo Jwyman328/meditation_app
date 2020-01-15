@@ -41,8 +41,18 @@ const ProfileDataReducer = (state=initialState, action) => {
                 newUserHealthData2.DOB = {month:profileData.birth_month, year:profileData.birth_year}
                 newUserHealthData2.gender = profileData.gender
                 return {...state, userHealthData: newUserHealthData2, generalUserData:newgeneralUserData  }
-    
-    }
+        case 'logOut':
+            return { ...state, userHealthData: {
+                weight: undefined,
+                height: undefined,
+                DOB: {month:undefined, year:undefined},
+                gender: undefined,
+            },
+            generalUserData:{
+                first_name: undefined,
+                last_name:undefined
+            }}
+    }   
     return state
 
 }

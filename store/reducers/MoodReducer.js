@@ -1,8 +1,6 @@
 
 
 const initialState = {
-   
-    
     moodPastWeek : undefined,
     moodPastMonth : undefined,
     moodDates : undefined,
@@ -17,7 +15,14 @@ const MoodReducer = (state=initialState, action) => {
             const moodDataPastMonth = action.MoodData[0].moods_range[1]
             const moodDataDates = action.MoodData[0].moods_range[2]   
             return{...state, moodPastWeek:moodDataPastWeek ,moodPastMonth:moodDataPastMonth, moodDates: moodDataDates}
-    }
+        
+        case 'logOut':
+            return { ...state,moodPastWeek : undefined,
+                moodPastMonth : undefined,
+                moodDates : undefined,
+             }
+        }
+    
 
     return state
 }

@@ -114,9 +114,11 @@ const MeditationReducer = (state = initialState, action) => {
         case 'logOut':
             // reset state to origin al empty state 
 
-            return {
-                ...state, meditations: [], filteredMeditations: [],
-                favoriteMeditations: [], courseData: [],
+            return {...state,
+                meditations: [], //dummyData, 
+                filteredMeditations: [], //dummyData,
+                favoriteMeditations: [],
+                courseData: [],
                 filters: {
                     testAnxietyFilter: false,
                     testDepressionFilter: false,
@@ -124,14 +126,15 @@ const MeditationReducer = (state = initialState, action) => {
                     testAdvancedFilter: false,
                     testConfidenceFilter: false,
                     testFavoriteFilter: false,
-                }, username: null,
-                password: null,
-                token: null,
-                loggedIn: false,
-                friendsList: [],
-                allUsers: [],
-                pendingFriendRequests: [],
-                singleMessages: undefined,
+                },
+                audioState: {
+                    isPlaying: false,
+                    playbackInstance: null,
+                    currentIndex: 0,
+                    volume: 1.0,
+                    isBuffering: true,
+                    isReady: false,
+                },
                 myFeelings: {
                     "depressed": 1,
                     "anxious": 1,
@@ -139,10 +142,6 @@ const MeditationReducer = (state = initialState, action) => {
                     "stressed": 1,
                     "excited": 1
                 },
-                dailyStepGoal: 10000,
-                currentStepCount: 0,
-                userHealthData: undefined,
-                generalUserData: undefined,
             }
 
         case 'SetAudioState':

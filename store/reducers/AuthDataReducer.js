@@ -26,34 +26,10 @@ const AuthDataReducer = (state=initialState, action) => {
         case 'logOut':
             // reset state to origin al empty state 
 
-            return {...state, meditations: [], filteredMeditations:[],
-                favoriteMeditations: [],courseData:[], 
-                filters : {
-                    testAnxietyFilter:false,
-                    testDepressionFilter:false,
-                    testBegginerFilter: false,
-                    testAdvancedFilter:false,
-                    testConfidenceFilter: false,
-                    testFavoriteFilter:false,
-                }, username : null,
+            return {...state, username : null,
                 password: null, 
                 token: null, 
-                loggedIn: false,
-                friendsList:[],
-                allUsers: [],
-                pendingFriendRequests:[],
-                singleMessages:undefined,
-                myFeelings:{  
-                    "depressed": 1,
-                    "anxious": 1,
-                    "lost": 1,
-                    "stressed": 1,
-                    "excited": 1},
-                    dailyStepGoal:10000,
-                    currentStepCount:0,
-                    userHealthData:undefined,
-                    generalUserData:undefined,
-                 }
+                loggedIn: false,}
     }
   
 

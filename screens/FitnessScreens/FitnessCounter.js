@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     stepCircle:{
-        width: Dimensions.get('window').width,
+        //width: Dimensions.get('window').width,
         height: Dimensions.get('window').height * .4,
         justifyContent:'center',
         alignItems:'center',

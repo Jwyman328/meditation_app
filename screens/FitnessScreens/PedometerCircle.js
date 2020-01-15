@@ -79,58 +79,61 @@ class PedometerCircle extends React.Component {
         const caloriesBurned = 0.05 * totalDailySteps * (this.props.weight / 155) //.005 * steps * (weight/165) (165 = 1, any one over will burn more so do weight/165)
         console.log(caloriesBurned)
         return (
-            <View style={{ flex: .5 }}>
+            <View style={{ flex: .5, justifyContent:'center', alignItems:'center' }}>
 
-                <ProgressCircle
-                    percent={(totalDailySteps / this.props.dailyStepGoal) * 100}
-                    radius={90}
-                    borderWidth={8}
-                    color={'#748AD6'}
-                    shadowColor={colors.base}
-                    bgColor={colors.primary}
-                >
-                    <Ionicons size={50} name='ios-walk' title='play' />
-
-                    <Text style={styles.stepTextLarge}>
-                        {totalDailySteps}
-                    </Text>
-                </ProgressCircle>
-                <View >
-
+                <View style={styles.stepProgressContainer}>
                     <ProgressCircle
                         percent={(totalDailySteps / this.props.dailyStepGoal) * 100}
-                        radius={30}
+                        radius={90}
                         borderWidth={8}
                         color={'#748AD6'}
                         shadowColor={colors.base}
                         bgColor={colors.primary}
                     >
-                        <Ionicons size={30} name='ios-pin' title='play' />
-
+                        <Ionicons size={50} name='ios-walk' title='play' />
+                        <Text style={styles.stepTextLarge}>
+                            {totalDailySteps}
+                        </Text>
                     </ProgressCircle>
-                    <Text>
-                        {distance.toFixed(2)} miles
-                    </Text>
                 </View>
 
-                <View >
+                <View style={styles.milesCalsContainer}>
 
-                    <ProgressCircle
-                        percent={(totalDailySteps / this.props.dailyStepGoal) * 100} //this is a proxy for calories
-                        radius={30}
-                        borderWidth={8}
-                        color={'#748AD6'}
-                        shadowColor={colors.base}
-                        bgColor={colors.primary}
-                    >
-                        <Ionicons size={30} name='md-bonfire' title='play' />
+                    <View >
+                        <ProgressCircle
+                            percent={(totalDailySteps / this.props.dailyStepGoal) * 100}
+                            radius={30}
+                            borderWidth={8}
+                            color={'#748AD6'}
+                            shadowColor={colors.base}
+                            bgColor={colors.primary}
+                        >
+                            <Ionicons size={30} name='ios-pin' title='play' />
 
-                    </ProgressCircle>
-                    <Text>
-                        {caloriesBurned.toFixed()} calories
+                        </ProgressCircle>
+                        <Text>
+                            {distance.toFixed(2)} miles
                     </Text>
-                </View>
+                    </View>
 
+                    <View >
+
+                        <ProgressCircle
+                            percent={(totalDailySteps / this.props.dailyStepGoal) * 100} //this is a proxy for calories
+                            radius={30}
+                            borderWidth={8}
+                            color={'#748AD6'}
+                            shadowColor={colors.base}
+                            bgColor={colors.primary}
+                        >
+                            <Ionicons size={30} name='md-bonfire' title='play' />
+
+                        </ProgressCircle>
+                        <Text>
+                            {caloriesBurned.toFixed()} calories
+                    </Text>
+                    </View>
+                </View>
 
             </View>
         )
@@ -179,6 +182,26 @@ export default PedometerCircle;
 
 
 const styles = StyleSheet.create({
+    milesCalsContainer:{ 
+        flexDirection: 'row', 
+        width:Dimensions.get('window').width,
+        height:Dimensions.get('window').height * .1, 
+        borderColor:'black', 
+        borderWidth:2, 
+        marginRight: Dimensions.get('window').width * .17,
+        justifyContent:'space-evenly', 
+        alignItems:'center' },
+
+    stepProgressContainer:{
+        width:Dimensions.get('window').width ,
+        height: Dimensions.get('window').height * .4, 
+        marginBottom: Dimensions.get('window').height * .01 ,
+        justifyContent:'center',
+        alignItems:'center',
+        borderWidth:2, 
+        marginTop:  Dimensions.get('window').height * .3, 
+        marginRight: Dimensions.get('window').width * .17
+    },
     stepTextLarge: {
         fontSize: 39,
     },

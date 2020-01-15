@@ -78,7 +78,7 @@ function HomeScreen(props) {
     const createDailyMeditationCard = () => {
         return (
             <TouchableOpacity onPress={goToDailyMeditation}>
-                <ImageBackground imageStyle={{ borderRadius: 90 }} style={{ width: Dimensions.get('window').width * .75, height: 85, borderRadius: 90, }} source={{ uri: dailyMeditationData.imageSource }}>
+                <ImageBackground imageStyle={{ borderRadius: 90 }} source={{ uri: dailyMeditationData.imageSource }} style={styles.dailyCardImage}>
                     <View style={styles.dailyCard}>
                         <View>
                             <Text style={styles.DailyTitle}>{dailyMeditationData.title}</Text>
@@ -103,12 +103,12 @@ function HomeScreen(props) {
         
     }, [dispatch])
 
-
+    //uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0HIJBdanX2M1YcbL03E0dAm3CyFOLPQxvBor7fpIOaLqf85Owg&s' }
 
     return (
         <View styles={styles.imageContainer}>
             <ImageBackground style={styles.backgroundImage}
-                source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0HIJBdanX2M1YcbL03E0dAm3CyFOLPQxvBor7fpIOaLqf85Owg&s' }}>
+                source={ {uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0HIJBdanX2M1YcbL03E0dAm3CyFOLPQxvBor7fpIOaLqf85Owg&s' } }>
                 <View style={{ height: Dimensions.get('window').height * .9, justifyContent: 'space-evenly', alignItems: 'center' }}>
                     {/*<View style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' }}>
                         <Text style={styles.title}>Welcome {username}</Text>
@@ -144,6 +144,11 @@ export default HomeScreen;
 //HomeScreen.navigationOptions = {header:null}
 
 const styles = StyleSheet.create({
+    dailyCardImage: {
+        width: Dimensions.get('window').width * .75,
+        height: Dimensions.get('window').height * .1,
+        borderRadius: 90, 
+    },
     DailyTitle: {
         fontSize: 30,
         fontFamily: 'Helvetica-LightOblique',
@@ -165,30 +170,26 @@ const styles = StyleSheet.create({
 
     },
     title: {
-        marginTop: 20,
+        marginTop: Dimensions.get('window').height * .07,
         color: colors.base,
         fontSize: 33,
         fontFamily: 'Helvetica-LightOblique',
     },
     dailyCard: {
-        //flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         width: Dimensions.get('window').width * .75,
-        height: Dimensions.get('window').height * .17,
-        height: 85,
+        height: Dimensions.get('window').height * .1, //85
         borderColor: 'black',
         borderStyle: 'solid',
         borderWidth: 3,
-        borderRadius: 90
-        //backgroundColor: 'white',
+        borderRadius: Dimensions.get('window').width * .1 //90
     },
     cardContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        //marginBottom: 60,
-        //marginLeft: Dimensions.get('window').width * .1,
+
     },
     dailyMeditationTitleContainer: {
         //marginLeft: Dimensions.get('window').width * .1,

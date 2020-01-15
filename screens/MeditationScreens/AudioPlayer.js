@@ -7,14 +7,14 @@ import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import colors from '../../constants/colors'
 
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 import AudioProgressCircle from '../../components/AudioProgressCirclePlayer'
 
 
 
 
 export default class AudioPlayer extends React.Component {
-	
+
 	state = {
 		isPlaying: false,
 		playbackInstance: null,
@@ -23,7 +23,7 @@ export default class AudioPlayer extends React.Component {
 		isBuffering: true,
 		isReady: false,
 		audioLength: null,
-		playTime : 409,
+		playTime: 409,
 		displayTime: '00:00',
 
 	}
@@ -44,11 +44,11 @@ export default class AudioPlayer extends React.Component {
 	}
 	async componentWillUnmount() {
 		try {
-			if (this.state.isPlaying){
+			if (this.state.isPlaying) {
 				this.handlePlayPause()
 			}
 
-			
+
 		} catch (e) {
 			console.log(e)
 		}
@@ -135,7 +135,7 @@ export default class AudioPlayer extends React.Component {
 	renderFileInfo() {
 		const { playbackInstance, currentIndex } = this.state
 		return !this.state.isBuffering ? (
-			<View style={{...styles.trackInfo}}>
+			<View style={{ ...styles.trackInfo }}>
 				<Text style={[styles.trackInfoText, styles.largeText]}>
 					{this.props.meditationData.title}
 				</Text>
@@ -150,60 +150,61 @@ export default class AudioPlayer extends React.Component {
 	}
 
 	render() {
-		if (!this.state.isReady){
-			return <AppLoading 
+		if (!this.state.isReady) {
+			return <AppLoading
 				startAsync={this._cacheResourceAsync}
-				onFinish={()=> this.setState({isReady:true})}
-				onError = {console.warn}
+				onFinish={() => this.setState({ isReady: true })}
+				onError={console.warn}
 			/>
-		}else{
+		} else {
 
 		}
 
-		if (!this.state.isBuffering){
-		return (
-			<View style={{...styles.container, ...this.props.style}}>
-				<AudioProgressCircle meditationId={this.props.meditationData} goToMeditationCompleted={this.props.goToMeditationCompleted} displayTimeChange={this.changeDisplayTime} displayTime={this.state.displayTime} playTime={this.state.playTime} songTimeChanger={this.changePlayTime} songTime={this.props.meditationData.time} isPlaying={this.state.isPlaying}>
+		if (!this.state.isBuffering) {
+			return (
+				<View style={{ ...styles.container, ...this.props.style }}>
+					<AudioProgressCircle meditationId={this.props.meditationData} goToMeditationCompleted={this.props.goToMeditationCompleted} displayTimeChange={this.changeDisplayTime} displayTime={this.state.displayTime} playTime={this.state.playTime} songTimeChanger={this.changePlayTime} songTime={this.props.meditationData.time} isPlaying={this.state.isPlaying}>
 
-				<View style={styles.controls}>
-					{/*<TouchableOpacity style={styles.control} onPress={this.handlePreviousTrack}>
+						<View style={styles.controls}>
+							{/*<TouchableOpacity style={styles.control} onPress={this.handlePreviousTrack}>
 						<Ionicons name='ios-skip-backward' size={48} color='#444' /> 
 					</TouchableOpacity>*/}
-					<TouchableOpacity  style={styles.control} onPress={this.handlePlayPause}>
-						{this.state.isPlaying ? (
-							<View style={{paddingTop:30}}>
-							<Ionicons name='ios-pause' size={65} color={colors.base} />
-							</View>
-						) : (
-							<View style={{paddingTop:30}}>
-							<Ionicons name='ios-play-circle' size={70} color={colors.base} />
-							</View>
-						)}
-					</TouchableOpacity>
+							<TouchableOpacity style={styles.control} onPress={this.handlePlayPause}>
+								{this.state.isPlaying ? (
+									<View style={styles.playPauseContainer}>
+										<Ionicons name='ios-pause' size={65} color={colors.base} />
+									</View>
+								) : (
+										<View style={styles.playPauseContainer}>
+											<Ionicons name='ios-play-circle' size={70} color={colors.base} />
+										</View>
+									)}
+							</TouchableOpacity>
 
-					{/*<TouchableOpacity style={styles.control} onPress={this.handleNextTrack}>
+							{/*<TouchableOpacity style={styles.control} onPress={this.handleNextTrack}>
 						<Ionicons name='ios-skip-forward' size={48} color='#444' />
 						</TouchableOpacity>*/}
+						</View>
+					</AudioProgressCircle>
+					{!this.state.isBuffering ? this.renderFileInfo() : null}
 				</View>
-				</AudioProgressCircle>
-				{!this.state.isBuffering? this.renderFileInfo():null}
-			</View>
-		)}else{
+			)
+		} else {
 			return (
-				<View style={{...styles.waitingContainer}}>
+				<View style={{ ...styles.waitingContainer }}>
 					<ActivityIndicator size="large" color={colors.base} />
 				</View>
 			)
 		}
 	}
 
-	async _cacheResourceAsync(){
+	async _cacheResourceAsync() {
 		const audios = [audioBookPlaylist[this.props.meditationData.orderNumber].uri]
 
 		const cacheAudios = audios.map(audio => {
 			return Asset.fromModule(audio).downloadAsync();
-		  }); 
-		  return Promise.all(cacheAudios);
+		});
+		return Promise.all(cacheAudios);
 	}
 }
 
@@ -213,12 +214,12 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		height: Dimensions.get('window').height * .6,
-	  },
-	  waitingHorizontal: {
+	},
+	waitingHorizontal: {
 		flexDirection: 'row',
 		justifyContent: 'space-around',
-		padding: 10
-	  },
+		padding: Dimensions.get('window').width * .013
+	},
 	container: {
 		flex: 1,
 		//backgroundColor: '#fff',
@@ -226,23 +227,20 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		height: Dimensions.get('window').height * .78
 	},
-	albumCover: {
-		width: 250,
-		height: 250
-	},
+
 	trackInfo: {
 		//padding: 40,
 		//backgroundColor: '#fff'
 		justifyContent: 'center',
 		alignItems: 'center',
-		flex:.4,
+		flex: .4,
 	},
 
 	trackInfoText: {
 		textAlign: 'center',
 		flexWrap: 'wrap',
 		color: colors.base,
-		fontFamily:'Helvetica-LightOblique'
+		fontFamily: 'Helvetica-LightOblique'
 	},
 	largeText: {
 		fontSize: 40
@@ -251,17 +249,20 @@ const styles = StyleSheet.create({
 		fontSize: 20
 	},
 	control: {
-		margin: 10,
+		margin: Dimensions.get('window').width * .01,
 		opacity: 1,
-		
+
 	},
 	controls: {
 		flexDirection: 'row'
 	},
 	audioPlayerBar: {
-		justifyContent:'space-between',
-		 flexDirection:'row', 
-		 width:Dimensions.get('window').width * .9,
+		justifyContent: 'space-between',
+		flexDirection: 'row',
+		width: Dimensions.get('window').width * .9,
 
+	},
+	playPauseContainer:{
+		 paddingTop: Dimensions.get('window').height * .04
 	}
 })

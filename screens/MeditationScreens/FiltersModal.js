@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { Modal, View, Text, Switch, StyleSheet, ScrollView } from 'react-native'
+import { Modal, View, Text, Switch, StyleSheet, ScrollView, Dimensions } from 'react-native'
 import colors from '../../constants/colors'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -70,9 +70,9 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: colors.base,
         borderWidth: 2,
-        paddingVertical: 10,
+        paddingVertical: Dimensions.get('window').height * .01,
         backgroundColor:colors.lightSecondary,
-        borderRadius: 20,
+        borderRadius: Dimensions.get('window').height * .01,
 
 
     },

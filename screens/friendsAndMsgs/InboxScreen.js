@@ -38,7 +38,7 @@ function InboxScreen() {
             <View style={styles.friendCard}>
                 <View>
                     <Text> {friendRequest.item.sender_username}</Text>
-                    <Image style={{ width: 80, height: 80 }} source={{ uri: friendRequest.item.sender_profile_picture }} />
+                    <Image style={styles.cardImage} source={{ uri: friendRequest.item.sender_profile_picture }} />
                 </View>
                 <TouchableOpacity onPress={() => handleRequest(friendRequest.item.id,1)}>
                     <View>
@@ -60,7 +60,7 @@ function InboxScreen() {
         <View styles={{ flex: 1, }} >
             <View style={styles.cardsContainer}>
                 <Text>My Friend requests</Text>
-                {pendingFriendRequests ? <FlatList numColumns={1} data={pendingFriendRequests} keyExtractor={(item => item.id)} renderItem={(friendRequest) => createSenderCards(friendRequest)} /> : null}
+                {pendingFriendRequests ? <FlatList numColumns={1} data={pendingFriendRequests} keyExtractor={(item => item.id )} renderItem={(friendRequest) => createSenderCards(friendRequest)} /> : null}
 
             </View>
         </View>
@@ -70,6 +70,10 @@ function InboxScreen() {
 export default InboxScreen;
 
 const styles = StyleSheet.create({
+    cardImage: {
+        width: Dimensions.get('window').width * .2,
+        height: Dimensions.get('window').height * .1
+    },
     cardsContainer: {
         marginTop: Dimensions.get('window').height * .1,
         height: Dimensions.get('window').height * .7,
@@ -90,7 +94,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
         overflow: 'hidden',
-        marginTop: 10,
+        marginTop: Dimensions.get('window').height * .01,
     },
     inboxContainer: {
         flexDirection: 'row',
@@ -103,7 +107,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         overflow: 'hidden',
-        marginTop: 10,
+        marginTop: Dimensions.get('window').height * .01,
 
     },
 })

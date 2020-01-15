@@ -29,18 +29,18 @@ function UserFriendsScreen(props) {
      * their favorite meditations
      */
     useEffect(() => {
-       
+
     }, [dispatch])
 
     const sendMsg = (username) => {
-        props.navigation.navigate('CreateMessage', {sendToUsername:username})
+        props.navigation.navigate('CreateMessage', { sendToUsername: username })
     }
 
-    const createFriendCards = (friend) =>{
+    const createFriendCards = (friend) => {
         return (
             <View style={styles.friendCard}>
                 <Text> {friend.item.username}</Text>
-                <Image style={{width: 80, height: 80}} source={{uri:friend.item.user_photo}}/>
+                <Image style={styles.cardImage} source={{ uri: friend.item.user_photo }} />
                 <TouchableOpacity onPress={() => sendMsg(friend.item.username)}>
                     <View>
                         <Ionicons name='ios-mail' size={45} color={'red'} />
@@ -56,7 +56,7 @@ function UserFriendsScreen(props) {
         <View styles={styles.container}>
             <View style={styles.cardsContainer}>
                 <Text>My Friends</Text>
-            {friends ?  <FlatList numColumns={1} data={friends} keyExtractor={(item=> item.username)} renderItem={(friend) => createFriendCards(friend)} />: null}
+                {friends ? <FlatList numColumns={1} data={friends} keyExtractor={(item => item.username)} renderItem={(friend) => createFriendCards(friend)} /> : null}
 
             </View>
         </View>
@@ -66,14 +66,18 @@ function UserFriendsScreen(props) {
 export default UserFriendsScreen;
 
 const styles = StyleSheet.create({
-    cardsContainer: {
-        marginTop:Dimensions.get('window').height * .1,
-        height:Dimensions.get('window').height * .7,
-        justifyContent:'center',
-        alignItems: 'center',
-        width: Dimensions.get('window').width ,
+    cardImage: {
+        width: Dimensions.get('window').width * .2,
+        height: Dimensions.get('window').height * .1
     },
-    friendCard : {
+    cardsContainer: {
+        marginTop: Dimensions.get('window').height * .1,
+        height: Dimensions.get('window').height * .7,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: Dimensions.get('window').width,
+    },
+    friendCard: {
         borderWidth: 1,
         borderColor: 'black',
         borderStyle: 'solid',
@@ -83,7 +87,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
         overflow: 'hidden',
-        marginTop: 10,
+        marginTop: Dimensions.get('window').height * .01,
     },
     backgroundImage: {
         width: Dimensions.get('window').width,
@@ -96,15 +100,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     container: {
-        height:500,
+        height: Dimensions.get('window').height,
         width: Dimensions.get('window').width,
-        justifyContent:'center',
+        justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 40,
-        backgroundColor:'green'
+        marginTop: Dimensions.get('window').height * .1,
+        backgroundColor: 'green'
     },
     title: {
-        marginTop: 20,
+        marginTop: Dimensions.get('window').height * .05,
         color: colors.base,
         fontSize: 33,
         fontFamily: 'Helvetica-LightOblique',

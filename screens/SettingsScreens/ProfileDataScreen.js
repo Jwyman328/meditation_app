@@ -52,7 +52,7 @@ function ProfileDataScreen(props) {
             <View style={styles.titleContainer}>
                 <Text style={styles.TitleText}>Profile Data</Text>
             </View>
-            <TouchableOpacity onPress={changeWeight}>
+            <TouchableOpacity >
                 <View style={styles.dataContainer}>
                     <Text style={styles.textData}>FirstName</Text>
                     <Text style={styles.textData}>{firstName}</Text>

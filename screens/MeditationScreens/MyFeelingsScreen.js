@@ -119,8 +119,8 @@ function MyFeelingsScreen(props) {
             </View>
 
                 : null}
-            <MainButton style={{backgroundColor:colors.secondary, marginTop:20}} title='submit' onPress={handleNewValues} />
-            {firstTime ? <MainButton title='Do later' onPress={handleLater} /> : null}
+            <MainButton style={styles.mainButton} title='submit' onPress={handleNewValues} />
+            {firstTime ? <MainButton style={styles.mainButton} title='Do later' onPress={handleLater} /> : null}
 
 
         </View>
@@ -130,6 +130,10 @@ function MyFeelingsScreen(props) {
 export default MyFeelingsScreen;
 
 const styles = StyleSheet.create({
+    mainButton:{
+        backgroundColor:colors.secondary, 
+        marginTop: Dimensions.get('window').height * .03// 20
+    },
     mainContainer:{
         justifyContent: 'flex-start', 
         alignItems: 'center', 
@@ -137,11 +141,11 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height,
     },
     IconContainer: {
-        marginRight:10
+        marginRight:Dimensions.get('window').height * .01
     },
     FeelingSize: {
-        width: 80,
-        paddingTop:15
+        width: Dimensions.get('window').width * .2,//80,
+        paddingTop:Dimensions.get('window').height * .01
     },
     feelingsText: {
         fontSize:15,
@@ -155,7 +159,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: 'black',
         shadowColor:'black',
-        shadowOffset:{  width: 10,  height: 10,  },
+        shadowOffset:{  width: Dimensions.get('window').width * .025,  height: Dimensions.get('window').width * .025,  },
         shadowOpacity: .6,
         marginTop: Dimensions.get('window').height * .14,
         backgroundColor:colors.lightSecondary
@@ -164,11 +168,11 @@ const styles = StyleSheet.create({
     feelingsRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingRight:10,
-        paddingLeft:10,
+        paddingRight:Dimensions.get('window').height * .016,//10,
+        paddingLeft:Dimensions.get('window').height * .016,
     },
     title: {
-        marginTop: 20,
+        marginTop: Dimensions.get('window').height * .02,
         fontSize: 20,
     }
 

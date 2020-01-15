@@ -58,8 +58,8 @@ function CoursesScreen(props){
     }
     return (
         isLoggedIn?
-        <View style={{flex:1, justifyContent:'center', alignItems:'center', backgroundColor: colors.darkStrongPrimary}}>
-            <View style={{width:'100%',flex: 1, ...styles.quickBorder, justifyContent:'center', alignItems:'center' }}>
+        <View style={styles.mainContainer}>
+            <View style={{...styles.allCoursesContainer,...styles.quickBorder}}>
                 {filteredCourses ?  filteredCourses.length > 1 ? <FlatList numColumns={2} data={filteredCourses} keyExtractor={(item=> item.title)} renderItem={(course) => createCards(course)} />: createCard(filteredCourses[0]) : null}
             </View> 
         </View>:null
@@ -82,37 +82,48 @@ CoursesScreen.navigationOptions = (navData) => {
    return (
        {
            headerRight: 
-                <ScrollView style={{marginTop:Dimensions.get('window').height * .02}} horizontal={true}>
+                <ScrollView style={styles.headerRight} horizontal={true}>
                 <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
                     <Item title='filter' color={colors.darkStrongPrimary} iconName='ios-funnel' onPress={ navigateToFiltersPage } />
                 </HeaderButtons>      
                 </ScrollView>,
             headerLeft:
-            <ScrollView style={{marginTop:Dimensions.get('window').height * .02}} horizontal={true}>
+            <ScrollView style={styles.headerRight} horizontal={true}>
             <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
                 <Item title='filter' color={colors.darkStrongPrimary} iconName='ios-color-filter' onPress={ navigateToMyFeelingFilter } />
             </HeaderButtons>      
             </ScrollView>,
-
        }
    )
         
 }
 
 const styles = StyleSheet.create({
+    mainContainer:{
+        flex:1, 
+        justifyContent:'center',
+        alignItems:'center', 
+        backgroundColor: colors.darkStrongPrimary
+    },
     coursesContainer: {
         width:'50%',
-        //flexDirection: 'row',
-        //height:Dimensions.get('window').height * .797,
         justifyContent:'center',
         alignItems:'center',
-        marginTop:15,
+        marginTop: Dimensions.get('window').height * .01 ,
         
     },
     quickBorder: {
         borderStyle:'solid',
         borderWidth:1,
         borderColor:'black',
+    },
+    headerRight:{
+        marginTop:Dimensions.get('window').height * .02
+    },
+    allCoursesContainer:{
+        width:'100%',
+        flex: 1, 
+        justifyContent:'center', alignItems:'center' 
     }
 })
 

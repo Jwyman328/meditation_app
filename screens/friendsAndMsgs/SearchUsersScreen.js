@@ -35,64 +35,64 @@ function SearchUsersScreen() {
      */
     useEffect(() => {
         dispatch(FetchAllUsers(token))
-        if (allUsers && friends){
+        if (allUsers && friends) {
 
             // map the friends 
             const friendsUsernames = friends.map((friend) => friend.username)
             setFriendsUsernames(friendsUsernames)
 
-        }else{
+        } else {
 
         }
 
 
-        
+
     }, [friends]) //[dispatch]
 
     const addFriend = (username) => {
-        dispatch(SendFriendRequest(username,token))
+        dispatch(SendFriendRequest(username, token))
     }
     const removeFriend = (username) => {
-        dispatch(AddRemoveFriend(username,token))
+        dispatch(AddRemoveFriend(username, token))
     }
 
     const createFriendCards = (user) => {
         return (
             // check if this user is the current user 
-            user.item.username === username?
+            user.item.username === username ?
                 // if is the same as the current user do nothing
                 //dont want yourself in a search for other users?
-             null:
-            // check if this user is a friend
-            friendsUsernames.includes(user.item.username)?
-            <View style={styles.friendCard}>
-                <View>
-                    <Text> {user.item.username}</Text>
-                    <Image style={{ width: 80, height: 80 }} source={{ uri: user.item.user_photo }} />
-                </View>
-        
-                <TouchableOpacity onPress={() => removeFriend(user.item.username)}>
-                    <View>
-                        <Ionicons name='ios-remove-circle-outline' size={75} color={'red'} />
+                null :
+                // check if this user is a friend
+                friendsUsernames.includes(user.item.username) ?
+                    <View style={styles.friendCard}>
+                        <View>
+                            <Text> {user.item.username}</Text>
+                            <Image style={styles.cardImage} source={{ uri: user.item.user_photo }} />
+                        </View>
+
+                        <TouchableOpacity onPress={() => removeFriend(user.item.username)}>
+                            <View>
+                                <Ionicons name='ios-remove-circle-outline' size={75} color={'red'} />
+                            </View>
+                        </TouchableOpacity>
+
                     </View>
-                </TouchableOpacity>
+                    :
 
-            </View>
-            :
+                    <View style={styles.friendCard}>
+                        <View>
+                            <Text> {user.item.username}</Text>
+                            <Image style={styles.cardImage} source={{ uri: user.item.user_photo }} />
+                        </View>
 
-            <View style={styles.friendCard}>
-                <View>
-                    <Text> {user.item.username}</Text>
-                    <Image style={{ width: 80, height: 80 }} source={{ uri: user.item.user_photo }} />
-                </View>
-           
-                <TouchableOpacity onPress={() => addFriend(user.item.username)}>
-                    <View>
-                        <Ionicons name='md-person-add' size={75} color={'green'} />
+                        <TouchableOpacity onPress={() => addFriend(user.item.username)}>
+                            <View>
+                                <Ionicons name='md-person-add' size={75} color={'green'} />
+                            </View>
+                        </TouchableOpacity>
+
                     </View>
-                </TouchableOpacity>
-
-            </View>
         )
 
     }
@@ -111,6 +111,10 @@ function SearchUsersScreen() {
 export default SearchUsersScreen;
 
 const styles = StyleSheet.create({
+    cardImage: {
+        width: Dimensions.get('window').width * .2,
+        height: Dimensions.get('window').height * .1
+    },
     cardsContainer: {
         marginTop: Dimensions.get('window').height * .1,
         height: Dimensions.get('window').height * .7,
@@ -119,7 +123,7 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
     },
     friendCard: {
-        flexDirection:'row',
+        flexDirection: 'row',
         borderWidth: 1,
         borderColor: 'black',
         borderStyle: 'solid',
@@ -129,7 +133,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         overflow: 'hidden',
-        marginTop: 10,
+        marginTop: Dimensions.get('window').height * .01,
     },
     backgroundImage: {
         width: Dimensions.get('window').width,
@@ -142,15 +146,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     container: {
-        height: 500,
+        height: Dimensions.get('window').height,
         width: Dimensions.get('window').width,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 40,
+        marginTop: Dimensions.get('window').height * .1,
         backgroundColor: 'green'
     },
     title: {
-        marginTop: 20,
+        marginTop: Dimensions.get('window').height * .05,
         color: colors.base,
         fontSize: 33,
         fontFamily: 'Helvetica-LightOblique',

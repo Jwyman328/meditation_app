@@ -43,13 +43,13 @@ App.navigationOptions = (navData) => {
    return (
        {
            headerRight: 
-                <ScrollView style={{marginTop:Dimensions.get('window').height * .001}} horizontal={true}>
+                <ScrollView style={styles.headerStyle} horizontal={true}>
                 <HeaderButtons HeaderButtonComponent={MainHeaderButtonLarge}>
                     <Item title='filter' color={colors.darkStrongPrimary} iconName='ios-mail' onPress={ navigateToMessaging } />
                 </HeaderButtons>      
                 </ScrollView>,
             headerLeft:
-            <ScrollView style={{marginTop:Dimensions.get('window').height * .001}} horizontal={true}>
+            <ScrollView style={styles.headerStyle} horizontal={true}>
             <HeaderButtons HeaderButtonComponent={MainHeaderButtonLarge}>
                 <Item title='filter' color={colors.darkStrongPrimary} iconName='ios-settings' onPress={ navigateToSettings } />
             </HeaderButtons>      
@@ -72,6 +72,9 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         marginLeft: Dimensions.get('window').width * .13,
+    },
+    headerStyle:{
+        marginTop:Dimensions.get('window').height * .001
     }
 
 });

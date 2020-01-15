@@ -105,14 +105,13 @@ function FullCourseScreen(props) {
         return (
             <TouchableOpacity onPress={() => goToMeditation(item)} style={{ width: '100%' }} >
                 <View style={styles.meditationcard}>
-                    <View style={{ marginLeft:6, width:40 ,height:'70%' ,borderWidth:2, borderColor:colors.darkStrongPrimary,
-                        justifyContent:'center', alignItems:'center', borderStyle:'solid', borderRadius:600, backgroundColor:colors.primary}}>
+                    <View style={styles.cardText}>
                         <Text style={{ color: 'white', fontSize: 20, }}>{orderNumber}</Text>
                     </View>
                     <Text style={{ fontFamily:'Helvetica-LightOblique', color: 'white', fontSize: 20 }}>{title}</Text>
                     <Text style={{ color:'white' , fontSize: 20 }}>{time}</Text>
                     <View style={{ marginRight: 4 }}>
-                        <Ionicons size={30} onPress={() => goToMeditation(item)} name='ios-headset' title='play' />
+                        <Ionicons size={40} onPress={() => goToMeditation(item)} name='ios-headset' title='play' />
                     </View>
                 </View>
             </TouchableOpacity>)
@@ -121,11 +120,11 @@ function FullCourseScreen(props) {
     return (
         courseData?
         <View style={{ flex: 1 }} >
-            <ImageBackground style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }} source={{ uri: data.image_uri }}>
-                <View style={{ justifyContent: 'center', alignItems: 'center', flex: .2 }}>
-                    <Text style={{ textAlign: 'center', color: 'white', fontSize: 30 }}>{data.title}</Text>
+            <ImageBackground style={styles.backgroundImageStyle} source={{ uri: data.image_uri }}>
+                <View style={styles.textContainer}>
+                    <Text style={styles.title}>{data.title}</Text>
                 </View>
-                <View style={{ flex: 1,  justifyContent: 'center', alignItems: 'center' }}>
+                <View style={styles.meditionContainer}>
                     <FlatList keyExtractor={(item) => item.title.toString() } contentContainerStyle={{ alignItems: 'center' }} data={courseData} renderItem={({ item }) => createMeditationCard(item)} />
                 </View>
             </ImageBackground>
@@ -182,7 +181,7 @@ FullCourseScreen.navigationOptions = (navData) => {
                 fontSize: 24,
             },
             headerRight:
-                <ScrollView style={{ marginTop: Dimensions.get('window').height * .02 }} horizontal={true}>
+                <ScrollView style={styles.headerRight} horizontal={true}>
                     <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
                         <Item size={25}  title='filter' color={isInfavorites()} iconName={getHeartIcon()} onPress={addFavorite} />
                     </HeaderButtons>
@@ -192,17 +191,52 @@ FullCourseScreen.navigationOptions = (navData) => {
 }
 
 const styles = StyleSheet.create({
+    meditionContainer:{
+         flex: 1,  
+         justifyContent: 'center', 
+         alignItems: 'center' 
+    },
+    title:{ 
+        textAlign: 'center', 
+        color: 'white', 
+        fontSize: 30 
+    },
+    textContainer:{
+         justifyContent: 'center', 
+         alignItems: 'center', 
+         flex: .2 
+    },
+    backgroundImageStyle:{
+        justifyContent: 'center',
+         alignItems: 'center', 
+         flex: 1 
+    },
+    cardText:{
+        marginLeft:Dimensions.get('window').width * .02, 
+        width: Dimensions.get('window').width * .1,//40 ,
+        height:'55%' ,
+        borderWidth:2, 
+        borderColor:colors.darkStrongPrimary,
+        justifyContent:'center', 
+        alignItems:'center', 
+        borderStyle:'solid', 
+        borderRadius:Dimensions.get('window').width * .8, 
+        backgroundColor:colors.primary
+    },
     meditationcard: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         borderStyle: 'solid',
         borderWidth: 2,
-        borderRadius: 20,
+        borderRadius: Dimensions.get('window').width * .2,
         height: Dimensions.get('window').height * .10,
         backgroundColor: 'grey',
         opacity: .7,
         width: Dimensions.get('window').width * .9,
-        marginTop: 5,
+        marginTop: Dimensions.get('window').height * .01,
+    },
+    headerRight:{ 
+        marginTop: Dimensions.get('window').height * .02 
     }
 })

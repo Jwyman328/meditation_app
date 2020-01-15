@@ -126,7 +126,7 @@ function FullCourseScreen(props) {
                     <Text style={{ textAlign: 'center', color: 'white', fontSize: 30 }}>{data.title}</Text>
                 </View>
                 <View style={{ flex: 1,  justifyContent: 'center', alignItems: 'center' }}>
-                    <FlatList contentContainerStyle={{ alignItems: 'center' }} data={courseData} renderItem={({ item }) => createMeditationCard(item)} />
+                    <FlatList keyExtractor={(item) => item.title.toString() } contentContainerStyle={{ alignItems: 'center' }} data={courseData} renderItem={({ item }) => createMeditationCard(item)} />
                 </View>
             </ImageBackground>
         </View>: null

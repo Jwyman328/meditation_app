@@ -7,7 +7,7 @@ import FilterMeditations from '../../store/actions/filterMeditations'
 
 function FilterScreen(props) {
 
-    const filters = useSelector((state) => state.meditations.filters)
+    const filters = useSelector((state) => state.meditation.filters)
 
     const dispatch = useDispatch()
 

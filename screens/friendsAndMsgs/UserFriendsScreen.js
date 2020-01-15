@@ -17,9 +17,9 @@ import { Ionicons } from '@expo/vector-icons'
 function UserFriendsScreen(props) {
 
     const dispatch = useDispatch()
-    const username = useSelector((state) => state.meditations.username)
-    const token = useSelector((state) => state.meditations.token)
-    const friends = useSelector((state) => state.meditations.friendsList)
+    const username = useSelector((state) => state.AuthData.username)
+    const token = useSelector((state) => state.AuthData.token)
+    const friends = useSelector((state) => state.FriendsAndMsgs.friendsList)
 
     /**
      * Fetch all meditations and all favorited meditations for the user.

@@ -15,7 +15,7 @@ import PedometerCircle from './PedometerCircle'
 
 
 function App() {
-    let dailyStepGoal = useSelector((state) => state.meditations.dailyStepGoal)
+    let dailyStepGoal = useSelector((state) => state.Fitness.dailyStepGoal)
 
     const [dailyGoalLocal,setdailyGoalLocal] = dailyStepGoal? useState(dailyStepGoal) : null
 

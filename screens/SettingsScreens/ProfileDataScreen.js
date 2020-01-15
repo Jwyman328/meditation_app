@@ -9,7 +9,7 @@ import MainButton from '../../components/MainButton'
 
 function ProfileDataScreen(props) {
 
-    const healthData = useSelector((state) => state.meditations.userHealthData)
+    const healthData = useSelector((state) => state.ProfileData.userHealthData)
     const weight = healthData.weight
     const heightFeet = healthData.height.feet
     const heightInch = healthData.height.inch
@@ -18,14 +18,14 @@ function ProfileDataScreen(props) {
     const DOBYear = healthData.DOB.year
     const gender = healthData.gender
 
-    const generalUserData = useSelector((state) => state.meditations.generalUserData)
-    let dailyStepGoal = useSelector((state) => state.meditations.dailyStepGoal)
+    const generalUserData = useSelector((state) => state.ProfileData.generalUserData)
+    let dailyStepGoal = useSelector((state) => state.Fitness.dailyStepGoal)
 
     const firstName = generalUserData.first_name
     const lastName = generalUserData.last_name
 
-    const isLoggedIn = useSelector(state => state.meditations.loggedIn)
-    const token = useSelector(state => state.meditations.token)
+    const isLoggedIn = useSelector(state => state.AuthData.loggedIn)
+    const token = useSelector(state => state.AuthData.token)
     const dispatch = useDispatch()
     const logOutUser = () => {
         dispatch(LogOutUser())

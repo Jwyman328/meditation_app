@@ -19,10 +19,10 @@ function MyFeelingsScreen(props) {
 
     const dispatch = useDispatch()
 
-    const username = useSelector((state) => state.meditations.username)
-    const token = useSelector((state) => state.meditations.token)
-    const myFeelings = useSelector((state) => state.meditations.myFeelings)
-    const healthData = useSelector((state) => state.meditations.userHealthData)
+    const username = useSelector((state) => state.AuthData.username)
+    const token = useSelector((state) => state.AuthData.token)
+    const myFeelings = useSelector((state) => state.meditation.myFeelings)
+    const healthData = useSelector((state) => state.ProfileData.userHealthData)
 
     const firstTime = props.navigation.getParam('firstTime')
 

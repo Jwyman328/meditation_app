@@ -14,10 +14,10 @@ function ChangeStepGoalScreen(props) {
     // get the data whenever it loads 
     
 
-    const isLoggedIn = useSelector(state => state.meditations.loggedIn)
-    const token = useSelector(state => state.meditations.token)
+    const isLoggedIn = useSelector(state => state.AuthData.loggedIn)
+    const token = useSelector(state => state.AuthData.token)
 
-    let dailyStepGoal = useSelector((state) => state.meditations.dailyStepGoal)
+    let dailyStepGoal = useSelector((state) => state.Fitness.dailyStepGoal)
     const [dailyGoalLocal, setdailyGoalLocal] = useState(dailyStepGoal)
 
     const handleChangeStepGoal = (value) => {

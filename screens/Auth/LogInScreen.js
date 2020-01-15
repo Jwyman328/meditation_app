@@ -19,8 +19,8 @@ function LoginScreen(props) {
 
     const dispatch = useDispatch()
 
-    const token = useSelector((state) => state.meditations.token)
-    const username = useSelector((state) => state.meditations.username)
+    const token = useSelector((state) => state.AuthData.token)
+    const username = useSelector((state) => state.AuthData.username)
 
     /**
      * Go to the app when the user has successfully recieved a token from signing in.

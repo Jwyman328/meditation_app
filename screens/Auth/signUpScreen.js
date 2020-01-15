@@ -24,7 +24,7 @@ function SignupScreen(props){
     const [passWordTwo, onChangePasswordTwo] = React.useState('');
 
     const dispatch = useDispatch()
-    const token = useSelector((state) => state.meditations.token)
+    const token = useSelector((state) => state.AuthData.token)
 
     useEffect(() => {
         if (token){

@@ -27,11 +27,11 @@ import PedometerCircle from './FitnessScreens/PedometerCircle'
 function HomeScreen(props) {
 
     const dispatch = useDispatch()
-    const username = useSelector((state) => state.meditations.username)
-    const token = useSelector((state) => state.meditations.token)
+    const username = useSelector((state) => state.AuthData.username)
+    const token = useSelector((state) => state.AuthData.token)
     const [dailyMeditationData, setDailyMeditationData] = useState(undefined)
 
-    let dailyStepGoal = useSelector((state) => state.meditations.dailyStepGoal)
+    let dailyStepGoal = useSelector((state) => state.Fitness.dailyStepGoal)
 
     const [dailyGoalLocal, setdailyGoalLocal] = dailyStepGoal ? useState(dailyStepGoal) : null
 

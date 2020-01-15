@@ -5,13 +5,24 @@ import BottomTabs from './Navigation/MainNavigation'
 
 import {createStore,combineReducers, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
-import MeditationsReducer from './store/reducers/MeditationsReducer'
+import FitnessReducer from './store/reducers/FitnessReducer'
+import MeditationReducer from './store/reducers/meditationReducer'
+import ProfileDataReducer from './store/reducers/ProfileDataReducer'
+import FriendsAndMsgsReducer from './store/reducers/FriendsAndMsgsReducer'
+import AuthDataReducer from './store/reducers/AuthDataReducer'
+import MoodReducer from './store/reducers/MoodReducer'
+
 import ReduxThunk from 'redux-thunk'
 
 
 export default function App() {
   const rootReducers = combineReducers({
-    meditations: MeditationsReducer
+    meditation: MeditationReducer,
+    Fitness: FitnessReducer,
+    ProfileData: ProfileDataReducer,
+    FriendsAndMsgs: FriendsAndMsgsReducer,
+    AuthData:AuthDataReducer,
+    Mood:MoodReducer,
   })
 
   const store = createStore(rootReducers, applyMiddleware(ReduxThunk))

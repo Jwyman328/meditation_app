@@ -18,9 +18,9 @@ import { Ionicons } from '@expo/vector-icons'
 function InboxScreen() {
 
     const dispatch = useDispatch()
-    const pendingFriendRequests = useSelector((state) => state.meditations.pendingFriendRequests)
-    const username = useSelector((state) => state.meditations.username)
-    const token = useSelector((state) => state.meditations.token)
+    const pendingFriendRequests = useSelector((state) => state.FriendsAndMsgs.pendingFriendRequests)
+    const username = useSelector((state) => state.AuthData.username)
+    const token = useSelector((state) => state.AuthData.token)
 
     useEffect(() => {
         dispatch(FetchPendingFriendRequests(token))

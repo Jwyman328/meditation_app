@@ -20,10 +20,10 @@ import { Ionicons } from '@expo/vector-icons'
 function SearchUsersScreen() {
     const [friendsUsernames, setFriendsUsernames] = useState(undefined)
     const dispatch = useDispatch()
-    const username = useSelector((state) => state.meditations.username)
-    const token = useSelector((state) => state.meditations.token)
-    const allUsers = useSelector((state) => state.meditations.allUsers)
-    const friends = useSelector((state) => state.meditations.friendsList)
+    const username = useSelector((state) => state.AuthData.username)
+    const token = useSelector((state) => state.AuthData.token)
+    const allUsers = useSelector((state) => state.FriendsAndMsgs.allUsers)
+    const friends = useSelector((state) => state.FriendsAndMsgs.friendsList)
 
 
     /**

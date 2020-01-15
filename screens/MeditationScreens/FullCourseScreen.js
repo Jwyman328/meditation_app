@@ -25,9 +25,9 @@ function FullCourseScreen(props) {
     const data = props.navigation.getParam('courseData')
 
     const courseId = data.courseId
-    const courseData = useSelector((state)=> state.meditations.courseData)
+    const courseData = useSelector((state)=> state.meditation.courseData)
     const dispatch = useDispatch()
-    const token = useSelector(state => state.meditations.token)
+    const token = useSelector(state => state.AuthData.token)
 
 
     /**
@@ -38,7 +38,7 @@ function FullCourseScreen(props) {
         dispatch(addFavorite2(courseId, token))
     }
 
-    const favoriteMeditations = useSelector(state => state.meditations.favoriteMeditations)
+    const favoriteMeditations = useSelector(state => state.meditation.favoriteMeditations)
 
     /**
      * send relavant data to the navigationOptiosn to handle favoriting.

@@ -11,8 +11,8 @@ function ChooseWeight(props) {
 
 
     // token healthData and firstTime required to make api request ot change data
-    const token = useSelector((state) => state.meditations.token)
-    const healthData = useSelector((state) => state.meditations.userHealthData)
+    const token = useSelector((state) => state.AuthData.token)
+    const healthData = useSelector((state) => state.ProfileData.userHealthData)
     const firstTime = props.navigation.getParam('firstTime')
 
     const [weight, setWeights] = useState([])

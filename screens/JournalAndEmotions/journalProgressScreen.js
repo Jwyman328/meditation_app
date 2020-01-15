@@ -14,9 +14,9 @@ import colors from '../../constants/colors'
 
 function JournalProgressScreen(props) {
 
-    const pastMonthData = useSelector((state) => state.meditations.moodPastMonth)
-    const pastWeekData = useSelector((state) => state.meditations.moodPastWeek)
-    const dateRanges = useSelector((state) => state.meditations.moodDates)
+    const pastMonthData = useSelector((state) => state.Mood.moodPastMonth)
+    const pastWeekData = useSelector((state) => state.Mood.moodPastWeek)
+    const dateRanges = useSelector((state) => state.Mood.moodDates)
     const [endDate, setEndDate ]= useState(undefined)
     const [monthStart, setMonthStart] = useState(undefined)
     const [weekStart,setWeekStart] = useState(undefined)

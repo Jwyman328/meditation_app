@@ -18,8 +18,8 @@ import FiltersModal from './FiltersModal'
 function CoursesScreen(props){
     const [filtersVisible, setfiltersVisible] = useState(false)
   
-    const filteredCourses = useSelector((state) => state.meditations.filteredMeditations)
-    const isLoggedIn = useSelector(state => state.meditations.loggedIn)
+    const filteredCourses = useSelector((state) => state.meditation.filteredMeditations)
+    const isLoggedIn = useSelector(state => state.AuthData.loggedIn)
 
     /**
      * Navigate to the Full course screen of the selected course.

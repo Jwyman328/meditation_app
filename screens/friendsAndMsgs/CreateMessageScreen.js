@@ -25,10 +25,10 @@ function CreateMessageScreen(props) {
     }
 
     let messages = undefined;
-    const token = useSelector((state) => state.meditations.token)
-    const username = useSelector((state) => state.meditations.username)
+    const token = useSelector((state) => state.AuthData.token)
+    const username = useSelector((state) => state.AuthData.username)
 
-    messages = useSelector((state) => state.meditations.singleMessages)
+    messages = useSelector((state) => state.FriendsAndMsgs.singleMessages)
 
     const reciever_username = props.navigation.getParam('sendToUsername')
 

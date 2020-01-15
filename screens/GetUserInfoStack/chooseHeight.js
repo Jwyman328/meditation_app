@@ -14,8 +14,8 @@ function ChooseHeight(props) {
     const dispatch = useDispatch()
 
     // token healthData and firstTime required to make api request ot change data
-    const token = useSelector((state) => state.meditations.token)
-    const healthData = useSelector((state) => state.meditations.userHealthData)
+    const token = useSelector((state) => state.AuthData.token)
+    const healthData = useSelector((state) => state.ProfileData.userHealthData)
 
     const [feet, setFeet] = useState([])
     const [inch, setInches] = useState([])

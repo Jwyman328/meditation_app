@@ -23,7 +23,7 @@ function WriteJournalScreen() {
     const [keyboardVisible, setKeyboardVisible] = useState(false)
 
     const dispatch = useDispatch()
-    const token = useSelector((state) => state.meditations.token)
+    const token = useSelector((state) => state.AuthData.token)
 
 
     const returnFace = () => {

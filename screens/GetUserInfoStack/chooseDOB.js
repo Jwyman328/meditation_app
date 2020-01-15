@@ -8,7 +8,7 @@ import SetUserHealthData from '../../store/actions/setUserHealthData'
 
 
 function ChooseDOB(props) {
-    const healthData = useSelector((state) => state.meditations.userHealthData)
+    const healthData = useSelector((state) => state.ProfileData.userHealthData)
     const firstTime = props.navigation.getParam('firstTime')
 
     const [month, setmonth] = useState([])
@@ -19,7 +19,7 @@ function ChooseDOB(props) {
     const dispatch = useDispatch()
 
     // token healthData and firstTime required to make api request ot change data
-    const token = useSelector((state) => state.meditations.token)
+    const token = useSelector((state) => state.AuthData.token)
 
      
     const goToChooseDOB = () => {

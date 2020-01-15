@@ -46,12 +46,9 @@ function CreateMessageScreen(props) {
     const msgData = () => {
         //console.log(messages)
         // create a message here 
-       
-
         const allMsgs = messages.map((message) => {
-   
             return (
-                <View style={message.sender_username === username?styles.myMessage: styles.friendMessage}>
+                <View key={message.id} style={message.sender_username === username?styles.myMessage: styles.friendMessage}>
                     <Text style={message.sender_username === username? styles.myMessageText: styles.friendMessageText}>{message.msg}</Text>
                     <Text>{message.sender_username}</Text>
                 </View>
@@ -60,7 +57,6 @@ function CreateMessageScreen(props) {
         return (
             <View>
                 {allMsgs}
-              
             </View>
 
         )

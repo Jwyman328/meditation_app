@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, ScrollView, View, ImageBackground, Button, Dimensions, TextInput, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 
-import CreateMessage from '../store/actions/createMessage'
-import FetchMessages from '../store/actions/FetchMessages'
+import CreateMessage from '../../store/actions/createMessage'
+import FetchMessages from '../../store/actions/FetchMessages'
 
 import { useDispatch, useSelector } from 'react-redux'
-import colors from '../constants/colors';
+import colors from '../../constants/colors';
 import InputScrollView from 'react-native-input-scroll-view';
 
 
@@ -22,8 +22,6 @@ function CreateMessageScreen(props) {
     const removeKeyboard = () => {
         Keyboard.dismiss()
         setKeyboardVisible(false)
-        console.log('kyboard f')
-
     }
 
     let messages = undefined;
@@ -69,7 +67,6 @@ function CreateMessageScreen(props) {
 }
 
     const handleKeyboard = () => {
-        console.log('kyboard t')
         setKeyboardVisible(true)
     }
     return (

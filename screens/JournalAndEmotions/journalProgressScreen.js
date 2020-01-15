@@ -10,7 +10,7 @@ import {
 } from "react-native-chart-kit";
 
 import { useDispatch, useSelector } from 'react-redux'
-import colors from '../constants/colors'
+import colors from '../../constants/colors'
 
 function JournalProgressScreen(props) {
 

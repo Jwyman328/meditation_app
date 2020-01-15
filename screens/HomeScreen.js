@@ -16,7 +16,7 @@ import colors from '../constants/colors';
 import audioBookPlaylist from '../Data/AudioBookPlaylist'
 import dummyData from '../Data/dummyData'
 
-import App2 from '../screens/App2'
+import PedometerCircle from './FitnessScreens/PedometerCircle'
 
 
 /**
@@ -122,7 +122,7 @@ function HomeScreen(props) {
                         <View style={{ flex: .5 }}>
                         <TouchableOpacity onPress={goToFitnessScreen}>
                             <View>
-                                {dailyStepGoal ? <App2 card={false} dailyStepGoal={dailyStepGoal} /> : null}
+                                {dailyStepGoal ? <PedometerCircle card={false} dailyStepGoal={dailyStepGoal} /> : null}
                             </View>
                             </TouchableOpacity>
                         </View>

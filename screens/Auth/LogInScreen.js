@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
 import { AsyncStorage, ScrollView, Text, StyleSheet, View, KeyboardAvoidingView, TextInput, Button, Dimensions, ImageBackground } from 'react-native'
-import LogInUser from '../store/actions/logInUser'
+import LogInUser from '../../store/actions/logInUser'
 
 import { useDispatch, useSelector } from 'react-redux'
-import colors from '../constants/colors';
+import colors from '../../constants/colors';
 
-import MainButton from '../components/MainButton'
+import MainButton from '../../components/MainButton'
 
 /**
  * Login screen for existing users to login.
@@ -31,18 +31,17 @@ function LoginScreen(props) {
         }
     }, [token])
 
-    const loginCheck = () => {
+    {/*const loginCheck = () => {
         if (!token){
             setLoginFail(true)
         }else{
             //
         }
-    }
+    }*/}
 
     const loginUser = () => {
         dispatch(LogInUser(userName, passWord))
-        setTimeout(loginCheck, 4000);
-           
+        //setTimeout(loginCheck, 4000);
     }
 
 

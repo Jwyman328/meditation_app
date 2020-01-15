@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, Dimensions, FlatList } from 'react-native';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 
-import MainHeaderButton from '../components/HeaderButton';
-import CourseCard from '../components/CourseCard';
-import colors from '../constants/colors';
-import dummyData from '../Data/dummyData';
+import MainHeaderButton from '../../components/HeaderButton';
+import CourseCard from '../../components/CourseCard';
+import colors from '../../constants/colors';
+import dummyData from '../../Data/dummyData';
 
 import {useSelector} from 'react-redux';
 
@@ -21,7 +21,6 @@ function CoursesScreen(props){
     const filteredCourses = useSelector((state) => state.meditations.filteredMeditations)
     const isLoggedIn = useSelector(state => state.meditations.loggedIn)
 
-    
     /**
      * Navigate to the Full course screen of the selected course.
      * @param {string} title course title

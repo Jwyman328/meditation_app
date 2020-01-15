@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Dimensions, TextInput, Keyboard, TouchableWithoutFeedback, TouchableOpacity, Button } from 'react-native';
 import { Slider } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import colors from '../constants/colors';
+import colors from '../../constants/colors';
 import InputScrollView from 'react-native-input-scroll-view';
 
 

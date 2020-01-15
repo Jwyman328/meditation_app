@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import {ScrollView, StyleSheet, Text, View, Dimensions, TextInput, Keyboard, TouchableWithoutFeedback, TouchableOpacity, Button } from 'react-native';
 import { Slider } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import colors from '../constants/colors';
+import colors from '../../constants/colors';
 import InputScrollView from 'react-native-input-scroll-view';
 import { useDispatch, useSelector } from 'react-redux'
 
-import CreateJournal from '../store/actions/createJournal'
+import CreateJournal from '../../store/actions/createJournal'
 
 
 

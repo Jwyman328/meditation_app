@@ -2,10 +2,9 @@ import React from 'react'
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
-import colors from '../constants/colors'
-import MainButton from '../components/MainButton'
-
-
+import colors from '../../constants/colors'
+import MainButton from '../../components/MainButton'
+//import LogOutUser from '../../store/actions/logOut'
 
 
 function ProfileDataScreen(props) {

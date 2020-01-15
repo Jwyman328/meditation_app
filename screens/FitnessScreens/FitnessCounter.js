@@ -3,15 +3,15 @@ import React, {useState, useEffect} from 'react'
 import { Pedometer } from "expo-sensors";
 import { StyleSheet, Text, View, Button, TextInput, Dimensions, ScrollView } from "react-native";
 import ProgressCircle from 'react-native-progress-circle'
-import colors from '../constants/colors'
+import colors from '../../constants/colors'
 import { Ionicons } from '@expo/vector-icons'
 import { useDispatch, useSelector } from 'react-redux'
-import currentStepCount from '../store/actions/setCurrentStepCount'
+import currentStepCount from '../../store/actions/setCurrentStepCount'
 
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 
-import MainHeaderButtonLarge from '../components/HeaderButtonLarge';
-import App2 from '../screens/App2'
+import MainHeaderButtonLarge from '../../components/HeaderButtonLarge';
+import PedometerCircle from './PedometerCircle'
 
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.stepCircle}>
-            {dailyStepGoal ? <App2 card={true} dailyStepGoal={dailyStepGoal} /> : null}
+            {dailyStepGoal ? <PedometerCircle card={true} dailyStepGoal={dailyStepGoal} /> : null}
             </View>
         </View>
     )

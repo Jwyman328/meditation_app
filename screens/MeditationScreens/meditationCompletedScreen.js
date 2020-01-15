@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button, Dimensions, Image, ScrollView } from 'react-native';
-import audioBookPlaylist from '../Data/AudioBookPlaylist'
-import colors from '../constants/colors'
-import MainHeaderButton from '../components/HeaderButton'
+import audioBookPlaylist from '../../Data/AudioBookPlaylist'
+import colors from '../../constants/colors'
+import MainHeaderButton from '../../components/HeaderButton'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import { Ionicons } from '@expo/vector-icons'
 
-import imageUrls from '../images/inspirationalImages/image_urls'
+import imageUrls from '../../images/inspirationalImages/image_urls'
 
 /**
  * A screen showing the information of the completed meditation.

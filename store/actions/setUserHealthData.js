@@ -11,7 +11,6 @@ const SetUserHealthData = (healthDataType, healthDataValue, postData=false, newP
     return async (dispatch) => {
     dispatch({type: 'setUserHealthData', healthDataType:healthDataType , healthDataValue:healthDataValue})
     if (postData){
-        console.log(newPostData)
         dispatch(PostUserHealthData(newPostData, token))
     }else{
         // dont post data

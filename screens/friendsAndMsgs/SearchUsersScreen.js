@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, ImageBackground, Dimensions, FlatList, Image, TouchableOpacity } from 'react-native';
 
-import FetchAllCourses from '../store/actions/FetchAllCourses'
-import FetchAllUsers from '../store/actions/FetchAllUsers'
-import AddRemoveFriend from '../store/actions/addRemoveFriend'
-import FetchUserFriends from '../store/actions/FetchUserFriends'
-import SendFriendRequest from '../store/actions/sendFriendRequest'
+import FetchAllCourses from '../../store/actions/FetchAllCourses'
+import FetchAllUsers from '../../store/actions/FetchAllUsers'
+import AddRemoveFriend from '../../store/actions/addRemoveFriend'
+import FetchUserFriends from '../../store/actions/FetchUserFriends'
+import SendFriendRequest from '../../store/actions/sendFriendRequest'
 import { useDispatch, useSelector } from 'react-redux'
-import colors from '../constants/colors';
+import colors from '../../constants/colors';
 
 import { Ionicons } from '@expo/vector-icons'
 

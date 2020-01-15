@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button, TextInput, Dimensions, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux'
-import LogOutUser from '../store/actions/logOut'
-import MainButton from '../components/MainButton'
-import colors from '../constants/colors'
+import LogOutUser from '../../store/actions/logOut'
+import MainButton from '../../components/MainButton'
+import colors from '../../constants/colors'
 
-import changeDailyStepGoal from '../store/actions/changeDailyStepGoal'
+import changeDailyStepGoal from '../../store/actions/changeDailyStepGoal'
 
 
 
@@ -21,7 +21,6 @@ function SettingsScreen(props) {
 
     const handleChangeStepGoal = (value) => {
         setdailyGoalLocal(value)
-        console.log('change')
     }
 
     const handleSubmitChangeStepGoal = () => {
@@ -47,28 +46,13 @@ function SettingsScreen(props) {
     }, [isLoggedIn]): null
 
     const handleTouch = () => {
-        console.log('here')
         Keyboard.dismiss()
     }
 
     return (
 
         <View >
-            <TouchableWithoutFeedback onPress={() => handleTouch()}>
-                <View style={styles.box}>
-                    <Text>settings Page</Text>
-                </View>
-            </TouchableWithoutFeedback>
-            <View style={styles.boxContainer}>
-                {dailyStepGoal ? <TextInput
-                    style={styles.inputBox}
-                    onChangeText={value => handleChangeStepGoal(value)}
-                    required
-                    value={dailyGoalLocal.toString()} keyboardType='number-pad' autoCapitalize="none" /> : null}
-
-
-                <Button title='set Daily step goal' onPress={handleSubmitChangeStepGoal} />
-            </View>
+      
             <Button title='ProfileData' onPress={goToProfileDataScreen} />
 
         </View>

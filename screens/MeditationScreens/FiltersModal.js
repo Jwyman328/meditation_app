@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { Modal, View, Text, Switch, StyleSheet, ScrollView } from 'react-native'
-import colors from '../constants/colors'
+import colors from '../../constants/colors'
 
 import { useDispatch, useSelector } from 'react-redux'
-import FilterMeditations from '../store/actions/filterMeditations'
+import FilterMeditations from '../../store/actions/filterMeditations'
 
 function FilterScreen(props) {
 

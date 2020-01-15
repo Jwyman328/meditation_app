@@ -220,7 +220,6 @@ const MeditationsReducer = (state=initialState, action) => {
             const moodDataPastWeek = action.MoodData[0].moods_range[0]
             const moodDataPastMonth = action.MoodData[0].moods_range[1]
             const moodDataDates = action.MoodData[0].moods_range[2]   
-            console.log({moodPastWeek:moodDataPastWeek ,moodPastMonth:moodDataPastMonth, moodDates: moodDataDates}) 
             return{...state, moodPastWeek:moodDataPastWeek ,moodPastMonth:moodDataPastMonth, moodDates: moodDataDates}
         
         case 'setCurrentSteps':
@@ -233,7 +232,6 @@ const MeditationsReducer = (state=initialState, action) => {
             //duplicate old object
             const newUserHealthData = {...state.userHealthData }
             newUserHealthData[newHealthDataType] = newHealthDataValue
-            console.log(newUserHealthData)
             return {...state, userHealthData: newUserHealthData }
         
             case 'FetchProfileData':

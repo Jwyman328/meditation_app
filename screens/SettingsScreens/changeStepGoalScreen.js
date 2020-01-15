@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button, TextInput, Dimensions, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux'
-import LogOutUser from '../store/actions/logOut'
-import MainButton from '../components/MainButton'
-import colors from '../constants/colors'
+import LogOutUser from '../../store/actions/logOut'
+import MainButton from '../../components/MainButton'
+import colors from '../../constants/colors'
 
-import changeDailyStepGoal from '../store/actions/changeDailyStepGoal'
+import changeDailyStepGoal from '../../store/actions/changeDailyStepGoal'
 
 
 
@@ -22,7 +22,6 @@ function ChangeStepGoalScreen(props) {
 
     const handleChangeStepGoal = (value) => {
         setdailyGoalLocal(value)
-        console.log('change')
     }
 
     const handleSubmitChangeStepGoal = () => {
@@ -48,7 +47,6 @@ function ChangeStepGoalScreen(props) {
     }, [isLoggedIn]): null
 
     const handleTouch = () => {
-        console.log('here')
         Keyboard.dismiss()
     }
 

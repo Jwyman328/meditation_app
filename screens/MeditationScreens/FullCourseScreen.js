@@ -2,17 +2,17 @@ import React, { useEffect } from 'react'
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 
 import { FlatList } from 'react-native-gesture-handler';
-import audioBookPlaylist from '../Data/AudioBookPlaylist'
+import audioBookPlaylist from '../../Data/AudioBookPlaylist'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
-import MainHeaderButton from '../components/HeaderButton';
+import MainHeaderButton from '../../components/HeaderButton';
 
 import { Ionicons } from '@expo/vector-icons'
 
 import { useDispatch, useSelector } from 'react-redux'
-import addFavorite2 from '../store/actions/addFavorite'
-import FetchCourseData from '../store/actions/fetchCourseData'
+import addFavorite2 from '../../store/actions/addFavorite'
+import FetchCourseData from '../../store/actions/fetchCourseData'
 
-import colors from '../constants/colors'
+import colors from '../../constants/colors'
 /**
  * Display all available meditaion audios for the selected course.
  * 
@@ -148,7 +148,6 @@ FullCourseScreen.navigationOptions = (navData) => {
      * Add the course to the meditation Favorites.
      */
     const addFavorite = () => {
-        console.log(courseTitle)
         addCourseToFavorites()
     }
 

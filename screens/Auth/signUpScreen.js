@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react'
 
 import {AsyncStorage, ScrollView,Text, StyleSheet, View, KeyboardAvoidingView, TextInput, Button, Dimensions, ImageBackground} from 'react-native'
-import SignUpUser from '../store/actions/signUpUser'
+import SignUpUser from '../../store/actions/signUpUser'
 
 import {useDispatch, useSelector} from 'react-redux'
-import MainButton from '../components/MainButton'
-import colors from '../constants/colors';
+import MainButton from '../../components/MainButton'
+import colors from '../../constants/colors';
 
-import FetchMyFeelings from '../store/actions/FetchMyFeelings'
-import UpdateFeelings from '../store/actions/UpdateFeeling'
+import FetchMyFeelings from '../../store/actions/FetchMyFeelings'
+import UpdateFeelings from '../../store/actions/UpdateFeeling'
 
 
 

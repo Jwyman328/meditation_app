@@ -2,13 +2,14 @@ import React from 'react'
 import { StyleSheet, TouchableOpacity, View, Image, Text, ActivityIndicator, Dimensions } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { Audio } from 'expo-av'
-import audioBookPlaylist from './Data/AudioBookPlaylist'
+import audioBookPlaylist from '../../Data/AudioBookPlaylist'
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
-import colors from './constants/colors'
+import colors from '../../constants/colors'
 
 import {useSelector} from 'react-redux'
-import AudioProgressCircle from './components/AudioProgressCirclePlayer'
+import AudioProgressCircle from '../../components/AudioProgressCirclePlayer'
+
 
 
 

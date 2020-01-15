@@ -9,7 +9,6 @@ const CreateJournal = (date, text, mood, token) => {
             
             const data = { text: text, mood:mood, date : newDate }
             let journalData = JSON.stringify(data)
-            console.log(journalData)
             const response = await fetch(`http://intense-gorge-29567.herokuapp.com/Journal/all_user_entries`,{
                 method:'POST',body:journalData, headers:{ Authorization: `JWT ${token}`,'Content-Type': 'application/json'}})
             const responseData = await response.json()

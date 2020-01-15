@@ -3,17 +3,17 @@ import React, { useState, useEffect } from 'react'
 import { Pedometer } from "expo-sensors";
 import { StyleSheet, Text, View, Button, TextInput, Dimensions, ScrollView } from "react-native";
 import ProgressCircle from 'react-native-progress-circle'
-import colors from '../constants/colors'
+import colors from '../../constants/colors'
 import { Ionicons } from '@expo/vector-icons'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
-import MainHeaderButton from '../components/HeaderButton';
-import currentStepCount from '../store/actions/setCurrentStepCount'
+import MainHeaderButton from '../../components/HeaderButton';
+import currentStepCount from '../../store/actions/setCurrentStepCount'
 
 
-class App2 extends React.Component {
+class PedometerCircle extends React.Component {
     state = {
         isPedometerAvailable: "checking",
         pastStepCount: 0,
@@ -70,7 +70,6 @@ class App2 extends React.Component {
         this._subscription && this._subscription.remove();
         this._subscription = null;
     };
-
 
 
     showFitnessCard = () => {
@@ -156,7 +155,7 @@ class App2 extends React.Component {
     }
 }
 
-export default App2;
+export default PedometerCircle;
 
 
 const styles = StyleSheet.create({

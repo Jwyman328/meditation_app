@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, ImageBackground, Dimensions, FlatList, Image, TouchableOpacity } from 'react-native';
 
 
-import FetchPendingFriendRequests from '../store/actions/fetchPendingFriendRequests'
-import AcceptDenyFriendRequest from '../store/actions/acceptDenyFriendRequest'
+import FetchPendingFriendRequests from '../../store/actions/fetchPendingFriendRequests'
+import AcceptDenyFriendRequest from '../../store/actions/acceptDenyFriendRequest'
 
 
 import { useDispatch, useSelector } from 'react-redux'
-import colors from '../constants/colors';
+import colors from '../../constants/colors';
 import { Ionicons } from '@expo/vector-icons'
 
 /**

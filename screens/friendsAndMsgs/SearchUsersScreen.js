@@ -24,6 +24,10 @@ function SearchUsersScreen() {
     const token = useSelector((state) => state.AuthData.token)
     const allUsers = useSelector((state) => state.FriendsAndMsgs.allUsers)
     const friends = useSelector((state) => state.FriendsAndMsgs.friendsList)
+    // handle errors if no user data is found
+    const fetchUsersLoading = useSelector((state) => state.FriendsAndMsgs.fetchUsersLoading)
+    const fetchUsersError = useSelector((state) => state.FriendsAndMsgs.fetchUsersError)
+
 
 
     /**
@@ -45,9 +49,7 @@ function SearchUsersScreen() {
 
         }
 
-
-
-    }, [friends]) //[dispatch]
+    }, [friends, dispatch]) //[dispatch]
 
     const addFriend = (username) => {
         dispatch(SendFriendRequest(username, token))
@@ -99,11 +101,17 @@ function SearchUsersScreen() {
 
     return (
         <View styles={styles.container}>
-            <View style={styles.cardsContainer}>
-                <Text>All Users</Text>
-                {allUsers ? <FlatList numColumns={1} data={allUsers} keyExtractor={(item => item.username)} renderItem={(user) => createFriendCards(user)} /> : null}
-
-            </View>
+            {fetchUsersLoading ?
+                    <Text>Loading</Text> 
+                            :
+                    fetchUsersError?
+                    <Text> Could not Find user list data </Text>
+                            :
+                    <View style={styles.cardsContainer}>
+                    <Text>All Users</Text>
+                    {allUsers ? <FlatList numColumns={1} data={allUsers} keyExtractor={(item => item.username)} renderItem={(user) => createFriendCards(user)} /> : null}
+                </View>
+                }
         </View>
     )
 }

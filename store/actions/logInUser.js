@@ -1,7 +1,7 @@
 import React from 'react'
-import LoadFetch from '../actions/loadFetch'
-import FetchSuccess from '../actions/fetchSuccess'
-import FetchError from '../actions/fetchError'
+import LoadFetch from './fetchLoadErrorSucces/loadFetch'
+import FetchSuccess from './fetchLoadErrorSucces/fetchSuccess'
+import FetchError from './fetchLoadErrorSucces/fetchError'
 /**
  * Login an already existing user.
  * 
@@ -11,7 +11,7 @@ import FetchError from '../actions/fetchError'
  */
 const LogInUser = (userName, passWord) => {
     return async (dispatch) => {
-        dispatch(LoadFetch())
+        dispatch(LoadFetch('logInloadFetch'))
         const usernamePassword = { username: userName, password: passWord }
         let jsonUsername = JSON.stringify(usernamePassword)
         let loginResponse = await fetch('http://intense-gorge-29567.herokuapp.com/sign_in', {
@@ -22,15 +22,17 @@ const LogInUser = (userName, passWord) => {
             const token = jsonResponse.token
             if (token) {
                 console.log('token')
-                dispatch(FetchSuccess())
+                dispatch(FetchSuccess('logInfetchSuccess'))
                 dispatch({ type: 'signIn', username: userName, password: passWord, token: token })
             } else {
                 console.log('no token')
-                dispatch(FetchError())
+                dispatch(FetchError('logInfetchError'))
             }
-
-        }).catch(
-            dispatch(FetchError())
+        }).catch(async(response) =>
+            {
+                console.log('bad response')
+                dispatch(FetchError('logInfetchError'))
+            }
         )
         
         

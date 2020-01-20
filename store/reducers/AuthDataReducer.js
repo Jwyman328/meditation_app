@@ -8,10 +8,9 @@ const initialState = {
     password: null, 
     token: null, 
     loggedIn: false,
-    fetchError: false,
-    fetchLoading: false,
+    logInfetchError: false,
+    logInfetchLoading: false,
     
-
 }
 
 const AuthDataReducer = (state=initialState, action) => {
@@ -32,14 +31,14 @@ const AuthDataReducer = (state=initialState, action) => {
                 password: null, 
                 token: null, 
                 loggedIn: false,}
-        case 'loadFetch':
-            return {...state, fetchLoading:true,fetchError:false}
+        case 'logInloadFetch':
+            return {...state, logInfetchLoading:true,logInfetchError:false}
         
-        case 'fetchError':
-            return {...state, fetchLoading: false, fetchError:true}
+        case 'logInfetchError':
+            return {...state, logInfetchLoading: false, logInfetchError:true}
         
-        case 'fetchSuccess':
-            return {...state, fetchLoading: false, fetchError:false}
+        case 'logInfetchSuccess':
+            return {...state, logInfetchLoading: false, logInfetchError:false}
 
     }
   

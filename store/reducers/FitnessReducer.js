@@ -3,11 +3,9 @@ import dummyData from '../../Data/dummyData'
 
 
 const initialState = {
-
-
     dailyStepGoal: 10000,
     currentStepCount: undefined,
-
+    
 
 }
 

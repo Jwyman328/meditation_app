@@ -3,11 +3,12 @@ import dummyData from '../../Data/dummyData'
 
 
 const initialState = {
-   
     friendsList: [],
     allUsers:[],
     pendingFriendRequests: [],
     singleMessages:undefined,
+    fetchUsersLoading: false,
+    fetchUsersError: false,
    
 }
 
@@ -39,7 +40,22 @@ const FriendsAndMsgsReducer = (state=initialState, action) => {
             return {...state,  friendsList: [],
                 allUsers:[],
                 pendingFriendRequests: [],
-                singleMessages:undefined,}
+                singleMessages:undefined,
+                fetchUsersLoading: false,
+                fetchUsersError: false,
+            }
+        case 'fetchUsersLoading':
+            return {
+                ...state, fetchUsersLoading:true, fetchUsersError:false,
+            }
+        case 'fetchUsersError':
+            return {
+                ...state, fetchUsersLoading:false, fetchUsersError:true,
+            }
+        case 'fetchUsersSuccess':
+            return{
+                ...state, fetchUsersLoading:false, fetchUsersError:false,
+            }
         
     }
   

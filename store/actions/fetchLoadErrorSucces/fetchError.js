@@ -1,9 +1,9 @@
 import react from 'react'
 
-function FetchError(){
+function FetchError(errorType){
     console.log('fetch error')
     return (dispatch) =>{
-        dispatch({type:'fetchError'})
+        dispatch({type:errorType})
     }
 } 
 

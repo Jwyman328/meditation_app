@@ -1,12 +1,23 @@
 import React from 'react'
+import LoadFetch from './fetchLoadErrorSucces/loadFetch'
+import FetchSuccess from './fetchLoadErrorSucces/fetchSuccess'
+import FetchError from './fetchLoadErrorSucces/fetchError'
 
-const FetchAllUsers = (token) => { //Original
-        return async (dispatch) => {
-            const response = await fetch(`http://intense-gorge-29567.herokuapp.com/all_users`,{
-            headers:{ Authorization: `JWT ${token}`,'Content-Type': 'application/json'}})
+const FetchAllUsers = (token) => {
+    return async (dispatch) => {
+        dispatch(LoadFetch('fetchUsersLoading'))
+        const response = await fetch(`http://intense-gorge-29567.herokuapp.com/all_users`, {
+            headers: { Authorization: `JWT ${token}`, 'Content-Type': 'application/json' }
+        }).then(async (response) => {
+            dispatch(FetchSuccess('fetchUsersSuccess'))
             const responseData = await response.json()
-            
-            dispatch({type: 'FetchAllUsers', allUsers:responseData})
-        }
+            dispatch({ type: 'FetchAllUsers', allUsers: responseData })
+        }).catch((response) => {
+            dispatch(FetchError('fetchUsersError'))
+        })
+
+
+
+    }
 }
 export default FetchAllUsers;

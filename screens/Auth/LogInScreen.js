@@ -22,8 +22,8 @@ function LoginScreen(props) {
 
     const token = useSelector((state) => state.AuthData.token)
     const username = useSelector((state) => state.AuthData.username)
-    const fetchLoading = useSelector((state) => state.AuthData.fetchLoading)
-    const fetchError = useSelector((state) => state.AuthData.fetchError)
+    const fetchLoading = useSelector((state) => state.AuthData.logInfetchLoading)
+    const fetchError = useSelector((state) => state.AuthData.logInfetchError)
 
     /**
      * Go to the app when the user has successfully recieved a token from signing in.

@@ -1,9 +1,9 @@
 import react from 'react'
 
-function LoadFetch(){
+function LoadFetch(loadType){
     console.log('loader')
     return (dispatch) =>{
-        dispatch({type:'loadFetch'})
+        dispatch({type:loadType})
     }
 } 
 

@@ -1,8 +1,8 @@
 import react from 'react'
 
-function FetchSuccess(){
+function FetchSuccess(successType){
     return (dispatch) =>{
-        dispatch({type:'fetchSuccess'})
+        dispatch({type:successType})
     }
 } 
 

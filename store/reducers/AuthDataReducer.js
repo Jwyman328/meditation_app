@@ -12,6 +12,9 @@ const initialState = {
     logInfetchLoading: false,
     signUpFetchError: false,
     signUpFetchLoading: false,
+    resetPasswordFetchError: false,
+    resetPasswordLoading: false,
+    resetPasswordEmailSent:false,
 
 }
 
@@ -38,6 +41,9 @@ const AuthDataReducer = (state = initialState, action) => {
                 logInfetchLoading: false,
                 signUpFetchError: false,
                 signUpFetchLoading: false,
+                resetPasswordFetchError: false,
+                resetPasswordLoading: false,
+                resetPasswordEmailSent:false,
 
             }
         case 'logInloadFetch':
@@ -57,6 +63,19 @@ const AuthDataReducer = (state = initialState, action) => {
 
         case 'signUpFetchSuccess':
             return { ...state, signUpFetchLoading: false, signUpFetchError: false }
+        
+        case 'resetPasswordFetchError':
+            return { ...state, resetPasswordLoading: false, resetPasswordFetchError: true }
+
+        case 'resetPasswordLoading':
+            return { ...state, resetPasswordLoading: true, resetPasswordFetchError: false }
+        
+        case 'resetPasswordSuccess':
+            return {...state, resetPasswordEmailSent:true, resetPasswordLoading: false, resetPasswordFetchError: false }
+        
+        case 'resetPasswordEmailSentToFalse':
+            return {...state, resetPasswordEmailSent:false,}
+            
 
     }
 

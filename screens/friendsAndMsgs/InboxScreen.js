@@ -19,6 +19,9 @@ function InboxScreen() {
 
     const dispatch = useDispatch()
     const pendingFriendRequests = useSelector((state) => state.FriendsAndMsgs.pendingFriendRequests)
+    const fetchPendingFriendRequestsLoading = useSelector((state) => state.FriendsAndMsgs.fetchPendingFriendRequestsLoading)
+    const fetchPendingFriendRequestsError = useSelector((state) => state.FriendsAndMsgs.fetchPendingFriendRequestsError)
+
     const username = useSelector((state) => state.AuthData.username)
     const token = useSelector((state) => state.AuthData.token)
 
@@ -58,11 +61,17 @@ function InboxScreen() {
 
     return (
         <View styles={{ flex: 1, }} >
-            <View style={styles.cardsContainer}>
-                <Text>My Friend requests</Text>
-                {pendingFriendRequests ? <FlatList numColumns={1} data={pendingFriendRequests} keyExtractor={(item => item.id )} renderItem={(friendRequest) => createSenderCards(friendRequest)} /> : null}
+            {fetchPendingFriendRequestsLoading? 
+                <Text>Friend Request Loading</Text>
+                            :
+                    fetchPendingFriendRequestsError?
+                        <Text>Could not get friend request</Text>
+                                :
+                            <View style={styles.cardsContainer}>
+                                <Text>My Friend requests</Text>
+                                    {pendingFriendRequests ? <FlatList numColumns={1} data={pendingFriendRequests} keyExtractor={(item => item.id )} renderItem={(friendRequest) => createSenderCards(friendRequest)} /> : null}
 
-            </View>
+            </View>}
         </View>
     )
 }

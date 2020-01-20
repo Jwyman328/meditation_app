@@ -11,6 +11,9 @@ const initialState = {
     fetchUsersError: false,
     fetchFriendsLoading: false,
     fetchFriendsError: false,
+    fetchPendingFriendRequestsLoading: false,
+    fetchPendingFriendRequestsError: false,
+
 
 }
 
@@ -48,6 +51,8 @@ const FriendsAndMsgsReducer = (state = initialState, action) => {
                 fetchUsersError: false,
                 fetchFriendsLoading: false,
                 fetchFriendsError: false,
+                fetchPendingFriendRequestsLoading: false,
+                fetchPendingFriendRequestsError: false,
             }
         case 'fetchUsersLoading':
             return {
@@ -73,6 +78,18 @@ const FriendsAndMsgsReducer = (state = initialState, action) => {
         case 'fetchFriendsSuccess':
             return {
                 ...state, fetchFriendsLoading: false, fetchFriendsError: false,
+            }
+        case 'fetchPendingFriendRequestsLoading':
+            return {
+                ...state, fetchPendingFriendRequestsLoading: true, fetchPendingFriendRequestsError: false,
+            }
+        case 'fetchPendingFriendRequestsError':
+            return {
+                ...state, fetchPendingFriendRequestsLoading: false, fetchPendingFriendRequestsError: true,
+            }
+        case 'fetchPendingFriendRequestsSuccess':
+            return {
+                ...state, fetchPendingFriendRequestsLoading: false, fetchPendingFriendRequestsError: false,
             }
 
     }

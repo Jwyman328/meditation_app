@@ -31,6 +31,8 @@ const initialState = {
         "stressed": 1,
         "excited": 1
     },
+    fetchFeelingsLoading: false,
+    fetchFeelingsError: false,
 
 }
 
@@ -115,7 +117,8 @@ const MeditationReducer = (state = initialState, action) => {
         case 'logOut':
             // reset state to origin al empty state 
 
-            return {...state,
+            return {
+                ...state,
                 meditations: [], //dummyData, 
                 filteredMeditations: [], //dummyData,
                 favoriteMeditations: [],
@@ -161,6 +164,26 @@ const MeditationReducer = (state = initialState, action) => {
 
             newestFeelings[myFeeling] = newRating
             return { ...state, myFeelings: newestFeelings }
+
+        case 'fetchFeelingsLoading':
+            return {
+                ...state,
+                fetchFeelingsLoading: true,
+                fetchFeelingsError: false,
+            }
+
+        case 'fetchFeelingsError':
+            return {
+                ...state,
+                fetchFeelingsLoading: false,
+                fetchFeelingsError: true,
+            }
+        case 'fetchFeelingsSuccess':
+            return {
+                ...state,
+                fetchFeelingsLoading: false,
+                fetchFeelingsError: false,
+            }
     }
     return state
 }

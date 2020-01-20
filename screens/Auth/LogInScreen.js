@@ -4,6 +4,7 @@ import { AsyncStorage, ScrollView, Text, StyleSheet, View, KeyboardAvoidingView,
 import LogInUser from '../../store/actions/logInUser'
 
 import { useDispatch, useSelector } from 'react-redux'
+
 import colors from '../../constants/colors';
 
 import MainButton from '../../components/MainButton'
@@ -21,6 +22,8 @@ function LoginScreen(props) {
 
     const token = useSelector((state) => state.AuthData.token)
     const username = useSelector((state) => state.AuthData.username)
+    const fetchLoading = useSelector((state) => state.AuthData.fetchLoading)
+    const fetchError = useSelector((state) => state.AuthData.fetchError)
 
     /**
      * Go to the app when the user has successfully recieved a token from signing in.
@@ -67,31 +70,30 @@ function LoginScreen(props) {
     return (
         <View styles={styles.imageContainer}>
 
-        <ImageBackground style={styles.backgroundImage}
+            <ImageBackground style={styles.backgroundImage}
                 source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0HIJBdanX2M1YcbL03E0dAm3CyFOLPQxvBor7fpIOaLqf85Owg&s' }}>
-        <ScrollView contentContainerStyle={styles.outerJustify} style={{ ...styles.outerContainer, }}>
-            <View style={{ ...styles.logCard }}>
-                <Text style={styles.title} > Meditation Login!</Text>
-                <View style={{ ...styles.formPair }}>
-                    <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
-                        onChangeText={text => onChangeUserName(text)} required errorMessage='enter a correct username'
-                        value={userName} placeholder='email' autoCapitalize="none" />
-                </View>
-                {loginFail? <Text style={styles.loginFail}> Username or password is invalid</Text>: null}
-                <View style={{ ...styles.formPair }}>
-                    <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
-                        onChangeText={text => onChangePassword(text)}
-                        value={passWord} required errorMessage='enter a correct password' secureTextEntry={true} placeholder='password' autoCapitalize="none" />
-                </View>
-                <View>
-                    <MainButton style={styles.button} title='Login' onPress={handlePress} />
-                    <MainButton style={styles.signUpButton} title='Switch to Sign Up' onPress={handleSignUp} />
-                    <Button title='Forgot Password?' onPress={handleForgotPassword} />
-                </View>
-            </View>
-        </ScrollView>
-        </ImageBackground>
-
+                <ScrollView contentContainerStyle={styles.outerJustify} style={{ ...styles.outerContainer, }}>
+                  {fetchLoading? <Text>loading</Text>:<View style={{ ...styles.logCard }}>
+                        <Text style={styles.title} > Meditation Login!</Text>
+                        <View style={{ ...styles.formPair }}>
+                            <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
+                                onChangeText={text => onChangeUserName(text)} required errorMessage='enter a correct username'
+                                value={userName} placeholder='email' autoCapitalize="none" />
+                        </View>
+                        {fetchError ? <Text style={styles.loginFail}> Username or password is invalid</Text> : null}
+                        <View style={{ ...styles.formPair }}>
+                            <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
+                                onChangeText={text => onChangePassword(text)}
+                                value={passWord} required errorMessage='enter a correct password' secureTextEntry={true} placeholder='password' autoCapitalize="none" />
+                        </View>
+                        <View>
+                            <MainButton style={styles.button} testID='loginUser' title='Login' onPress={handlePress} />
+                            <MainButton style={styles.signUpButton} title='Switch to Sign Up' onPress={handleSignUp} />
+                            <Button title='Forgot Password?' onPress={handleForgotPassword} />
+                        </View>
+                    </View>}
+                </ScrollView>
+            </ImageBackground>
         </View>
     )
 }

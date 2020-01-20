@@ -1,6 +1,7 @@
 import React from 'react'
-
-
+import LoadFetch from '../actions/loadFetch'
+import FetchSuccess from '../actions/fetchSuccess'
+import FetchError from '../actions/fetchError'
 /**
  * Login an already existing user.
  * 
@@ -10,21 +11,31 @@ import React from 'react'
  */
 const LogInUser = (userName, passWord) => {
     return async (dispatch) => {
-
+        dispatch(LoadFetch())
         const usernamePassword = { username: userName, password: passWord }
         let jsonUsername = JSON.stringify(usernamePassword)
         let loginResponse = await fetch('http://intense-gorge-29567.herokuapp.com/sign_in', {
             method: 'POST', //mode: 'cors'
             body: jsonUsername, headers: { 'Content-Type': 'application/json' }
-        });
+        }).then(async(loginResponse) => {
+            let jsonResponse = await loginResponse.json()
+            const token = jsonResponse.token
+            if (token) {
+                console.log('token')
+                dispatch(FetchSuccess())
+                dispatch({ type: 'signIn', username: userName, password: passWord, token: token })
+            } else {
+                console.log('no token')
+                dispatch(FetchError())
+            }
 
-        let jsonResponse = await loginResponse.json()
-        const token = jsonResponse.token
-        if (token) {
-            dispatch({ type: 'signIn', username: userName, password: passWord, token: token })
-        } else {
-            return 'error'
-        }
+        }).catch(
+            dispatch(FetchError())
+        )
+        
+        
+
+       
     }
 }
 

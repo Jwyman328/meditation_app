@@ -31,6 +31,7 @@ const initialState = {
         "stressed": 1,
         "excited": 1
     },
+
 }
 
 const MeditationReducer = (state = initialState, action) => {

@@ -99,7 +99,7 @@ function SignupScreen(props){
                         value={passWordTwo} required errorMessage='enter a correct password' secureTextEntry={true} placeholder='repeat password' autoCapitalize="none" />
                 </View>
                 <View>
-                    <MainButton style={styles.button} title='Sign up' onPress={handlePress} />
+                    <MainButton style={styles.button} testID='signUp' title='Sign up' onPress={handlePress} />
                     <MainButton style={styles.signUpButton} title='Switch to Login' onPress={handleLogin} />
                 </View>
 

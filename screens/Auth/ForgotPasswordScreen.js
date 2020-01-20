@@ -22,9 +22,9 @@ function ForgotPasswordScreen(props){
 
    
     const handlePress = () => {
+        onChangeUserName('')
         dispatch(ResetPassword(userName))
         props.navigation.navigate('Auth')
-        onChangeUserName('')
     }
 
     const handleLogin= () => {
@@ -45,7 +45,7 @@ function ForgotPasswordScreen(props){
                         value={userName} placeholder='email' autoCapitalize="none" />
                 </View>
                 <View>
-                    <MainButton style={styles.button} title='Reset' onPress={handlePress} />
+                    <MainButton style={styles.button} testID="resetButton" title='Reset' onPress={handlePress} />
                     <MainButton style={styles.signUpButton} title='Switch to Login' onPress={handleLogin} />
                 </View>
 

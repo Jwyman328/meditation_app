@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
-import {AsyncStorage, ScrollView,Text, StyleSheet, View, KeyboardAvoidingView, TextInput, Button, Dimensions, ImageBackground} from 'react-native'
+import { AsyncStorage, ScrollView, Text, StyleSheet, View, KeyboardAvoidingView, TextInput, Button, Dimensions, ImageBackground } from 'react-native'
 import SignUpUser from '../../store/actions/signUpUser'
 
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import MainButton from '../../components/MainButton'
 import colors from '../../constants/colors';
 
@@ -16,7 +16,7 @@ import UpdateFeelings from '../../store/actions/UpdateFeeling'
  * Screen for allowing an existing user to login with their username and password.
  * 
  */
-function SignupScreen(props){
+function SignupScreen(props) {
     const [firstName, onChangeUserFirstName] = React.useState('');
     const [lastName, onChangeUserLastName] = React.useState('');
     const [userName, onChangeUserName] = React.useState('');
@@ -25,9 +25,14 @@ function SignupScreen(props){
 
     const dispatch = useDispatch()
     const token = useSelector((state) => state.AuthData.token)
+    // handle bad singup http Requests 
+    const signUpFetchError = useSelector((state) => state.AuthData.signUpFetchError)
+    const signUpFetchLoading = useSelector((state) => state.AuthData.signUpFetchLoading)
+
+
 
     useEffect(() => {
-        if (token){
+        if (token) {
             // set up feelings 
             let feelings = {
                 "anxious": 1,
@@ -35,8 +40,8 @@ function SignupScreen(props){
                 "excited": 1,
                 "lost": 1,
                 "stressed": 1,
-              }
-            dispatch(UpdateFeelings( feelings, token))
+            }
+            dispatch(UpdateFeelings(feelings, token))
             props.navigation.navigate('introQuestionsStack')
             //props.navigation.navigate('Feelings',{firstTime:true})
             //props.navigation.navigate('Tabs')
@@ -44,13 +49,13 @@ function SignupScreen(props){
     }, [token])
 
     const loginUser = () => {
-        if (passWord === passWordTwo){
-            dispatch(SignUpUser(userName,passWord,firstName, lastName, )) 
-        }else{
+        if (passWord === passWordTwo) {
+            dispatch(SignUpUser(userName, passWord, firstName, lastName))
+        } else {
             console.log('passwords do not match')
         }
     }
-    
+
     const handlePress = () => {
         loginUser()
         onChangeUserName('')
@@ -60,7 +65,7 @@ function SignupScreen(props){
         onChangePasswordTwo('')
     }
 
-    const handleLogin= () => {
+    const handleLogin = () => {
         props.navigation.navigate('Auth')
 
     }
@@ -68,53 +73,57 @@ function SignupScreen(props){
     return (
         <View styles={styles.imageContainer}>
 
-        <ImageBackground style={styles.backgroundImage}
+            <ImageBackground style={styles.backgroundImage}
                 source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0HIJBdanX2M1YcbL03E0dAm3CyFOLPQxvBor7fpIOaLqf85Owg&s' }}>
-       <ScrollView contentContainerStyle={styles.outerJustify} style = {{...styles.outerContainer, ...styles.quickBorder}}>
-            <View style={{ ...styles.logCard }}>
-                <Text style={styles.title} > Meditation Sign Up !</Text>
-                <View style={{ ...styles.formPair }}>
-                    <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
-                        onChangeText={text => onChangeUserFirstName(text)} required errorMessage='enter a correct username'
-                        value={firstName} placeholder='First Name' autoCapitalize="none" />
-                </View>
-                <View style={{ ...styles.formPair }}>
-                    <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
-                        onChangeText={text => onChangeUserLastName(text)} required errorMessage='enter a correct username'
-                        value={lastName} placeholder='Last Name' autoCapitalize="none" />
-                </View>
-                <View style={{ ...styles.formPair }}>
-                    <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
-                        onChangeText={text => onChangeUserName(text)} required errorMessage='enter a correct username'
-                        value={userName} placeholder='email' autoCapitalize="none" />
-                </View>
-                <View style={{ ...styles.formPair }}>
-                    <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
-                        onChangeText={text => onChangePassword(text)}
-                        value={passWord} required errorMessage='enter a correct password' secureTextEntry={true} placeholder='password' autoCapitalize="none" />
-                </View>
-                <View style={{ ...styles.formPair }}>
-                    <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
-                        onChangeText={text => onChangePasswordTwo(text)}
-                        value={passWordTwo} required errorMessage='enter a correct password' secureTextEntry={true} placeholder='repeat password' autoCapitalize="none" />
-                </View>
-                <View>
-                    <MainButton style={styles.button} testID='signUp' title='Sign up' onPress={handlePress} />
-                    <MainButton style={styles.signUpButton} title='Switch to Login' onPress={handleLogin} />
-                </View>
+                <ScrollView contentContainerStyle={styles.outerJustify} style={{ ...styles.outerContainer, ...styles.quickBorder }}>
+                    {signUpFetchLoading ?
+                      <Text>Loading</Text> :
+                        <View style={{ ...styles.logCard }}>
+                            <Text style={styles.title} > Meditation Sign Up !</Text>
+                            {signUpFetchError? <Text>Please try a better username and password</Text>:null}
 
-            </View>
-       </ScrollView>
-</ImageBackground>
+                            <View style={{ ...styles.formPair }}>
+                                <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
+                                    onChangeText={text => onChangeUserFirstName(text)} required errorMessage='enter a correct username'
+                                    value={firstName} placeholder='First Name' autoCapitalize="none" />
+                            </View>
+                            <View style={{ ...styles.formPair }}>
+                                <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
+                                    onChangeText={text => onChangeUserLastName(text)} required errorMessage='enter a correct username'
+                                    value={lastName} placeholder='Last Name' autoCapitalize="none" />
+                            </View>
+                            <View style={{ ...styles.formPair }}>
+                                <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
+                                    onChangeText={text => onChangeUserName(text)} required errorMessage='enter a correct username'
+                                    value={userName} placeholder='email' autoCapitalize="none" />
+                            </View>
+                            <View style={{ ...styles.formPair }}>
+                                <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
+                                    onChangeText={text => onChangePassword(text)}
+                                    value={passWord} required errorMessage='enter a correct password' secureTextEntry={true} placeholder='password' autoCapitalize="none" />
+                            </View>
+                            <View style={{ ...styles.formPair }}>
+                                <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
+                                    onChangeText={text => onChangePasswordTwo(text)}
+                                    value={passWordTwo} required errorMessage='enter a correct password' secureTextEntry={true} placeholder='repeat password' autoCapitalize="none" />
+                            </View>
+                            <View>
+                                <MainButton style={styles.button} testID='signUp' title='Sign up' onPress={handlePress} />
+                                <MainButton style={styles.signUpButton} title='Switch to Login' onPress={handleLogin} />
+                            </View>
 
-</View>
+                        </View>}
+                </ScrollView>
+            </ImageBackground>
+
+        </View>
     )
 }
 
 export default SignupScreen;
 
 SignupScreen.navigationOptions = {
-    header:null,
+    header: null,
 }
 
 const styles = StyleSheet.create({
@@ -136,7 +145,7 @@ const styles = StyleSheet.create({
     outerJustify: {
         justifyContent: 'center',
         alignItems: 'center',
-        
+
     },
     formPair: {
         width: '90%',
@@ -148,7 +157,7 @@ const styles = StyleSheet.create({
     },
 
     formObj: {
-        height: Dimensions.get('window').height * .08, 
+        height: Dimensions.get('window').height * .08,
 
     },
     inputBox: {
@@ -165,33 +174,33 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     logCard: {
-        height:Dimensions.get('window').height * .75, 
+        height: Dimensions.get('window').height * .75,
         width: Dimensions.get('window').width * .85,
-        justifyContent:'center',
-        alignItems:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         borderStyle: 'solid',
         borderColor: 'black',
         borderWidth: 0,
         opacity: .75,
 
-        shadowColor:'black',
-        shadowOffset: {width: 5, height: 10 },
+        shadowColor: 'black',
+        shadowOffset: { width: 5, height: 10 },
         shadowOpacity: .75,
         shadowRadius: 2,
 
         marginTop: Dimensions.get('window').height * .10,
-        backgroundColor:colors.lightSecondary,
+        backgroundColor: colors.lightSecondary,
 
     },
-    button :{
+    button: {
         marginBottom: 25,
     },
     signUpButton: {
-        backgroundColor:colors.strongPrimary
+        backgroundColor: colors.strongPrimary
     },
-    title:{
-        fontSize:24,
-        fontFamily:'Helvetica-Oblique'
+    title: {
+        fontSize: 24,
+        fontFamily: 'Helvetica-Oblique'
     },
-    
+
 })

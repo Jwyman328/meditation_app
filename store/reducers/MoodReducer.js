@@ -4,6 +4,9 @@ const initialState = {
     moodPastWeek : undefined,
     moodPastMonth : undefined,
     moodDates : undefined,
+    fetchMoodDataLoading: false,
+    fetchMoodDataError:false,
+    
 
 }
 
@@ -20,9 +23,25 @@ const MoodReducer = (state=initialState, action) => {
             return { ...state,moodPastWeek : undefined,
                 moodPastMonth : undefined,
                 moodDates : undefined,
+                fetchMoodDataLoading: false,
+                fetchMoodDataError:false,
              }
+        case 'fetchMoodDataLoading':
+            return {    
+                fetchMoodDataLoading: true,
+                fetchMoodDataError:false,
+            }
+        case 'fetchMoodDataError':
+            return{
+                fetchMoodDataLoading: false,
+                fetchMoodDataError:true,
+            }
+        case 'fetchMoodDataSuccess':
+            return{
+                fetchMoodDataLoading: false,
+                fetchMoodDataError:false,
+            }
         }
-    
 
     return state
 }

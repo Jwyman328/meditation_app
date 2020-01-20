@@ -9,7 +9,6 @@ import colors from '../../constants/colors';
 
 import ResetPassword from '../../store/actions/ResetPassword'
 
-
 /**
  * Screen for allowing an existing user to reset password
  * 

@@ -23,6 +23,9 @@ function JournalProgressScreen(props) {
 
     const [dataChoosen, setdataChoosen] = useState(pastMonthData)
     const [displayDateText, setdisplayDateText] = useState(undefined)
+    // handle bad mood data request 
+    const fetchMoodDataError = useSelector((state) => state.Mood.fetchMoodDataError)
+
 
     const goToWeekly = () => {
         setdataChoosen(pastWeekData)
@@ -56,14 +59,18 @@ function JournalProgressScreen(props) {
         props.navigation.navigate('JournalScreen')
     }
     useEffect(() => {
-        setDateRangeStrings()
+        if(fetchMoodDataError){
+            //
+        }else{
+            setDateRangeStrings()
+        }
     },[])
     return (
 
         <View>
             <ImageBackground style={styles.backgroundImage}
                 source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOwHylvtxiVQMIhcXAJ1bWA0ImbomOGDsfeTNAFN6CViRxna7Q&s' }}>
-                <View>
+               {fetchMoodDataError?<View  style={styles.errorButton}><Text>error: no mood data</Text><Button color='red' title='Add Journal' onPress={addJournal} /></View>  :<View>
                     <View style={{marginLeft:100, marginTop:30}}>
                         <Text style={{fontSize:20, color:'white'}}>Mood Trends</Text>
                         {displayDateText?<Text style={{fontSize:20, color:'white'}}> {displayDateText} to {endDate}   </Text>: null}
@@ -110,8 +117,10 @@ function JournalProgressScreen(props) {
                     /> : null}
                     <Button title='weekly' onPress={goToWeekly} />
                     <Button title='monthly' onPress={goToMonthly} />
-                    <Button title='Add Journal' onPress={addJournal} />
-                </View>
+                    <Button color='blue' title='Add Journal' onPress={addJournal} />
+                </View>}
+
+
             </ImageBackground>
         </View>
 
@@ -128,5 +137,13 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height,
         resizeMode: 'contain',
     },
+    errorButton: {
+        width: Dimensions.get('window').width * .5 ,
+        height: Dimensions.get('window').height * .5,
+        borderColor:'black',
+        borderWidth:2,
+        marginLeft:Dimensions.get('window').width * .25,
+        
+    }
 
 })

@@ -29,6 +29,9 @@ function CreateMessageScreen(props) {
     const username = useSelector((state) => state.AuthData.username)
 
     messages = useSelector((state) => state.FriendsAndMsgs.singleMessages)
+    //Handle loading and error for fetching messages 
+    const fetchMessagesLoading = useSelector((state) => state.FriendsAndMsgs.fetchSingleMessagesLoading)
+    const fetchMessagesError = useSelector((state) => state.FriendsAndMsgs.fetchSingleMessagesError)
 
     const reciever_username = props.navigation.getParam('sendToUsername')
 
@@ -48,8 +51,8 @@ function CreateMessageScreen(props) {
         // create a message here 
         const allMsgs = messages.map((message) => {
             return (
-                <View key={message.id} style={message.sender_username === username?styles.myMessage: styles.friendMessage}>
-                    <Text style={message.sender_username === username? styles.myMessageText: styles.friendMessageText}>{message.msg}</Text>
+                <View key={message.id} style={message.sender_username === username ? styles.myMessage : styles.friendMessage}>
+                    <Text style={message.sender_username === username ? styles.myMessageText : styles.friendMessageText}>{message.msg}</Text>
                     <Text>{message.sender_username}</Text>
                 </View>
             )
@@ -60,7 +63,7 @@ function CreateMessageScreen(props) {
             </View>
 
         )
-}
+    }
 
     const handleKeyboard = () => {
         setKeyboardVisible(true)
@@ -69,38 +72,47 @@ function CreateMessageScreen(props) {
 
         <View>
             <TouchableWithoutFeedback onPress={removeKeyboard}>
-                <ScrollView>
-                <View styles={styles.screenContainer}>
+                {fetchMessagesLoading ?
+                    <Text>Messages Loading</Text>
+                    :
+                    fetchMessagesError ?
+                        <Text>
+                            Error Loading Messages
+                            </Text>
+                        :
 
-                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <ScrollView>
+                            <View styles={styles.screenContainer}>
 
-                        <View style={keyboardVisible ? styles.msgContainerModified : styles.msgContainer}>
-                            {messages ?
-                                <ScrollView>
-                                    <Text>Messages here </Text>
-                                    {msgData()}
-                                </ScrollView>
+                                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
 
-                                : null}
-                        </View>
-                    </View>
+                                    <View style={keyboardVisible ? styles.msgContainerModified : styles.msgContainer}>
+                                        {messages ?
+                                            <ScrollView>
+                                                <Text>Messages here </Text>
+                                                {msgData()}
+                                            </ScrollView>
 
-                    <TouchableOpacity onPress={handleKeyboard}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                            <InputScrollView>
-                                <TextInput
-                                    onFocus={handleKeyboard}
-                                    multiline={true}
-                                    style={styles.TextInput}
-                                    value={value} onChangeText={text => handleChange(text)} />
-                            </InputScrollView>
-                            <Button title='submit' onPress={sendMessage} />
+                                            : null}
+                                    </View>
+                                </View>
 
-                        </View>
-                    </TouchableOpacity>
+                                <TouchableOpacity onPress={handleKeyboard}>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                                        <InputScrollView>
+                                            <TextInput
+                                                onFocus={handleKeyboard}
+                                                multiline={true}
+                                                style={styles.TextInput}
+                                                value={value} onChangeText={text => handleChange(text)} />
+                                        </InputScrollView>
+                                        <Button title='submit' onPress={sendMessage} />
 
-                </View>
-                </ScrollView>
+                                    </View>
+                                </TouchableOpacity>
+
+                            </View>
+                        </ScrollView>}
 
             </TouchableWithoutFeedback>
 
@@ -118,27 +130,27 @@ CreateMessageScreen.navigationOptions = (navData) => {
     }
 }
 const styles = StyleSheet.create({
-    myMessage:{
-        marginLeft:20,
+    myMessage: {
+        marginLeft: 20,
         marginBottom: 10,
-        borderStyle:'solid',
-        borderWidth:1,
+        borderStyle: 'solid',
+        borderWidth: 1,
         width: 100,
-        backgroundColor:colors.base,
+        backgroundColor: colors.base,
     },
-    myMessageText:{
-        color:'green',
+    myMessageText: {
+        color: 'green',
     },
     friendMessage: {
-        marginLeft:200,
+        marginLeft: 200,
         marginBottom: 10,
-        borderStyle:'solid',
-        borderWidth:1,
+        borderStyle: 'solid',
+        borderWidth: 1,
         width: 100,
-        backgroundColor:colors.darkStrongPrimary,
+        backgroundColor: colors.darkStrongPrimary,
     },
-    friendMessageText:{
-        color:'white',
+    friendMessageText: {
+        color: 'white',
     },
     msgContainer: {
         height: Dimensions.get('window').height * .5,

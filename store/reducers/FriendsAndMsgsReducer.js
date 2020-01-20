@@ -53,6 +53,11 @@ const FriendsAndMsgsReducer = (state = initialState, action) => {
                 fetchFriendsError: false,
                 fetchPendingFriendRequestsLoading: false,
                 fetchPendingFriendRequestsError: false,
+                fetchSingleMessagesLoading: false,
+                fetchSingleMessagesError: false,
+                fetchPendingFriendRequestsLoading: false,
+                fetchPendingFriendRequestsError: false,
+
             }
         case 'fetchUsersLoading':
             return {
@@ -90,6 +95,18 @@ const FriendsAndMsgsReducer = (state = initialState, action) => {
         case 'fetchPendingFriendRequestsSuccess':
             return {
                 ...state, fetchPendingFriendRequestsLoading: false, fetchPendingFriendRequestsError: false,
+            }
+        case 'fetchSingleMessagesLoading':
+            return {
+                ...state, fetchSingleMessagesLoading: true, fetchSingleMessagesError: false,
+            }
+        case 'fetchSingleMessagesError':
+            return {
+                ...state, fetchSingleMessagesLoading: false, fetchSingleMessagesError: true,
+            }
+        case 'fetchSingleMessagesSuccess':
+            return {
+                ...state, fetchSingleMessagesLoading: false, fetchSingleMessagesError: false,
             }
 
     }

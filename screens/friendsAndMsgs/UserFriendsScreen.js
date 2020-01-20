@@ -20,6 +20,9 @@ function UserFriendsScreen(props) {
     const username = useSelector((state) => state.AuthData.username)
     const token = useSelector((state) => state.AuthData.token)
     const friends = useSelector((state) => state.FriendsAndMsgs.friendsList)
+    //handle user friends error 
+    const fetchFriendsLoading = useSelector((state) => state.FriendsAndMsgs.fetchFriendsLoading)
+    const fetchFriendsError = useSelector((state) => state.FriendsAndMsgs.fetchFriendsError)
 
     /**
      * Fetch all meditations and all favorited meditations for the user.
@@ -54,11 +57,16 @@ function UserFriendsScreen(props) {
 
     return (
         <View styles={styles.container}>
-            <View style={styles.cardsContainer}>
-                <Text>My Friends</Text>
-                {friends ? <FlatList numColumns={1} data={friends} keyExtractor={(item => item.username)} renderItem={(friend) => createFriendCards(friend)} /> : null}
-
-            </View>
+            {fetchFriendsLoading?
+                <Text>Friends loading</Text>
+                        :
+                        fetchFriendsError?
+                        <Text>Could not load friends</Text>
+                                :
+                            <View style={styles.cardsContainer}>
+                                 <Text>My Friends</Text>
+                                         {friends ? <FlatList numColumns={1} data={friends} keyExtractor={(item => item.username)} renderItem={(friend) => createFriendCards(friend)} /> : null}
+            </View>}
         </View>
     )
 }

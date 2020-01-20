@@ -15,9 +15,6 @@ const FetchAllUsers = (token) => {
         }).catch((response) => {
             dispatch(FetchError('fetchUsersError'))
         })
-
-
-
     }
 }
 export default FetchAllUsers;

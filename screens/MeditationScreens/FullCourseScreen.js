@@ -25,9 +25,9 @@ function FullCourseScreen(props) {
     const data = props.navigation.getParam('courseData')
 
     const courseId = data.courseId
-    const courseData = useSelector((state)=> state.meditation.courseData)
-    const fetchCourseDataLoding = useSelector((state)=> state.meditation.fetchCourseDataLoading)
-    const fetchCourseDataError = useSelector((state)=> state.meditation.fetchCourseDataError)
+    const courseData = useSelector((state) => state.meditation.courseData)
+    const fetchCourseDataLoding = useSelector((state) => state.meditation.fetchCourseDataLoading)
+    const fetchCourseDataError = useSelector((state) => state.meditation.fetchCourseDataError)
     const dispatch = useDispatch()
     const token = useSelector(state => state.AuthData.token)
 
@@ -53,8 +53,10 @@ function FullCourseScreen(props) {
         if (data && !fetchCourseDataLoding && !fetchCourseDataError) {
             const favoriteMeditationsIdArray = favoriteMeditations.map((item) => item.id)
             dispatch(FetchCourseData(data.courseId))
-            props.navigation.setParams({ addCourseToFavorites: addCourseToFavorites, 
-                favoriteMeditations: favoriteMeditationsIdArray, courseId: courseId, courseTitle: data.title })
+            props.navigation.setParams({
+                addCourseToFavorites: addCourseToFavorites,
+                favoriteMeditations: favoriteMeditationsIdArray, courseId: courseId, courseTitle: data.title
+            })
         } else {
             //
         }
@@ -84,12 +86,13 @@ function FullCourseScreen(props) {
             let minutesCheck10 = minutes < 10 ? `${minutes}` : minutes
             let secondsCheck10 = seconds < 10 ? `0${seconds}` : seconds
             return `${minutesCheck10}:${secondsCheck10}`
-          } else {
+        } else {
             // if you hacent reached a minue yet just display the seconds
             let secondsCheck10 = secs < 10 ? `0${secs}` : secs
             return `00:${secondsCheck10}`
 
-        }}
+        }
+    }
 
     /**
      * Create a display card for each meditation audio in the course.
@@ -110,8 +113,8 @@ function FullCourseScreen(props) {
                     <View style={styles.cardText}>
                         <Text style={{ color: 'white', fontSize: 20, }}>{orderNumber}</Text>
                     </View>
-                    <Text style={{ fontFamily:'Helvetica-LightOblique', color: 'white', fontSize: 20 }}>{title}</Text>
-                    <Text style={{ color:'white' , fontSize: 20 }}>{time}</Text>
+                    <Text style={{ fontFamily: 'Helvetica-LightOblique', color: 'white', fontSize: 20 }}>{title}</Text>
+                    <Text style={{ color: 'white', fontSize: 20 }}>{time}</Text>
                     <View style={{ marginRight: 4 }}>
                         <Ionicons size={40} onPress={() => goToMeditation(item)} name='ios-headset' title='play' />
                     </View>
@@ -120,17 +123,20 @@ function FullCourseScreen(props) {
     }
 
     return (
-        courseData?
-        <View style={{ flex: 1 }} >
-            <ImageBackground style={styles.backgroundImageStyle} source={{ uri: data.image_uri }}>
-                <View style={styles.textContainer}>
-                    <Text style={styles.title}>{data.title}</Text>
-                </View>
-                <View style={styles.meditionContainer}>
-                    <FlatList keyExtractor={(item) => item.title.toString() } contentContainerStyle={{ alignItems: 'center' }} data={courseData} renderItem={({ item }) => createMeditationCard(item)} />
-                </View>
-            </ImageBackground>
-        </View>: null
+        courseData ?
+            <View style={{ flex: 1 }} >
+                <ImageBackground style={styles.backgroundImageStyle} source={{ uri: data.image_uri }}>
+                    {fetchCourseDataLoding ? <Text> Meditation Course Data loading </Text> :
+                        fetchCourseDataError ? <Text>Error: could not find data</Text> : <View>
+                            <View style={styles.textContainer}>
+                                <Text style={styles.title}>{data.title}</Text>
+                            </View>
+                            <View style={styles.meditionContainer}>
+                                <FlatList keyExtractor={(item) => item.title.toString()} contentContainerStyle={{ alignItems: 'center' }} data={courseData} renderItem={({ item }) => createMeditationCard(item)} />
+                            </View>
+                        </View>}
+                </ImageBackground>
+            </View> : null
     )
 }
 
@@ -176,16 +182,17 @@ FullCourseScreen.navigationOptions = (navData) => {
         }
     }
     return (
-        {   headerTitle:courseTitle ,
+        {
+            headerTitle: courseTitle,
             headerTintColor: colors.primary,
-            headerTitleStyle:{
-                fontFamily:'Helvetica-Oblique',
+            headerTitleStyle: {
+                fontFamily: 'Helvetica-Oblique',
                 fontSize: 24,
             },
             headerRight:
                 <ScrollView style={styles.headerRight} horizontal={true}>
                     <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
-                        <Item size={25}  title='filter' color={isInfavorites()} iconName={getHeartIcon()} onPress={addFavorite} />
+                        <Item size={25} title='filter' color={isInfavorites()} iconName={getHeartIcon()} onPress={addFavorite} />
                     </HeaderButtons>
                 </ScrollView>,
         }
@@ -193,37 +200,37 @@ FullCourseScreen.navigationOptions = (navData) => {
 }
 
 const styles = StyleSheet.create({
-    meditionContainer:{
-         flex: 1,  
-         justifyContent: 'center', 
-         alignItems: 'center' 
-    },
-    title:{ 
-        textAlign: 'center', 
-        color: 'white', 
-        fontSize: 30 
-    },
-    textContainer:{
-         justifyContent: 'center', 
-         alignItems: 'center', 
-         flex: .2 
-    },
-    backgroundImageStyle:{
+    meditionContainer: {
+        flex: 1,
         justifyContent: 'center',
-         alignItems: 'center', 
-         flex: 1 
+        alignItems: 'center'
     },
-    cardText:{
-        marginLeft:Dimensions.get('window').width * .02, 
+    title: {
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 30
+    },
+    textContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: .2
+    },
+    backgroundImageStyle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1
+    },
+    cardText: {
+        marginLeft: Dimensions.get('window').width * .02,
         width: Dimensions.get('window').width * .1,//40 ,
-        height:'55%' ,
-        borderWidth:2, 
-        borderColor:colors.darkStrongPrimary,
-        justifyContent:'center', 
-        alignItems:'center', 
-        borderStyle:'solid', 
-        borderRadius:Dimensions.get('window').width * .8, 
-        backgroundColor:colors.primary
+        height: '55%',
+        borderWidth: 2,
+        borderColor: colors.darkStrongPrimary,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderStyle: 'solid',
+        borderRadius: Dimensions.get('window').width * .8,
+        backgroundColor: colors.primary
     },
     meditationcard: {
         flexDirection: 'row',
@@ -238,7 +245,7 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width * .9,
         marginTop: Dimensions.get('window').height * .01,
     },
-    headerRight:{ 
-        marginTop: Dimensions.get('window').height * .02 
+    headerRight: {
+        marginTop: Dimensions.get('window').height * .02
     }
 })

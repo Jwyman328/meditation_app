@@ -5,7 +5,9 @@ import dummyData from '../../Data/dummyData'
 const initialState = {
     dailyStepGoal: 10000,
     currentStepCount: undefined,
-    
+    fetchDailyStepsLoading: false,
+    fetchDailyStepsError: false,
+
 
 }
 
@@ -16,9 +18,12 @@ const FitnessReducer = (state = initialState, action) => {
         case 'logOut':
             // reset state to origin al empty state 
 
-            return {...state,
+            return {
+                ...state,
                 dailyStepGoal: 10000,
                 currentStepCount: undefined,
+                fetchDailyStepsLoading: false,
+                fetchDailyStepsError: false,
             }
 
         case 'FetchDailyStepGoal':
@@ -32,6 +37,29 @@ const FitnessReducer = (state = initialState, action) => {
         case 'setCurrentSteps':
             const newCurrentStepCount = action.currentSteps
             return { ...state, currentStepCount: newCurrentStepCount }
+
+        case 'fetchDailyStepsLoading':
+            return {
+                ...state,
+                fetchDailyStepsLoading: true,
+                fetchDailyStepsError: false
+            }
+
+        case 'fetchDailyStepsError':
+            return {
+                ...state,
+                fetchDailyStepsLoading: false,
+                fetchDailyStepsError: true
+            }
+        case 'fetchDailyStepsSuccess':
+            return {
+                ...state,
+                fetchDailyStepsLoading: false,
+                fetchDailyStepsError: false
+            }
+
+
+
 
     }
 

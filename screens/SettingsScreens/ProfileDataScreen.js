@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
@@ -20,6 +20,9 @@ function ProfileDataScreen(props) {
 
     const generalUserData = useSelector((state) => state.ProfileData.generalUserData)
     let dailyStepGoal = useSelector((state) => state.Fitness.dailyStepGoal)
+    let fetchDailyStepsLoading = useSelector((state) => state.Fitness.fetchDailyStepsLoading)
+    let fetchDailyStepsError = useSelector((state) => state.Fitness.fetchDailyStepsError)
+
 
     const firstName = generalUserData.first_name
     const lastName = generalUserData.last_name
@@ -57,7 +60,7 @@ function ProfileDataScreen(props) {
     }, [isLoggedIn])
 
     return (
-        isLoggedIn?<View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        isLoggedIn ? <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <View style={styles.titleContainer}>
                 <Text style={styles.TitleText}>Profile Data</Text>
             </View>
@@ -116,19 +119,22 @@ function ProfileDataScreen(props) {
                 <Text style={styles.TitleText}>Goals</Text>
             </View>
             <TouchableOpacity onPress={changeStepGoal}>
-                <View style={styles.dataContainer}>
-                    <Text style={styles.textData}>Daily Steps</Text>
-                    <Text style={styles.textData}>{dailyStepGoal}</Text>
-                    <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
-                </View>
+                {fetchDailyStepsLoading ? <Text>Loading step data</Text> :
+
+                    fetchDailyStepsError ? <Text>Error getting daily steps data</Text> :
+                        <View style={styles.dataContainer}>
+                            <Text style={styles.textData}>Daily Steps</Text>
+                            <Text style={styles.textData}>{dailyStepGoal}</Text>
+                            <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
+                        </View>}
             </TouchableOpacity>
 
             <View style={styles.logoutButtonContainer}>
-            <MainButton onPress={logOutUser} title='logout' />
+                <MainButton onPress={logOutUser} title='logout' />
             </View>
 
 
-        </View>:null
+        </View> : null
     )
 }
 
@@ -157,7 +163,7 @@ const styles = StyleSheet.create({
         marginVertical: Dimensions.get('window').height * .03,
     },
     logoutButtonContainer: {
-        marginTop:Dimensions.get('window').height * .05
+        marginTop: Dimensions.get('window').height * .05
     }
 
 })

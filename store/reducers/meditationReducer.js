@@ -35,6 +35,8 @@ const initialState = {
     fetchFeelingsError: false,
     fetchCoursesLoading: false,
     fetchCoursesError: false,
+    fetchCourseDataLoading:false,
+    fetchCourseDataError:false,
 
 }
 
@@ -152,6 +154,8 @@ const MeditationReducer = (state = initialState, action) => {
                 fetchFeelingsError: false,
                 fetchCoursesLoading: false,
                 fetchCoursesError: false,
+                fetchCourseDataLoading:false,
+                fetchCourseDataError:false,
 
             }
 
@@ -208,6 +212,24 @@ const MeditationReducer = (state = initialState, action) => {
                 ...state,
                 fetchCoursesLoading: false,
                 fetchCoursesError: false,
+            }
+            case 'fetchCourseDataLoading':
+            return {
+                ...state,
+                fetchCourseDataLoading: true,
+                fetchCourseDataError: false,
+            }
+        case 'fetchCourseDataError':
+            return {
+                ...state,
+                fetchCourseDataLoading: false,
+                fetchCourseDataError: true,
+            }
+        case 'fetchCourseDataSuccess':
+            return {
+                ...state,
+                fetchCourseDataLoading: false,
+                fetchCourseDataError: false,
             }
 
 

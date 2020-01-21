@@ -26,6 +26,8 @@ function FullCourseScreen(props) {
 
     const courseId = data.courseId
     const courseData = useSelector((state)=> state.meditation.courseData)
+    const fetchCourseDataLoding = useSelector((state)=> state.meditation.fetchCourseDataLoading)
+    const fetchCourseDataError = useSelector((state)=> state.meditation.fetchCourseDataError)
     const dispatch = useDispatch()
     const token = useSelector(state => state.AuthData.token)
 
@@ -48,7 +50,7 @@ function FullCourseScreen(props) {
      * 
      */
     useEffect(() => {
-        if (data) {
+        if (data && !fetchCourseDataLoding && !fetchCourseDataError) {
             const favoriteMeditationsIdArray = favoriteMeditations.map((item) => item.id)
             dispatch(FetchCourseData(data.courseId))
             props.navigation.setParams({ addCourseToFavorites: addCourseToFavorites, 

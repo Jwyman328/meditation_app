@@ -6,7 +6,6 @@ import FetchError from './fetchLoadErrorSucces/fetchError'
  * Fetch All meditations
  */
 
-
 const FetchAllCourses = () => {
     return async (dispatch) => {
         dispatch(LoadFetch('fetchCoursesLoading'))

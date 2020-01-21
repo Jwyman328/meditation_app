@@ -10,13 +10,13 @@ import LogOutUser from '../../store/actions/logOut'
 function ProfileDataScreen(props) {
 
     const healthData = useSelector((state) => state.ProfileData.userHealthData)
-    const weight = healthData.weight
-    const heightFeet = healthData.height.feet
-    const heightInch = healthData.height.inch
+    const weight = healthData.weight ? healthData.weight : null
+    const heightFeet = healthData.height ? healthData.height.feet : null
+    const heightInch = healthData.height ? healthData.height.inch : null
 
-    const DOBMonth = healthData.DOB.month
-    const DOBYear = healthData.DOB.year
-    const gender = healthData.gender
+    const DOBMonth = healthData.DOB ? healthData.DOB.month : null
+    const DOBYear = healthData.DOB ? healthData.DOB.year : null
+    const gender = healthData ? healthData.gender : null
 
     const generalUserData = useSelector((state) => state.ProfileData.generalUserData)
     let dailyStepGoal = useSelector((state) => state.Fitness.dailyStepGoal)
@@ -26,6 +26,10 @@ function ProfileDataScreen(props) {
 
     const firstName = generalUserData.first_name
     const lastName = generalUserData.last_name
+
+    let fetchUserDataError = useSelector((state) => state.ProfileData.fetchUserDataError)
+    let fetchUserDataLoading = useSelector((state) => state.ProfileData.fetchUserDataLoading)
+
 
     const isLoggedIn = useSelector(state => state.AuthData.loggedIn)
     const token = useSelector(state => state.AuthData.token)
@@ -54,87 +58,91 @@ function ProfileDataScreen(props) {
     useEffect(() => {
         if (isLoggedIn) {
             //
+            console.log(fetchUserDataError,' error in here ')
         } else {
             props.navigation.navigate('Auth')
         }
     }, [isLoggedIn])
 
     return (
-        isLoggedIn ? <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-            <View style={styles.titleContainer}>
-                <Text style={styles.TitleText}>Profile Data</Text>
-            </View>
-            <TouchableOpacity >
-                <View style={styles.dataContainer}>
-                    <Text style={styles.textData}>FirstName</Text>
-                    <Text style={styles.textData}>{firstName}</Text>
-                    <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
+        isLoggedIn ?
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                {fetchUserDataLoading ? <Text>Data loading</Text> : fetchUserDataError ? <Text>Error loading Data</Text> :
+                    <View>
+                        <View style={styles.titleContainer}>
+                            <Text style={styles.TitleText}>Profile Data</Text>
+                        </View>
+                        <TouchableOpacity >
+                            <View style={styles.dataContainer}>
+                                <Text style={styles.textData}>FirstName</Text>
+                                <Text style={styles.textData}>{firstName}</Text>
+                                <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
 
-                </View>
-            </TouchableOpacity>
-
-
-            <TouchableOpacity >
-                <View style={styles.dataContainer}>
-                    <Text style={styles.textData}>Last Name</Text>
-                    <Text style={styles.textData}>{lastName}</Text>
-                    <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
-
-                </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={changeWeight}>
-                <View style={styles.dataContainer}>
-                    <Text style={styles.textData}>Weight</Text>
-                    <Text style={styles.textData}>{weight}lbs</Text>
-                    <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
-                </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={changeHeight}>
-                <View style={styles.dataContainer}>
-                    <Text style={styles.textData}>Height</Text>
-                    <Text style={styles.textData}>{heightFeet}ft {heightInch}in </Text>
-                    <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
-                </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={changeDOB}>
-                <View style={styles.dataContainer}>
-                    <Text style={styles.textData}>D.O.B</Text>
-                    <Text style={styles.textData}>{DOBMonth}/{DOBYear}</Text>
-                    <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
-                </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={changeGender}>
-                <View style={styles.dataContainer}>
-                    <Text style={styles.textData}>Sex</Text>
-                    <Text style={styles.textData}>{gender}</Text>
-                    <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
-                </View>
-            </TouchableOpacity>
-
-            <View style={styles.titleContainer}>
-                <Text style={styles.TitleText}>Goals</Text>
-            </View>
-            <TouchableOpacity onPress={changeStepGoal}>
-                {fetchDailyStepsLoading ? <Text>Loading step data</Text> :
-
-                    fetchDailyStepsError ? <Text>Error getting daily steps data</Text> :
-                        <View style={styles.dataContainer}>
-                            <Text style={styles.textData}>Daily Steps</Text>
-                            <Text style={styles.textData}>{dailyStepGoal}</Text>
-                            <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
-                        </View>}
-            </TouchableOpacity>
-
-            <View style={styles.logoutButtonContainer}>
-                <MainButton onPress={logOutUser} title='logout' />
-            </View>
+                            </View>
+                        </TouchableOpacity>
 
 
-        </View> : null
+                        <TouchableOpacity >
+                            <View style={styles.dataContainer}>
+                                <Text style={styles.textData}>Last Name</Text>
+                                <Text style={styles.textData}>{lastName}</Text>
+                                <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
+
+                            </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={changeWeight}>
+                            <View style={styles.dataContainer}>
+                                <Text style={styles.textData}>Weight</Text>
+                                <Text style={styles.textData}>{weight}lbs</Text>
+                                <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
+                            </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={changeHeight}>
+                            <View style={styles.dataContainer}>
+                                <Text style={styles.textData}>Height</Text>
+                                <Text style={styles.textData}>{heightFeet}ft {heightInch}in </Text>
+                                <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
+                            </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={changeDOB}>
+                            <View style={styles.dataContainer}>
+                                <Text style={styles.textData}>D.O.B</Text>
+                                <Text style={styles.textData}>{DOBMonth}/{DOBYear}</Text>
+                                <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
+                            </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={changeGender}>
+                            <View style={styles.dataContainer}>
+                                <Text style={styles.textData}>Sex</Text>
+                                <Text style={styles.textData}>{gender}</Text>
+                                <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
+                            </View>
+                        </TouchableOpacity>
+
+                        <View style={styles.titleContainer}>
+                            <Text style={styles.TitleText}>Goals</Text>
+                        </View>
+                        <TouchableOpacity onPress={changeStepGoal}>
+                            {fetchDailyStepsLoading ? <Text>Loading step data</Text> :
+
+                                fetchDailyStepsError ? <Text>Error getting daily steps data</Text> :
+                                    <View style={styles.dataContainer}>
+                                        <Text style={styles.textData}>Daily Steps</Text>
+                                        <Text style={styles.textData}>{dailyStepGoal}</Text>
+                                        <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
+                                    </View>}
+                        </TouchableOpacity>
+
+                        <View style={styles.logoutButtonContainer}>
+                            <MainButton onPress={logOutUser} title='logout' />
+                        </View>
+                    </View>}
+
+            </View> : null
     )
 }
 

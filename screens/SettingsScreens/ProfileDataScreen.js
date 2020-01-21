@@ -68,7 +68,7 @@ function ProfileDataScreen(props) {
         isLoggedIn ?
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                 {fetchUserDataLoading ? <Text>Data loading</Text> : fetchUserDataError ? <Text>Error loading Data</Text> :
-                    <View>
+                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                         <View style={styles.titleContainer}>
                             <Text style={styles.TitleText}>Profile Data</Text>
                         </View>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, ImageBackground, Dimensions, FlatList, Image, TouchableOpacity } from 'react-native';
 
-import FetchAllCourses from '../../store/actions/FetchAllCourses'
 import FetchFavorites from '../../store/actions/fetchFavorites'
 
 import { useDispatch, useSelector } from 'react-redux'

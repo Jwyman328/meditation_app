@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, Dimensions, FlatList } from 'react-native';
-import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import MainHeaderButton from '../../components/HeaderButton';
 import CourseCard from '../../components/CourseCard';
 import colors from '../../constants/colors';
 import dummyData from '../../Data/dummyData';
 
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import FiltersModal from './FiltersModal'
 
@@ -15,10 +15,11 @@ import FiltersModal from './FiltersModal'
  * A screan that lists all available courses for the user to select. 
  * @returns a screen containing all the Available courses based on Filters selected
  */
-function CoursesScreen(props){
+function CoursesScreen(props) {
     const [filtersVisible, setfiltersVisible] = useState(false)
-  
     const filteredCourses = useSelector((state) => state.meditation.filteredMeditations)
+    const fetchCoursesLoading = useSelector((state) => state.meditation.fetchCoursesLoading)
+    const fetchCoursesError = useSelector((state) => state.meditation.fetchCoursesError)
     const isLoggedIn = useSelector(state => state.AuthData.loggedIn)
 
     /**
@@ -30,39 +31,42 @@ function CoursesScreen(props){
      * @param {string} courseId Id of the course
      */
     const goToCourse = (courseId, image_uri, title) => {
-        props.navigation.navigate('FullCourse', {courseData: {courseId:courseId, image_uri: image_uri, title:title }})
+        props.navigation.navigate('FullCourse', { courseData: { courseId: courseId, image_uri: image_uri, title: title } })
     }
 
     /**
      * Create a touchable display card for a course.
      * @param {Array<Object>} course a meditation course
      */
-    const createCards = (course) =>{
-        return(
-            <View style={{...styles.coursesContainer }}>
-                    <CourseCard goToCourse={goToCourse}  title ={course.item.title} uri = {course.item.image_uri} catagories={course.item.catagories} id={course.item.id} courseId={course.item.course_id} />
+    const createCards = (course) => {
+        return (
+            <View style={{ ...styles.coursesContainer }}>
+                <CourseCard goToCourse={goToCourse} title={course.item.title} uri={course.item.image_uri} catagories={course.item.catagories} id={course.item.id} courseId={course.item.course_id} />
 
-                </View>
+            </View>
         )
     }
     /**
      * Create a single meditation course card
      * @param {Object} course 
      */
-    const createCard = (course) =>{
-        return(
-            <View style={{...styles.coursesContainer }}>
-                    <CourseCard goToCourse={goToCourse}  title ={course.title} uri = {course.image_uri} catagories={course.catagories} id={course.id} courseId={course.course_id} />
-                </View>
-        ) 
+    const createCard = (course) => {
+        return (
+            <View style={{ ...styles.coursesContainer }}>
+                <CourseCard goToCourse={goToCourse} title={course.title} uri={course.image_uri} catagories={course.catagories} id={course.id} courseId={course.course_id} />
+            </View>
+        )
     }
     return (
-        isLoggedIn?
+
         <View style={styles.mainContainer}>
-            <View style={{...styles.allCoursesContainer,...styles.quickBorder}}>
-                {filteredCourses ?  filteredCourses.length > 1 ? <FlatList numColumns={2} data={filteredCourses} keyExtractor={(item=> item.title)} renderItem={(course) => createCards(course)} />: createCard(filteredCourses[0]) : null}
-            </View> 
-        </View>:null
+            {isLoggedIn ?
+                fetchCoursesLoading ? <Text>Loading</Text> : 
+                    fetchCoursesError? <Text>Error loading meditations</Text>:
+                    <View style={{ ...styles.allCoursesContainer, ...styles.quickBorder }}>
+                        {filteredCourses ? filteredCourses.length > 1 ? <FlatList numColumns={2} data={filteredCourses} keyExtractor={(item => item.title)} renderItem={(course) => createCards(course)} /> : createCard(filteredCourses[0]) : null}
+                    </View> : null}
+        </View>
     )
 }
 
@@ -79,51 +83,51 @@ CoursesScreen.navigationOptions = (navData) => {
     const navigateToMyFeelingFilter = () => {
         navData.navigation.navigate('FeelingsFilter')
     }
-   return (
-       {
-           headerRight: 
+    return (
+        {
+            headerRight:
                 <ScrollView style={styles.headerRight} horizontal={true}>
-                <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
-                    <Item title='filter' color={colors.darkStrongPrimary} iconName='ios-funnel' onPress={ navigateToFiltersPage } />
-                </HeaderButtons>      
+                    <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
+                        <Item title='filter' color={colors.darkStrongPrimary} iconName='ios-funnel' onPress={navigateToFiltersPage} />
+                    </HeaderButtons>
                 </ScrollView>,
             headerLeft:
-            <ScrollView style={styles.headerRight} horizontal={true}>
-            <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
-                <Item title='filter' color={colors.darkStrongPrimary} iconName='ios-color-filter' onPress={ navigateToMyFeelingFilter } />
-            </HeaderButtons>      
-            </ScrollView>,
-       }
-   )
-        
+                <ScrollView style={styles.headerRight} horizontal={true}>
+                    <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
+                        <Item title='filter' color={colors.darkStrongPrimary} iconName='ios-color-filter' onPress={navigateToMyFeelingFilter} />
+                    </HeaderButtons>
+                </ScrollView>,
+        }
+    )
+
 }
 
 const styles = StyleSheet.create({
-    mainContainer:{
-        flex:1, 
-        justifyContent:'center',
-        alignItems:'center', 
+    mainContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: colors.darkStrongPrimary
     },
     coursesContainer: {
-        width:'50%',
-        justifyContent:'center',
-        alignItems:'center',
-        marginTop: Dimensions.get('window').height * .01 ,
-        
+        width: '50%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: Dimensions.get('window').height * .01,
+
     },
     quickBorder: {
-        borderStyle:'solid',
-        borderWidth:1,
-        borderColor:'black',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: 'black',
     },
-    headerRight:{
-        marginTop:Dimensions.get('window').height * .02
+    headerRight: {
+        marginTop: Dimensions.get('window').height * .02
     },
-    allCoursesContainer:{
-        width:'100%',
-        flex: 1, 
-        justifyContent:'center', alignItems:'center' 
+    allCoursesContainer: {
+        width: '100%',
+        flex: 1,
+        justifyContent: 'center', alignItems: 'center'
     }
 })
 

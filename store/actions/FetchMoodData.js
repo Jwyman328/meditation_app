@@ -13,14 +13,12 @@ const FetchMoodData = ( token) => {
     const response = await fetch(`http://intense-gorge-29567.herokuapp.com/Journal/last_week_moods/str`, {
         headers:{ Authorization: `JWT ${token}`}}).then(async(response) => {
             const responseData = await response.json()
-            console.log(responseData, 'response data ')
             if(responseData[0]){
                 dispatch({type: 'FetchMoodData', MoodData:responseData})
         
             }else{
                 //
                 dispatch(FetchError('fetchMoodDataError'))
-                console.log('no mood data yet')
             }
         }).catch(async(response) => {
             dispatch(FetchError('fetchMoodDataError'))

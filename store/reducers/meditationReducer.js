@@ -33,6 +33,8 @@ const initialState = {
     },
     fetchFeelingsLoading: false,
     fetchFeelingsError: false,
+    fetchCoursesLoading: false,
+    fetchCoursesError: false,
 
 }
 
@@ -146,6 +148,11 @@ const MeditationReducer = (state = initialState, action) => {
                     "stressed": 1,
                     "excited": 1
                 },
+                fetchFeelingsLoading: false,
+                fetchFeelingsError: false,
+                fetchCoursesLoading: false,
+                fetchCoursesError: false,
+
             }
 
         case 'SetAudioState':
@@ -184,6 +191,26 @@ const MeditationReducer = (state = initialState, action) => {
                 fetchFeelingsLoading: false,
                 fetchFeelingsError: false,
             }
+        case 'fetchCoursesLoading':
+            return {
+                ...state,
+                fetchCoursesLoading: true,
+                fetchCoursesError: false,
+            }
+        case 'fetchCoursesError':
+            return {
+                ...state,
+                fetchCoursesLoading: false,
+                fetchCoursesError: true,
+            }
+        case 'fetchCoursesSuccess':
+            return {
+                ...state,
+                fetchCoursesLoading: false,
+                fetchCoursesError: false,
+            }
+
+
     }
     return state
 }

@@ -24,7 +24,6 @@ function App() {
     useEffect(() => {
         console.log(userWeight)
     },[userWeight])
-    console.log(userWeight, 'ehat')
     //Get weight and pass it to the class component pedometer
 
 

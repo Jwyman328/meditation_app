@@ -21,16 +21,13 @@ const LogInUser = (userName, passWord) => {
             let jsonResponse = await loginResponse.json()
             const token = jsonResponse.token
             if (token) {
-                console.log('token')
                 dispatch(FetchSuccess('logInfetchSuccess'))
                 dispatch({ type: 'signIn', username: userName, password: passWord, token: token })
             } else {
-                console.log('no token')
                 dispatch(FetchError('logInfetchError'))
             }
         }).catch(async(response) =>
             {
-                console.log('bad response')
                 dispatch(FetchError('logInfetchError'))
             }
         )

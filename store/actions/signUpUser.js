@@ -14,7 +14,6 @@ import FetchError from './fetchLoadErrorSucces/fetchError'
 const SignUpUser = (userName, passWord, firstName, lastName) => {
     return async (dispatch) => {
         // create sign up data
-        console.log('loading sign up')
         dispatch(LoadFetch('signUpFetchLoading'))
         const usernamePassword = { username: userName, password: passWord }
         let jsonUsername = JSON.stringify(usernamePassword)
@@ -30,7 +29,6 @@ const SignUpUser = (userName, passWord, firstName, lastName) => {
     
             // if the user got a token add aditional user data
             if (token) {
-                console.log('successful request')
                 dispatch(FetchSuccess('signUpFetchSuccess'))
                 let additionDataResponse = await fetch('https://intense-gorge-29567.herokuapp.com/sign_up_additional_data', {
                     method: 'POST', //mode: 'cors'
@@ -43,7 +41,6 @@ const SignUpUser = (userName, passWord, firstName, lastName) => {
 
             }
         }).catch(async(response) => {
-            console.log('ba request')
             dispatch(FetchError('signUpFetchError'))
         });
 

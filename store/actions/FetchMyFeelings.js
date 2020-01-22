@@ -12,7 +12,6 @@ const FetchMyFeelings = (token) => {
             const responseData = await response.json()
             dispatch({type: 'MyFeelings', MyFeelings:responseData})
         }).catch(async(response) => {
-            console.log('errr')
             dispatch(FetchError('fetchFeelingsError'))
         })
    

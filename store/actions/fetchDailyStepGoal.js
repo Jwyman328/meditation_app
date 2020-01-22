@@ -20,7 +20,6 @@ const FetchDailyStepGoal = (token) => {
         
             }else{
                 dispatch(FetchError('fetchDailyStepsError'))
-                console.log('no daily step goals yet')
             }
         }).catch(async(response) => {
             dispatch(FetchError('fetchDailyStepsError'))

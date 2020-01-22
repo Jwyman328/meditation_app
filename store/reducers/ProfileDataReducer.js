@@ -20,7 +20,6 @@ const initialState = {
 const ProfileDataReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'setUserHealthData':
-            console.log('new')
             const newHealthDataType = action.healthDataType
             const newHealthDataValue = action.healthDataValue
             //duplicate old object
@@ -67,7 +66,6 @@ const ProfileDataReducer = (state = initialState, action) => {
                 fetchUserDataError: false,
             }
         case 'fetchUserDataError':
-            console.log('error changes')
             return {
                 ...state,
                 fetchUserDataLoading: false,

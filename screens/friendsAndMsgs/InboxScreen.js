@@ -36,7 +36,6 @@ function InboxScreen() {
     }
 
     const createSenderCards = (friendRequest) => {
-        console.log(friendRequest.item.sender_username, 'beep')
         return (
             <View style={styles.friendCard}>
                 <View>

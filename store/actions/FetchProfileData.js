@@ -12,7 +12,6 @@ const FetchProfileData = (token) => {
                 dispatch({type: 'FetchProfileData', ProfileData:responseData})
                 dispatch(FetchSuccess('fetchUserDataSuccess'))
             }).catch(async(response) => {
-                console.log('bad rere')
                 dispatch(FetchError('fetchUserDataError'))
             })
             

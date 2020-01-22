@@ -43,7 +43,6 @@ const initialState = {
 const MeditationReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'FilterMeditations':
-            console.log('in new')
             let newSwitchValue = !state.filters[action.filterName]
             const newFilters = { ...state.filters }
             newFilters[action.filterName] = newSwitchValue
@@ -97,7 +96,6 @@ const MeditationReducer = (state = initialState, action) => {
             return { ...state, filters: newFilters, filteredMeditations: newFilteredMeditations }
 
         case 'AddFavorite':
-            console.log('in new')
 
             // add and remove favorites
             let allMeditations = action.allMeditations

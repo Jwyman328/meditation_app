@@ -55,7 +55,6 @@ function WriteJournalScreen() {
     const handleCreateJournal = () => {
         //date, text, mood, token
         dispatch(CreateJournal(date,value,2,token ))
-        console.log('hello')
     }
 
     const DateChoosen = () => {

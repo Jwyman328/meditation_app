@@ -14,7 +14,6 @@ const FetchAllCourses = () => {
         dispatch({type: 'FetchAllCourses', allMeditationCourses:responseData})
         dispatch(FetchSuccess('fetchCoursesSuccess'))
     }).catch(async(response) => {
-        console.log('bad request')
         dispatch(FetchError('fetchCoursesError'))
     })
    

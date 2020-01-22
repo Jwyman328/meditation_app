@@ -58,7 +58,6 @@ function ProfileDataScreen(props) {
     useEffect(() => {
         if (isLoggedIn) {
             //
-            console.log(fetchUserDataError,' error in here ')
         } else {
             props.navigation.navigate('Auth')
         }

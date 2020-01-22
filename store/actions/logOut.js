@@ -5,7 +5,6 @@ import React from 'react'
  * Logout the user.
  */
 const LogOutUser = () => {
-    console.log('here')
     return async (dispatch) => {
     dispatch({type: 'logOut'})
 

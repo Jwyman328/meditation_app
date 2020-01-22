@@ -16,7 +16,6 @@ import { Ionicons } from '@expo/vector-icons'
  * As well necessarypost login actions like fetching meditations will take place
  */
 function InboxScreen() {
-
     const dispatch = useDispatch()
     const pendingFriendRequests = useSelector((state) => state.FriendsAndMsgs.pendingFriendRequests)
     const fetchPendingFriendRequestsLoading = useSelector((state) => state.FriendsAndMsgs.fetchPendingFriendRequestsLoading)
@@ -39,8 +38,8 @@ function InboxScreen() {
         return (
             <View style={styles.friendCard}>
                 <View>
-                    <Text> {friendRequest.item.sender_username}</Text>
-                    <Image style={styles.cardImage} source={{ uri: friendRequest.item.sender_profile_picture }} />
+                    <Text testID={'friendRequestUserName'}>{friendRequest.item.sender_username}</Text>
+                    <Image testID={'friendRequestUserPhoto'} style={styles.cardImage} source={{ uri: friendRequest.item.sender_profile_picture }} />
                 </View>
                 <TouchableOpacity onPress={() => handleRequest(friendRequest.item.id,1)}>
                     <View>
@@ -59,15 +58,16 @@ function InboxScreen() {
     }
 
     return (
-        <View styles={{ flex: 1, }} >
+        <View testID='viewMain' styles={{ flex: 1, }} >
+            <Text> </Text>
             {fetchPendingFriendRequestsLoading? 
                 <Text>Friend Request Loading</Text>
                             :
                     fetchPendingFriendRequestsError?
                         <Text>Could not get friend request</Text>
                                 :
-                            <View style={styles.cardsContainer}>
-                                <Text>My Friend requests</Text>
+                            <View testID='viewSuccess' style={styles.cardsContainer}>
+                                <Text testID={'friendRequestTitle'}>My Friend requests</Text>
                                     {pendingFriendRequests ? <FlatList numColumns={1} data={pendingFriendRequests} keyExtractor={(item => item.id )} renderItem={(friendRequest) => createSenderCards(friendRequest)} /> : null}
 
             </View>}

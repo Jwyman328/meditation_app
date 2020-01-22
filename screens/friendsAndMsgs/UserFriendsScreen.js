@@ -40,10 +40,10 @@ function UserFriendsScreen(props) {
 
     const createFriendCards = (friend) => {
         return (
-            <View style={styles.friendCard}>
-                <Text> {friend.item.username}</Text>
-                <Image style={styles.cardImage} source={{ uri: friend.item.user_photo }} />
-                <TouchableOpacity onPress={() => sendMsg(friend.item.username)}>
+            <View key={friend.item.username} style={styles.friendCard}>
+                <Text testID={`friendUserName${friend.item.username}`}>{friend.item.username}</Text>
+                <Image testID={`friendPhoto${friend.item.user_photo}`} style={styles.cardImage} source={{ uri: friend.item.user_photo }} />
+                <TouchableOpacity testID={`sendFriendMessage${friend.item.username}`} onPress={() => sendMsg(friend.item.username)}>
                     <View>
                         <Ionicons name='ios-mail' size={45} color={'red'} />
                     </View>
@@ -57,13 +57,13 @@ function UserFriendsScreen(props) {
     return (
         <View styles={styles.container}>
             {fetchFriendsLoading?
-                <Text>Friends loading</Text>
+                <Text testID={'loadingMSG'}>Friends loading</Text>
                         :
                         fetchFriendsError?
-                        <Text>Could not load friends</Text>
+                        <Text testID={'errorMSG'}>Could not load friends</Text>
                                 :
                             <View style={styles.cardsContainer}>
-                                 <Text>My Friends</Text>
+                                 <Text testID={'friendsTitle'}>My Friends</Text>
                                          {friends ? <FlatList numColumns={1} data={friends} keyExtractor={(item => item.username)} renderItem={(friend) => createFriendCards(friend)} /> : null}
             </View>}
         </View>

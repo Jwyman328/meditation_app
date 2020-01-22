@@ -279,8 +279,7 @@ const MainNavigation = createSwitchNavigator({ // did this for the header it pro
 
 
 
-
-export default createAppContainer(MainNavigation)
+export default createAppContainer(MainNavigation) 
 
 const styles = StyleSheet.create({
     courseScreensHeader : {

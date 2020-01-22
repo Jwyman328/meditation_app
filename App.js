@@ -13,6 +13,7 @@ import AuthDataReducer from './store/reducers/AuthDataReducer'
 import MoodReducer from './store/reducers/MoodReducer'
 
 import ReduxThunk from 'redux-thunk'
+import logger from 'redux-logger'
 
 
 export default function App() {
@@ -25,7 +26,7 @@ export default function App() {
     Mood: MoodReducer,
   })
 
-  const store = createStore(rootReducers, applyMiddleware(ReduxThunk))
+  const store = createStore(rootReducers, applyMiddleware(ReduxThunk, logger))
   return (
     <Provider store={store}><BottomTabs style={{ flex: 1, width: '100%' }} /></Provider>
   );

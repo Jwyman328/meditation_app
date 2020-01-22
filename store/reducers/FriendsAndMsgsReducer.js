@@ -16,7 +16,6 @@ const initialState = {
     fetchSingleMessagesLoading: false,
     fetchSingleMessagesError: false
 
-
 }
 
 const FriendsAndMsgsReducer = (state = initialState, action) => {

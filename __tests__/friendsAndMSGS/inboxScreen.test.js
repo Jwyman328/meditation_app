@@ -98,7 +98,7 @@ const initialStateError = {
     "fetchFriendsError": true,
     "fetchFriendsLoading": false,
     "pendingFriendRequests": [],
-    "fetchPendingFriendRequestsError": false,
+    "fetchPendingFriendRequestsError": true,
     "fetchPendingFriendRequestsLoading": false,
     "fetchSingleMessagesError": false,
     "fetchSingleMessagesLoading": false,
@@ -229,4 +229,28 @@ describe('fetch success', () => {
     //have not tested acepting or denying friend requests 
   })
 
-  
+  describe('pendingFriendRequestsError', () => {
+    beforeEach(() => {
+        moxios.install()
+        moxios.stubRequest('http://intense-gorge-29567.herokuapp.com/friends/pending_friend_requests/',{status:400, })        
+          rootReducers = combineReducers({
+          Fitness: FitnessReducer,
+          FriendsAndMsgs: FriendsAndMsgsReducer,
+          AuthData: AuthDataReducer,
+        })
+        navigation = { navigate: jest.fn() };
+        store = createStore(rootReducers, initialState, applyMiddleware(ReduxThunk))
+        element = render(<Provider store={store}>   <InboxScreen navigation={navigation} /> </Provider>)
+      })
+    
+      afterEach(() => {
+        moxios.uninstall()
+    })
+
+    test('fail pending friend request fetch', async() => {
+        const {getByTestId} = element;
+        //const failureText = getByTestId('fetchFailure')
+        const failureText = await waitForElement(() => getByTestId('fetchFailure')) 
+        expect(failureText.props['children']).toBe('Could not get friend request')
+    })
+  })

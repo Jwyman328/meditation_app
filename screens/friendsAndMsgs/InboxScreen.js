@@ -36,7 +36,7 @@ function InboxScreen() {
 
     const createSenderCards = (friendRequest) => {
         return (
-            <View style={styles.friendCard}>
+            <View key={friendRequest.item.sender_username} style={styles.friendCard}>
                 <View>
                     <Text testID={'friendRequestUserName'}>{friendRequest.item.sender_username}</Text>
                     <Image testID={'friendRequestUserPhoto'} style={styles.cardImage} source={{ uri: friendRequest.item.sender_profile_picture }} />
@@ -64,11 +64,11 @@ function InboxScreen() {
                 <Text>Friend Request Loading</Text>
                             :
                     fetchPendingFriendRequestsError?
-                        <Text>Could not get friend request</Text>
+                        <Text testID={'fetchFailure'}>Could not get friend request</Text>
                                 :
                             <View testID='viewSuccess' style={styles.cardsContainer}>
                                 <Text testID={'friendRequestTitle'}>My Friend requests</Text>
-                                    {pendingFriendRequests ? <FlatList numColumns={1} data={pendingFriendRequests} keyExtractor={(item => item.id )} renderItem={(friendRequest) => createSenderCards(friendRequest)} /> : null}
+                                    {pendingFriendRequests ? <FlatList numColumns={1} data={pendingFriendRequests} keyExtractor={(item => (item.id).toString() )} renderItem={(friendRequest) => createSenderCards(friendRequest)} /> : null}
 
             </View>}
         </View>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, ImageBackground, Dimensions, Button, ShadowPropTypesIOS } from 'react-native';
 import MainButton from '../../components/MainButton'
-
 import UpdateFeelings from '../../store/actions/UpdateFeeling'
 import changeLocalMyFeelings from '../../store/actions/changeLocalMyFeelings'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,7 +18,6 @@ import FeelingsLabelIcons from './components/feelingsLabelIcons'
 function MyFeelingsScreen(props) {
 
     const dispatch = useDispatch()
-
     const username = useSelector((state) => state.AuthData.username)
     const token = useSelector((state) => state.AuthData.token)
     const myFeelings = useSelector((state) => state.meditation.myFeelings)
@@ -54,7 +52,6 @@ function MyFeelingsScreen(props) {
     }
 
     const handleLater = () => {
-
         props.navigation.navigate('Tabs')
     }
 

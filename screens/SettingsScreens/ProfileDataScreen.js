@@ -10,29 +10,28 @@ import CatagoryValue from '../../components/catagoryValue'
 import ValueTitle from '../../components/valueTitle'
 
 function ProfileDataScreen(props) {
-
+    // get status of fitness data fetching
+    let fetchDailyStepsLoading = useSelector((state) => state.Fitness.fetchDailyStepsLoading)
+    let fetchDailyStepsError = useSelector((state) => state.Fitness.fetchDailyStepsError)
+    // get status of health profile data fetching
+    let fetchUserDataError = useSelector((state) => state.ProfileData.fetchUserDataError)
+    let fetchUserDataLoading = useSelector((state) => state.ProfileData.fetchUserDataLoading)
+    // get profile health data from state
     const healthData = useSelector((state) => state.ProfileData.userHealthData)
+    // if each health data profile catagory exists, place it in own variable
     const weight = healthData.weight ? healthData.weight : null
     const heightFeet = healthData.height ? healthData.height.feet : null
     const heightInch = healthData.height ? healthData.height.inch : null
-
     const DOBMonth = healthData.DOB ? healthData.DOB.month : null
     const DOBYear = healthData.DOB ? healthData.DOB.year : null
     const gender = healthData ? healthData.gender : null
-
+    // get general user data and place in own variable
     const generalUserData = useSelector((state) => state.ProfileData.generalUserData)
     let dailyStepGoal = useSelector((state) => state.Fitness.dailyStepGoal)
-    let fetchDailyStepsLoading = useSelector((state) => state.Fitness.fetchDailyStepsLoading)
-    let fetchDailyStepsError = useSelector((state) => state.Fitness.fetchDailyStepsError)
-
-
     const firstName = generalUserData.first_name
     const lastName = generalUserData.last_name
 
-    let fetchUserDataError = useSelector((state) => state.ProfileData.fetchUserDataError)
-    let fetchUserDataLoading = useSelector((state) => state.ProfileData.fetchUserDataLoading)
-
-
+    // get general page data
     const isLoggedIn = useSelector(state => state.AuthData.loggedIn)
     const token = useSelector(state => state.AuthData.token)
     const dispatch = useDispatch()
@@ -41,22 +40,23 @@ function ProfileDataScreen(props) {
         props.navigation.navigate('Auth')
         dispatch(LogOutUser())
     }
+    /**
+     * Navigate to a specific profile data object updating screen.
+     * @param {String} navigateTo screen to navigate to.
+     * @param {object} firstTime Indicate if this is a navigation from signUp screen.
+     */
+    const profileDataChangeNavigator = (navigateTo, firstTime={ firstTime: false }) => {
+        props.navigation.navigate(navigateTo, firstTime)
+    }
+    // create Functions to navigate to different profile data updating screen
+    const changeGender = () => profileDataChangeNavigator('chooseGender')
+    const changeWeight = () => profileDataChangeNavigator('ChooseWeight')
+    const changeHeight = () => profileDataChangeNavigator('ChooseHeight')
+    const changeDOB = () => profileDataChangeNavigator('ChooseDOB')
+    const changeStepGoal = () => profileDataChangeNavigator('ChangeStepGoalScreen')
 
-    const changeGender = () => {
-        props.navigation.navigate('chooseGender', { firstTime: false })
-    }
-    const changeWeight = () => {
-        props.navigation.navigate('ChooseWeight', { firstTime: false })
-    }
-    const changeHeight = () => {
-        props.navigation.navigate('ChooseHeight', { firstTime: false })
-    }
-    const changeDOB = () => {
-        props.navigation.navigate('ChooseDOB', { firstTime: false })
-    }
-    const changeStepGoal = () => {
-        props.navigation.navigate('ChangeStepGoalScreen')
-    }
+
+    //if the user is logged out send back to loginScreen
     useEffect(() => {
         if (isLoggedIn) {
             //

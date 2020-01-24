@@ -3,7 +3,6 @@ import { render, fireEvent, waitForElement } from 'react-native-testing-library'
 import ReduxThunk from 'redux-thunk'
 import logger from 'redux-logger'
 
-
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import FitnessReducer from '../../store/reducers/FitnessReducer'
@@ -113,14 +112,11 @@ describe('Fetch profile Data success', () => {
         expect(goalsTitleElement.props['children']).toBe('Goals')
         expect(dailyStepsTitleElement.props['children']).toEqual('Daily Steps')
         expect(dailyStepsCount.props['children']).toEqual(3005)
-
     })
 
     test('logOut button exists', () => {
         const {getByTestId} = element;
         const logOutButton = getByTestId('logOutButton')
         expect(logOutButton.props.title).toBe('logout')
-
-
     })
 })

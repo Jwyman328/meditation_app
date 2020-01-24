@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, ScrollView, Dimensions, FlatList } from
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import MainHeaderButton from '../../components/HeaderButton';
-import CourseCard from '../../components/CourseCard';
+import CourseCard from './components/CourseCard';
 import colors from '../../constants/colors';
 import dummyData from '../../Data/dummyData';
 
@@ -42,7 +42,6 @@ function CoursesScreen(props) {
         return (
             <View style={{ ...styles.coursesContainer }}>
                 <CourseCard goToCourse={goToCourse} title={course.item.title} uri={course.item.image_uri} catagories={course.item.catagories} id={course.item.id} courseId={course.item.course_id} />
-
             </View>
         )
     }
@@ -58,7 +57,6 @@ function CoursesScreen(props) {
         )
     }
     return (
-
         <View style={styles.mainContainer}>
             {isLoggedIn ?
                 fetchCoursesLoading ? <Text>Loading</Text> : 

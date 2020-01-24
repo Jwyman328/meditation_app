@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
-
 import { FlatList } from 'react-native-gesture-handler';
 import audioBookPlaylist from '../../Data/AudioBookPlaylist'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import MainHeaderButton from '../../components/HeaderButton';
-
 import { Ionicons } from '@expo/vector-icons'
 
 import { useDispatch, useSelector } from 'react-redux'
 import addFavorite2 from '../../store/actions/addFavorite'
 import FetchCourseData from '../../store/actions/fetchCourseData'
-
+import IndividualMeditationCard from './components/individualMeditationCard'
 import colors from '../../constants/colors'
+import convertSecToMinSec from './components/convetSecToMinSec'
+
 /**
  * Display all available meditaion audios for the selected course.
  * 
@@ -23,14 +23,12 @@ import colors from '../../constants/colors'
  */
 function FullCourseScreen(props) {
     const data = props.navigation.getParam('courseData')
-
     const courseId = data.courseId
     const courseData = useSelector((state) => state.meditation.courseData)
     const fetchCourseDataLoding = useSelector((state) => state.meditation.fetchCourseDataLoading)
     const fetchCourseDataError = useSelector((state) => state.meditation.fetchCourseDataError)
     const dispatch = useDispatch()
     const token = useSelector(state => state.AuthData.token)
-
 
     /**
      * Adds this course to the array of favorited courses
@@ -39,7 +37,6 @@ function FullCourseScreen(props) {
     const addCourseToFavorites = () => {
         dispatch(addFavorite2(courseId, token))
     }
-
     const favoriteMeditations = useSelector(state => state.meditation.favoriteMeditations)
 
     /**
@@ -73,28 +70,6 @@ function FullCourseScreen(props) {
     }
 
     /**
-     * Convert seconds to string representing minutes and seconds.
-     * 
-     * Example: '08:35'
-     * @param {number} secs 
-     */
-    const convertSecToMinSec = (secs) => {
-        if (secs >= 60) {
-            var minutes = Math.floor(secs / 60)
-            var seconds = secs - minutes * 60
-            minutes = Math.floor(minutes)
-            let minutesCheck10 = minutes < 10 ? `${minutes}` : minutes
-            let secondsCheck10 = seconds < 10 ? `0${seconds}` : seconds
-            return `${minutesCheck10}:${secondsCheck10}`
-        } else {
-            // if you hacent reached a minue yet just display the seconds
-            let secondsCheck10 = secs < 10 ? `0${secs}` : secs
-            return `00:${secondsCheck10}`
-
-        }
-    }
-
-    /**
      * Create a display card for each meditation audio in the course.
      * 
      * Display the meditation audios' order number, title, play time.
@@ -102,24 +77,10 @@ function FullCourseScreen(props) {
      * @param {String} item audioCourseId for the selected audio meditation
      */
     const createMeditationCard = (item) => {
-        const title = item.title //audioBookPlaylist[item].title
-        const seconds = item.time //audioBookPlaylist[item].time
-        const orderNumber = item.orderNumber //audioBookPlaylist[item].orderNumber
-        const time = convertSecToMinSec(seconds)
-
+        const time = convertSecToMinSec(item.time)
         return (
-            <TouchableOpacity onPress={() => goToMeditation(item)} style={{ width: '100%' }} >
-                <View style={styles.meditationcard}>
-                    <View style={styles.cardText}>
-                        <Text style={{ color: 'white', fontSize: 20, }}>{orderNumber}</Text>
-                    </View>
-                    <Text style={{ fontFamily: 'Helvetica-LightOblique', color: 'white', fontSize: 20 }}>{title}</Text>
-                    <Text style={{ color: 'white', fontSize: 20 }}>{time}</Text>
-                    <View style={{ marginRight: 4 }}>
-                        <Ionicons size={40} onPress={() => goToMeditation(item)} name='ios-headset' title='play' />
-                    </View>
-                </View>
-            </TouchableOpacity>)
+            <IndividualMeditationCard time={time} item={item} goToMeditation={goToMeditation} orderNumber={item.orderNumber} title={item.title} />
+        )
     }
 
     return (
@@ -219,31 +180,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1
-    },
-    cardText: {
-        marginLeft: Dimensions.get('window').width * .02,
-        width: Dimensions.get('window').width * .1,//40 ,
-        height: '55%',
-        borderWidth: 2,
-        borderColor: colors.darkStrongPrimary,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderStyle: 'solid',
-        borderRadius: Dimensions.get('window').width * .8,
-        backgroundColor: colors.primary
-    },
-    meditationcard: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderStyle: 'solid',
-        borderWidth: 2,
-        borderRadius: Dimensions.get('window').width * .2,
-        height: Dimensions.get('window').height * .10,
-        backgroundColor: 'grey',
-        opacity: .7,
-        width: Dimensions.get('window').width * .9,
-        marginTop: Dimensions.get('window').height * .01,
     },
     headerRight: {
         marginTop: Dimensions.get('window').height * .02

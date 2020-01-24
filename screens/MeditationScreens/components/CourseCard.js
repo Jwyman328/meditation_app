@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 import { View, Text, StyleSheet, Dimensions, ImageBackground, TouchableOpacity } from 'react-native'
-import colors from '../constants/colors'
+import colors from '../../../constants/colors'
 import { FlatList } from 'react-native-gesture-handler'
 
 function CourseCard(props) {
@@ -16,7 +16,6 @@ function CourseCard(props) {
                             <Text>{props.title}</Text>
                         </View>
                     </View>
-
                 </ImageBackground>
             </View>
         </TouchableOpacity>

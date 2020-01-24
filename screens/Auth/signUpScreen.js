@@ -9,7 +9,7 @@ import colors from '../../constants/colors';
 
 import FetchMyFeelings from '../../store/actions/FetchMyFeelings'
 import UpdateFeelings from '../../store/actions/UpdateFeeling'
-
+import AuthInputBox from '../Auth/components/authInputBox'
 
 
 /**
@@ -81,32 +81,11 @@ function SignupScreen(props) {
                         <View style={{ ...styles.logCard }}>
                             <Text style={styles.title} > Meditation Sign Up !</Text>
                             {signUpFetchError? <Text>Please try a better username and password</Text>:null}
-
-                            <View style={{ ...styles.formPair }}>
-                                <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
-                                    onChangeText={text => onChangeUserFirstName(text)} required errorMessage='enter a correct username'
-                                    value={firstName} placeholder='First Name' autoCapitalize="none" />
-                            </View>
-                            <View style={{ ...styles.formPair }}>
-                                <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
-                                    onChangeText={text => onChangeUserLastName(text)} required errorMessage='enter a correct username'
-                                    value={lastName} placeholder='Last Name' autoCapitalize="none" />
-                            </View>
-                            <View style={{ ...styles.formPair }}>
-                                <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
-                                    onChangeText={text => onChangeUserName(text)} required errorMessage='enter a correct username'
-                                    value={userName} placeholder='email' autoCapitalize="none" />
-                            </View>
-                            <View style={{ ...styles.formPair }}>
-                                <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
-                                    onChangeText={text => onChangePassword(text)}
-                                    value={passWord} required errorMessage='enter a correct password' secureTextEntry={true} placeholder='password' autoCapitalize="none" />
-                            </View>
-                            <View style={{ ...styles.formPair }}>
-                                <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
-                                    onChangeText={text => onChangePasswordTwo(text)}
-                                    value={passWordTwo} required errorMessage='enter a correct password' secureTextEntry={true} placeholder='repeat password' autoCapitalize="none" />
-                            </View>
+                            <AuthInputBox secureTextEntry={false} value={firstName} placeholder='First Name' setValue={onChangeUserFirstName} />
+                            <AuthInputBox secureTextEntry={false} value={lastName} placeholder='Last Name' setValue={onChangeUserLastName} />
+                            <AuthInputBox secureTextEntry={false} value={userName} placeholder='email' setValue={onChangeUserName} />
+                            <AuthInputBox secureTextEntry={true} value={passWord} placeholder='password' setValue={onChangePassword} />
+                            <AuthInputBox secureTextEntry={true} value={passWordTwo} placeholder='repeat password' setValue={onChangePasswordTwo} />
                             <View>
                                 <MainButton style={styles.button} testID='signUp' title='Sign up' onPress={handlePress} />
                                 <MainButton style={styles.signUpButton} title='Switch to Login' onPress={handleLogin} />

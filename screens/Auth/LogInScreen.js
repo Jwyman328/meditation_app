@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import colors from '../../constants/colors';
 
 import MainButton from '../../components/MainButton'
-
+import AuthInputBox from './components/authInputBox'
 /**
  * Login screen for existing users to login.
  * 
@@ -34,19 +34,9 @@ function LoginScreen(props) {
         }
     }, [token])
 
-    {/*const loginCheck = () => {
-        if (!token){
-            setLoginFail(true)
-        }else{
-            //
-        }
-    }*/}
-
     const loginUser = () => {
         dispatch(LogInUser(userName, passWord))
-        //setTimeout(loginCheck, 4000);
     }
-
 
     const handlePress = () => {
         //fetchLogin()
@@ -69,23 +59,14 @@ function LoginScreen(props) {
 
     return (
         <View styles={styles.imageContainer}>
-
             <ImageBackground style={styles.backgroundImage}
                 source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0HIJBdanX2M1YcbL03E0dAm3CyFOLPQxvBor7fpIOaLqf85Owg&s' }}>
                 <ScrollView contentContainerStyle={styles.outerJustify} style={{ ...styles.outerContainer, }}>
-                  {fetchLoading? <Text>loading</Text>:<View style={{ ...styles.logCard }}>
+                    {fetchLoading ? <Text>loading</Text> : <View style={{ ...styles.logCard }}>
                         <Text style={styles.title} > Meditation Login!</Text>
-                        <View style={{ ...styles.formPair }}>
-                            <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
-                                onChangeText={text => onChangeUserName(text)} required errorMessage='enter a correct username'
-                                value={userName} placeholder='email' autoCapitalize="none" />
-                        </View>
+                        <AuthInputBox secureTextEntry={false} value={userName} placeholder='email' setValue={onChangeUserName} />
                         {fetchError ? <Text style={styles.loginFail}> Username or password is invalid</Text> : null}
-                        <View style={{ ...styles.formPair }}>
-                            <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
-                                onChangeText={text => onChangePassword(text)}
-                                value={passWord} required errorMessage='enter a correct password' secureTextEntry={true} placeholder='password' autoCapitalize="none" />
-                        </View>
+                        <AuthInputBox secureTextEntry={true} value={passWord} placeholder='password' setValue={onChangePassword} />
                         <View>
                             <MainButton style={styles.button} testID='loginUser' title='Login' onPress={handlePress} />
                             <MainButton style={styles.signUpButton} title='Switch to Sign Up' onPress={handleSignUp} />

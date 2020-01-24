@@ -8,6 +8,7 @@ import MainButton from '../../components/MainButton'
 import colors from '../../constants/colors';
 
 import ResetPassword from '../../store/actions/ResetPassword'
+import AuthInputBox from './components/authInputBox'
 
 /**
  * Screen for allowing an existing user to reset password
@@ -49,11 +50,8 @@ function ForgotPasswordScreen(props) {
                     <View style={{ ...styles.logCard }}>
                         <Text style={styles.title} > Reset Password !</Text>
                         {resetPasswordFetchError ? <Text>Please enter a valid existing user email</Text> : null}
-                        <View style={{ ...styles.formPair }}>
-                            <TextInput style={{ ...styles.formObj, ...styles.inputBox }}
-                                onChangeText={text => onChangeUserName(text)} required errorMessage='enter a correct username'
-                                value={userName} placeholder='email' autoCapitalize="none" />
-                        </View>
+                        <AuthInputBox secureTextEntry={false} value={userName} placeholder='email' setValue={onChangeUserName} />
+
                         <View>
                             <MainButton style={styles.button} testID="resetButton" title='Reset' onPress={handlePress} />
                             <MainButton style={styles.signUpButton} title='Switch to Login' onPress={handleLogin} />

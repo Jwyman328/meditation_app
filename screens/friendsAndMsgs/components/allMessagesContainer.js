@@ -6,6 +6,10 @@ import InputScrollView from 'react-native-input-scroll-view';
 import Message from '../../friendsAndMsgs/components/message';
 import PropTypes from 'prop-types'
 
+/**
+ * Container holding all messages between two users.
+ * 
+ */
 function AllMessagesContainer(props) {
     const dispatch = useDispatch()
     let messages = props.messages;

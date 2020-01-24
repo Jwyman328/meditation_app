@@ -2,7 +2,10 @@ import React from 'react'
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
-
+/**
+ * Display text prominently as a title.
+ * 
+ */
 function ValueTitle(props) {
     return (
         <View style={styles.titleContainer}>
@@ -12,6 +15,7 @@ function ValueTitle(props) {
 }
 
 ValueTitle.propTypes = {
+    /** title text to be displated */
     titleText: PropTypes.string,
 };
 

@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import { Ionicons } from '@expo/vector-icons'
 import colors from '../constants/colors'
 
-
+/**
+ * Display label and value in a row, allowing navigation to screen on touch.
+ */
 function CatagoryValue(props) {
     return (
         <TouchableOpacity onPress={props.changeNavigation} >
@@ -21,8 +23,13 @@ function CatagoryValue(props) {
 export default CatagoryValue;
 
 CatagoryValue.propTypes = {
+    /** Label that the value is refering to */
     label: PropTypes.string,
+    /**Value of the specified label */
     value: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
+    /**Function that will navigate to screen on touch of component
+     * As well could be null object if no navigation on touch desired.
+    */
     changeNavigation: PropTypes.oneOfType([PropTypes.func, PropTypes.any]) //can be null
 
   };

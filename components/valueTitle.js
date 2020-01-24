@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 function ValueTitle(props) {
     return (
         <View style={styles.titleContainer}>
-            <Text testID={'profileTitle'} style={styles.TitleText}>{props.titleText}</Text>
+            <Text testID={`Title${props.titleText}`} style={styles.TitleText}>{props.titleText}</Text>
         </View>
     )
 }

@@ -46,22 +46,22 @@ describe('Fetch profile Data success', () => {
     })
     test('profile data title shows', () => {
         const {getByTestId} = element;
-        const titleTextElement = getByTestId('profileTitle')
+        const titleTextElement = getByTestId('TitleProfile Data')
         expect(titleTextElement.props['children']).toBe('Profile Data')
     })
 
     test('First Name shows', () => {
         const {getByTestId} = element;
-        const firstNameTitleElement = getByTestId('firstNameTitle')
-        const firstNameElement = getByTestId('firstName')
+        const firstNameTitleElement = getByTestId('labelFirst Name')
+        const firstNameElement = getByTestId('valuetestUserFirstName')
         expect(firstNameElement.props['children']).toBe('testUserFirstName')
         expect(firstNameTitleElement.props['children']).toBe('First Name')
     })
 
     test('Last Name shows', () => {
         const {getByTestId} = element;
-        const lastNameTitleElement = getByTestId('lastNameTitle')
-        const lastNameElement = getByTestId('lastName')
+        const lastNameTitleElement = getByTestId('labelLast Name')
+        const lastNameElement = getByTestId('valuetestUserLastName')
         expect(lastNameElement.props['children']).toBe('testUserLastName')
         expect(lastNameTitleElement.props['children']).toBe('Last Name')
        
@@ -69,35 +69,35 @@ describe('Fetch profile Data success', () => {
 
     test('Weight shows', () => {
         const {getByTestId} = element;
-        const weightTitleElement = getByTestId('WeightTitle')
-        const weightElement = getByTestId('weight')
+        const weightTitleElement = getByTestId('labelWeight')
+        const weightElement = getByTestId('value197lbs')
 
         expect(weightTitleElement.props['children']).toBe('Weight')
-        expect(weightElement.props['children']).toEqual([197, "lbs"])
+        expect(weightElement.props['children']).toEqual('197lbs')
     })
     
     test('Height shows', () => {
         const {getByTestId} = element;
-        const heightTitleElement = getByTestId('heightTitle')
-        const heightElement = getByTestId('height')
+        const heightTitleElement = getByTestId('labelHeight')
+        const heightElement = getByTestId('value8ft 7in')
 
         expect(heightTitleElement.props['children']).toBe('Height')
-        expect(heightElement.props['children']).toEqual([8, "ft ", 7, "in "])
+        expect(heightElement.props['children']).toEqual('8ft 7in')
     })
 
     test('DOB shows', () => {
         const {getByTestId} = element;
-        const DOBTitleElement = getByTestId('DOBTitle')
-        const DOBElement = getByTestId('DOB')
+        const DOBTitleElement = getByTestId('labelD.O.B')
+        const DOBElement = getByTestId('value10/1996')
 
         expect(DOBTitleElement.props['children']).toBe('D.O.B')
-        expect(DOBElement.props['children']).toEqual([10, '/', 1996])
+        expect(DOBElement.props['children']).toEqual('10/1996')
     })
 
     test('gender shows', () => {
         const {getByTestId} = element;
-        const genderTitleElement = getByTestId('genderTitle')
-        const genderElement = getByTestId('gender')
+        const genderTitleElement = getByTestId('labelSex')
+        const genderElement = getByTestId('valueFemale')
 
         expect(genderTitleElement.props['children']).toBe('Sex')
         expect(genderElement.props['children']).toEqual('Female')
@@ -106,9 +106,9 @@ describe('Fetch profile Data success', () => {
 
     test('fitness Goals show', () => {
         const {getByTestId} = element;
-        const goalsTitleElement = getByTestId('goalsTitle')
-        const dailyStepsTitleElement = getByTestId('dailyStepsTitle')
-        const dailyStepsCount = getByTestId('dailyStepCount')
+        const goalsTitleElement = getByTestId('TitleGoals')
+        const dailyStepsTitleElement = getByTestId('labelDaily Steps')
+        const dailyStepsCount = getByTestId('value3005')
 
         expect(goalsTitleElement.props['children']).toBe('Goals')
         expect(dailyStepsTitleElement.props['children']).toEqual('Daily Steps')

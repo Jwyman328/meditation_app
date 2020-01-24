@@ -75,7 +75,7 @@ function ProfileDataScreen(props) {
                         <CatagoryValue changeNavigation={null} label='First Name' value={firstName} />
                         <CatagoryValue changeNavigation={null} label='Last Name' value={lastName} />
                         <CatagoryValue changeNavigation={changeWeight} label='Weight' value={`${weight}lbs`} />
-                        <CatagoryValue changeNavigation={changeHeight} label='Height' value={`${heightFeet}ft ${heightInch}in `} />
+                        <CatagoryValue changeNavigation={changeHeight} label='Height' value={`${heightFeet}ft ${heightInch}in`} />
                         <CatagoryValue changeNavigation={changeDOB} label='D.O.B' value={`${DOBMonth}/${DOBYear}`} />
                         <CatagoryValue changeNavigation={changeGender} label='Sex' value={gender} />
 

@@ -9,8 +9,8 @@ function CatagoryValue(props) {
     return (
         <TouchableOpacity onPress={props.changeNavigation} >
             <View style={styles.dataContainer}>
-                <Text testID='firstNameTitle' style={styles.textData}>{props.label}</Text>
-                <Text testID='firstName' style={styles.textData}>{props.value}</Text>
+                <Text testID={`label${props.label}`} style={styles.textData}>{props.label}</Text>
+                <Text testID={`value${props.value}`} style={styles.textData}>{props.value}</Text>
                 <Ionicons name='ios-arrow-forward' size={25} color={colors.base} />
             </View>
         </TouchableOpacity>

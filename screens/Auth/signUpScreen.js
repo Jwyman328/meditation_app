@@ -30,7 +30,6 @@ function SignupScreen(props) {
     const signUpFetchLoading = useSelector((state) => state.AuthData.signUpFetchLoading)
 
 
-
     useEffect(() => {
         if (token) {
             // set up feelings 

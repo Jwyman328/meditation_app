@@ -9,6 +9,7 @@ import colors from '../../constants/colors';
 import { Ionicons } from '@expo/vector-icons'
 import FetchMyFeelings from '../../store/actions/FetchMyFeelings'
 import PostUserHealthData from '../../store/actions/postUserHealthData'
+import FeelingsLabelIcons from './components/feelingsLabelIcons'
 
 /**
  * Landing screen after the user logs in.
@@ -26,9 +27,6 @@ function MyFeelingsScreen(props) {
 
     // handle feelings screen
     const fetchFeelingsError = useSelector((state) => state.meditation.fetchFeelingsError)
-
-
-
     const firstTime = props.navigation.getParam('firstTime')
 
     const handleColor = (num, feeling) => {
@@ -65,71 +63,18 @@ function MyFeelingsScreen(props) {
     })
     return (
         <View style={styles.mainContainer} >
-
-            {myFeelings && !fetchFeelingsError ? <View><View style={styles.feelingsCard}>
-
-                <View style={styles.feelingsRow}>
-                    <View style={styles.FeelingSize}>
-                        <Text style={styles.feelingsText}>Depressed</Text>
-                    </View>
-
-                    <Ionicons size={35} onPress={() => handleChange('depressed', 1)} color={handleColor(1, 'depressed')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('depressed', 2)} color={handleColor(2, 'depressed')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('depressed', 3)} color={handleColor(3, 'depressed')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('depressed', 4)} color={handleColor(4, 'depressed')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('depressed', 5)} color={handleColor(5, 'depressed')} name='ios-star-outline' title='play' />
-
+            {myFeelings && !fetchFeelingsError ? <View>
+                <View style={styles.feelingsCard}>
+                    <FeelingsLabelIcons handleColor={handleColor} title='Depressed' catagory='depressed' handleChange={handleChange} />
+                    <FeelingsLabelIcons handleColor={handleColor} title='Anxious' catagory='anxious' handleChange={handleChange} />
+                    <FeelingsLabelIcons handleColor={handleColor} title='Lost' catagory='lost' handleChange={handleChange} />
+                    <FeelingsLabelIcons handleColor={handleColor} title='Stressed' catagory='stressed' handleChange={handleChange} />
+                    <FeelingsLabelIcons handleColor={handleColor} title='Excited' catagory='excited' handleChange={handleChange} />
                 </View>
-                <View style={styles.feelingsRow}>
-                    <View style={styles.FeelingSize}>
-
-                        <Text style={styles.feelingsText}>Anxious</Text>
-                    </View>
-                    <Ionicons size={35} onPress={() => handleChange('anxious', 1)} color={handleColor(1, 'anxious')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('anxious', 2)} color={handleColor(2, 'anxious')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('anxious', 3)} color={handleColor(3, 'anxious')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('anxious', 4)} color={handleColor(4, 'anxious')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('anxious', 5)} color={handleColor(5, 'anxious')} name='ios-star-outline' title='play' />
-
+                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                    <MainButton style={styles.mainButton} title='submit' onPress={handleNewValues} />
+                    {firstTime ? <MainButton style={styles.mainButton} title='Do later' onPress={handleLater} /> : null}
                 </View>
-                <View style={styles.feelingsRow}>
-                    <View style={styles.FeelingSize}>
-                        <Text style={styles.feelingsText}>Lost</Text>
-                    </View>
-                    <Ionicons size={35} onPress={() => handleChange('lost', 1)} color={handleColor(1, 'lost')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('lost', 2)} color={handleColor(2, 'lost')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('lost', 3)} color={handleColor(3, 'lost')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('lost', 4)} color={handleColor(4, 'lost')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('lost', 5)} color={handleColor(5, 'lost')} name='ios-star-outline' title='play' />
-
-                </View>
-                <View style={styles.feelingsRow}>
-                    <View style={styles.FeelingSize}>
-                        <Text style={styles.feelingsText}>Stressed</Text>
-                    </View>
-                    <Ionicons size={35} onPress={() => handleChange('stressed', 1)} color={handleColor(1, 'stressed')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('stressed', 2)} color={handleColor(2, 'stressed')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('stressed', 3)} color={handleColor(3, 'stressed')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('stressed', 4)} color={handleColor(4, 'stressed')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('stressed', 5)} color={handleColor(5, 'stressed')} name='ios-star-outline' title='play' />
-
-                </View>
-                <View style={styles.feelingsRow}>
-                    <View style={styles.FeelingSize}>
-                        <Text style={styles.feelingsText}>Excited</Text>
-                    </View>
-                    <Ionicons size={35} onPress={() => handleChange('excited', 1)} color={handleColor(1, 'excited')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('excited', 2)} color={handleColor(2, 'excited')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('excited', 3)} color={handleColor(3, 'excited')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('excited', 4)} color={handleColor(4, 'excited')} name='ios-star-outline' title='play' />
-                    <Ionicons size={35} onPress={() => handleChange('excited', 5)} color={handleColor(5, 'excited')} name='ios-star-outline' title='play' />
-                </View>
-
-            </View>
-            <View style={{alignItems:'center', justifyContent:'center'}}>
-                <MainButton style={styles.mainButton} title='submit' onPress={handleNewValues} />
-            {firstTime ? <MainButton style={styles.mainButton} title='Do later' onPress={handleLater} /> : null}
-            </View>
             </View> : <Text>error: no feelings exist</Text>}
         </View>
     )

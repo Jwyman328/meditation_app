@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, ScrollView, View, ImageBackground, Button, Dimensions, TextInput, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 
-import CreateMessage from '../../store/actions/createMessage'
-import FetchMessages from '../../store/actions/FetchMessages'
+import CreateMessage from '../../store/actions/createMessage';
+import FetchMessages from '../../store/actions/FetchMessages';
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import colors from '../../constants/colors';
 import InputScrollView from 'react-native-input-scroll-view';
-
+import Message from '../friendsAndMsgs/components/message';
+import MessageInput from '../friendsAndMsgs/components/messageInput';
+import AllMessagesContainer from '../friendsAndMsgs/components/allMessagesContainer'
 
 function CreateMessageScreen(props) {
 
-    const [value, setValue] = useState('')
     const [keyboardVisible, setKeyboardVisible] = useState(false)
-
     const dispatch = useDispatch()
-
     const handleChange = (text) => {
         setValue(text)
     }
@@ -32,44 +31,22 @@ function CreateMessageScreen(props) {
     //Handle loading and error for fetching messages 
     const fetchMessagesLoading = useSelector((state) => state.FriendsAndMsgs.fetchSingleMessagesLoading)
     const fetchMessagesError = useSelector((state) => state.FriendsAndMsgs.fetchSingleMessagesError)
-
     const reciever_username = props.navigation.getParam('sendToUsername')
 
-    const sendMessage = () => {
+    const sendMessage = (value, token, reciever_username) => {
         // probably route the user to the msg inbox when done
         // send data to an action that will send an http request
         dispatch(CreateMessage(reciever_username, value, token))
-        setValue('')
     }
 
     useEffect(() => {
         dispatch(FetchMessages(reciever_username, token))
     }, [dispatch])
 
-    const msgData = () => {
-        //console.log(messages)
-        // create a message here 
-        const allMsgs = messages.map((message) => {
-            return (
-                <View key={message.id} style={message.sender_username === username ? styles.myMessage : styles.friendMessage}>
-                    <Text testID={`MSG${message.id}`} style={message.sender_username === username ? styles.myMessageText : styles.friendMessageText}>{message.msg}</Text>
-                    <Text testID={`MSGUsername${message.id}`}>{message.sender_username}</Text>
-                </View>
-            )
-        })
-        return (
-            <View>
-                {allMsgs}
-            </View>
-
-        )
-    }
-
     const handleKeyboard = () => {
         setKeyboardVisible(true)
     }
     return (
-
         <View>
             <TouchableWithoutFeedback onPress={removeKeyboard}>
                 {fetchMessagesLoading ?
@@ -78,45 +55,11 @@ function CreateMessageScreen(props) {
                     fetchMessagesError ?
                         <Text testID={'errorTitle'}>Error Loading Messages</Text>
                         :
-
-                        <ScrollView>
-                            <View styles={styles.screenContainer}>
-
-                                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-
-                                    <View style={keyboardVisible ? styles.msgContainerModified : styles.msgContainer}>
-                                        {messages ?
-                                            <ScrollView>
-                                                <Text testID="MessagesTitle">Messages here</Text>
-                                                {msgData()}
-                                            </ScrollView>
-
-                                            : null}
-                                    </View>
-                                </View>
-
-                                <TouchableOpacity onPress={handleKeyboard}>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                                        <InputScrollView>
-                                            <TextInput
-                                                testID={'textinputArea'}
-                                                onFocus={handleKeyboard}
-                                                multiline={true}
-                                                style={styles.TextInput}
-                                                value={value} onChangeText={text => handleChange(text)} />
-                                        </InputScrollView>
-                                        <Button testID='sendMessageButton' title='submit' onPress={sendMessage} />
-
-                                    </View>
-                                </TouchableOpacity>
-
-                            </View>
-                        </ScrollView>}
-
+                        <AllMessagesContainer messages={messages} keyboardVisible={keyboardVisible}>
+                            <MessageInput reciever_username={reciever_username} token={token} handleKeyboard={handleKeyboard} sendMessage={sendMessage} />
+                        </AllMessagesContainer>}
             </TouchableWithoutFeedback>
-
         </View>
-
     )
 }
 
@@ -129,28 +72,6 @@ CreateMessageScreen.navigationOptions = (navData) => {
     }
 }
 const styles = StyleSheet.create({
-    myMessage: {
-        marginLeft: 20,
-        marginBottom: 10,
-        borderStyle: 'solid',
-        borderWidth: 1,
-        width: 100,
-        backgroundColor: colors.base,
-    },
-    myMessageText: {
-        color: 'green',
-    },
-    friendMessage: {
-        marginLeft: 200,
-        marginBottom: 10,
-        borderStyle: 'solid',
-        borderWidth: 1,
-        width: 100,
-        backgroundColor: colors.darkStrongPrimary,
-    },
-    friendMessageText: {
-        color: 'white',
-    },
     msgContainer: {
         height: Dimensions.get('window').height * .5,
         width: Dimensions.get('window').width,
@@ -171,52 +92,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignContent: 'center',
     },
-    TextInput: {
-        height: Dimensions.get('window').height * .09,
-        width: Dimensions.get('window').width * .75,
-        borderColor: 'gray',
-        borderWidth: 1,
-        textAlign: 'left',
-        textAlignVertical: 'top',
-        paddingTop: 0,
-        paddingBottom: 0,
-        fontSize: 18,
-        paddingTop: Dimensions.get('window').height * .005
 
-    },
-    MoveTextInput: {
-        height: Dimensions.get('window').height,
-        width: Dimensions.get('window').width * .999,
-        borderColor: 'gray',
-        borderWidth: 1,
-        textAlign: 'left',
-        textAlignVertical: 'top',
-        paddingBottom: 0,
-        fontSize: 18,
-        paddingTop: Dimensions.get('window').height * .005,
-        marginBottom: 400,
-    },
-
-    title: {
-        marginTop: 20,
-        color: colors.base,
-        fontSize: 33,
-        fontFamily: 'Helvetica-LightOblique',
-    },
-    border: {
-        //borderStyle: 'solid',
-        //borderWidth: 2,
-        //borderColor: 'black',
-        alignItems: 'center',
-        height: Dimensions.get('window').height * .7,
-        width: Dimensions.get('window').width * .9,
-        //marginLeft: Dimensions.get('window').width * .05,
-    },
-    button: {
-        height: Dimensions.get('window').height * .1,
-        width: Dimensions.get('window').width * .1,
-        borderStyle: 'solid',
-        borderWidth: 2,
-        borderColor: 'black',
-    }
 })

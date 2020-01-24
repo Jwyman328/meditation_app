@@ -31,8 +31,10 @@ function UserFriendsScreen(props) {
      * their favorite meditations
      */
     useEffect(() => {
+        console.log('isloading?',fetchFriendsLoading)
+        console.log('iserror?',fetchFriendsError)
 
-    }, [dispatch])
+    }, [dispatch,fetchFriendsLoading,fetchFriendsError])
 
     const sendMsg = (username) => {
         props.navigation.navigate('CreateMessage', { sendToUsername: username })
@@ -40,7 +42,7 @@ function UserFriendsScreen(props) {
 
     const createFriendCards = (friend) => {
         return (
-            <View key={friend.item.username} style={styles.friendCard}>
+            <View testID={'friendMainView'} key={friend.item.username} style={styles.friendCard}>
                 <Text testID={`friendUserName${friend.item.username}`}>{friend.item.username}</Text>
                 <Image testID={`friendPhoto${friend.item.user_photo}`} style={styles.cardImage} source={{ uri: friend.item.user_photo }} />
                 <TouchableOpacity testID={`sendFriendMessage${friend.item.username}`} onPress={() => sendMsg(friend.item.username)}>

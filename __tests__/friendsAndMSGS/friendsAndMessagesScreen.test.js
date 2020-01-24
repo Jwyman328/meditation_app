@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, fireEvent } from 'react-native-testing-library';
+import { render, fireEvent, waitForElement } from 'react-native-testing-library';
 import ReduxThunk from 'redux-thunk'
+import logger from 'redux-logger'
 
 
 import { createStore, combineReducers, applyMiddleware } from 'redux'
@@ -12,182 +13,50 @@ import FriendsAndMsgsReducer from '../../store/reducers/FriendsAndMsgsReducer'
 import AuthDataReducer from '../../store/reducers/AuthDataReducer'
 import MoodReducer from '../../store/reducers/MoodReducer'
 
-import UserFriendsScreen from '../../screens/friendsAndMsgs/UserFriendsScreen'
-
+import UserFriendsScreen from '../../screens/friendsAndMsgs/UserFriendsScreen' //'../../screens/friendsAndMsgs/UserFriendsScreen'
+import handleInitialState from '../../testStateManager/stateManager'
 
 
 let element;
 let navigation;
 let rootReducers;
 let store;
-const initialState = {
-  "AuthData": {
-    "logInfetchError": false,
-    "logInfetchLoading": false,
-    "loggedIn": true,
-    "password": "testword",
-    "resetPasswordEmailSent": false,
-    "resetPasswordFetchError": false,
-    "resetPasswordLoading": false,
-    "signUpFetchError": false,
-    "signUpFetchLoading": false,
-    "token": "mytoken",
-    "username": "jwyman328",
-  },
-  "Fitness": {
-    "currentStepCount": 1000,
-    "dailyStepGoal": 3005,
-    "fetchDailyStepsError": false,
-    "fetchDailyStepsLoading": false,
-  },
-  "FriendsAndMsgs": {
-    "allUsers": [],
-    "fetchFriendsError": false,
-    "fetchFriendsLoading": false,
-    "pendingFriendRequests": [],
-    "fetchPendingFriendRequestsError": false,
-    "fetchPendingFriendRequestsLoading": false,
-    "fetchSingleMessagesError": false,
-    "fetchSingleMessagesLoading": false,
-    "fetchUsersError": false,
-    "fetchUsersLoading": false,
-    "friendsList": [
-      {
-        "first_name": "test_second_first",
-        "last_name": "test_second_last",
-        "user_photo": 'photo1',
-        "username": "test1",
-      },
-      {
-        "first_name": "test_first_name",
-        "last_name": "test_last_name",
-        "user_photo": "photo2",
-        "username": "test2",
-      }
+//let InitialState;
+import InitialState from '../../testStateManager/screenStates/searchFriendsState'
 
-    ]
+//make initialState with error fetching friends data
+const errorState = handleInitialState(InitialState,'FriendsAndMsgs',[{"fetchFriendsError": true}])
 
-  }
-}
-// set fetchFriendError to true 
-const initialStateError = {
-  "AuthData": {
-    "logInfetchError": false,
-    "logInfetchLoading": false,
-    "loggedIn": true,
-    "password": "testword",
-    "resetPasswordEmailSent": false,
-    "resetPasswordFetchError": false,
-    "resetPasswordLoading": false,
-    "signUpFetchError": false,
-    "signUpFetchLoading": false,
-    "token": "mytoken",
-    "username": "jwyman328",
-  },
-  "Fitness": {
-    "currentStepCount": 1000,
-    "dailyStepGoal": 3005,
-    "fetchDailyStepsError": false,
-    "fetchDailyStepsLoading": false,
-  },
-  "FriendsAndMsgs": {
-    "allUsers": [],
-    "fetchFriendsError": true,
-    "fetchFriendsLoading": false,
-    "fetchPendingFriendRequestsError": false,
-    "fetchPendingFriendRequestsLoading": false,
-    "fetchSingleMessagesError": false,
-    "fetchSingleMessagesLoading": false,
-    "fetchUsersError": false,
-    "fetchUsersLoading": false,
-    "friendsList": [
-      {
-        "first_name": "test_second_first",
-        "last_name": "test_second_last",
-        "user_photo": 'photo1',
-        "username": "test1",
-      },
-      {
-        "first_name": "test_first_name",
-        "last_name": "test_last_name",
-        "user_photo": "photo2",
-        "username": "test2",
-      }
+//make initialState with loading fetching friends data
+const loadingState = handleInitialState(InitialState,'FriendsAndMsgs',[{"fetchFriendsLoading": true}])
 
-    ]
 
-  }
-}
-const initialStateLoading = {
-  "AuthData": {
-    "logInfetchError": false,
-    "logInfetchLoading": false,
-    "loggedIn": true,
-    "password": "testword",
-    "resetPasswordEmailSent": false,
-    "resetPasswordFetchError": false,
-    "resetPasswordLoading": false,
-    "signUpFetchError": false,
-    "signUpFetchLoading": false,
-    "token": "mytoken",
-    "username": "jwyman328",
-  },
-  "Fitness": {
-    "currentStepCount": 1000,
-    "dailyStepGoal": 3005,
-    "fetchDailyStepsError": false,
-    "fetchDailyStepsLoading": false,
-  },
-  "FriendsAndMsgs": {
-    "allUsers": [],
-    "fetchFriendsError": false,
-    "fetchFriendsLoading": true,
-    "fetchPendingFriendRequestsError": false,
-    "fetchPendingFriendRequestsLoading": false,
-    "fetchSingleMessagesError": false,
-    "fetchSingleMessagesLoading": false,
-    "fetchUsersError": false,
-    "fetchUsersLoading": false,
-    "friendsList": [
-      {
-        "first_name": "test_second_first",
-        "last_name": "test_second_last",
-        "user_photo": 'photo1',
-        "username": "test1",
-      },
-      {
-        "first_name": "test_first_name",
-        "last_name": "test_last_name",
-        "user_photo": "photo2",
-        "username": "test2",
-      }
-
-    ]
-
-  }
-}
-describe('fetch success', () => {
+describe('Fetch Friends success', () => {
   beforeEach(() => {
     rootReducers = combineReducers({
+      meditation: MeditationReducer,
       Fitness: FitnessReducer,
+      ProfileData: ProfileDataReducer,
       FriendsAndMsgs: FriendsAndMsgsReducer,
       AuthData: AuthDataReducer,
+      Mood: MoodReducer,
     })
     navigation = { navigate: jest.fn() };
-    store = createStore(rootReducers, initialState, applyMiddleware(ReduxThunk))
+    store = createStore(rootReducers, InitialState , applyMiddleware(ReduxThunk, logger)) //
     element = render(<Provider store={store}>   <UserFriendsScreen navigation={navigation} /> </Provider>)
   })
 
 
-  test('search  friends title', () => {
+  test('search friends title', async() => {
 
-    const { update, getByTestId, getByText } = render(<Provider store={store}>   <UserFriendsScreen /> </Provider>)
-    const title = getByTestId('friendsTitle')
+    const { update, getByTestId, getByText } = element //render(<Provider store={store}>   <UserFriendsScreen /> </Provider>)
+    const title = await waitForElement(() => getByTestId('friendsTitle') )
+
     //fireEvent(email, 'onChangeText','footballjoe328@gmail.com')
     expect(title.props['children']).toBe('My Friends')
   })
 
-  test('search friend usernames', () => {
+  test('friend username card displays usernames of friends', () => {
     const { getByTestId } = element
     const friendUserNameOne = getByTestId('friendUserNametest1').props['children']
     const friendUserNameTwo = getByTestId('friendUserNametest2').props['children']
@@ -196,7 +65,7 @@ describe('fetch success', () => {
 
   })
 
-  test('friend photo exists', () => {
+  test('friend username card displays photos of friends', () => {
     const { getByTestId } = element
     const friendPhotoOne = getByTestId('friendPhotophoto1').props.source.uri
     const friendPhotoTwo = getByTestId('friendPhotophoto2').props.source.uri
@@ -204,7 +73,7 @@ describe('fetch success', () => {
     expect(friendPhotoTwo).toBe('photo2')
   })
 
-  test('sendFriend message button exists', () => {
+  test('friend username card sendFriend message button redirects to CreateMessage screen', () => {
     const { getByTestId, update } = element;
     const sendFriendMessageButton = getByTestId('sendFriendMessagetest1')
     fireEvent(sendFriendMessageButton, 'onPress')
@@ -215,20 +84,25 @@ describe('fetch success', () => {
   })
 
 
+
+
 })
 
-describe('initial state fetchFriendData true', () => {
+ describe('Fetch friend data error', () => {
   beforeEach(() => {
     rootReducers = combineReducers({
+      meditation: MeditationReducer,
       Fitness: FitnessReducer,
+      ProfileData: ProfileDataReducer,
       FriendsAndMsgs: FriendsAndMsgsReducer,
       AuthData: AuthDataReducer,
+      Mood: MoodReducer,
     })
     navigation = { navigate: jest.fn() };
-    store = createStore(rootReducers, initialStateError, applyMiddleware(ReduxThunk))
+    store = createStore(rootReducers, errorState, applyMiddleware(ReduxThunk))
     element = render(<Provider store={store}>   <UserFriendsScreen navigation={navigation} /> </Provider>)
   })
-  test('friend data fetch error', () => {
+  test('Show fetch friend data error message', () => {
     //check that error msg exists when fetchError = true
     const { getByTestId } = element
     const errorMSGElement = getByTestId('errorMSG')
@@ -236,23 +110,29 @@ describe('initial state fetchFriendData true', () => {
   })
 })
 
-describe('initial state fetchfriend data loading ', () => {
+describe('Fetch Friend data loading', () => {
   beforeEach(() => {
     rootReducers = combineReducers({
+      meditation: MeditationReducer,
       Fitness: FitnessReducer,
+      ProfileData: ProfileDataReducer,
       FriendsAndMsgs: FriendsAndMsgsReducer,
       AuthData: AuthDataReducer,
+      Mood: MoodReducer,
     })
     navigation = { navigate: jest.fn() };
-    store = createStore(rootReducers, initialStateLoading, applyMiddleware(ReduxThunk))
+    store = createStore(rootReducers, loadingState, applyMiddleware(ReduxThunk))
     element = render(<Provider store={store}>   <UserFriendsScreen navigation={navigation} /> </Provider>)
   })
 
-  test('while loading loading message shown', () => {
+  test('Show fetch friend data loading message', () => {
     const { getByTestId } = element
     const loadingElement = getByTestId('loadingMSG')
     expect(loadingElement.props['children']).toBe('Friends loading')
   })
 })
+
+
+
 
 

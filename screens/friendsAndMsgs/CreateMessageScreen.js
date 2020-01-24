@@ -52,8 +52,8 @@ function CreateMessageScreen(props) {
         const allMsgs = messages.map((message) => {
             return (
                 <View key={message.id} style={message.sender_username === username ? styles.myMessage : styles.friendMessage}>
-                    <Text style={message.sender_username === username ? styles.myMessageText : styles.friendMessageText}>{message.msg}</Text>
-                    <Text>{message.sender_username}</Text>
+                    <Text testID={`MSG${message.id}`} style={message.sender_username === username ? styles.myMessageText : styles.friendMessageText}>{message.msg}</Text>
+                    <Text testID={`MSGUsername${message.id}`}>{message.sender_username}</Text>
                 </View>
             )
         })
@@ -73,12 +73,10 @@ function CreateMessageScreen(props) {
         <View>
             <TouchableWithoutFeedback onPress={removeKeyboard}>
                 {fetchMessagesLoading ?
-                    <Text>Messages Loading</Text>
+                    <Text testID={'loadingTitle'}>Messages Loading</Text>
                     :
                     fetchMessagesError ?
-                        <Text>
-                            Error Loading Messages
-                            </Text>
+                        <Text testID={'errorTitle'}>Error Loading Messages</Text>
                         :
 
                         <ScrollView>
@@ -89,7 +87,7 @@ function CreateMessageScreen(props) {
                                     <View style={keyboardVisible ? styles.msgContainerModified : styles.msgContainer}>
                                         {messages ?
                                             <ScrollView>
-                                                <Text>Messages here </Text>
+                                                <Text testID="MessagesTitle">Messages here</Text>
                                                 {msgData()}
                                             </ScrollView>
 
@@ -101,12 +99,13 @@ function CreateMessageScreen(props) {
                                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
                                         <InputScrollView>
                                             <TextInput
+                                                testID={'textinputArea'}
                                                 onFocus={handleKeyboard}
                                                 multiline={true}
                                                 style={styles.TextInput}
                                                 value={value} onChangeText={text => handleChange(text)} />
                                         </InputScrollView>
-                                        <Button title='submit' onPress={sendMessage} />
+                                        <Button testID='sendMessageButton' title='submit' onPress={sendMessage} />
 
                                     </View>
                                 </TouchableOpacity>

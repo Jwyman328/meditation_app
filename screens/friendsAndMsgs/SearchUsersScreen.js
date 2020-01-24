@@ -18,7 +18,7 @@ import { Ionicons } from '@expo/vector-icons'
  * As well necessarypost login actions like fetching meditations will take place
  */
 function SearchUsersScreen() {
-    const [friendsUsernames, setFriendsUsernames] = useState(undefined)
+    const [friendsUsernames, setFriendsUsernames] = useState([]) //these names are here for test purposes ['test1', 'test2']
     const dispatch = useDispatch()
     const username = useSelector((state) => state.AuthData.username)
     const token = useSelector((state) => state.AuthData.token)
@@ -40,7 +40,6 @@ function SearchUsersScreen() {
     useEffect(() => {
         dispatch(FetchAllUsers(token))
         if (allUsers && friends) {
-
             // map the friends 
             const friendsUsernames = friends.map((friend) => friend.username)
             setFriendsUsernames(friendsUsernames)
@@ -49,7 +48,7 @@ function SearchUsersScreen() {
 
         }
 
-    }, [friends, dispatch]) //[dispatch]
+    }, [friends, dispatch,]) //[dispatch]
 
     const addFriend = (username) => {
         dispatch(SendFriendRequest(username, token))
@@ -67,9 +66,10 @@ function SearchUsersScreen() {
                 null :
                 // check if this user is a friend
                 friendsUsernames.includes(user.item.username) ?
-                    <View style={styles.friendCard}>
+
+                    <View testID={'userCard'} style={styles.friendCard}>
                         <View>
-                            <Text> {user.item.username}</Text>
+                            <Text testID={`userCardUserFriendname${user.item.username}`}>{user.item.username}</Text>
                             <Image style={styles.cardImage} source={{ uri: user.item.user_photo }} />
                         </View>
 
@@ -82,9 +82,9 @@ function SearchUsersScreen() {
                     </View>
                     :
 
-                    <View style={styles.friendCard}>
+                    <View testID={'userCard'} style={styles.friendCard}>
                         <View>
-                            <Text> {user.item.username}</Text>
+                            <Text testID={`userCardUsername`}>{user.item.username}</Text>
                             <Image style={styles.cardImage} source={{ uri: user.item.user_photo }} />
                         </View>
 
@@ -100,18 +100,19 @@ function SearchUsersScreen() {
     }
 
     return (
-        <View styles={styles.container}>
+        <View testID={'viewMain'} styles={styles.container}>
             {fetchUsersLoading ?
-                    <Text>Loading</Text> 
-                            :
-                    fetchUsersError?
-                    <Text> Could not Find user list data </Text>
-                            :
-                    <View style={styles.cardsContainer}>
-                    <Text>All Users</Text>
-                    {allUsers ? <FlatList numColumns={1} data={allUsers} keyExtractor={(item => item.username)} renderItem={(user) => createFriendCards(user)} /> : null}
-                </View>
-                }
+                <Text>Loading</Text>
+                :
+                fetchUsersError ?
+                    <Text testID={'errorMSG'}>Could not Find user list data</Text>
+                    :
+                    <View testID={'successView'} style={styles.cardsContainer}>
+                        <Text testID={'AllUsersTitle'}>All Users</Text>
+                        
+                        {allUsers && friendsUsernames ? <FlatList testID={'userCard'} numColumns={1} data={allUsers} keyExtractor={(item => item.username)} renderItem={(user) => createFriendCards(user)} /> : null}
+                    </View>
+            }
         </View>
     )
 }

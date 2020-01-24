@@ -61,7 +61,7 @@ function InboxScreen() {
         <View testID='viewMain' styles={{ flex: 1, }} >
             <Text> </Text>
             {fetchPendingFriendRequestsLoading? 
-                <Text>Friend Request Loading</Text>
+                <Text testID='friendRequestLoadingMSG'>Friend Request Loading</Text>
                             :
                     fetchPendingFriendRequestsError?
                         <Text testID={'fetchFailure'}>Could not get friend request</Text>

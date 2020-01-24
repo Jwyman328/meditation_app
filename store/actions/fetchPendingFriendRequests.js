@@ -14,8 +14,6 @@ const FetchPendingFriendRequests = (token) => {
             if (response.status === 400){
                 dispatch(FetchError('fetchPendingFriendRequestsError'))
             }else{
-                console.log('no')
-
                 dispatch(FetchSuccess('fetchPendingFriendRequestsSuccess'))
                 const responseData = await response.data
                 dispatch({type: 'PendingFriendRequests', pendingFriendRequests:responseData})

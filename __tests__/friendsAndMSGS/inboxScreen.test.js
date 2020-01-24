@@ -13,8 +13,10 @@ import AuthDataReducer from '../../store/reducers/AuthDataReducer'
 import MoodReducer from '../../store/reducers/MoodReducer'
 
 import InboxScreen from '../../screens/friendsAndMsgs/InboxScreen'
-//mock entire module 
+import InitialState from '../../testStateManager/screenStates/inboxScreenInitialState'
+import handleInitialState from '../../testStateManager/stateManager'
 
+const InitialStateLoading = handleInitialState(InitialState,'FriendsAndMsgs', [{"fetchPendingFriendRequestsLoading": true}])
 import moxios from 'moxios'
 
 
@@ -23,162 +25,9 @@ let element;
 let navigation;
 let rootReducers;
 let store;
-const initialState = {
-  "AuthData": {
-    "logInfetchError": false,
-    "logInfetchLoading": false,
-    "loggedIn": true,
-    "password": "testword",
-    "resetPasswordEmailSent": false,
-    "resetPasswordFetchError": false,
-    "resetPasswordLoading": false,
-    "signUpFetchError": false,
-    "signUpFetchLoading": false,
-    "token": "mytoken",
-    "username": "jwyman328",
-  },
-  "Fitness": {
-    "currentStepCount": 1000,
-    "dailyStepGoal": 3005,
-    "fetchDailyStepsError": false,
-    "fetchDailyStepsLoading": false,
-  },
-  "FriendsAndMsgs": {
-    "allUsers": [],
-    "pendingFriendRequests": [],
-    "fetchFriendsError": false,
-    "fetchFriendsLoading": false,
-    "fetchPendingFriendRequestsError": false,
-    "fetchPendingFriendRequestsLoading": false,
-    "fetchSingleMessagesError": false,
-    "fetchSingleMessagesLoading": false,
-    "fetchUsersError": false,
-    "fetchUsersLoading": false,
-    "friendsList": [
-      {
-        "first_name": "test_second_first",
-        "last_name": "test_second_last",
-        "user_photo": 'photo1',
-        "username": "test1",
-      },
-      {
-        "first_name": "test_first_name",
-        "last_name": "test_last_name",
-        "user_photo": "photo2",
-        "username": "test2",
-      }
 
-    ]
 
-  }
-}
-// set fetchFriendError to true 
-const initialStateError = {
-  "AuthData": {
-    "logInfetchError": false,
-    "logInfetchLoading": false,
-    "loggedIn": true,
-    "password": "testword",
-    "resetPasswordEmailSent": false,
-    "resetPasswordFetchError": false,
-    "resetPasswordLoading": false,
-    "signUpFetchError": false,
-    "signUpFetchLoading": false,
-    "token": "mytoken",
-    "username": "jwyman328",
-  },
-  "Fitness": {
-    "currentStepCount": 1000,
-    "dailyStepGoal": 3005,
-    "fetchDailyStepsError": false,
-    "fetchDailyStepsLoading": false,
-  },
-  "FriendsAndMsgs": {
-    "allUsers": [],
-    "fetchFriendsError": true,
-    "fetchFriendsLoading": false,
-    "pendingFriendRequests": [],
-    "fetchPendingFriendRequestsError": true,
-    "fetchPendingFriendRequestsLoading": false,
-    "fetchSingleMessagesError": false,
-    "fetchSingleMessagesLoading": false,
-    "fetchUsersError": false,
-    "fetchUsersLoading": false,
-    "friendsList": [
-      {
-        "first_name": "test_second_first",
-        "last_name": "test_second_last",
-        "user_photo": 'photo1',
-        "username": "test1",
-      },
-      {
-        "first_name": "test_first_name",
-        "last_name": "test_last_name",
-        "user_photo": "photo2",
-        "username": "test2",
-      }
-
-    ]
-
-  }
-}
-const initialStateLoading = {
-  "AuthData": {
-    "logInfetchError": false,
-    "logInfetchLoading": false,
-    "loggedIn": true,
-    "password": "testword",
-    "resetPasswordEmailSent": false,
-    "resetPasswordFetchError": false,
-    "resetPasswordLoading": false,
-    "signUpFetchError": false,
-    "signUpFetchLoading": false,
-    "token": "mytoken",
-    "username": "jwyman328",
-  },
-  "Fitness": {
-    "currentStepCount": 1000,
-    "dailyStepGoal": 3005,
-    "fetchDailyStepsError": false,
-    "fetchDailyStepsLoading": false,
-  },
-  "FriendsAndMsgs": {
-    "allUsers": [],
-    "fetchFriendsError": false,
-    "fetchFriendsLoading": true,
-    "pendingFriendRequests": [{
-        "id": 21,
-        "sender_username": "jwyman",
-        "sender_profile_picture": "photo1",
-        "status": false,
-        "sender": 3,
-        "reciever": 1
-    }],
-    "fetchPendingFriendRequestsError": false,
-    "fetchPendingFriendRequestsLoading": false,
-    "fetchSingleMessagesError": false,
-    "fetchSingleMessagesLoading": false,
-    "fetchUsersError": false,
-    "fetchUsersLoading": false,
-    "friendsList": [
-      {
-        "first_name": "test_second_first",
-        "last_name": "test_second_last",
-        "user_photo": 'photo1',
-        "username": "test1",
-      },
-      {
-        "first_name": "test_first_name",
-        "last_name": "test_last_name",
-        "user_photo": "photo2",
-        "username": "test2",
-      }
-
-    ]
-
-  }
-}
-describe('fetch success', () => {
+describe('fetch pending friend requests success', () => {
   beforeEach(() => {
     moxios.install()
     moxios.stubRequest('http://intense-gorge-29567.herokuapp.com/friends/pending_friend_requests/',{status:200, response: [{
@@ -190,12 +39,15 @@ describe('fetch success', () => {
         "reciever": 1
     }]})
     rootReducers = combineReducers({
+      meditation: MeditationReducer,
       Fitness: FitnessReducer,
+      ProfileData: ProfileDataReducer,
       FriendsAndMsgs: FriendsAndMsgsReducer,
       AuthData: AuthDataReducer,
+      Mood: MoodReducer,
     })
     navigation = { navigate: jest.fn() };
-    store = createStore(rootReducers, initialState, applyMiddleware(ReduxThunk))
+    store = createStore(rootReducers, InitialState, applyMiddleware(ReduxThunk))
     element = render(<Provider store={store}>   <InboxScreen navigation={navigation} /> </Provider>)
   })
 
@@ -204,7 +56,7 @@ describe('fetch success', () => {
 })
 
 
-  test('search  friends title', async() => {
+  test('search friend requests title', async() => {
     const { update, getByTestId, getByText } = element
     const title = getByTestId('viewMain')
     //const waitt = waitForElement('viewSuccess')
@@ -229,17 +81,12 @@ describe('fetch success', () => {
     //have not tested acepting or denying friend requests 
   })
 
-  describe('pendingFriendRequestsError', () => {
+  describe('Pending Friend Request loading', () => {
     beforeEach(() => {
         moxios.install()
-        moxios.stubRequest('http://intense-gorge-29567.herokuapp.com/friends/pending_friend_requests/',{status:400, })        
-          rootReducers = combineReducers({
-          Fitness: FitnessReducer,
-          FriendsAndMsgs: FriendsAndMsgsReducer,
-          AuthData: AuthDataReducer,
-        })
+       
         navigation = { navigate: jest.fn() };
-        store = createStore(rootReducers, initialState, applyMiddleware(ReduxThunk))
+        store = createStore(rootReducers, InitialStateLoading, applyMiddleware(ReduxThunk))
         element = render(<Provider store={store}>   <InboxScreen navigation={navigation} /> </Provider>)
       })
     
@@ -247,7 +94,35 @@ describe('fetch success', () => {
         moxios.uninstall()
     })
 
-    test('fail pending friend request fetch', async() => {
+    test('Show pending friend request loading message', async() => {
+        const {getByTestId} = element;
+        const loadingMessageText = await waitForElement(() => getByTestId('friendRequestLoadingMSG')) 
+        expect(loadingMessageText.props['children']).toBe('Friend Request Loading')
+    })
+  })
+
+  describe('Pending Friend Request Error', () => {
+    beforeEach(() => {
+        moxios.install()
+        moxios.stubRequest('http://intense-gorge-29567.herokuapp.com/friends/pending_friend_requests/',{status:400, })        
+          rootReducers = combineReducers({
+            meditation: MeditationReducer,
+            Fitness: FitnessReducer,
+            ProfileData: ProfileDataReducer,
+            FriendsAndMsgs: FriendsAndMsgsReducer,
+            AuthData: AuthDataReducer,
+            Mood: MoodReducer,
+        })
+        navigation = { navigate: jest.fn() };
+        store = createStore(rootReducers, InitialState, applyMiddleware(ReduxThunk))
+        element = render(<Provider store={store}>   <InboxScreen navigation={navigation} /> </Provider>)
+      })
+    
+      afterEach(() => {
+        moxios.uninstall()
+    })
+
+    test('Show pending friend request error message', async() => {
         const {getByTestId} = element;
         //const failureText = getByTestId('fetchFailure')
         const failureText = await waitForElement(() => getByTestId('fetchFailure')) 

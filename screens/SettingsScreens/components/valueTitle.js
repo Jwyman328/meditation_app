@@ -14,10 +14,6 @@ function ValueTitle(props) {
     )
 }
 
-ValueTitle.propTypes = {
-    /** title text to be displated */
-    titleText: PropTypes.string,
-};
 
 const styles = StyleSheet.create({
     TitleText: {

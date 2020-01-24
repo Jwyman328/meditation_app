@@ -1,59 +1,41 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, ImageBackground, Dimensions, FlatList, Image, TouchableOpacity } from 'react-native';
-
 import FetchFavorites from '../../store/actions/fetchFavorites'
-
 import { useDispatch, useSelector } from 'react-redux'
 import colors from '../../constants/colors';
-
 import { Ionicons } from '@expo/vector-icons'
-
+import FriendCard from '../friendsAndMsgs/components/friendCard'
 /**
- * Landing screen after the user logs in.
+ * Display All Friends in card form.
  * 
- * As well necessarypost login actions like fetching meditations will take place
  */
 function UserFriendsScreen(props) {
 
-    const dispatch = useDispatch()
+    //get General data
     const username = useSelector((state) => state.AuthData.username)
     const token = useSelector((state) => state.AuthData.token)
+    // get all user friends.
     const friends = useSelector((state) => state.FriendsAndMsgs.friendsList)
-    //handle user friends error 
+    // get status of fetching user friends.
     const fetchFriendsLoading = useSelector((state) => state.FriendsAndMsgs.fetchFriendsLoading)
     const fetchFriendsError = useSelector((state) => state.FriendsAndMsgs.fetchFriendsError)
-
+    
     /**
-     * Fetch all meditations and all favorited meditations for the user.
-     * 
-     * When the user logs all meditations will be request and loaded 
-     * as well all previously existing favorited meditations will be reloaded into
-     * their favorite meditations
+     * Navigate to createMessageScreen for selected friend.
+     * @param {String} username Username of friend to see current/create new conversation.
      */
-    useEffect(() => {
-        console.log('isloading?',fetchFriendsLoading)
-        console.log('iserror?',fetchFriendsError)
-
-    }, [dispatch,fetchFriendsLoading,fetchFriendsError])
-
-    const sendMsg = (username) => {
+    const navigateToCreateMessageScreen = (username) => {
         props.navigation.navigate('CreateMessage', { sendToUsername: username })
     }
 
-    const createFriendCards = (friend) => {
+    /**
+     * Create a friendCard.
+     * @param {Object} item Contains Friend username,friend uri to photo
+     */
+    const createFriendCards = (item) => {
         return (
-            <View testID={'friendMainView'} key={friend.item.username} style={styles.friendCard}>
-                <Text testID={`friendUserName${friend.item.username}`}>{friend.item.username}</Text>
-                <Image testID={`friendPhoto${friend.item.user_photo}`} style={styles.cardImage} source={{ uri: friend.item.user_photo }} />
-                <TouchableOpacity testID={`sendFriendMessage${friend.item.username}`} onPress={() => sendMsg(friend.item.username)}>
-                    <View>
-                        <Ionicons name='ios-mail' size={45} color={'red'} />
-                    </View>
-                </TouchableOpacity>
-
-            </View>
+            <FriendCard sendMsg={navigateToCreateMessageScreen} item={item.item} />
         )
-
     }
 
     return (
@@ -75,38 +57,12 @@ function UserFriendsScreen(props) {
 export default UserFriendsScreen;
 
 const styles = StyleSheet.create({
-    cardImage: {
-        width: Dimensions.get('window').width * .2,
-        height: Dimensions.get('window').height * .1
-    },
     cardsContainer: {
         marginTop: Dimensions.get('window').height * .1,
         height: Dimensions.get('window').height * .7,
         justifyContent: 'center',
         alignItems: 'center',
         width: Dimensions.get('window').width,
-    },
-    friendCard: {
-        borderWidth: 1,
-        borderColor: 'black',
-        borderStyle: 'solid',
-        height: Dimensions.get('window').height * .2,
-        width: Dimensions.get('window').width * .65,
-        borderRadius: 20,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        overflow: 'hidden',
-        marginTop: Dimensions.get('window').height * .01,
-    },
-    backgroundImage: {
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
-        resizeMode: 'contain',
-    },
-    imageContainer: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     container: {
         height: Dimensions.get('window').height,

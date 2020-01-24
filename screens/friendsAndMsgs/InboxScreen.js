@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import colors from '../../constants/colors';
 import { Ionicons } from '@expo/vector-icons'
 
+import AcceptDenyFriendRequestCard from '../friendsAndMsgs/components/acceptDenyFriendRequestCard'
+
 /**
  * Landing screen after the user logs in.
  * 
@@ -20,39 +22,23 @@ function InboxScreen() {
     const pendingFriendRequests = useSelector((state) => state.FriendsAndMsgs.pendingFriendRequests)
     const fetchPendingFriendRequestsLoading = useSelector((state) => state.FriendsAndMsgs.fetchPendingFriendRequestsLoading)
     const fetchPendingFriendRequestsError = useSelector((state) => state.FriendsAndMsgs.fetchPendingFriendRequestsError)
-
     const username = useSelector((state) => state.AuthData.username)
     const token = useSelector((state) => state.AuthData.token)
 
     useEffect(() => {
         dispatch(FetchPendingFriendRequests(token))
-        
     }, [dispatch])
 
     const handleRequest = (id, bool) => {
-        dispatch(AcceptDenyFriendRequest(id, bool,token))
-        //dispatch(FetchPendingFriendRequests(token))
+        dispatch(AcceptDenyFriendRequest(id, bool, token))
+        dispatch(FetchPendingFriendRequests(token))
     }
 
     const createSenderCards = (friendRequest) => {
+        console.log(friendRequest.item, 'loot')
         return (
-            <View key={friendRequest.item.sender_username} style={styles.friendCard}>
-                <View>
-                    <Text testID={'friendRequestUserName'}>{friendRequest.item.sender_username}</Text>
-                    <Image testID={'friendRequestUserPhoto'} style={styles.cardImage} source={{ uri: friendRequest.item.sender_profile_picture }} />
-                </View>
-                <TouchableOpacity onPress={() => handleRequest(friendRequest.item.id,1)}>
-                    <View>
-                        <Ionicons name='ios-checkmark-circle-outline' size={45} color={'green'} />
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleRequest(friendRequest.item.id, 0)}>
-                    <View style={{marginLeft:20}}>
-                        <Ionicons name='ios-remove-circle-outline' size={45} color={'red'} />
-                    </View>
-                </TouchableOpacity>
-
-            </View>
+            <AcceptDenyFriendRequestCard handleRequest={(id, bool) => handleRequest(id, bool)} sender_profile_picture={friendRequest.item.sender_profile_picture}
+                sender_username={friendRequest.item.sender_username} id={friendRequest.item.id} />
         )
 
     }
@@ -60,17 +46,17 @@ function InboxScreen() {
     return (
         <View testID='viewMain' styles={{ flex: 1, }} >
             <Text> </Text>
-            {fetchPendingFriendRequestsLoading? 
+            {fetchPendingFriendRequestsLoading ?
                 <Text testID='friendRequestLoadingMSG'>Friend Request Loading</Text>
-                            :
-                    fetchPendingFriendRequestsError?
-                        <Text testID={'fetchFailure'}>Could not get friend request</Text>
-                                :
-                            <View testID='viewSuccess' style={styles.cardsContainer}>
-                                <Text testID={'friendRequestTitle'}>My Friend requests</Text>
-                                    {pendingFriendRequests ? <FlatList numColumns={1} data={pendingFriendRequests} keyExtractor={(item => (item.id).toString() )} renderItem={(friendRequest) => createSenderCards(friendRequest)} /> : null}
+                :
+                fetchPendingFriendRequestsError ?
+                    <Text testID={'fetchFailure'}>Could not get friend request</Text>
+                    :
+                    <View testID='viewSuccess' style={styles.cardsContainer}>
+                        <Text testID={'friendRequestTitle'}>My Friend requests</Text>
+                        {pendingFriendRequests ? <FlatList numColumns={1} data={pendingFriendRequests} keyExtractor={(item => (item.id).toString())} renderItem={(friendRequest) => createSenderCards(friendRequest)} /> : null}
 
-            </View>}
+                    </View>}
         </View>
     )
 }
@@ -91,8 +77,6 @@ const styles = StyleSheet.create({
     },
     friendCard: {
         flexDirection: 'row',
-        //justifyContent:'space-around',
-        //alignContent:'flex-end',
         borderWidth: 1,
         borderColor: 'black',
         borderStyle: 'solid',

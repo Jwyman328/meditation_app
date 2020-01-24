@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, ImageBackground, Dimensions, FlatList, Image, T
 
 import FetchAllCourses from '../../store/actions/FetchAllCourses'
 import FetchAllUsers from '../../store/actions/FetchAllUsers'
-import AddRemoveFriend from '../../store/actions/addRemoveFriend'
+import AddRemoveFriend from '../../store/actions/addRemoveFriend' 
 import FetchUserFriends from '../../store/actions/FetchUserFriends'
 import SendFriendRequest from '../../store/actions/sendFriendRequest'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,7 +11,8 @@ import colors from '../../constants/colors';
 
 import { Ionicons } from '@expo/vector-icons'
 
-
+import UserFriendCard from '../friendsAndMsgs/components/userFriendCard'
+import UserCard from '../friendsAndMsgs/components/userCard'
 /**
  * Landing screen after the user logs in.
  * 
@@ -43,17 +44,16 @@ function SearchUsersScreen() {
             // map the friends 
             const friendsUsernames = friends.map((friend) => friend.username)
             setFriendsUsernames(friendsUsernames)
-
         } else {
-
         }
-
     }, [friends, dispatch,]) //[dispatch]
 
-    const addFriend = (username) => {
+    const sendFriendRequest = (username) => {
+        console.log('add')
         dispatch(SendFriendRequest(username, token))
     }
     const removeFriend = (username) => {
+        console.log('remove')
         dispatch(AddRemoveFriend(username, token))
     }
 
@@ -66,37 +66,10 @@ function SearchUsersScreen() {
                 null :
                 // check if this user is a friend
                 friendsUsernames.includes(user.item.username) ?
-
-                    <View testID={'userCard'} style={styles.friendCard}>
-                        <View>
-                            <Text testID={`userCardUserFriendname${user.item.username}`}>{user.item.username}</Text>
-                            <Image style={styles.cardImage} source={{ uri: user.item.user_photo }} />
-                        </View>
-
-                        <TouchableOpacity onPress={() => removeFriend(user.item.username)}>
-                            <View>
-                                <Ionicons name='ios-remove-circle-outline' size={75} color={'red'} />
-                            </View>
-                        </TouchableOpacity>
-
-                    </View>
+                    <UserFriendCard removeFriend={() => removeFriend(user.item.username)} user_photo={user.item.user_photo} username={user.item.username} />
                     :
-
-                    <View testID={'userCard'} style={styles.friendCard}>
-                        <View>
-                            <Text testID={`userCardUsername`}>{user.item.username}</Text>
-                            <Image style={styles.cardImage} source={{ uri: user.item.user_photo }} />
-                        </View>
-
-                        <TouchableOpacity onPress={() => addFriend(user.item.username)}>
-                            <View>
-                                <Ionicons name='md-person-add' size={75} color={'green'} />
-                            </View>
-                        </TouchableOpacity>
-
-                    </View>
+                    <UserCard sendFriendRequest={() => sendFriendRequest(user.item.username)} user_photo={user.item.user_photo} username={user.item.username} />
         )
-
     }
 
     return (

@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { Ionicons } from '@expo/vector-icons'
-import colors from '../constants/colors'
+import colors from '../../../constants/colors'
 
 /**
  * Display label and value in a row, allowing navigation to screen on touch.

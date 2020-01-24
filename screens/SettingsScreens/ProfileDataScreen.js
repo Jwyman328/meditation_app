@@ -6,8 +6,8 @@ import colors from '../../constants/colors'
 import MainButton from '../../components/MainButton'
 import LogOutUser from '../../store/actions/logOut'
 
-import CatagoryValue from '../../components/catagoryValue'
-import ValueTitle from '../../components/valueTitle'
+import CatagoryValue from '../SettingsScreens/components/catagoryValue'
+import ValueTitle from '../SettingsScreens/components/valueTitle' 
 
 function ProfileDataScreen(props) {
     // get status of fitness data fetching

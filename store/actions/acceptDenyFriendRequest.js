@@ -11,20 +11,23 @@ import FetchSuccess from './fetchLoadErrorSucces/fetchSuccess'
 import FetchError from './fetchLoadErrorSucces/fetchError'
 
 
-const AcceptDenyFriendRequest = (id, Bool, token) => { 
-        return async (dispatch) => {
-            dispatch(LoadFetch())
-            const response = await fetch(`https://intense-gorge-29567.herokuapp.com/friends/${id}/${Bool}/`,{
-            headers:{ Authorization: `JWT ${token}`,'Content-Type': 'application/json'}}).then(async(response) => {
-                const responseData = await response.json()
-                //dispatch({type: 'AddFriend', addFriendsList:responseData})
-                
-                dispatch(FetchPendingFriendRequests(token))
-                dispatch(FetchUserFriends(token))
-                dispatch(FetchAllUsers(token))
-            })
-          
+const AcceptDenyFriendRequest = (id, Bool, token) => {
+    console.log('heres')
+    return async (dispatch) => {
+        //dispatch(LoadFetch())
+        const response = await fetch(`https://intense-gorge-29567.herokuapp.com/friends/${id}/${Bool}/`, {
+            headers: { Authorization: `JWT ${token}`, 'Content-Type': 'application/json' }
+        }).then(async (response) => {
+            const responseData = await response.json()
+            //dispatch({type: 'AddFriend', addFriendsList:responseData})
+            dispatch(FetchPendingFriendRequests(token))
+            dispatch(FetchUserFriends(token))
+            dispatch(FetchAllUsers(token))
+        }).catch((response) => {
+            console.log('error')
+        })
 
-        }
+
+    }
 }
 export default AcceptDenyFriendRequest

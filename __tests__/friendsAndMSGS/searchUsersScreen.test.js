@@ -81,7 +81,7 @@ describe('fetch all user data successfully', () => {
         const { update, getByTestId, getByText } = element
         let userFriendCardUserName1 = await waitForElement(() => getByTestId('userCardUserFriendnametest1')) //test1 is the username of a friend
         let userFriendCardUserName2 = await waitForElement(() => getByTestId('userCardUserFriendnametest2')) //test2 is the username of a friend
-        let userCardUserName = await waitForElement(() => getByTestId('userCardUsername'))//test3 is the username of a non friend user 
+        let userCardUserName = await waitForElement(() => getByTestId('userCardUsernametest3'))//test3 is the username of a non friend user 
 
         expect(userFriendCardUserName1.props['children']).toBe('test1')
         expect(userFriendCardUserName2.props['children']).toBe('test2')

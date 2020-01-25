@@ -41,7 +41,7 @@ function CoursesScreen(props) {
     const createCards = (course) => {
         return (
             <View style={{ ...styles.coursesContainer }}>
-                <CourseCard goToCourse={goToCourse} title={course.item.title} uri={course.item.image_uri} catagories={course.item.catagories} id={course.item.id} courseId={course.item.course_id} />
+                <CourseCard testID={`course${course.item.id}`} goToCourse={goToCourse} title={course.item.title} uri={course.item.image_uri} catagories={course.item.catagories} id={course.item.id} courseId={course.item.course_id} />
             </View>
         )
     }
@@ -52,15 +52,15 @@ function CoursesScreen(props) {
     const createCard = (course) => {
         return (
             <View style={{ ...styles.coursesContainer }}>
-                <CourseCard goToCourse={goToCourse} title={course.title} uri={course.image_uri} catagories={course.catagories} id={course.id} courseId={course.course_id} />
+                <CourseCard testID={`course${course.item.id}`} goToCourse={goToCourse} title={course.title} uri={course.image_uri} catagories={course.catagories} id={course.id} courseId={course.course_id} />
             </View>
         )
     }
     return (
         <View style={styles.mainContainer}>
             {isLoggedIn ?
-                fetchCoursesLoading ? <Text>Loading</Text> : 
-                    fetchCoursesError? <Text>Error loading meditations</Text>:
+                fetchCoursesLoading ? <Text testID='loadingMsg'>Loading</Text> : 
+                    fetchCoursesError? <Text testID='errorMsg'>Error loading meditations</Text>:
                     <View style={{ ...styles.allCoursesContainer, ...styles.quickBorder }}>
                         {filteredCourses ? filteredCourses.length > 1 ? <FlatList numColumns={2} data={filteredCourses} keyExtractor={(item => item.title)} renderItem={(course) => createCards(course)} /> : createCard(filteredCourses[0]) : null}
                     </View> : null}

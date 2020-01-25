@@ -17,8 +17,8 @@ function FilterLabelSwitch(props) {
     }
     return (
         <View style={styles.switchesContainer}>
-            <Text style={styles.title}> {props.title}</Text>
-            <Switch trackColor={{ true: colors.strongPrimary }} thumbColor={colors.secondary} value={props.value} onValueChange={() => { setFilter(props.filterValue) }} />
+            <Text testID={`label${props.title}`} style={styles.title}>{props.title}</Text>
+            <Switch testID={`switch${props.title}`} trackColor={{ true: colors.strongPrimary }} thumbColor={colors.secondary} value={props.value} onValueChange={() => { setFilter(props.filterValue) }} />
         </View>
     )
 }

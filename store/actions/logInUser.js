@@ -2,6 +2,7 @@ import React from 'react'
 import LoadFetch from './fetchLoadErrorSucces/loadFetch'
 import FetchSuccess from './fetchLoadErrorSucces/fetchSuccess'
 import FetchError from './fetchLoadErrorSucces/fetchError'
+import axios from 'axios'
 /**
  * Login an already existing user.
  * 
@@ -14,11 +15,11 @@ const LogInUser = (userName, passWord) => {
         dispatch(LoadFetch('logInloadFetch'))
         const usernamePassword = { username: userName, password: passWord }
         let jsonUsername = JSON.stringify(usernamePassword)
-        let loginResponse = await fetch('http://intense-gorge-29567.herokuapp.com/sign_in', {
+        let loginResponse = await axios({url:'http://intense-gorge-29567.herokuapp.com/sign_in',
             method: 'POST', //mode: 'cors'
-            body: jsonUsername, headers: { 'Content-Type': 'application/json' }
+            data: jsonUsername, headers: { 'Content-Type': 'application/json' }
         }).then(async(loginResponse) => {
-            let jsonResponse = await loginResponse.json()
+            let jsonResponse = await loginResponse.data
             const token = jsonResponse.token
             if (token) {
                 dispatch(FetchSuccess('logInfetchSuccess'))

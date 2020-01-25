@@ -85,9 +85,9 @@ function FullCourseScreen(props) {
 
     return (
         courseData ?
-            <View style={{ flex: 1 }} >
+            <View  style={{ flex: 1 }} >
                 <ImageBackground style={styles.backgroundImageStyle} source={{ uri: data.image_uri }}>
-                    {fetchCourseDataLoding ? <Text> Meditation Course Data loading </Text> :
+                    {fetchCourseDataLoding ? <Text > Meditation Course Data loading </Text> :
                         fetchCourseDataError ? <Text>Error: could not find data</Text> : <View>
                             <View style={styles.textContainer}>
                                 <Text style={styles.title}>{data.title}</Text>

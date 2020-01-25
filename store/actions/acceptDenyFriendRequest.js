@@ -12,7 +12,6 @@ import FetchError from './fetchLoadErrorSucces/fetchError'
 
 
 const AcceptDenyFriendRequest = (id, Bool, token) => {
-    console.log('heres')
     return async (dispatch) => {
         //dispatch(LoadFetch())
         const response = await fetch(`https://intense-gorge-29567.herokuapp.com/friends/${id}/${Bool}/`, {

@@ -11,7 +11,6 @@ const FetchAllUsers = (token) => {
             headers: { Authorization: `JWT ${token}`, 'Content-Type': 'application/json' }
         }).then(async (response) => {
             if (response.status == 404){
-                console.log('404')
                 dispatch(FetchError('fetchUsersError'))
             }else{
                 dispatch(FetchSuccess('fetchUsersSuccess'))

@@ -2,6 +2,7 @@ import React from 'react'
 import LoadFetch from './fetchLoadErrorSucces/loadFetch'
 import FetchSuccess from './fetchLoadErrorSucces/fetchSuccess'
 import FetchError from './fetchLoadErrorSucces/fetchError'
+import axios from 'axios'
 
 /**
  * Sent a request to the signup link to create a new user and recieve a jwt token.
@@ -17,11 +18,11 @@ const SignUpUser = (userName, passWord, firstName, lastName) => {
         dispatch(LoadFetch('signUpFetchLoading'))
         const usernamePassword = { username: userName, password: passWord }
         let jsonUsername = JSON.stringify(usernamePassword)
-        let loginResponse = await fetch('http://intense-gorge-29567.herokuapp.com/sign_up', {
+        let loginResponse = await axios({url:'http://intense-gorge-29567.herokuapp.com/sign_up',
             method: 'POST', //mode: 'cors'
             body: jsonUsername, headers: { 'Content-Type': 'application/json' }
         }).then(async(loginResponse) => {
-            let jsonResponse = await loginResponse.json()
+            let jsonResponse = await loginResponse.data
             // set additional data
             const token = jsonResponse.token
             const lastNameFirstName = {first_name:firstName, last_name:lastName}
@@ -30,7 +31,7 @@ const SignUpUser = (userName, passWord, firstName, lastName) => {
             // if the user got a token add aditional user data
             if (token) {
                 dispatch(FetchSuccess('signUpFetchSuccess'))
-                let additionDataResponse = await fetch('https://intense-gorge-29567.herokuapp.com/sign_up_additional_data', {
+                let additionDataResponse = await axios({url:'https://intense-gorge-29567.herokuapp.com/sign_up_additional_data',
                     method: 'POST', //mode: 'cors'
                     body: jsonlastNameFirstName, headers: { 'Content-Type': 'application/json', Authorization: `JWT ${token}` }
                 });

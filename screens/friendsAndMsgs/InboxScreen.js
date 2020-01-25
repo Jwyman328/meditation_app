@@ -35,7 +35,6 @@ function InboxScreen() {
     }
 
     const createSenderCards = (friendRequest) => {
-        console.log(friendRequest.item, 'loot')
         return (
             <AcceptDenyFriendRequestCard handleRequest={(id, bool) => handleRequest(id, bool)} sender_profile_picture={friendRequest.item.sender_profile_picture}
                 sender_username={friendRequest.item.sender_username} id={friendRequest.item.id} />

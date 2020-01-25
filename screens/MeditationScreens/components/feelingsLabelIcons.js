@@ -17,11 +17,11 @@ function FeelingsLabelIcons(props) {
                 <Text style={styles.feelingsText}>{props.title}</Text>
             </View>
 
-            <Ionicons size={35} onPress={() => props.handleChange(props.catagory, 1)} color={props.handleColor(1, props.catagory)} name='ios-star-outline' title='play' />
-            <Ionicons size={35} onPress={() => props.handleChange(props.catagory, 2)} color={props.handleColor(2, props.catagory)} name='ios-star-outline' title='play' />
-            <Ionicons size={35} onPress={() => props.handleChange(props.catagory, 3)} color={props.handleColor(3, props.catagory)} name='ios-star-outline' title='play' />
-            <Ionicons size={35} onPress={() => props.handleChange(props.catagory, 4)} color={props.handleColor(4, props.catagory)} name='ios-star-outline' title='play' />
-            <Ionicons size={35} onPress={() => props.handleChange(props.catagory, 5)} color={props.handleColor(5, props.catagory)} name='ios-star-outline' title='play' />
+            <Ionicons testID={`${props.catagory}1`} size={35} onPress={() => props.handleChange(props.catagory, 1)} color={props.handleColor(1, props.catagory)} name='ios-star-outline' title='play' />
+            <Ionicons testID={`${props.catagory}2`} size={35} onPress={() => props.handleChange(props.catagory, 2)} color={props.handleColor(2, props.catagory)} name='ios-star-outline' title='play' />
+            <Ionicons testID={`${props.catagory}3`} size={35} onPress={() => props.handleChange(props.catagory, 3)} color={props.handleColor(3, props.catagory)} name='ios-star-outline' title='play' />
+            <Ionicons testID={`${props.catagory}4`} size={35} onPress={() => props.handleChange(props.catagory, 4)} color={props.handleColor(4, props.catagory)} name='ios-star-outline' title='play' />
+            <Ionicons testID={`${props.catagory}5`} size={35} onPress={() => props.handleChange(props.catagory, 5)} color={props.handleColor(5, props.catagory)} name='ios-star-outline' title='play' />
         </View>
     )
 }

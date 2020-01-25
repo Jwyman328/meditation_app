@@ -7,13 +7,13 @@ import PropTypes from 'prop-types'
 
 function IndividualMeditationCard(props){
     return(
-        <TouchableOpacity onPress={() => props.goToMeditation(props.item)} style={{ width: '100%' }} >
+        <TouchableOpacity testID={`individualMeditationTouchable${props.title}`} onPress={() => props.goToMeditation(props.item)} style={{ width: '100%' }} >
                 <View style={styles.meditationcard}>
                     <View style={styles.cardText}>
-                        <Text style={{ color: 'white', fontSize: 20, }}>{props.orderNumber}</Text>
+                        <Text testID={`orderNumber${props.orderNumber}`} style={{ color: 'white', fontSize: 20, }}>{props.orderNumber}</Text>
                     </View>
-                    <Text style={{ fontFamily: 'Helvetica-LightOblique', color: 'white', fontSize: 20 }}>{props.title}</Text>
-                    <Text style={{ color: 'white', fontSize: 20 }}>{props.time}</Text>
+                    <Text testID={`title${props.title}`} style={{ fontFamily: 'Helvetica-LightOblique', color: 'white', fontSize: 20 }}>{props.title}</Text>
+                    <Text testID={`time${props.title}`}  style={{ color: 'white', fontSize: 20 }}>{props.time}</Text>
                     <View style={{ marginRight: 4 }}>
                         <Ionicons size={40} onPress={() => props.goToMeditation(props.item)} name='ios-headset' title='play' />
                     </View>

@@ -65,7 +65,7 @@ function LoginScreen(props) {
                     {fetchLoading ? <Text>loading</Text> : <View style={{ ...styles.logCard }}>
                         <Text style={styles.title} > Meditation Login!</Text>
                         <AuthInputBox secureTextEntry={false} value={userName} placeholder='email' setValue={onChangeUserName} />
-                        {fetchError ? <Text style={styles.loginFail}> Username or password is invalid</Text> : null}
+                        {fetchError ? <Text testID='loginError' style={styles.loginFail}>Username or password is invalid</Text> : null}
                         <AuthInputBox secureTextEntry={true} value={passWord} placeholder='password' setValue={onChangePassword} />
                         <View>
                             <MainButton style={styles.button} testID='loginUser' title='Login' onPress={handlePress} />

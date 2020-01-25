@@ -8,12 +8,12 @@ import { FlatList } from 'react-native-gesture-handler'
 
 function CourseCard(props) {
     return (
-        <TouchableOpacity onPress={() => props.goToCourse(props.id, props.uri, props.title)}>
+        <TouchableOpacity testID={`courseCardTouchable${props.id}`} onPress={() => props.goToCourse(props.id, props.uri, props.title)}>
             <View style={styles.outerContainer}>
-                <ImageBackground imageStyle={{ borderRadius: 20 }} style={styles.backgroundImage} source={{ uri: props.uri }}>
+                <ImageBackground testID={`courseImage${props.id}`} imageStyle={{ borderRadius: 20 }} style={styles.backgroundImage} source={{ uri: props.uri }}>
                     <View style={styles.courseCard}>
                         <View style={styles.titleContainer} >
-                            <Text>{props.title}</Text>
+                            <Text testID={`courseTitle${props.id}`}>{props.title}</Text>
                         </View>
                     </View>
                 </ImageBackground>

@@ -77,7 +77,6 @@ class PedometerCircle extends React.Component {
         const totalDailySteps = (this.state.pastStepCount + this.state.currentStepCount)
         const distance = totalDailySteps / 2200
         const caloriesBurned = 0.05 * totalDailySteps * (this.props.weight / 155) //.005 * steps * (weight/165) (165 = 1, any one over will burn more so do weight/165)
-        console.log(caloriesBurned)
         return (
             <View style={{ flex: .5, justifyContent:'center', alignItems:'center' }}>
 

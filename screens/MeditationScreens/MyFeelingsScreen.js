@@ -55,9 +55,7 @@ function MyFeelingsScreen(props) {
         props.navigation.navigate('Tabs')
     }
 
-    useEffect(() => {
-        console.log(fetchFeelingsError, 'ffe')
-    })
+
     return (
         <View style={styles.mainContainer} >
             {myFeelings && !fetchFeelingsError ? <View>
@@ -69,8 +67,8 @@ function MyFeelingsScreen(props) {
                     <FeelingsLabelIcons handleColor={handleColor} title='Excited' catagory='excited' handleChange={handleChange} />
                 </View>
                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <MainButton style={styles.mainButton} title='submit' onPress={handleNewValues} />
-                    {firstTime ? <MainButton style={styles.mainButton} title='Do later' onPress={handleLater} /> : null}
+                    <MainButton testID={'submitButton'} style={styles.mainButton} title='submit' onPress={handleNewValues} />
+                    {firstTime ? <MainButton testID={'doLaterButton'} style={styles.mainButton} title='Do later' onPress={handleLater} /> : null}
                 </View>
             </View> : <Text>error: no feelings exist</Text>}
         </View>

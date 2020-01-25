@@ -37,7 +37,6 @@ function JournalProgressScreen(props) {
     }
 
     const setDateRangeStrings = (type) => {
-        //console.log(dateRanges)
         let monthStartDateFull = dateRanges[2]
         let weekStartDateFull = dateRanges[1]
         let EndDateFull = dateRanges[0]
@@ -48,7 +47,6 @@ function JournalProgressScreen(props) {
         weekStartDate = weekStartDate.split(/-(.+)/)[1]
         let [EndDate , timeEndDate] = EndDateFull.split('T')
         EndDate = EndDate.split(/-(.+)/)[1]
-        console.log(monthStartDate,weekStartDate, EndDate)
         setEndDate(EndDate)
         setMonthStart(monthStartDate)
         setWeekStart(weekStartDate)

@@ -79,7 +79,7 @@ function SignupScreen(props) {
                       <Text>Loading</Text> :
                         <View style={{ ...styles.logCard }}>
                             <Text style={styles.title} > Meditation Sign Up !</Text>
-                            {signUpFetchError? <Text>Please try a better username and password</Text>:null}
+                            {signUpFetchError? <Text testID={'postError'}>Please try a better username and password</Text>:null}
                             <AuthInputBox secureTextEntry={false} value={firstName} placeholder='First Name' setValue={onChangeUserFirstName} />
                             <AuthInputBox secureTextEntry={false} value={lastName} placeholder='Last Name' setValue={onChangeUserLastName} />
                             <AuthInputBox secureTextEntry={false} value={userName} placeholder='email' setValue={onChangeUserName} />

@@ -77,8 +77,7 @@ describe('Fetch Friends success', () => {
     const { getByTestId, update } = element;
     const sendFriendMessageButton = getByTestId('sendFriendMessagetest1')
     fireEvent(sendFriendMessageButton, 'onPress')
-    //console.log(sendFriendMessageButton)
-    //console.log(navigation.navigate)
+
     expect(navigation.navigate).toHaveBeenCalledWith('CreateMessage', { sendToUsername: 'test1' })
 
   })

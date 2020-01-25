@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, ImageBackground, ScrollView, Dimensions } from 'react-native';
 
-import AudioPlayer from './AudioPlayer'
+import AudioPlayer from './components/AudioPlayer'
 import { FlatList } from 'react-native-gesture-handler';
 
 /**

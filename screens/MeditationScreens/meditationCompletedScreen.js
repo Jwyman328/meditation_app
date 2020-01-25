@@ -33,9 +33,9 @@ function MeditationCompletedScreen(props) {
     return (
         meditationId ?
             <View style={styles.outerContainer}>
-                <Text style={styles.headerText}> Meditation Completed</Text>
-                <Text style={styles.titleText}> {meditationId.title}</Text>
-                <Text style={styles.authorText}>by {meditationId.author}</Text>
+                <Text testID='generalTitle' style={styles.headerText}>Meditation Completed</Text>
+                <Text testID='specificTitle' style={styles.titleText}>{meditationId.title}</Text>
+                <Text testID='meditationAuthor' style={styles.authorText}>by {meditationId.author}</Text>
                 <View Style={{ justifyContent: 'center' }}>
                     <Image resizeMode='stretch' style={styles.image} source={{ uri: imageUrls[getRandomInt(0, (imageUrls.length -1))] }} />
                 </View>
@@ -53,7 +53,7 @@ MeditationCompletedScreen.navigationOptions = (navData) => {
     return ({
         headerLeft:
             <HeaderButtons HeaderButtonComponent={MainHeaderButton}>
-                <Item iconSize={40} title='filter' color='black' iconName='ios-close-circle' onPress={handleNavigation} />
+                <Item testID='exitIcon' iconSize={40} title='filter' color='black' iconName='ios-close-circle' onPress={handleNavigation} />
             </HeaderButtons>,
     })
 }

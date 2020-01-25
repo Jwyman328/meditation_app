@@ -62,6 +62,7 @@ function AudioProgressCircle(props) {
   return (
     <View style={{opacity: .8}}>
     <ProgressCircle
+      testID='progressCircle'
       percent={percent}
       radius={90}
       borderWidth={8}
@@ -71,7 +72,7 @@ function AudioProgressCircle(props) {
       
     >
       {props.children}
-      <Text style={{color:colors.strongPrimary, fontSize: 23, fontFamily: 'Helvetica-LightOblique' }}>{props.displayTime}</Text>
+      <Text testID='displayTime' style={{color:colors.strongPrimary, fontSize: 23, fontFamily: 'Helvetica-LightOblique' }}>{props.displayTime}</Text>
     </ProgressCircle>
     </View>
   )

@@ -27,7 +27,7 @@ export default class AudioPlayer extends React.Component {
 		displayTime: '00:00',
 
 	}
-
+	
 
 	//audioState = useSelector((state)=> state.meditations.audioState)
 	//meditation = this.props.meditationId
@@ -42,6 +42,7 @@ export default class AudioPlayer extends React.Component {
 			displayTime: newValue
 		})
 	}
+	
 	async componentWillUnmount() {
 		try {
 			if (this.state.isPlaying) {
@@ -136,10 +137,10 @@ export default class AudioPlayer extends React.Component {
 		const { playbackInstance, currentIndex } = this.state
 		return !this.state.isBuffering ? (
 			<View style={{ ...styles.trackInfo }}>
-				<Text style={[styles.trackInfoText, styles.largeText]}>
+				<Text testID={'meditationTitle'} style={[styles.trackInfoText, styles.largeText]}>
 					{this.props.meditationData.title}
 				</Text>
-				<Text style={[styles.trackInfoText, styles.smallText]}>
+				<Text testID={'meditationAuthor'} style={[styles.trackInfoText, styles.smallText]}>
 					{this.props.meditationData.author}
 				</Text>
 
@@ -169,14 +170,14 @@ export default class AudioPlayer extends React.Component {
 							{/*<TouchableOpacity style={styles.control} onPress={this.handlePreviousTrack}>
 						<Ionicons name='ios-skip-backward' size={48} color='#444' /> 
 					</TouchableOpacity>*/}
-							<TouchableOpacity style={styles.control} onPress={this.handlePlayPause}>
+							<TouchableOpacity testID='pausePlayButton' style={styles.control} onPress={this.handlePlayPause}>
 								{this.state.isPlaying ? (
 									<View style={styles.playPauseContainer}>
-										<Ionicons name='ios-pause' size={65} color={colors.base} />
+										<Ionicons testID='pauseIcon' name='ios-pause' size={65} color={colors.base} />
 									</View>
 								) : (
-										<View style={styles.playPauseContainer}>
-											<Ionicons name='ios-play-circle' size={70} color={colors.base} />
+										<View  style={styles.playPauseContainer}>
+											<Ionicons testID='playIcon' name='ios-play-circle' size={70} color={colors.base} />
 										</View>
 									)}
 							</TouchableOpacity>

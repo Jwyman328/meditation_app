@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {ScrollView, StyleSheet, Text, View, Dimensions, TextInput, Keyboard, TouchableWithoutFeedback, TouchableOpacity, Button } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, Dimensions, TextInput, Keyboard, TouchableWithoutFeedback, TouchableOpacity, Button } from 'react-native';
 import { Slider } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import colors from '../../constants/colors';
@@ -8,9 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import CreateJournal from '../../store/actions/createJournal'
 
-
-
-function WriteJournalScreen() {
+function WriteJournalScreen(props) {
     const today = new Date()
     const [date, setDate] = useState(today.toLocaleDateString())
     const [happynessValue, sethappynessValue] = useState(3)
@@ -24,7 +22,6 @@ function WriteJournalScreen() {
 
     const dispatch = useDispatch()
     const token = useSelector((state) => state.AuthData.token)
-
 
     const returnFace = () => {
         setFaceEmotion(faceEmotions[happynessValue - 1])
@@ -45,7 +42,6 @@ function WriteJournalScreen() {
         Keyboard.dismiss()
         setKeyboardVisible(false)
         console.log('kyboard f')
-
     }
 
     const handleChange = (text) => {
@@ -54,44 +50,42 @@ function WriteJournalScreen() {
 
     const handleCreateJournal = () => {
         //date, text, mood, token
-        dispatch(CreateJournal(date,value,2,token ))
-    }
-
-    const DateChoosen = () => {
-
+        dispatch(CreateJournal(date, value, 2, token))
+        setValue('')
+        props.navigation.navigate('JournalProgressScreen')
     }
 
     return (
         <View style={styles.outerContainer}>
-           <TouchableWithoutFeedback onPress={removeKeyboard}>
-                 <View style={styles.msgContainer}>
-                    <Text>{date}</Text>
-
-                    <View style={{flexDirection:'row'}} >
-                        <Text>I'm feeling {faceEmotion} </Text>
-                        <MaterialCommunityIcons size={30} color={colors.lightSecondary} name={face} title='play' />
+            <TouchableWithoutFeedback onPress={removeKeyboard}>
+                <View style={styles.msgContainer}>
+                    <Text testID='date'>{date}</Text>
+                    <View style={{ flexDirection: 'row' }} >
+                        <Text testID='title' >I'm feeling {faceEmotion}</Text>
+                        <MaterialCommunityIcons testID="emotionFace" size={30} color={colors.lightSecondary} name={face} title='play' />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
 
             <ScrollView>
-            <TouchableOpacity onPress={handleKeyboard}>
-                <View style={styles.JournalCard }>
-                    <InputScrollView>
-                        <TextInput
-                            onFocus={handleKeyboard}
-                            multiline={true}
-                            style={ styles.TextInput}
-                            value={value} onChangeText={text => handleChange(text)} />
-                    </InputScrollView>
-                </View>
-            </TouchableOpacity>
+                <TouchableOpacity onPress={handleKeyboard}>
+                    <View style={styles.JournalCard}>
+                        <InputScrollView>
+                            <TextInput
+                                testID='textInput'
+                                onFocus={handleKeyboard}
+                                multiline={true}
+                                style={styles.TextInput}
+                                value={value}
+                                onChangeText={text => handleChange(text)} />
+                        </InputScrollView>
+                    </View>
+                </TouchableOpacity>
 
-            <View >
-                    <Button title='submit' onPress={handleCreateJournal} />
+                <View >
+                    <Button testID='submitButton' title='submit' onPress={handleCreateJournal} />
                 </View>
-                </ScrollView>
-
+            </ScrollView>
         </View>
     )
 }
@@ -99,23 +93,23 @@ function WriteJournalScreen() {
 export default WriteJournalScreen;
 
 const styles = StyleSheet.create({
-    buttonContainer:{
+    buttonContainer: {
 
         height: Dimensions.get('window').height * .1,
         width: Dimensions.get('window').width * .95,
     },
-    JournalCard:{
+    JournalCard: {
         height: Dimensions.get('window').height * .33,
         width: Dimensions.get('window').width * .95,
-        flexDirection: 'column', 
+        flexDirection: 'column',
         justifyContent: 'flex-start',
-         alignItems: 'flex-start'
+        alignItems: 'flex-start'
     },
     outerContainer: {
-        flex:1,
-        flexDirection:'column',
-        alignItems:'center',
-        justifyContent:'space-between',
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
     container: {
         marginTop: 100,
@@ -133,21 +127,21 @@ const styles = StyleSheet.create({
         paddingTop: Dimensions.get('window').height * .005
 
     },
-    JournalEntryTextBox:{
+    JournalEntryTextBox: {
         height: Dimensions.get('window').height * .25,
     },
     msgContainer: {
         height: Dimensions.get('window').height * .1,
         width: Dimensions.get('window').width * .8,
         marginTop: Dimensions.get('window').height * .01,
-        justifyContent:'center',
-        alignItems:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         borderColor: 'gray',
         borderWidth: 1,
     },
     msgContainerModified: {
-        justifyContent:'center',
-        alignItems:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginTop: Dimensions.get('window').height * .1,
         height: Dimensions.get('window').height * .2,
         width: Dimensions.get('window').width,

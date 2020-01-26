@@ -1,5 +1,5 @@
-
-
+import React from 'react'
+import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 
 const CreateJournal = (date, text, mood, token) => { 
@@ -9,9 +9,9 @@ const CreateJournal = (date, text, mood, token) => {
             
             const data = { text: text, mood:mood, date : newDate }
             let journalData = JSON.stringify(data)
-            const response = await fetch(`http://intense-gorge-29567.herokuapp.com/Journal/all_user_entries`,{
-                method:'POST',body:journalData, headers:{ Authorization: `JWT ${token}`,'Content-Type': 'application/json'}})
-            const responseData = await response.json()
+            const response = await axios({url:`http://intense-gorge-29567.herokuapp.com/Journal/all_user_entries`,
+                method:'POST',data:journalData, headers:{ Authorization: `JWT ${token}`,'Content-Type': 'application/json'}})
+            const responseData = await response.data
             //dispatch({type: 'AddFriend', addFriendsList:responseData})
             //dispatch(FetchUserFriends(token))
         }

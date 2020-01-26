@@ -20,8 +20,6 @@ let rootReducers;
 let store;
 
 import InitialState from '../../testStateManager/screenStates/profileDataScreenInitialState'
-//const InitialStateMessagesError = handleInitialState(InitialState,'FriendsAndMsgs', [{"fetchSingleMessagesError":true}])
-
 
 describe('Not first time initial setup of profile data', () => {
     beforeEach(() => {

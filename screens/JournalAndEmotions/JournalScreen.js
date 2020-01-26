@@ -16,8 +16,6 @@ function JournalScreen(props) {
     const faceEmotions = ['Terrible', 'Bad', 'Neutral', 'Good', 'Excellent']
     const faces = ['emoticon-dead', 'emoticon-sad', 'emoticon-neutral', 'emoticon-happy', 'emoticon-excited']
 
-
-
     const returnFace = () => {
         setFaceEmotion(faceEmotions[happynessValue - 1])
         const face = faces[happynessValue - 1]
@@ -28,43 +26,32 @@ function JournalScreen(props) {
         returnFace()
     }, [happynessValue])
 
-  
-
-
     const handleCreateJournal = () => {
         props.navigation.navigate('WriteJournalScreen')
     }
-
-    const DateChoosen = () => {
-
-    }
-
     return (
         <View style={styles.outerContainer}>
-          
-                 <View style={ styles.msgContainer}>
 
-                
-                    <Text style={styles.dateTitle}>{date}</Text>
-                    <Text style={styles.emotionTextTitle}>How are you feeling?</Text>
-                    <Text style={styles.emotionText}>{faceEmotion} </Text>
-                   
-                      <MaterialCommunityIcons size={150} color={colors.lightSecondary} name={face} title='play' />
-                    
+            <View style={styles.msgContainer}>
+                <Text testID={'date'} style={styles.dateTitle}>{date}</Text>
+                <Text testID='title' style={styles.emotionTextTitle}>How are you feeling?</Text>
+                <Text testID='emotionTitle' style={styles.emotionText}>{faceEmotion}</Text>
 
+                <MaterialCommunityIcons testID="faceIcon" size={150} color={colors.lightSecondary} name={face} title='play' />
 
-                   <Slider
-                        style={styles.slider}
-                        minimumValue={1}
-                        maximumValue={5}
-                        step={1}
-                        minimumTrackTintColor={colors.primary}
-                        maximumTrackTintColor="red"
-                        value={happynessValue}
-                        onValueChange={(sliderValue) => sethappynessValue(sliderValue)}
-                    />
-                </View>
-                    <Button title='Start Journaling' onPress={handleCreateJournal} />
+                <Slider
+                    testID='emotionSlider'
+                    style={styles.slider}
+                    minimumValue={1}
+                    maximumValue={5}
+                    step={1}
+                    minimumTrackTintColor={colors.primary}
+                    maximumTrackTintColor="red"
+                    value={happynessValue}
+                    onValueChange={(sliderValue) => sethappynessValue(sliderValue)}
+                />
+            </View>
+            <Button testID="navigateButton" title='Start Journaling' onPress={handleCreateJournal} />
 
         </View>
     )
@@ -73,32 +60,32 @@ function JournalScreen(props) {
 export default JournalScreen;
 
 const styles = StyleSheet.create({
-    Titles:{
-        justifyContent:'space-evenly',
-        alignItems:'center',
+    Titles: {
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
     },
     dateTitle: {
-        fontSize:25,
+        fontSize: 25,
     },
     emotionText: {
-        fontSize:25,
+        fontSize: 25,
     },
     emotionTextTitle: {
-        fontSize:25,
+        fontSize: 25,
     },
     outerContainer: {
-        flexDirection:'column',
-        alignItems:'center',
-        justifyContent:'space-between',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
     container: {
         marginTop: 100,
     },
-    slider:{
+    slider: {
         width: 200,
-         height: 10, 
-         marginTop: 10,
-         marginBottom:20,
+        height: 10,
+        marginTop: 10,
+        marginBottom: 20,
     },
     TextInput: {
         height: Dimensions.get('window').height * .09,
@@ -113,21 +100,21 @@ const styles = StyleSheet.create({
         paddingTop: Dimensions.get('window').height * .005
 
     },
-    JournalEntryTextBox:{
+    JournalEntryTextBox: {
         height: Dimensions.get('window').height * .25,
     },
     msgContainer: {
         height: Dimensions.get('window').height * .7,
         width: Dimensions.get('window').width * .8,
         marginTop: Dimensions.get('window').height * .01,
-        justifyContent:'space-evenly',
-        alignItems:'center',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
         borderColor: 'gray',
         borderWidth: 1,
     },
     msgContainerModified: {
-        justifyContent:'center',
-        alignItems:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginTop: Dimensions.get('window').height * .1,
         height: Dimensions.get('window').height * .2,
         width: Dimensions.get('window').width,

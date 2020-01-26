@@ -9,7 +9,7 @@ const UpdateFeelings = (feelings, token) => {
             delete feelings.user
             let jsonFeelings = JSON.stringify(feelings)    
             const response = await axios({url:`http://intense-gorge-29567.herokuapp.com/personal/GetMyFeelings/`,
-                method:'POST',body:jsonFeelings, headers:{ Authorization: `JWT ${token}`,'Content-Type': 'application/json'}})
+                method:'POST',data:jsonFeelings, headers:{ Authorization: `JWT ${token}`,'Content-Type': 'application/json'}})
             const responseData = await response.data
 
         }

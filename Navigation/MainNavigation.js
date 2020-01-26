@@ -107,7 +107,6 @@ const friendsStack = createStackNavigator({
         }},
     CreateMessage: {screen:CreateMessageScreen,
        },
-
 })
 const CommunityStackNavigation = createMaterialTopTabNavigator({
     myFriends: {screen: friendsStack,
@@ -125,7 +124,6 @@ const CommunityStackNavigation = createMaterialTopTabNavigator({
         },
         activeTintColor: colors.strongPrimary, //strongPrimary
         indicatorStyle: {backgroundColor:colors.strongPrimary}
-
       }
 })
 
@@ -157,18 +155,13 @@ const FitnessStack = createStackNavigator({
     ChooseHeight:ChooseHeight,
     ChooseDOB:ChooseDOB,
     ChangeStepGoalScreen:ChangeStepGoalScreen,
-
-   
-
 })
 
 const HomeStack = createStackNavigator({
     Home: HomeScreen,    
-    IndividualMeditationScreen:IndividualMeditationScreen,
-
+    IndividualMeditationScreen:IndividualMeditationScreen
 
 }, {defaultNavigationOptions:
-  
         {header:null}
     }
 )
@@ -214,9 +207,6 @@ const BottomTabs = createBottomTabNavigator(
                 tabBarLabel:'Mental'
             }
         },
-            
-      
-        
 
     },{
         navigationOptions:{

@@ -72,14 +72,4 @@ describe('Fetch data success', () => {
         const authorElement = await waitForElement(() => getByTestId('meditationAuthor') ) 
         expect(authorElement.props['children']).toEqual(["by ", "Richard Burr"])
     })
-
-    //cant test header elements 
-/*     test('Press x to navigate home', async() => {
-        const {getByTestId} = element;
-        const authorElement = await waitForElement(() => getByTestId('exitIcon') ) 
-        
-    }) */
-
-    
-
 })

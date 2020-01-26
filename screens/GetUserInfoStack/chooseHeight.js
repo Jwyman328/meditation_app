@@ -4,7 +4,8 @@ import colors from '../../constants/colors'
 import ScrollPicker from 'react-native-wheel-scroll-picker';
 import { useDispatch, useSelector } from 'react-redux'
 import SetUserHealthData from '../../store/actions/setUserHealthData'
-
+import MyScrollPicker from './components/scrollPicker'
+import ContinueButton from './components/continueButton'
 
 
 
@@ -57,68 +58,11 @@ function ChooseHeight(props) {
             </View>
             {feet ?
                 <View style={{ width:200, flexDirection: 'row', justifyContent: 'space-evenly', alignItems:'center' }}>
-                    <View style={styles.pickerContainer}>
-                        <ScrollPicker
-                            dataSource={
-                                feet
-                            }
-                            selectedIndex={feetChoosen -1}
-                            renderItem={(data, index, isSelected) => {
-                                //
-                            }}
-                            onValueChange={(data, selectedIndex) => {
-                                //
-                                setfeetChoosen(selectedIndex + 1)
-                            }}
-
-                            wrapperHeight={250}
-                            wrapperWidth={70}
-                            wrapperBackground={'white'}
-                            itemHeight={70}
-                            highlightColor={colors.base}
-                            highlightBorderWidth={5}
-                            activeItemColor={'#222121'}
-                            itemColor={colors.strongPrimary}
-                        /></View>
-
-                    <View style={styles.pickerContainer}>
-
-                        <ScrollPicker
-                            dataSource={
-                                inch
-                            }
-                            selectedIndex={inchChoosen - 1}
-                            renderItem={(data, index, isSelected) => {
-                                //
-                            }}
-                            onValueChange={(data, selectedIndex) => {
-                                //
-                                
-                                setinchChoosen(selectedIndex + 1)
-                            }}
-
-                            wrapperHeight={250}
-                            wrapperWidth={70}
-                            wrapperBackground={'white'}
-                            itemHeight={70}
-                            highlightColor={colors.base}
-                            highlightBorderWidth={5}
-                            activeItemColor={'#222121'}
-                            itemColor={colors.strongPrimary}
-                        /></View>
-
-
-
-
+                    <MyScrollPicker valueChange={(selectedIndex) => selectedIndex + 1} selectedIndex={() => feetChoosen -1} dataSource={feet} setValue={setfeetChoosen}  />
+                    <MyScrollPicker valueChange={(selectedIndex) => selectedIndex + 1} selectedIndex={() => inchChoosen -1} dataSource={feet} setValue={setinchChoosen}  />
                 </View> : null}
+                <ContinueButton goToScreen={goToChooseDOB} textValue={'Continue'} />
 
-            <TouchableOpacity onPress={goToChooseDOB} >
-                <View style={styles.buttonContainer}>
-                    <View style={styles.text}>
-                        <Text style={{ color: 'black', opacity: 1, fontSize: 25 }}> Continue </Text>
-                    </View>
-                </View>
-            </TouchableOpacity>
         </View>
     )
 }

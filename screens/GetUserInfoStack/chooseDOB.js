@@ -5,7 +5,7 @@ import ScrollPicker from 'react-native-wheel-scroll-picker';
 import { useDispatch, useSelector } from 'react-redux'
 import SetUserHealthData from '../../store/actions/setUserHealthData'
 import MyScrollPicker from './components/scrollPicker'
-
+import ContinueButton from './components/continueButton'
 
 function ChooseDOB(props) {
     const healthData = useSelector((state) => state.ProfileData.userHealthData)
@@ -61,21 +61,13 @@ function ChooseDOB(props) {
             <View style={{ marginBottom: 10, width:200, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Text style={styles.textIntro}>Month</Text>
                 <Text style={styles.textIntro}>Year</Text>
-
             </View>
             {month ?
                 <View style={{ width:200, flexDirection: 'row', justifyContent: 'space-evenly', alignItems:'center' }}>
-                    <MyScrollPicker valueChange={monthValueChange} selectedIndex={() => monthChoosen -1} dataSource={month} setValue={setmonthChoosen}  />
-                    <MyScrollPicker valueChange={yearValueChange} selectedIndex={() => yearChoosen -1935} dataSource={year} setValue={setyearChoosen}  />
+                    <MyScrollPicker valueChange={(selectedValue) => selectedValue + 1} selectedIndex={() => monthChoosen -1} dataSource={month} setValue={setmonthChoosen}  />
+                    <MyScrollPicker valueChange={(selectedValue) => selectedValue + 1935} selectedIndex={() => yearChoosen -1935} dataSource={year} setValue={setyearChoosen}  />
                 </View> : null}
-
-            <TouchableOpacity onPress={goToChooseDOB} >
-                <View style={styles.buttonContainer}>
-                    <View style={styles.text}>
-                        <Text style={{ color: 'black', opacity: 1, fontSize: 25 }}> Continue </Text>
-                    </View>
-                </View>
-            </TouchableOpacity>
+            <ContinueButton goToScreen={goToChooseDOB} textValue={'Continue'} />
         </View>
     )
 }

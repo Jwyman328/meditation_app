@@ -4,7 +4,7 @@ import colors from '../../constants/colors'
 import ScrollPicker from 'react-native-wheel-scroll-picker';
 import { useDispatch, useSelector } from 'react-redux'
 import SetUserHealthData from '../../store/actions/setUserHealthData'
-
+import MyScrollPicker from './components/scrollPicker'
 
 
 function ChooseDOB(props) {
@@ -34,16 +34,23 @@ function ChooseDOB(props) {
         let monthSet = [];
         let yearSet = []
 
-        for (let i = 1; i <= 14; i++) {
+        for (let i = 1; i <= 17; i++) {
             monthSet.push(<Text style={{ fontSize: 28 }}>{i}</Text>);
         }
-        for (let i = 1935; i <= 2020; i++) {
+        for (let i = 1935; i <= 2030; i++) {
             yearSet.push(<Text style={{ fontSize: 28 }}>{i}</Text>);
         }
-
         setmonth(monthSet)
         setyeares(yearSet)
     }, [])
+
+    const monthValueChange= (selectedValue) => {
+        return selectedValue + 1
+    }
+
+    const yearValueChange = (selectedValue) => {
+        return selectedValue + 1935
+    }
 
 
     return (
@@ -58,58 +65,8 @@ function ChooseDOB(props) {
             </View>
             {month ?
                 <View style={{ width:200, flexDirection: 'row', justifyContent: 'space-evenly', alignItems:'center' }}>
-                    <View style={styles.pickerContainer}>
-                        <ScrollPicker
-                            dataSource={
-                                month
-                            }
-                            selectedIndex={monthChoosen - 1}
-                            renderItem={(data, index, isSelected) => {
-                                //
-                            }}
-                            onValueChange={(data, selectedIndex) => {
-                                //
-                                setmonthChoosen(selectedIndex + 1)
-                            }}
-
-                            wrapperHeight={250}
-                            wrapperWidth={70}
-                            wrapperBackground={'white'}
-                            itemHeight={70}
-                            highlightColor={colors.base}
-                            highlightBorderWidth={5}
-                            activeItemColor={'#222121'}
-                            itemColor={colors.strongPrimary}
-                        /></View>
-
-                    <View style={styles.pickerContainer}>
-
-                        <ScrollPicker
-                            dataSource={
-                                year
-                            }
-                            selectedIndex={yearChoosen-1935}
-                            renderItem={(data, index, isSelected) => {
-                                //
-                            }}
-                            onValueChange={(data, selectedIndex) => {
-                                //
-                                setyearChoosen(selectedIndex + 1935)
-                            }}
-
-                            wrapperHeight={250}
-                            wrapperWidth={70}
-                            wrapperBackground={'white'}
-                            itemHeight={70}
-                            highlightColor={colors.base}
-                            highlightBorderWidth={5}
-                            activeItemColor={'#222121'}
-                            itemColor={colors.strongPrimary}
-                        /></View>
-
-
-
-
+                    <MyScrollPicker valueChange={monthValueChange} selectedIndex={() => monthChoosen -1} dataSource={month} setValue={setmonthChoosen}  />
+                    <MyScrollPicker valueChange={yearValueChange} selectedIndex={() => yearChoosen -1935} dataSource={year} setValue={setyearChoosen}  />
                 </View> : null}
 
             <TouchableOpacity onPress={goToChooseDOB} >

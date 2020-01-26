@@ -21,7 +21,6 @@ function ChooseDOB(props) {
     // token healthData and firstTime required to make api request ot change data
     const token = useSelector((state) => state.AuthData.token)
 
-     
     const goToChooseDOB = () => {
         healthData.DOB = {month:monthChoosen, year:yearChoosen}
         // if it is the first time setting the user profile data, post it to the database.

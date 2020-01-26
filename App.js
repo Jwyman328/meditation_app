@@ -26,7 +26,7 @@ export default function App() {
     Mood: MoodReducer,
   })
 
-  const store = createStore(rootReducers, applyMiddleware(ReduxThunk,logger)) //
+  const store = createStore(rootReducers, applyMiddleware(ReduxThunk)) //logger
   return (
     <Provider store={store}><BottomTabs style={{ flex: 1, width: '100%' }} /></Provider>
   );

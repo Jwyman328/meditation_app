@@ -20,20 +20,20 @@ const SignUpUser = (userName, passWord, firstName, lastName) => {
         let jsonUsername = JSON.stringify(usernamePassword)
         let loginResponse = await axios({url:'http://intense-gorge-29567.herokuapp.com/sign_up',
             method: 'POST', //mode: 'cors'
-            body: jsonUsername, headers: { 'Content-Type': 'application/json' }
+            data: jsonUsername, headers: { 'Content-Type': 'application/json' }
         }).then(async(loginResponse) => {
             let jsonResponse = await loginResponse.data
             // set additional data
             const token = jsonResponse.token
             const lastNameFirstName = {first_name:firstName, last_name:lastName}
             let jsonlastNameFirstName = JSON.stringify(lastNameFirstName)
-    
+            
             // if the user got a token add aditional user data
             if (token) {
                 dispatch(FetchSuccess('signUpFetchSuccess'))
                 let additionDataResponse = await axios({url:'https://intense-gorge-29567.herokuapp.com/sign_up_additional_data',
                     method: 'POST', //mode: 'cors'
-                    body: jsonlastNameFirstName, headers: { 'Content-Type': 'application/json', Authorization: `JWT ${token}` }
+                    data: jsonlastNameFirstName, headers: { 'Content-Type': 'application/json', Authorization: `JWT ${token}` }
                 });
                 dispatch({ type: 'signUp', username: userName, password: passWord, token: token })
             } else {

@@ -3,7 +3,6 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 const PostUserHealthData = ( healthData, token) => { 
-
         return async (dispatch) => {
             let jasonHealthData = JSON.stringify(healthData)
             const response = await fetch(`http://intense-gorge-29567.herokuapp.com/sign_up_set_health_additional_data`,{

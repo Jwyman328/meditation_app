@@ -7,7 +7,6 @@ import PostUserHealthData from '../actions/postUserHealthData'
  * Logout the user.
  */
 const SetUserHealthData = (healthDataType, healthDataValue, postData=false, newPostData=false, token=false) => {
-
     return async (dispatch) => {
     dispatch({type: 'setUserHealthData', healthDataType:healthDataType , healthDataValue:healthDataValue})
     if (postData){
@@ -16,7 +15,6 @@ const SetUserHealthData = (healthDataType, healthDataValue, postData=false, newP
         // dont post data
     }
     }
-   
 }
 
 export default SetUserHealthData

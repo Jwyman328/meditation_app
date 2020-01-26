@@ -25,7 +25,7 @@ function ChooseDOB(props) {
     const goToChooseDOB = () => {
         healthData.DOB = {month:monthChoosen, year:yearChoosen}
 
-        firstTime?   dispatch(SetUserHealthData('DOB',{month:monthChoosen, year:yearChoosen}))
+        !firstTime?   dispatch(SetUserHealthData('DOB',{month:monthChoosen, year:yearChoosen}))
         : dispatch(SetUserHealthData('DOB',{month:monthChoosen, year:yearChoosen},true, healthData, token))    
 
         firstTime? props.navigation.navigate('Feelings',{firstTime:true}): props.navigation.navigate('ProfileDataScreen')

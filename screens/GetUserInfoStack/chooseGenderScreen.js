@@ -4,6 +4,7 @@ import colors from '../../constants/colors'
 import { Ionicons } from '@expo/vector-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import SetUserHealthData from '../../store/actions/setUserHealthData'
+import ContinueButton from './components/continueButton'
 
 
 function ChooseGenderScreen(props) {
@@ -35,15 +36,8 @@ function ChooseGenderScreen(props) {
                         <Ionicons name='ios-woman' size={135} color={gender==='Female'? colors.primary: 'grey'} />
                     </TouchableOpacity>
                 </View>
-
             </View>
-            <TouchableOpacity onPress={goToChooseGender} >
-                <View style={styles.buttonContainer}>
-                    <View style={styles.text}>
-                        <Text style={{ color: 'black', opacity: 1, fontSize: 25 }}> Continue </Text>
-                    </View>
-                </View>
-            </TouchableOpacity>
+            <ContinueButton goToScreen={goToChooseGender} textValue={'Continue'} />
         </View>
     )
 }

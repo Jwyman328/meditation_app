@@ -23,7 +23,6 @@ function ChooseHeight(props) {
     const [feetChoosen, setfeetChoosen] = firstTime? useState(5) :useState(healthData.height.feet)
     const [inchChoosen, setinchChoosen] = firstTime?  useState(5) : useState(healthData.height.inch)
 
-
     const goToChooseDOB = () => {
         healthData.height = {feet:feetChoosen, inch:inchChoosen}
 
@@ -54,7 +53,6 @@ function ChooseHeight(props) {
             <View style={{ marginBottom: 10, width:200, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Text style={styles.textIntro}>Feet</Text>
                 <Text style={styles.textIntro}>Inches</Text>
-
             </View>
             {feet ?
                 <View style={{ width:200, flexDirection: 'row', justifyContent: 'space-evenly', alignItems:'center' }}>
@@ -62,7 +60,6 @@ function ChooseHeight(props) {
                     <MyScrollPicker valueChange={(selectedIndex) => selectedIndex + 1} selectedIndex={() => inchChoosen -1} dataSource={feet} setValue={setinchChoosen}  />
                 </View> : null}
                 <ContinueButton goToScreen={goToChooseDOB} textValue={'Continue'} />
-
         </View>
     )
 }

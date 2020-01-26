@@ -27,13 +27,13 @@ function ChooseGenderScreen(props) {
     return (
         <View style={styles.container}>
             <View style={styles.textContainer}>
-                <Text style={styles.textIntro}>What's Your Sex?</Text>
+                <Text testID='title' style={styles.textIntro}>What's Your Sex?</Text>
                 <View style={styles.IconContainer}>
-                    <TouchableOpacity onPress={() => changeGender('Male')}>
-                        <Ionicons name='ios-man' size={135} color={gender==='Male'? colors.primary: 'grey'} />
+                    <TouchableOpacity testID='chooseMaleButton' onPress={() => changeGender('Male')}>
+                        <Ionicons testID='maleIcon' name='ios-man' size={135} color={gender==='Male'? colors.primary: 'grey'} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => changeGender('Female')}>
-                        <Ionicons name='ios-woman' size={135} color={gender==='Female'? colors.primary: 'grey'} />
+                    <TouchableOpacity testID='chooseFemaleButton' onPress={() => changeGender('Female')}>
+                        <Ionicons testID='femaleIcon' name='ios-woman' size={135} color={gender==='Female'? colors.primary: 'grey'} />
                     </TouchableOpacity>
                 </View>
             </View>

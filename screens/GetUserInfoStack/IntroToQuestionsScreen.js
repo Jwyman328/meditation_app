@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button, Dimensions, TouchableOpacity } from 'react-native';
 import colors from '../../constants/colors'
-
+import ContinueButton from './components/continueButton'
 
 function IntroToQuestionsScreen(props) {
     const goToChooseGender = () => {
@@ -11,15 +11,9 @@ function IntroToQuestionsScreen(props) {
     return (
         <View style={styles.container}>
             <View style={styles.textContainer}>
-                <Text style={styles.textIntro}>To better understand your health needs, please tell us a few things about yourself. </Text>
+                <Text testID='welcomeMsg' style={styles.textIntro}>To better understand your health needs, please tell us a few things about yourself.</Text>
             </View>
-            <TouchableOpacity onPress={goToChooseGender} >
-                <View style={styles.buttonContainer}>
-                    <View style={styles.text}>
-                        <Text style={{color: 'black', opacity:1, fontSize:25}}> Start </Text>
-                    </View>
-                </View>
-            </TouchableOpacity>
+            <ContinueButton goToScreen={goToChooseGender} textValue={'Start'} />
         </View>
     )
 }

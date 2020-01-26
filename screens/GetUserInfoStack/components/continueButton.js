@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button, Dimensions, TouchableOpacity } from 'react-native';
 import colors from '../../../constants/colors'
-import ScrollPicker from 'react-native-wheel-scroll-picker';
 
 
 function ContinueButton(props) {
     return(
-        <TouchableOpacity onPress={props.goToScreen} >
+        <TouchableOpacity testID='continueButton' onPress={props.goToScreen} >
                 <View style={styles.buttonContainer}>
                     <View style={styles.text}>
                         <Text style={{ color: 'black', opacity: 1, fontSize: 25 }}> {props.textValue} </Text>

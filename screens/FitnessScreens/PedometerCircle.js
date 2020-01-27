@@ -11,6 +11,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import MainHeaderButton from '../../components/HeaderButton';
 import currentStepCount from '../../store/actions/setCurrentStepCount'
+import {calculateCaloriesBurned, calculateDistanceWalked} from './utils/fitnessFormulas'
 
 
 
@@ -75,8 +76,8 @@ class PedometerCircle extends React.Component {
 
     showFitnessCard = () => {
         const totalDailySteps = (this.state.pastStepCount + this.state.currentStepCount)
-        const distance = totalDailySteps / 2200
-        const caloriesBurned = 0.05 * totalDailySteps * (this.props.weight / 155) //.005 * steps * (weight/165) (165 = 1, any one over will burn more so do weight/165)
+        const distanceWalked = calculateDistanceWalked(totalDailySteps);
+        const caloriesBurned = calculateCaloriesBurned(totalDailySteps,this.props.weight);
         return (
             <View style={{ flex: .5, justifyContent:'center', alignItems:'center' }}>
 
@@ -111,7 +112,7 @@ class PedometerCircle extends React.Component {
 
                         </ProgressCircle>
                         <Text>
-                            {distance.toFixed(2)} miles
+                            {distanceWalked.toFixed(2)} miles
                     </Text>
                     </View>
 
@@ -141,6 +142,7 @@ class PedometerCircle extends React.Component {
     showFitnessCardMini = () => {
         const totalDailySteps = (this.state.pastStepCount + this.state.currentStepCount)
         const distance = totalDailySteps / 2200
+        const distanceWalked =  calculateDistanceWalked(totalDailySteps)
         //style={styles.minicard}
         return (
             <View style={styles.minicard}>

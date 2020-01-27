@@ -13,20 +13,16 @@ import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import MainHeaderButtonLarge from '../../components/HeaderButtonLarge';
 import PedometerCircle from './PedometerCircle'
 
-
-function App() {
+/**
+ * Display pedometer circle.
+ * 
+ * Get user weight from redux store and pass it to PedometerCircle to create calorie burned calculations.
+ */
+function FitnessApp() {
     let dailyStepGoal = useSelector((state) => state.Fitness.dailyStepGoal)
-
     const [dailyGoalLocal,setdailyGoalLocal] = dailyStepGoal? useState(dailyStepGoal) : null
-    const userWeight = useSelector((state) => state.ProfileData.userHealthData.weight)
-    const token = useSelector((state) => state.AuthData.token)
-
-    useEffect(() => {
-        console.log(userWeight)
-    },[userWeight])
     //Get weight and pass it to the class component pedometer
-
-
+    const userWeight = useSelector((state) => state.ProfileData.userHealthData.weight)
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.stepCircle}>
@@ -36,11 +32,9 @@ function App() {
     )
 }
 
-export default App;
+export default FitnessApp;
 
-//Community
-App.navigationOptions = (navData) => {
-    //const [filterModal, setFilterModal] = useState(false)
+FitnessApp.navigationOptions = (navData) => {
     const navigateToMessaging = () => {
         navData.navigation.navigate('Community')
     }

@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
         height: Dimensions.get('window').height * .10,
-
     },
 
     formObj: {

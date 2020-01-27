@@ -47,11 +47,11 @@ const goToDailyMeditation = (dailyMeditationData, navigator) => {
  */
 const createDailyMeditationCard = (dailyMeditationData,navigator) => {
     return (
-        <TouchableOpacity onPress={() => goToDailyMeditation(dailyMeditationData,navigator)}>
-            <ImageBackground imageStyle={{ borderRadius: 90 }} source={{ uri: dailyMeditationData.imageSource }} style={styles.dailyCardImage}>
+        <TouchableOpacity testID='navigateToDailyMeditation' onPress={() => goToDailyMeditation(dailyMeditationData,navigator)}>
+            <ImageBackground testID='dailyMeditationImage' imageStyle={{ borderRadius: 90 }} source={{ uri: dailyMeditationData.imageSource }} style={styles.dailyCardImage}>
                 <View style={styles.dailyCard}>
                     <View>
-                        <Text style={styles.DailyTitle}>{dailyMeditationData.title}</Text>
+                        <Text testID='dailyMeditationTitle' style={styles.DailyTitle}>{dailyMeditationData.title}</Text>
                         {/*<Text>{dailyMeditationData.author}</Text>*/}
                     </View>
                 </View>

@@ -76,22 +76,21 @@ function HomeScreen(props) {
                         <Text style={styles.title}>Welcome {username}</Text>
                     </View>*/}
                     <View style={styles.emotionFace}>
-                        <Text style={{ ...styles.title, color: colors.base }}>I'm feeling?</Text>
-                        <TouchableOpacity onPress={goToJournalScreen}>
-                            <MaterialCommunityIcons size={130} color={colors.lightSecondary} name={'emoticon-happy'} title='play' />
+                        <Text testID='title' style={{ ...styles.title, color: colors.base }}>I'm feeling?</Text>
+                        <TouchableOpacity testID='iconFaceTouchable' onPress={goToJournalScreen}>
+                            <MaterialCommunityIcons testID='faceIcon' size={130} color={colors.lightSecondary} name={'emoticon-happy'} title='play' />
                         </TouchableOpacity>
                     </View>
                         <View style={{ flex: .5 }}>
-                        <TouchableOpacity onPress={goToFitnessScreen}>
+                        <TouchableOpacity testID="pedometerTouchable" onPress={goToFitnessScreen}>
                             <View>
-                                {dailyStepGoal ? <PedometerCircle card={false} dailyStepGoal={dailyStepGoal} /> : null}
+                                {dailyStepGoal ? <PedometerCircle testID='pedometer' card={false} dailyStepGoal={dailyStepGoal} /> : null}
                             </View>
                             </TouchableOpacity>
                         </View>
                     <View style={styles.cardContainer}>
                         {dailyMeditationData ? createDailyMeditationCard(dailyMeditationData, props.navigation.navigate) : null}
                     </View>
-
                 </View>
             </ImageBackground>
         </View>

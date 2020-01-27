@@ -117,7 +117,6 @@ class PedometerCircle extends React.Component {
                     </View>
 
                     <View >
-
                         <ProgressCircle
                             percent={(totalDailySteps / this.props.dailyStepGoal) * 100} //this is a proxy for calories
                             radius={30}

@@ -25,7 +25,6 @@ import {createDailyMeditationCard,getDailyMeditation} from './homeScreenUtils/da
  * As well necessarypost login actions like fetching meditations will take place
  */
 function HomeScreen(props) {
-
     const dispatch = useDispatch()
     const username = useSelector((state) => state.AuthData.username)
     const token = useSelector((state) => state.AuthData.token)

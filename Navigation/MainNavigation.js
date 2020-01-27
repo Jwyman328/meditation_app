@@ -8,7 +8,7 @@ import {createMaterialTopTabNavigator} from 'react-navigation-tabs'
 
 import CoursesScreen from '../screens/MeditationScreens/CoursesScreen'
 import FullCourseScreen from '../screens/MeditationScreens/FullCourseScreen'
-import HomeScreen from '../screens/HomeScreen'
+import HomeScreen from '../screens/HomeScreen/HomeScreen'
 import SettingsScreen from '../screens/SettingsScreens/SettingsScreen'
 import ProfileDataScreen from '../screens/SettingsScreens/ProfileDataScreen'
 import StatsScreen from '../screens/StatsScreen'

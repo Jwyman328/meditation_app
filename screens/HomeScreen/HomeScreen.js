@@ -2,22 +2,22 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, ImageBackground, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-import FetchAllCourses from '../store/actions/FetchAllCourses'
-import FetchFavorites from '../store/actions/fetchFavorites'
-import FetchUserFriends from '../store/actions/FetchUserFriends'
-import FetchMyFeelings from '../store/actions/FetchMyFeelings'
-import FetchDailyStepGoal from '../store/actions/fetchDailyStepGoal'
-import FetchMoodData from '../store/actions/FetchMoodData'
-import FetchProfileData from '../store/actions/FetchProfileData'
+import FetchAllCourses from '../../store/actions/FetchAllCourses'
+import FetchFavorites from '../../store/actions/fetchFavorites'
+import FetchUserFriends from '../../store/actions/FetchUserFriends'
+import FetchMyFeelings from '../../store/actions/FetchMyFeelings'
+import FetchDailyStepGoal from '../../store/actions/fetchDailyStepGoal'
+import FetchMoodData from '../../store/actions/FetchMoodData'
+import FetchProfileData from '../../store/actions/FetchProfileData'
 
 import { useDispatch, useSelector } from 'react-redux'
-import colors from '../constants/colors';
+import colors from '../../constants/colors';
 
-import audioBookPlaylist from '../Data/AudioBookPlaylist'
-import dummyData from '../Data/dummyData'
+import audioBookPlaylist from '../../Data/AudioBookPlaylist'
+import dummyData from '../../Data/dummyData'
 
-import PedometerCircle from './FitnessScreens/PedometerCircle'
-
+import PedometerCircle from '../FitnessScreens/PedometerCircle'
+import {createDailyMeditationCard,getDailyMeditation} from './homeScreenUtils/dailyMeditationHelperFunctions'
 
 /**
  * Landing screen after the user logs in.
@@ -35,61 +35,31 @@ function HomeScreen(props) {
 
     const [dailyGoalLocal, setdailyGoalLocal] = dailyStepGoal ? useState(dailyStepGoal) : null
 
-
     /**
-     * Fetch all meditations and all favorited meditations for the user.
-     * 
-     * When the user logs all meditations will be request and loaded 
-     * as well all previously existing favorited meditations will be reloaded into
-     * their favorite meditations
+     * Navigate to the Journal Screen
      */
-
-    function getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
     const goToJournalScreen = () => {
         props.navigation.navigate('Feeling')
     }
+    /**
+     * Navigate to fitness screen
+     */
     const goToFitnessScreen = () => {
         props.navigation.navigate('Fitness')
     }
-
-    const goToDailyMeditation = () => {
-        const image_uri = dummyData[0].ImageUri
-        props.navigation.navigate('IndividualMeditationScreen', { data: { meditationData: dailyMeditationData, uri: image_uri } })
-    }
-
-
-
-    const getDailyMeditation = () => {
-        // get random number
-        const image_uri = dummyData[0].ImageUri
-        const meditationNumber = getRandomInt(1, 19)
-        setDailyMeditationData(audioBookPlaylist[meditationNumber])
-        const meditaionId = audioBookPlaylist[meditationNumber]
-
-    }
-
-    const createDailyMeditationCard = () => {
-        return (
-            <TouchableOpacity onPress={goToDailyMeditation}>
-                <ImageBackground imageStyle={{ borderRadius: 90 }} source={{ uri: dailyMeditationData.imageSource }} style={styles.dailyCardImage}>
-                    <View style={styles.dailyCard}>
-                        <View>
-                            <Text style={styles.DailyTitle}>{dailyMeditationData.title}</Text>
-                            {/*<Text>{dailyMeditationData.author}</Text>*/}
-                        </View>
-                    </View>
-                </ImageBackground>
-
-            </TouchableOpacity>
-        )
-    }
+    
+    /**
+     * When user logs in set daily meditation data.
+     * Fetch all meditation courses.
+     * Fetch all favorite meditations.
+     * Fetch all friends of the user.
+     * Fetch feelings data.
+     * Fetch user's daily step goal.
+     * Fetch users mood data.
+     * Fetch user's profile data.
+     */
     useEffect(() => {
-        getDailyMeditation()
+        getDailyMeditation(setDailyMeditationData)
         dispatch(FetchAllCourses())
         dispatch(FetchFavorites(token))
         dispatch(FetchUserFriends(token))
@@ -97,11 +67,7 @@ function HomeScreen(props) {
         dispatch(FetchDailyStepGoal(token))
         dispatch(FetchMoodData(token))
         dispatch(FetchProfileData(token))
-        
     }, [dispatch])
-
-    //uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0HIJBdanX2M1YcbL03E0dAm3CyFOLPQxvBor7fpIOaLqf85Owg&s' }
-
     return (
         <View styles={styles.imageContainer}>
             <ImageBackground style={styles.backgroundImage}
@@ -124,7 +90,7 @@ function HomeScreen(props) {
                             </TouchableOpacity>
                         </View>
                     <View style={styles.cardContainer}>
-                        {dailyMeditationData ? createDailyMeditationCard() : null}
+                        {dailyMeditationData ? createDailyMeditationCard(dailyMeditationData, props.navigation.navigate) : null}
                     </View>
 
                 </View>

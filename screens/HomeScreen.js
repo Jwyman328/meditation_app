@@ -58,7 +58,6 @@ function HomeScreen(props) {
     }
 
     const goToDailyMeditation = () => {
-
         const image_uri = dummyData[0].ImageUri
         props.navigation.navigate('IndividualMeditationScreen', { data: { meditationData: dailyMeditationData, uri: image_uri } })
     }
@@ -67,7 +66,6 @@ function HomeScreen(props) {
 
     const getDailyMeditation = () => {
         // get random number
-
         const image_uri = dummyData[0].ImageUri
         const meditationNumber = getRandomInt(1, 19)
         setDailyMeditationData(audioBookPlaylist[meditationNumber])
@@ -84,7 +82,6 @@ function HomeScreen(props) {
                             <Text style={styles.DailyTitle}>{dailyMeditationData.title}</Text>
                             {/*<Text>{dailyMeditationData.author}</Text>*/}
                         </View>
-
                     </View>
                 </ImageBackground>
 
@@ -127,9 +124,6 @@ function HomeScreen(props) {
                             </TouchableOpacity>
                         </View>
                     <View style={styles.cardContainer}>
-                        {/*<View style={styles.dailyMeditationTitleContainer}>
-                        <Text style={styles.dailyMeditationTitle}>Daily Meditation</Text>
-                 </View>*/}
                         {dailyMeditationData ? createDailyMeditationCard() : null}
                     </View>
 

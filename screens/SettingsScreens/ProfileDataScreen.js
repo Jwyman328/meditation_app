@@ -8,7 +8,11 @@ import LogOutUser from '../../store/actions/logOut'
 
 import CatagoryValue from '../SettingsScreens/components/catagoryValue'
 import ValueTitle from '../SettingsScreens/components/valueTitle' 
-
+/**
+ * Display all profile data with ability to navigate to screen to modify values.
+ * 
+ * Include height, weight, DOB, sex, first name, lastname, and daily step goal.
+ */
 function ProfileDataScreen(props) {
     // get status of fitness data fetching
     let fetchDailyStepsLoading = useSelector((state) => state.Fitness.fetchDailyStepsLoading)
@@ -36,6 +40,10 @@ function ProfileDataScreen(props) {
     const token = useSelector(state => state.AuthData.token)
     const dispatch = useDispatch()
 
+    /**
+     * Log out user.
+     * Navigate to login screen.
+     */
     const logOutUser = () => {
         props.navigation.navigate('Auth')
         dispatch(LogOutUser())

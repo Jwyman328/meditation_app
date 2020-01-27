@@ -7,7 +7,9 @@ import PropType from 'prop-types'
 
 /**
  * 
- * Message between two users.
+ * A single Message between two users.
+ * 
+ * Display the message and the username of the sender of the message.
  */
 function Message(props){
     return (

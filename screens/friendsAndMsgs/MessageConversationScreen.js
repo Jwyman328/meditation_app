@@ -7,11 +7,14 @@ import FetchMessages from '../../store/actions/FetchMessages';
 import { useDispatch, useSelector } from 'react-redux';
 import colors from '../../constants/colors';
 import InputScrollView from 'react-native-input-scroll-view';
-import Message from '../friendsAndMsgs/components/message';
-import MessageInput from '../friendsAndMsgs/components/messageInput';
-import AllMessagesContainer from '../friendsAndMsgs/components/allMessagesContainer'
+import Message from './components/message';
+import MessageInput from './components/messageInput';
+import AllMessagesContainer from './components/allMessagesContainer'
 
-function CreateMessageScreen(props) {
+/**
+ * Screen displays conversation of messages between two users.
+ */
+function MessageConversationScreen(props) {
 
     const [keyboardVisible, setKeyboardVisible] = useState(false)
     const dispatch = useDispatch()
@@ -33,12 +36,21 @@ function CreateMessageScreen(props) {
     const fetchMessagesError = useSelector((state) => state.FriendsAndMsgs.fetchSingleMessagesError)
     const reciever_username = props.navigation.getParam('sendToUsername')
 
+    /**
+     * Post message to database.
+     * 
+     * @param {string} value message test to be sent
+     * @param {string} token jwt token to post message.
+     * @param {string} reciever_username username of the intended reciever of the message
+     */
     const sendMessage = (value, token, reciever_username) => {
         // probably route the user to the msg inbox when done
         // send data to an action that will send an http request
         dispatch(CreateMessage(reciever_username, value, token))
     }
-
+    /**
+     * Fetch all messages between user and selected friend.
+     */
     useEffect(() => {
         dispatch(FetchMessages(reciever_username, token))
     }, [dispatch])
@@ -63,9 +75,9 @@ function CreateMessageScreen(props) {
     )
 }
 
-export default CreateMessageScreen;
+export default MessageConversationScreen;
 
-CreateMessageScreen.navigationOptions = (navData) => {
+MessageConversationScreen.navigationOptions = (navData) => {
     reciever_username = navData.navigation.getParam('sendToUsername')
     return {
         headerTitle: reciever_username

@@ -5,6 +5,7 @@ import { PropTypes } from 'prop-types'
 
 /**
  * A card containing friend information with ability to navigate to send friend a message.
+ * 
  * @param {String} props.item.username Username of friend.
  * @param {String} props.item.user_photo Uri to photo of friend.
  * @param {Function} props.sendMsg Function To navigate to messageScreen with friend.

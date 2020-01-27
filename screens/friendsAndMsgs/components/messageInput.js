@@ -15,6 +15,9 @@ function MessageInput(props) {
     const handleChange = (text) => {
         setValue(text)
     }
+    /**
+     * Send text input as a message to other user.
+     */
     const sendMessage = () => {
         props.sendMessage(value, props.token, props.reciever_username)
         setValue('')

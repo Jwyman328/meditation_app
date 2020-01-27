@@ -33,9 +33,9 @@ export default AcceptDenyFriendRequestCard;
 
 AcceptDenyFriendRequestCard.propTypes = {
     /** Username of user that sent friend request */
-    sender_username : PropTypes.String,
+    sender_username : PropTypes.string,
     /**Uri to profile picture of sender fo friend request */
-    sender_profile_picture: PropTypes.String,
+    sender_profile_picture: PropTypes.string,
     /**user id of sender of friend request */
     id: PropTypes.number,
     /**Function handing the accepting or denying of friend request */

@@ -13,7 +13,7 @@ import FriendsAndMsgsReducer from '../../store/reducers/FriendsAndMsgsReducer'
 import AuthDataReducer from '../../store/reducers/AuthDataReducer'
 import MoodReducer from '../../store/reducers/MoodReducer'
 
-import CreateMessageScreen from '../../screens/friendsAndMsgs/CreateMessageScreen'
+import MessageConversationScreen from '../../screens/friendsAndMsgs/MessageConversationScreen'
 import handleInitialState from '../../testStateManager/stateManager'
 import moxios from 'moxios'
 
@@ -22,7 +22,7 @@ let navigation;
 let rootReducers;
 let store;
 //let InitialState;
-import InitialState from '../../testStateManager/screenStates/createMessageScreenInitialState'
+import InitialState from '../../testStateManager/screenStates/inboxScreenInitialState'
 const InitialStateMessagesError = handleInitialState(InitialState,'FriendsAndMsgs', [{"fetchSingleMessagesError":true}])
 
 //make initialState with error fetching friends data
@@ -71,7 +71,7 @@ describe('Fetch messages success', () => {
    
     navigation = { navigate: jest.fn(),getParam:jest.fn().mockReturnValue('test_user_1') };
     store = createStore(rootReducers, InitialState , applyMiddleware(ReduxThunk)) //logger
-    element = render(<Provider store={store}>   <CreateMessageScreen navigation={navigation} /> </Provider>)
+    element = render(<Provider store={store}>   <MessageConversationScreen navigation={navigation} /> </Provider>)
   })
 
   afterEach(() => {
@@ -156,7 +156,7 @@ describe('Fetch messages error', () => {
     moxios.stubRequest( `http://intense-gorge-29567.herokuapp.com/friends/message_history/test_user_1/`,{status:404, response: [{}],})   
     navigation = { navigate: jest.fn(),getParam:jest.fn().mockReturnValue('test_user_1') };
     store = createStore(rootReducers, InitialState , applyMiddleware(ReduxThunk)) //logger InitialStateMessagesError
-    element = render(<Provider store={store}>   <CreateMessageScreen navigation={navigation} /> </Provider>)
+    element = render(<Provider store={store}>   <MessageConversationScreen navigation={navigation} /> </Provider>)
   })
 
   test('test message error text displays', async() => {

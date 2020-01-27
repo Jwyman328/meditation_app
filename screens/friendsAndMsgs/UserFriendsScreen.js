@@ -21,10 +21,10 @@ function UserFriendsScreen(props) {
     const fetchFriendsError = useSelector((state) => state.FriendsAndMsgs.fetchFriendsError)
     
     /**
-     * Navigate to createMessageScreen for selected friend.
-     * @param {String} username Username of friend to see current/create new conversation.
+     * Navigate to MessageConversationScreen for selected friend.
+     * @param {string} username Username of friend to see current/create new conversation.
      */
-    const navigateToCreateMessageScreen = (username) => {
+    const navigateToMessageConversationScreen = (username) => {
         props.navigation.navigate('CreateMessage', { sendToUsername: username })
     }
 
@@ -34,7 +34,7 @@ function UserFriendsScreen(props) {
      */
     const createFriendCards = (item) => {
         return (
-            <FriendCard sendMsg={navigateToCreateMessageScreen} item={item.item} />
+            <FriendCard sendMsg={navigateToMessageConversationScreen} item={item.item} />
         )
     }
 

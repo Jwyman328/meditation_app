@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, ImageBackground, Dimensions, FlatList, Image, T
 
 import FetchAllCourses from '../../store/actions/FetchAllCourses'
 import FetchAllUsers from '../../store/actions/FetchAllUsers'
-import AddRemoveFriend from '../../store/actions/addRemoveFriend' 
+import AddRemoveFriend from '../../store/actions/addRemoveFriend'
 import FetchUserFriends from '../../store/actions/FetchUserFriends'
 import SendFriendRequest from '../../store/actions/sendFriendRequest'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,13 +13,13 @@ import { Ionicons } from '@expo/vector-icons'
 
 import UserFriendCard from '../friendsAndMsgs/components/userFriendCard'
 import UserCard from '../friendsAndMsgs/components/userCard'
+import { createUserCards } from './utils/friendRequestHelpers'
 /**
- * Landing screen after the user logs in.
+ * Show all users allowing to search through and send friend request, or remove friend.
  * 
- * As well necessarypost login actions like fetching meditations will take place
  */
 function SearchUsersScreen() {
-    const [friendsUsernames, setFriendsUsernames] = useState([]) //these names are here for test purposes ['test1', 'test2']
+    const [friendsUsernames, setFriendsUsernames] = useState([])
     const dispatch = useDispatch()
     const username = useSelector((state) => state.AuthData.username)
     const token = useSelector((state) => state.AuthData.token)
@@ -29,14 +29,8 @@ function SearchUsersScreen() {
     const fetchUsersLoading = useSelector((state) => state.FriendsAndMsgs.fetchUsersLoading)
     const fetchUsersError = useSelector((state) => state.FriendsAndMsgs.fetchUsersError)
 
-
-
     /**
-     * Fetch all meditations and all favorited meditations for the user.
-     * 
-     * When the user logs all meditations will be request and loaded 
-     * as well all previously existing favorited meditations will be reloaded into
-     * their favorite meditations
+     * Fetch all users. Once fetched create list of user display cards.
      */
     useEffect(() => {
         dispatch(FetchAllUsers(token))
@@ -48,30 +42,6 @@ function SearchUsersScreen() {
         }
     }, [friends, dispatch,]) //[dispatch]
 
-    const sendFriendRequest = (username) => {
-        console.log('add')
-        dispatch(SendFriendRequest(username, token))
-    }
-    const removeFriend = (username) => {
-        console.log('remove')
-        dispatch(AddRemoveFriend(username, token))
-    }
-
-    const createFriendCards = (user) => {
-        return (
-            // check if this user is the current user 
-            user.item.username === username ?
-                // if is the same as the current user do nothing
-                //dont want yourself in a search for other users?
-                null :
-                // check if this user is a friend
-                friendsUsernames.includes(user.item.username) ?
-                    <UserFriendCard removeFriend={() => removeFriend(user.item.username)} user_photo={user.item.user_photo} username={user.item.username} />
-                    :
-                    <UserCard sendFriendRequest={() => sendFriendRequest(user.item.username)} user_photo={user.item.user_photo} username={user.item.username} />
-        )
-    }
-
     return (
         <View testID={'viewMain'} styles={styles.container}>
             {fetchUsersLoading ?
@@ -82,8 +52,8 @@ function SearchUsersScreen() {
                     :
                     <View testID={'successView'} style={styles.cardsContainer}>
                         <Text testID={'AllUsersTitle'}>All Users</Text>
-                        
-                        {allUsers && friendsUsernames ? <FlatList testID={'userCard'} numColumns={1} data={allUsers} keyExtractor={(item => item.username)} renderItem={(user) => createFriendCards(user)} /> : null}
+
+                        {allUsers && friendsUsernames ? <FlatList testID={'userCard'} numColumns={1} data={allUsers} keyExtractor={(item => item.username)} renderItem={(user) => createUserCards(user, username, friendsUsernames, dispatch, token)} /> : null}
                     </View>
             }
         </View>

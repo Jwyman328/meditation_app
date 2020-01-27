@@ -16,8 +16,10 @@ function AllMessagesContainer(props) {
     //messages = useSelector((state) => state.FriendsAndMsgs.singleMessages)
     const username = useSelector((state) => state.AuthData.username)
 
+    /**
+     * Format all message data into an array of displayable message components
+     */
     const msgData = () => {
-        // create a message here 
         const allMsgs = messages.map((message) => {
             return (<Message key={message.id} username={username} sender_username={message.sender_username} message={message.msg} id={message.id} />)
         })

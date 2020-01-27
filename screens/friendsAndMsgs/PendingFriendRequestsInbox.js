@@ -10,14 +10,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import colors from '../../constants/colors';
 import { Ionicons } from '@expo/vector-icons'
 
-import AcceptDenyFriendRequestCard from '../friendsAndMsgs/components/acceptDenyFriendRequestCard'
+import AcceptDenyFriendRequestCard from './components/acceptDenyFriendRequestCard'
 
 /**
- * Landing screen after the user logs in.
+ * Screen showing all pending friend requests.
  * 
- * As well necessarypost login actions like fetching meditations will take place
  */
-function InboxScreen() {
+function PendingFriendRequestsInbox() {
     const dispatch = useDispatch()
     const pendingFriendRequests = useSelector((state) => state.FriendsAndMsgs.pendingFriendRequests)
     const fetchPendingFriendRequestsLoading = useSelector((state) => state.FriendsAndMsgs.fetchPendingFriendRequestsLoading)
@@ -25,21 +24,38 @@ function InboxScreen() {
     const username = useSelector((state) => state.AuthData.username)
     const token = useSelector((state) => state.AuthData.token)
 
+    /**
+     * Fetch all pending friend requests to the user.
+     * 
+     * These are friend requests that other users have sent this user, but he has
+     * not yet accepted or rejected.
+     */
     useEffect(() => {
         dispatch(FetchPendingFriendRequests(token))
     }, [dispatch])
 
+    /**
+     * After user accepts or rejects a friend request, post results to the database.
+     * 
+     * Then fetch the new list of pending friend requests.
+     * 
+     * @param {number} id user id of the sender of the friend request.
+     * @param {boolean} bool true value if user accepts the friend request, false if rejected.
+     */
     const handleRequest = (id, bool) => {
         dispatch(AcceptDenyFriendRequest(id, bool, token))
         dispatch(FetchPendingFriendRequests(token))
     }
 
+    /**
+     * Create a pending friend request card for a pending friendRequest.
+     * @param {object} friendRequest friendRequest info containing user id and username of sender.
+     */
     const createSenderCards = (friendRequest) => {
         return (
             <AcceptDenyFriendRequestCard handleRequest={(id, bool) => handleRequest(id, bool)} sender_profile_picture={friendRequest.item.sender_profile_picture}
                 sender_username={friendRequest.item.sender_username} id={friendRequest.item.id} />
         )
-
     }
 
     return (
@@ -60,7 +76,7 @@ function InboxScreen() {
     )
 }
 
-export default InboxScreen;
+export default PendingFriendRequestsInbox;
 
 const styles = StyleSheet.create({
     cardImage: {

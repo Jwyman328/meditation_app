@@ -12,20 +12,17 @@ import FriendsAndMsgsReducer from '../../store/reducers/FriendsAndMsgsReducer'
 import AuthDataReducer from '../../store/reducers/AuthDataReducer'
 import MoodReducer from '../../store/reducers/MoodReducer'
 
-import InboxScreen from '../../screens/friendsAndMsgs/InboxScreen'
+import PendingFriendRequestsInbox from '../../screens/friendsAndMsgs/PendingFriendRequestsInbox'
 import InitialState from '../../testStateManager/screenStates/inboxScreenInitialState'
 import handleInitialState from '../../testStateManager/stateManager'
 
 const InitialStateLoading = handleInitialState(InitialState,'FriendsAndMsgs', [{"fetchPendingFriendRequestsLoading": true}])
 import moxios from 'moxios'
 
-
-
 let element;
 let navigation;
 let rootReducers;
 let store;
-
 
 describe('fetch pending friend requests success', () => {
   beforeEach(() => {
@@ -48,7 +45,7 @@ describe('fetch pending friend requests success', () => {
     })
     navigation = { navigate: jest.fn() };
     store = createStore(rootReducers, InitialState, applyMiddleware(ReduxThunk))
-    element = render(<Provider store={store}>   <InboxScreen navigation={navigation} /> </Provider>)
+    element = render(<Provider store={store}>   <PendingFriendRequestsInbox navigation={navigation} /> </Provider>)
   })
 
   afterEach(() => {
@@ -87,7 +84,7 @@ describe('fetch pending friend requests success', () => {
        
         navigation = { navigate: jest.fn() };
         store = createStore(rootReducers, InitialStateLoading, applyMiddleware(ReduxThunk))
-        element = render(<Provider store={store}>   <InboxScreen navigation={navigation} /> </Provider>)
+        element = render(<Provider store={store}>   <PendingFriendRequestsInbox navigation={navigation} /> </Provider>)
       })
     
       afterEach(() => {
@@ -115,7 +112,7 @@ describe('fetch pending friend requests success', () => {
         })
         navigation = { navigate: jest.fn() };
         store = createStore(rootReducers, InitialState, applyMiddleware(ReduxThunk))
-        element = render(<Provider store={store}>   <InboxScreen navigation={navigation} /> </Provider>)
+        element = render(<Provider store={store}>   <PendingFriendRequestsInbox navigation={navigation} /> </Provider>)
       })
     
       afterEach(() => {

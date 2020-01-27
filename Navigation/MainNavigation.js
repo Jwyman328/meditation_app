@@ -16,7 +16,7 @@ import LoginScreen from '../screens/Auth/LogInScreen'
 import SignupScreen from '../screens/Auth/signUpScreen'
 import UserFriendsScreen from '../screens/friendsAndMsgs/UserFriendsScreen'
 import SearchUsersScreen from '../screens/friendsAndMsgs/SearchUsersScreen'
-import InboxScreen from '../screens/friendsAndMsgs/InboxScreen'
+import InboxScreen from '../screens/friendsAndMsgs/PendingFriendRequestsInbox'
 import MyFeelingsScreen from '../screens/MeditationScreens/MyFeelingsScreen'
 import ForgotPasswordScreen from '../screens/Auth/ForgotPasswordScreen'
 import Fitness from '../screens/FitnessScreens/FitnessCounter'
@@ -39,7 +39,7 @@ import colors from '../constants/colors'
 import FilterScreen from '../screens/MeditationScreens/FiltersModal'
 import IndividualMeditationScreen from '../screens/MeditationScreens/IndividualMeditationScreen'
 import MetitationCompletedScreen from '../screens/MeditationScreens/meditationCompletedScreen'
-import CreateMessageScreen from '../screens/friendsAndMsgs/CreateMessageScreen'
+import MessageConversationScreen from '../screens/friendsAndMsgs/MessageConversationScreen'
 
 const CoursesStackNavigation = createStackNavigator({
     
@@ -105,7 +105,7 @@ const friendsStack = createStackNavigator({
         navigationOptions:{
             header: null,
         }},
-    CreateMessage: {screen:CreateMessageScreen,
+    CreateMessage: {screen:MessageConversationScreen,
        },
 })
 const CommunityStackNavigation = createMaterialTopTabNavigator({

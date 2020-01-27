@@ -5,12 +5,13 @@ import { Ionicons } from '@expo/vector-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import SetUserHealthData from '../../store/actions/setUserHealthData'
 import ContinueButton from './components/continueButton'
+import postOrUpdateProfileData from './utils/postOrUpdateProfileData'
 
 
 function ChooseGenderScreen(props) {
-    const firstTime = props.navigation.getParam('firstTime')
+    const isInSignUpProcess = props.navigation.getParam('firstTime')
     const healthData = useSelector((state) => state.ProfileData.userHealthData)
-    const [gender, setGender] = firstTime? useState("Male") :useState(healthData.gender)
+    const [gender, setGender] = isInSignUpProcess ? useState("Male") : useState(healthData.gender)
     const token = useSelector((state) => state.AuthData.token)
     const dispatch = useDispatch()
 
@@ -18,10 +19,8 @@ function ChooseGenderScreen(props) {
         setGender(gender)
         healthData.gender = gender
     }
-    const goToChooseGender = () => {
-        firstTime?  dispatch(SetUserHealthData('gender',gender, false))
-            : dispatch(SetUserHealthData('gender',gender, true, healthData, token))
-        firstTime?props.navigation.navigate('ChooseWeight', {firstTime:true}) : props.navigation.navigate('ProfileDataScreen')
+    const updateDataAndNavigate = () => {
+        postOrUpdateProfileData('gender', gender, healthData, token, isInSignUpProcess, props.navigation.navigate, 'ChooseWeight', dispatch)
     }
 
     return (
@@ -30,14 +29,14 @@ function ChooseGenderScreen(props) {
                 <Text testID='title' style={styles.textIntro}>What's Your Sex?</Text>
                 <View style={styles.IconContainer}>
                     <TouchableOpacity testID='chooseMaleButton' onPress={() => changeGender('Male')}>
-                        <Ionicons testID='maleIcon' name='ios-man' size={135} color={gender==='Male'? colors.primary: 'grey'} />
+                        <Ionicons testID='maleIcon' name='ios-man' size={135} color={gender === 'Male' ? colors.primary : 'grey'} />
                     </TouchableOpacity>
                     <TouchableOpacity testID='chooseFemaleButton' onPress={() => changeGender('Female')}>
-                        <Ionicons testID='femaleIcon' name='ios-woman' size={135} color={gender==='Female'? colors.primary: 'grey'} />
+                        <Ionicons testID='femaleIcon' name='ios-woman' size={135} color={gender === 'Female' ? colors.primary : 'grey'} />
                     </TouchableOpacity>
                 </View>
             </View>
-            <ContinueButton goToScreen={goToChooseGender} textValue={'Continue'} />
+            <ContinueButton goToScreen={updateDataAndNavigate} textValue={'Continue'} />
         </View>
     )
 }
@@ -45,11 +44,11 @@ function ChooseGenderScreen(props) {
 export default ChooseGenderScreen;
 
 const styles = StyleSheet.create({
-    IconContainer:{
+    IconContainer: {
         flexDirection: 'row',
-        justifyContent:'space-evenly',
-        alignItems:'center',
-        marginTop:Dimensions.get('window').height * .1 , 
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        marginTop: Dimensions.get('window').height * .1,
 
     },
     text: {

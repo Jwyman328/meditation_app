@@ -25,14 +25,19 @@ function SignupScreen(props) {
 
     const dispatch = useDispatch()
     const token = useSelector((state) => state.AuthData.token)
-    // handle bad singup http Requests 
+    // get signUp post request status
     const signUpFetchError = useSelector((state) => state.AuthData.signUpFetchError)
     const signUpFetchLoading = useSelector((state) => state.AuthData.signUpFetchLoading)
 
-
+    /**
+     * If signUp success user will recieve a token.
+     * 
+     * After token is recieved, set default feelings.
+     * Then navigate to introQuestionsStack to set initial profileData.
+     */
     useEffect(() => {
         if (token) {
-            // set up feelings 
+            // set up default initial feelings 
             let feelings = {
                 "anxious": 1,
                 "depressed": 1,
@@ -42,21 +47,24 @@ function SignupScreen(props) {
             }
             dispatch(UpdateFeelings(feelings, token))
             props.navigation.navigate('introQuestionsStack')
-            //props.navigation.navigate('Feelings',{firstTime:true})
-            //props.navigation.navigate('Tabs')
         }
     }, [token])
 
-    const loginUser = () => {
+    /**
+     * Check password one and two are equal and attempt to signUp user.
+     */
+    const signUpUser = () => {
         if (passWord === passWordTwo) {
             dispatch(SignUpUser(userName, passWord, firstName, lastName))
         } else {
             console.log('passwords do not match')
         }
     }
-
+    /**
+     * On submission attempt to signUp user and reset user inputs.
+     */
     const handlePress = () => {
-        loginUser()
+        signUpUser()
         onChangeUserName('')
         onChangePassword('')
         onChangeUserFirstName('')
@@ -64,9 +72,11 @@ function SignupScreen(props) {
         onChangePasswordTwo('')
     }
 
+    /**
+     * Navigate to login screen.
+     */
     const handleLogin = () => {
         props.navigation.navigate('Auth')
-
     }
 
     return (

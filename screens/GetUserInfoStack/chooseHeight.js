@@ -6,12 +6,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import SetUserHealthData from '../../store/actions/setUserHealthData'
 import MyScrollPicker from './components/scrollPicker'
 import ContinueButton from './components/continueButton'
+import postOrUpdateProfileData from './utils/postOrUpdateProfileData'
+
 
 
 
 function ChooseHeight(props) {
 
-    const firstTime = props.navigation.getParam('firstTime')
+    const isInSignUpProcess = props.navigation.getParam('firstTime')
     const dispatch = useDispatch()
 
     // token healthData and firstTime required to make api request ot change data
@@ -20,17 +22,18 @@ function ChooseHeight(props) {
 
     const [feet, setFeet] = useState([])
     const [inch, setInches] = useState([])
-    const [feetChoosen, setfeetChoosen] = firstTime? useState(5) :useState(healthData.height.feet)
-    const [inchChoosen, setinchChoosen] = firstTime?  useState(5) : useState(healthData.height.inch)
+    const [feetChoosen, setfeetChoosen] = isInSignUpProcess ? useState(5) : useState(healthData.height.feet)
+    const [inchChoosen, setinchChoosen] = isInSignUpProcess ? useState(5) : useState(healthData.height.inch)
 
-    const goToChooseDOB = () => {
-        healthData.height = {feet:feetChoosen, inch:inchChoosen}
-
-        firstTime?   dispatch(SetUserHealthData('height',{feet:feetChoosen, inch:inchChoosen}))
-            : dispatch(SetUserHealthData('height',{feet:feetChoosen, inch:inchChoosen},true, healthData, token))
-
-        //dispatch(SetUserHealthData('height',{feet:feetChoosen, inch:inchChoosen}))
-        firstTime? props.navigation.navigate('ChooseDOB',{firstTime:true}) : props.navigation.navigate('ProfileDataScreen')
+    /**
+     * Set selected height to profile healthData object and use postOrUpdateProfileData to register the change.
+     * 
+     * postOrUpdateProfileData will update only the internal state if inTheSignUpProcess.
+     * Or postOrUpdateProfileData will post the update to the database if change made outside of the signUp process.
+     */
+    const updateDataAndNavigate = () => {
+        healthData.height = { feet: feetChoosen, inch: inchChoosen }
+        postOrUpdateProfileData('height', { feet: feetChoosen, inch: inchChoosen }, healthData, token, isInSignUpProcess, props.navigation.navigate, 'ChooseDOB', dispatch)
     }
     useEffect(() => {
         let feetSet = [];
@@ -50,16 +53,16 @@ function ChooseHeight(props) {
             <View style={styles.textContainer}>
                 <Text style={styles.textIntro}>Your height</Text>
             </View>
-            <View style={{ marginBottom: 10, width:200, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <View style={{ marginBottom: 10, width: 200, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Text style={styles.textIntro}>Feet</Text>
                 <Text style={styles.textIntro}>Inches</Text>
             </View>
             {feet ?
-                <View style={{ width:200, flexDirection: 'row', justifyContent: 'space-evenly', alignItems:'center' }}>
-                    <MyScrollPicker valueChange={(selectedIndex) => selectedIndex + 1} selectedIndex={() => feetChoosen -1} dataSource={feet} setValue={setfeetChoosen}  />
-                    <MyScrollPicker valueChange={(selectedIndex) => selectedIndex + 1} selectedIndex={() => inchChoosen -1} dataSource={feet} setValue={setinchChoosen}  />
+                <View style={{ width: 200, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
+                    <MyScrollPicker valueChange={(selectedIndex) => selectedIndex + 1} selectedIndex={() => feetChoosen - 1} dataSource={feet} setValue={setfeetChoosen} />
+                    <MyScrollPicker valueChange={(selectedIndex) => selectedIndex + 1} selectedIndex={() => inchChoosen - 1} dataSource={feet} setValue={setinchChoosen} />
                 </View> : null}
-                <ContinueButton goToScreen={goToChooseDOB} textValue={'Continue'} />
+            <ContinueButton goToScreen={updateDataAndNavigate} textValue={'Continue'} />
         </View>
     )
 }

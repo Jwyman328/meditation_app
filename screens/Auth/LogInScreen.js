@@ -22,11 +22,13 @@ function LoginScreen(props) {
 
     const token = useSelector((state) => state.AuthData.token)
     const username = useSelector((state) => state.AuthData.username)
+
+    //get login fetch status
     const fetchLoading = useSelector((state) => state.AuthData.logInfetchLoading)
     const fetchError = useSelector((state) => state.AuthData.logInfetchError)
 
     /**
-     * Go to the app when the user has successfully recieved a token from signing in.
+     * Go to the app homeScreen when the user has successfully recieved a token from signing in.
      */
     useEffect(() => {
         if (token) {
@@ -34,12 +36,17 @@ function LoginScreen(props) {
         }
     }, [token])
 
+    /**
+     * Attempt to log in user with inputted userName and passWord.
+     */
     const loginUser = () => {
         dispatch(LogInUser(userName, passWord))
     }
 
+    /**
+     * Handle attempted login submission and reset username and password to empty string.
+     */
     const handlePress = () => {
-        //fetchLogin()
         loginUser()
         onChangeUserName('')
         onChangePassword('')
@@ -52,6 +59,9 @@ function LoginScreen(props) {
         props.navigation.navigate('Signup')
     }
 
+    /**
+     * Navigate to ForgotPassword screen.
+     */
     const handleForgotPassword = () => {
         props.navigation.navigate('ForgotPassword')
     }
@@ -100,8 +110,6 @@ const styles = StyleSheet.create({
     outerContainer: {
         flex: 1,
         width: '100%',
-        //backgroundColor: colors.primary,
-        //height:500,
     },
     outerJustify: {
         justifyContent: 'center',
@@ -111,7 +119,6 @@ const styles = StyleSheet.create({
     formPair: {
         width: '90%',
         flexDirection: 'row',
-        //margin: 5,
         justifyContent: 'space-evenly',
         alignItems: 'center',
         height: Dimensions.get('window').height * .13,
@@ -155,7 +162,6 @@ const styles = StyleSheet.create({
     },
     button: {
         marginBottom: 25,
-
     },
     signUpButton: {
         backgroundColor: colors.strongPrimary,

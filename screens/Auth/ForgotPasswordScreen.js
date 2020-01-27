@@ -18,12 +18,15 @@ function ForgotPasswordScreen(props) {
     const [userName, onChangeUserName] = React.useState('');
     const dispatch = useDispatch()
 
-    //handle reset password errors 
+    //get reset password fetch status 
     const resetPasswordFetchError = useSelector(state => state.AuthData.resetPasswordFetchError)
     const resetPasswordFetchLoading = useSelector(state => state.AuthData.resetPasswordFetchLoading)
     const resetPasswordEmailSent = useSelector(state => state.AuthData.resetPasswordEmailSent)
     const resetPasswordLoading = useSelector(state => state.AuthData.resetPasswordLoading)
 
+    /**
+     * Attempt to ResetPassword with selected email-username.
+     */
     const handlePress = () => {
         onChangeUserName('')
         dispatch(ResetPassword(userName))

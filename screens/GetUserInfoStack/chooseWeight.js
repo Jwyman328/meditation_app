@@ -7,6 +7,8 @@ import SetUserHealthData from '../../store/actions/setUserHealthData'
 import MyScrollPicker from './components/scrollPicker'
 import ContinueButton from './components/continueButton'
 
+import postOrUpdateProfileData from './utils/postOrUpdateProfileData'
+
 
 
 function ChooseWeight(props) {
@@ -14,18 +16,21 @@ function ChooseWeight(props) {
     // token healthData and firstTime required to make api request ot change data
     const token = useSelector((state) => state.AuthData.token)
     const healthData = useSelector((state) => state.ProfileData.userHealthData)
-    const firstTime = props.navigation.getParam('firstTime')
+    const isInSignUpProcess = props.navigation.getParam('firstTime')
 
     const [weight, setWeights] = useState([])
-    const [weightChoosen, setweightChoosen] = firstTime ? useState(150) : useState(healthData.weight - 1)
+    const [weightChoosen, setweightChoosen] = isInSignUpProcess ? useState(150) : useState(healthData.weight - 1)
     const dispatch = useDispatch()
 
-    const goToChooseHeight = () => {
+    /**
+     * Set selected weight to profile healthData object and use postOrUpdateProfileData to register the change.
+     * 
+     * postOrUpdateProfileData will update only the internal state if inTheSignUpProcess.
+     * Or postOrUpdateProfileData will post the update to the database if change made outside of the signUp process.
+     */
+    const updateDataAndNavigate = () => {
         healthData.weight = weightChoosen
-        firstTime ? dispatch(SetUserHealthData('weight', weightChoosen))
-            : dispatch(SetUserHealthData('weight', weightChoosen, true, healthData, token))
-
-        firstTime ? props.navigation.navigate('ChooseHeight', { firstTime: true }) : props.navigation.navigate('ProfileDataScreen')
+        postOrUpdateProfileData('weight',weightChoosen,healthData,token,isInSignUpProcess, props.navigation.navigate,'ChooseHeight',dispatch)
     }
 
     useEffect(() => {
@@ -45,7 +50,7 @@ function ChooseWeight(props) {
             {weight ?
                 <MyScrollPicker valueChange={(selectedIndex) => selectedIndex + 1} selectedIndex={() => weightChoosen} dataSource={weight} setValue={setweightChoosen} />
                 : null}
-            <ContinueButton goToScreen={goToChooseHeight} textValue={'Continue'} />
+            <ContinueButton goToScreen={updateDataAndNavigate} textValue={'Continue'} />
         </View>
     )
 }

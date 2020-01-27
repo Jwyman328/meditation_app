@@ -4,7 +4,7 @@ import PostUserHealthData from '../actions/postUserHealthData'
 
 
 /**
- * Logout the user.
+ * 
  */
 const SetUserHealthData = (healthDataType, healthDataValue, postData=false, newPostData=false, token=false) => {
     return async (dispatch) => {

@@ -6,41 +6,36 @@ import { useDispatch, useSelector } from 'react-redux'
 import SetUserHealthData from '../../store/actions/setUserHealthData'
 import MyScrollPicker from './components/scrollPicker'
 import ContinueButton from './components/continueButton'
+import navigateTo from './utils/dobPostOrUpdate'
+import createTickValues from './utils/scrollPickerArrayCreator'
+import postAllUserHealthData from './utils/dobPostOrUpdate'
 
 function ChooseDOB(props) {
     const healthData = useSelector((state) => state.ProfileData.userHealthData)
-    const firstTime = props.navigation.getParam('firstTime')
+    const isInSignUpProcess = props.navigation.getParam('firstTime')
 
     const [month, setmonth] = useState([])
     const [year, setyeares] = useState([])
 
-    const [monthChoosen, setmonthChoosen] = firstTime? useState(6) : useState(healthData.DOB.month)
-    const [yearChoosen, setyearChoosen] = firstTime? useState(6) : useState(healthData.DOB.year)
+    const [monthChoosen, setmonthChoosen] = isInSignUpProcess? useState(6) : useState(healthData.DOB.month)
+    const [yearChoosen, setyearChoosen] = isInSignUpProcess? useState(6) : useState(healthData.DOB.year)
+    
     const dispatch = useDispatch()
 
     // token healthData and firstTime required to make api request ot change data
     const token = useSelector((state) => state.AuthData.token)
 
-    const goToChooseDOB = () => {
+    const navigateToNextScreen = () => {
+        console.log(isInSignUpProcess, 'inner is in')
         healthData.DOB = {month:monthChoosen, year:yearChoosen}
-        // if it is the first time setting the user profile data, post it to the database.
-        !firstTime?   dispatch(SetUserHealthData('DOB',{month:monthChoosen, year:yearChoosen}))
-        : dispatch(SetUserHealthData('DOB',{month:monthChoosen, year:yearChoosen},true, healthData, token))    
-
-        firstTime? props.navigation.navigate('Feelings',{firstTime:true}): props.navigation.navigate('ProfileDataScreen')
+        postAllUserHealthData(isInSignUpProcess, monthChoosen, yearChoosen, healthData, token,dispatch, props.navigation.navigate,'Feelings' )
+        //navigateTo(isInSignUpProcess,monthChoosen,yearChoosen,healthData,token, props.navigation.navigate, dispatch )
     }
-    useEffect(() => {
-        let monthSet = [];
-        let yearSet = []
 
-        for (let i = 1; i <= 17; i++) {
-            monthSet.push(<Text style={{ fontSize: 28 }}>{i}</Text>);
-        }
-        for (let i = 1935; i <= 2030; i++) {
-            yearSet.push(<Text style={{ fontSize: 28 }}>{i}</Text>);
-        }
-        setmonth(monthSet)
-        setyeares(yearSet)
+    useEffect(() => {
+        //create tick values for month and year scroll picker
+        createTickValues(setmonth,1,17)
+        createTickValues(setyeares,1935,2030)
     }, [])
 
     const monthValueChange= (selectedValue) => {
@@ -50,7 +45,6 @@ function ChooseDOB(props) {
     const yearValueChange = (selectedValue) => {
         return selectedValue + 1935
     }
-
 
     return (
         <View style={styles.container}>
@@ -66,7 +60,7 @@ function ChooseDOB(props) {
                     <MyScrollPicker valueChange={(selectedValue) => selectedValue + 1} selectedIndex={() => monthChoosen -1} dataSource={month} setValue={setmonthChoosen}  />
                     <MyScrollPicker valueChange={(selectedValue) => selectedValue + 1935} selectedIndex={() => yearChoosen -1935} dataSource={year} setValue={setyearChoosen}  />
                 </View> : null}
-            <ContinueButton goToScreen={goToChooseDOB} textValue={'Continue'} />
+            <ContinueButton goToScreen={navigateToNextScreen} textValue={'Continue'} />
         </View>
     )
 }

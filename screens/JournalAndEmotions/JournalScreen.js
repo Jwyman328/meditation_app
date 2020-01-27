@@ -6,7 +6,9 @@ import colors from '../../constants/colors';
 import InputScrollView from 'react-native-input-scroll-view';
 
 
-
+/**
+ * Allow user to select emotion for day, before Journaling.
+ */
 function JournalScreen(props) {
     const today = new Date()
     const [date, setDate] = useState(today.toLocaleDateString())
@@ -16,16 +18,25 @@ function JournalScreen(props) {
     const faceEmotions = ['Terrible', 'Bad', 'Neutral', 'Good', 'Excellent']
     const faces = ['emoticon-dead', 'emoticon-sad', 'emoticon-neutral', 'emoticon-happy', 'emoticon-excited']
 
+    /**
+     * Set value of the emotion text and icon face when user selects emotion with slider.
+     */
     const returnFace = () => {
         setFaceEmotion(faceEmotions[happynessValue - 1])
         const face = faces[happynessValue - 1]
         setFace(face)
     }
 
+    /**
+     * Adjust emotion face icon and emotion text when emotion slider value changed.
+     */
     useEffect(() => {
         returnFace()
     }, [happynessValue])
 
+    /**
+     * Navigate to screen to start writting a Journal for date.
+     */
     const handleCreateJournal = () => {
         props.navigation.navigate('WriteJournalScreen')
     }

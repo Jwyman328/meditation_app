@@ -7,7 +7,9 @@ import InputScrollView from 'react-native-input-scroll-view';
 import { useDispatch, useSelector } from 'react-redux'
 
 import CreateJournal from '../../store/actions/createJournal'
-
+/**
+ * Allow user to write a Journal entry for the date selected.
+ */
 function WriteJournalScreen(props) {
     const today = new Date()
     const [date, setDate] = useState(today.toLocaleDateString())
@@ -44,10 +46,18 @@ function WriteJournalScreen(props) {
         console.log('kyboard f')
     }
 
+    /**
+     * Handle user typing input.
+     * @param {string} text value entered into textinput
+     */
     const handleChange = (text) => {
         setValue(text)
     }
 
+    /**
+     * Post journal entry on submision, reset textinput to empty string,
+     * Then navigate back to JournalHomeScreen.
+     */
     const handleCreateJournal = () => {
         //date, text, mood, token
         dispatch(CreateJournal(date, value, 2, token))

@@ -184,12 +184,15 @@ export default PedometerCircle;
 const styles = StyleSheet.create({
     milesCalsContainer:{ 
         flexDirection: 'row', 
-        width:Dimensions.get('window').width,
+        width:Dimensions.get('window').width * .8 ,
         height:Dimensions.get('window').height * .1, 
-        borderColor:'black', 
-        borderWidth:2, 
-        marginRight: Dimensions.get('window').width * .17,
-        justifyContent:'space-evenly', 
+        //borderColor:'black', 
+        //borderWidth:2, 
+        //marginRight: Dimensions.get('window').width * .17,
+        //marginRight: Dimensions.get('window').width * .125,
+        //marginLeft:Dimensions.get('window').width * .125,
+        paddingLeft:Dimensions.get('window').width * .08,
+        justifyContent:'space-between', 
         alignItems:'center' },
 
     stepProgressContainer:{
@@ -198,9 +201,10 @@ const styles = StyleSheet.create({
         marginBottom: Dimensions.get('window').height * .01 ,
         justifyContent:'center',
         alignItems:'center',
-        borderWidth:2, 
-        marginTop:  Dimensions.get('window').height * .3, 
-        marginRight: Dimensions.get('window').width * .17
+        //borderWidth:2, 
+        marginTop:  Dimensions.get('window').height * .1, 
+        marginRight: Dimensions.get('window').width * .125,
+        marginLeft:Dimensions.get('window').width * .125
     },
     stepTextLarge: {
         fontSize: 39,

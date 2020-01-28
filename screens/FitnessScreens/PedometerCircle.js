@@ -4,7 +4,7 @@ import { Pedometer } from "expo-sensors";
 import { StyleSheet, Text, View, Button, TextInput, Dimensions, ScrollView } from "react-native";
 import ProgressCircle from 'react-native-progress-circle'
 import colors from '../../constants/colors'
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons' 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';

@@ -106,12 +106,14 @@ const friendsStack = createStackNavigator({
             header: null,
         }},
     CreateMessage: {screen:MessageConversationScreen,
+
        },
 })
 const CommunityStackNavigation = createMaterialTopTabNavigator({
     myFriends: {screen: friendsStack,
                 navigationOptions:{
-                    tabBarLabel:'Friends'
+                    tabBarLabel:'Friends',
+                    
                 }} ,
     SearchUsers: {screen: SearchUsersScreen,
         navigationOptions:{
@@ -124,7 +126,8 @@ const CommunityStackNavigation = createMaterialTopTabNavigator({
         },
         activeTintColor: colors.strongPrimary, //strongPrimary
         indicatorStyle: {backgroundColor:colors.strongPrimary}
-      }
+      },
+    
 })
 
 const FitnessStack = createStackNavigator({
@@ -135,7 +138,8 @@ const FitnessStack = createStackNavigator({
         screen: CommunityStackNavigation,//UserFriendsScreen,//StatsScreen,
         navigationOptions: {
             tabBarIcon:<Ionicons color='black' size={25} name='ios-people'  />,
-            tabBarLabel:'Community'
+            tabBarLabel:'Community',
+            header:null,
         }},
     Settings: {
         screen: SettingsScreen,

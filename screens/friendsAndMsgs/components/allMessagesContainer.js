@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import InputScrollView from 'react-native-input-scroll-view';
 import Message from '../../friendsAndMsgs/components/message';
 import PropTypes from 'prop-types'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 /**
  * Container holding all messages between two users.
@@ -27,21 +28,19 @@ function AllMessagesContainer(props) {
     }
 
     return (
-        <ScrollView>
-            <View styles={styles.screenContainer}>
-                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <View style={props.keyboardVisible ? styles.msgContainerModified : styles.msgContainer}>
+                <View style={styles.screenContainer}>
+                <View style={styles.msgContainer}>
                         {messages ?
                             <ScrollView>
                                 <Text testID="MessagesTitle">Messages here</Text>
                                 {msgData()}
                             </ScrollView>
                             : null}
-                    </View>
-                </View>
-                {props.children}               
             </View>
-        </ScrollView>
+            {props.children}               
+
+            </View>
+       
     )
 }
 
@@ -58,24 +57,28 @@ AllMessagesContainer.propTypes={
 
 const styles = StyleSheet.create({
     msgContainer: {
-        height: Dimensions.get('window').height * .5,
+        maxHeight: Dimensions.get('window').height * .67,
+        minHeight: Dimensions.get('window').height * .5,
         width: Dimensions.get('window').width,
-        borderColor: 'gray',
-        borderWidth: 1,
+        borderColor: 'blue',
+        //borderWidth: 1,
+    },
+
+    screenContainer: {
+        maxHeight: Dimensions.get('window').height * .75,
+        minHeight: Dimensions.get('window').height * .6,
+        width: Dimensions.get('window').width ,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        //borderWidth:1,
+        borderColor:'red'
     },
     msgContainerModified: {
         height: Dimensions.get('window').height * .2,
         width: Dimensions.get('window').width,
         borderColor: 'gray',
         borderWidth: 1,
-    },
-    screenContainer: {
-
-        height: Dimensions.get('window').height,
-        width: Dimensions.get('window').width,
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignContent: 'center',
     },
 
 })

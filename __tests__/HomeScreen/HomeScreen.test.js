@@ -14,7 +14,7 @@ import MoodReducer from '../../store/reducers/MoodReducer'
 import InitialState from '../../testStateManager/screenStates/HomeScreenInitialState'
 import HomeScreen from '../../screens/HomeScreen/HomeScreen'
 import moxios from 'moxios'
-import { allCoursesResponseData, favoritesData, FriendData, FeelingsData, MoodData, ProfileData, DailyStepData } from './moxiosResponseData'
+import { allCoursesResponseData, favoritesData, FriendData, FeelingsData, MoodData, ProfileData, DailyStepData } from '../../testStateManager/moxiosResponseData' 
 
 let element;
 describe('Home screen', () => {

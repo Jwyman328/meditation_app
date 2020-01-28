@@ -39,7 +39,8 @@ function JournalScreen(props) {
      * Navigate to screen to start writting a Journal for date.
      */
     const handleCreateJournal = () => {
-        props.navigation.navigate('WriteJournalScreen')
+        console.log(faceEmotion)
+        props.navigation.navigate('WriteJournalScreen',{'faceEmotion':faceEmotion, 'face':face, 'happynessValue':happynessValue})
     }
     return (
         <ImageBackground style={styles.backgroundImage}

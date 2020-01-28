@@ -26,19 +26,6 @@ function MessageInput(props) {
         props.sendMessage(value, props.token, props.reciever_username)
         setValue('')
     }
-    {/* <TouchableOpacity onPress={props.handleKeyboard}>
-        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-            <InputScrollView>
-                <TextInput
-                    testID={'textinputArea'}
-                    onFocus={props.handleKeyboard}
-                    multiline={true}
-                    style={styles.TextInput}
-                    value={value} onChangeText={text => handleChange(text)} />
-            </InputScrollView>
-            <Button testID='sendMessageButton' title='submit' onPress={sendMessage} />
-        </View>
-    </TouchableOpacity> */}
 return(
     <View>
     <View style={styles.inputContainer}>

@@ -30,12 +30,11 @@ function SearchUsersScreen() {
     const fetchUsersError = useSelector((state) => state.FriendsAndMsgs.fetchUsersError)
 
     /**
-     * Fetch all users. Once fetched create list of user display cards.
+     * Fetch all users and create array of friends' usernames.
      */
     useEffect(() => {
         dispatch(FetchAllUsers(token))
         if (allUsers && friends) {
-            // map the friends 
             const friendsUsernames = friends.map((friend) => friend.username)
             setFriendsUsernames(friendsUsernames)
         } else {
@@ -51,7 +50,7 @@ function SearchUsersScreen() {
                     <Text testID={'errorMSG'}>Could not Find user list data</Text>
                     :
                     <View testID={'successView'} style={styles.cardsContainer}>
-                        <Text testID={'AllUsersTitle'}>All Users</Text>
+                        <Text style={styles.allUsersTitle} testID={'AllUsersTitle'}>All Users</Text>
 
                         {allUsers && friendsUsernames ? <FlatList testID={'userCard'} numColumns={1} data={allUsers} keyExtractor={(item => item.username)} renderItem={(user) => createUserCards(user, username, friendsUsernames, dispatch, token)} /> : null}
                     </View>
@@ -108,6 +107,10 @@ const styles = StyleSheet.create({
     title: {
         marginTop: Dimensions.get('window').height * .05,
         color: colors.base,
+        fontSize: 33,
+        fontFamily: 'Helvetica-LightOblique',
+    },
+    allUsersTitle: {
         fontSize: 33,
         fontFamily: 'Helvetica-LightOblique',
     }

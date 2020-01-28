@@ -25,6 +25,7 @@ function FitnessApp() {
     const userWeight = useSelector((state) => state.ProfileData.userHealthData.weight)
     const date = new Date()
     const stringDate = date.toLocaleDateString()
+    const isCard = true
     return (
         <View style={{ flex: 1 }}>
             <ImageBackground style={styles.backgroundImage}
@@ -33,7 +34,7 @@ function FitnessApp() {
                 <View style={styles.stepCircle}>
                     <Text style={styles.titleText}>Health Data</Text>
                     <Text style={styles.dateText}>{stringDate}</Text>
-                    {dailyStepGoal && userWeight ? <PedometerCircle weight={userWeight} card={true} dailyStepGoal={dailyStepGoal} /> : null}
+                    {dailyStepGoal && userWeight ? <PedometerCircle weight={userWeight} card={isCard} dailyStepGoal={dailyStepGoal} /> : null}
                 </View>
             </ImageBackground>
         </View>

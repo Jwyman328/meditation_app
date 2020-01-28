@@ -12,13 +12,14 @@ function UserCard(props) {
     return (
         <View testID={'userCard'} style={styles.friendCard}>
             <View>
-                <Text testID={`userCardUsername${props.username}`}>{props.username}</Text>
                 <Image style={styles.cardImage} source={{ uri: props.user_photo }} />
             </View>
-
+            <View>
+                <Text style={styles.cardText} testID={`userCardUsername${props.username}`}>{props.username}</Text>
+            </View>
             <TouchableOpacity onPress={() => props.sendFriendRequest(props.username)}>
-                <View>
-                    <Ionicons name='md-person-add' size={75} color={'green'} />
+                <View style={styles.addRemoveIcon}>
+                    <Ionicons name='md-person-add' size={45} color={'green'} />
                 </View>
             </TouchableOpacity>
         </View>
@@ -37,7 +38,10 @@ UserCard.propTypes = {
 const styles = StyleSheet.create({
     cardImage: {
         width: Dimensions.get('window').width * .2,
-        height: Dimensions.get('window').height * .1
+        height: Dimensions.get('window').height * .1, 
+        borderRadius:Dimensions.get('window').width * .2/2,
+        overflow: 'hidden',
+        marginHorizontal: 10,
     },
     cardsContainer: {
         marginTop: Dimensions.get('window').height * .1,
@@ -51,13 +55,22 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
         borderStyle: 'solid',
-        height: Dimensions.get('window').height * .2,
-        width: Dimensions.get('window').width * .65,
+        height: Dimensions.get('window').height * .1,
+        width: Dimensions.get('window').width * .85,
         borderRadius: 20,
         justifyContent: 'space-between',
         alignItems: 'center',
         overflow: 'hidden',
         marginTop: Dimensions.get('window').height * .01,
+        backgroundColor:colors.base,
+
     },
+    cardText: {
+        fontFamily:'Helvetica-LightOblique',
+        fontSize:20,
+    },
+    addRemoveIcon: {
+        marginRight: 10,
+    }
 
 })

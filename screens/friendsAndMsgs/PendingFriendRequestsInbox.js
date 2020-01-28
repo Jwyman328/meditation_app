@@ -68,7 +68,7 @@ function PendingFriendRequestsInbox() {
                     <Text testID={'fetchFailure'}>Could not get friend request</Text>
                     :
                     <View testID='viewSuccess' style={styles.cardsContainer}>
-                        <Text testID={'friendRequestTitle'}>My Friend requests</Text>
+                        <Text testID={'friendRequestTitle'} style={styles.titleText}>My Friend requests</Text>
                         {pendingFriendRequests ? <FlatList numColumns={1} data={pendingFriendRequests} keyExtractor={(item => (item.id).toString())} renderItem={(friendRequest) => createSenderCards(friendRequest)} /> : null}
 
                     </View>}
@@ -115,6 +115,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         overflow: 'hidden',
         marginTop: Dimensions.get('window').height * .01,
-
     },
+    titleText: {
+        fontSize: 33,
+        fontFamily: 'Helvetica-LightOblique',
+    }
 })

@@ -47,7 +47,7 @@ function UserFriendsScreen(props) {
                         <Text testID={'errorMSG'}>Could not load friends</Text>
                                 :
                             <View style={styles.cardsContainer}>
-                                 <Text testID={'friendsTitle'}>My Friends</Text>
+                                 <Text testID={'friendsTitle'} style={styles.titleText} >My Friends</Text>
                                          {friends ? <FlatList numColumns={1} data={friends} keyExtractor={(item => item.username)} renderItem={(friend) => createFriendCards(friend)} /> : null}
             </View>}
         </View>
@@ -75,6 +75,10 @@ const styles = StyleSheet.create({
     title: {
         marginTop: Dimensions.get('window').height * .05,
         color: colors.base,
+        fontSize: 33,
+        fontFamily: 'Helvetica-LightOblique',
+    },
+    titleText: {
         fontSize: 33,
         fontFamily: 'Helvetica-LightOblique',
     }

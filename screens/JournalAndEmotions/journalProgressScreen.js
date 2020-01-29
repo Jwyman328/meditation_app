@@ -126,8 +126,8 @@ function JournalProgressScreen(props) {
                             }}
                         /> : null}
                         <View style={styles.buttonContainer}>
-                            <MainButton style={dataChoosenText === 'Month' ? styles.buttonNotSelectedContainer : styles.buttonSelectedContainer} title='Weekly' onPress={goToWeekly} />
-                            <MainButton style={dataChoosenText === 'Week' ? styles.buttonNotSelectedContainer : styles.buttonSelectedContainer} title='Monthly' onPress={goToMonthly} />
+                            <MainButton style={dataChoosenText === 'Month' ? styles.buttonNotSelectedContainer : styles.buttonSelectedContainer} title='Last Week' onPress={goToWeekly} />
+                            <MainButton style={dataChoosenText === 'Week' ? styles.buttonNotSelectedContainer : styles.buttonSelectedContainer} title='Last Month' onPress={goToMonthly} />
                         </View>
                         <View style={styles.buttonAddJournalContainer}>
                             <MainButton style={styles.AddJournalButton} color='blue' title='Add Journal' onPress={addJournal} />
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        marginTop: 15,
+        marginTop: Dimensions.get('window').height * .005,
         //borderWidth: 2,
         width: Dimensions.get('window').width * .8,
 
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
         marginRight: Dimensions.get('window').width * .1,
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        marginTop: 40,
+        marginTop: Dimensions.get('window').height * .03,
     },
     AddJournalButton: {
         height: Dimensions.get('window').height * .15,
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     titleContainer:{
         alignItems:'center',
         justifyContent:'center',
-        marginVertical: 20
+        marginVertical: Dimensions.get('window').height * .02
     }
 
 })

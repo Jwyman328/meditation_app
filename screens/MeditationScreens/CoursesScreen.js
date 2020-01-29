@@ -51,9 +51,11 @@ function CoursesScreen(props) {
      */
     const createCard = (course) => {
         return (
+            
             <View style={{ ...styles.coursesContainer }}>
-                <CourseCard testID={`course${course.item.id}`} goToCourse={goToCourse} title={course.title} uri={course.image_uri} catagories={course.catagories} id={course.id} courseId={course.course_id} />
-            </View>
+                <CourseCard testID={`course${course.id}`} goToCourse={goToCourse} title={course.title} uri={course.image_uri} catagories={course.catagories} id={course.id} courseId={course.course_id} />
+            </View> 
+        
         )
     }
     return (

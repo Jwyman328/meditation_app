@@ -25,7 +25,6 @@ class PedometerCircle extends React.Component {
     componentDidMount() {
         let start = new Date();
         start.setHours(0, 0, 0, 0);
-        console.log(start)
         this._subscribe();
     }
 

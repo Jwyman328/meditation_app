@@ -115,7 +115,6 @@ describe('fetch users loading', () => {
     test('Show users loading message', async () => {
         const { update, getByTestId, getByText } = element
         let loading = getByText('Loading').props['children']
-        console.log(loading)
         expect(loading).toBe('Loading')
     })
 

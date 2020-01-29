@@ -26,7 +26,6 @@ function ChooseDOB(props) {
     const token = useSelector((state) => state.AuthData.token)
 
     const navigateToNextScreen = () => {
-        console.log(isInSignUpProcess, 'inner is in')
         healthData.DOB = {month:monthChoosen, year:yearChoosen}
         postAllUserHealthData(isInSignUpProcess, monthChoosen, yearChoosen, healthData, token,dispatch, props.navigation.navigate,'Feelings' )
         //navigateTo(isInSignUpProcess,monthChoosen,yearChoosen,healthData,token, props.navigation.navigate, dispatch )

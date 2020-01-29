@@ -24,14 +24,12 @@ function WriteJournalScreen(props) {
     const token = useSelector((state) => state.AuthData.token)
 
     const handleKeyboard = () => {
-        console.log('kyboard t')
         setKeyboardVisible(true)
     }
 
     const removeKeyboard = () => {
         Keyboard.dismiss()
         setKeyboardVisible(false)
-        console.log('kyboard f')
     }
 
     /**

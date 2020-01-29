@@ -39,7 +39,6 @@ function JournalScreen(props) {
      * Navigate to screen to start writting a Journal for date.
      */
     const handleCreateJournal = () => {
-        console.log(faceEmotion)
         props.navigation.navigate('WriteJournalScreen',{'faceEmotion':faceEmotion, 'face':face, 'happynessValue':happynessValue})
     }
     return (
@@ -131,7 +130,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
         //borderColor: 'gray',
-        borderWidth: 1,
+        //borderWidth: 1,
     },
     msgContainerModified: {
         justifyContent: 'center',

@@ -82,7 +82,7 @@ function WriteJournalScreen(props) {
                                     onChangeText={text => handleChange(text)} />
                             </View>
                             <View style={styles.sendContainer}>
-                                <TouchableOpacity testID='sendMessageButton' title='submit' onPress={handleCreateJournal}>
+                                <TouchableOpacity testID='submitButton' title='submit' onPress={handleCreateJournal}>
                                     <Ionicons size={45} name='ios-arrow-dropup-circle' color={'blue'} title='play' />
                                 </TouchableOpacity>
                             </View>

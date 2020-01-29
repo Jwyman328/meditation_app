@@ -78,7 +78,7 @@ describe('JournalScreen', () => {
 
         const navigateButton = await waitForElement(() => getByTestId('navigateButton') ) 
         fireEvent(navigateButton, 'onPress')
-        const navigateTest = await waitForElement(() => expect(navigation.navigate).toHaveBeenCalledWith('WriteJournalScreen') )
+        const navigateTest = await waitForElement(() => expect(navigation.navigate).toHaveBeenCalledWith("WriteJournalScreen", {"face": "emoticon-neutral", "faceEmotion": "Neutral", "happynessValue": 3}) )
     })
 
     describe('Change emotion slider value', () => {

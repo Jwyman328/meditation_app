@@ -20,6 +20,7 @@ import initialState from '../../testStateManager/screenStates/fullCourseScreenIn
 let rootReducers;
 let store;
 let element;
+let navigation;
 
 describe('WriteJournalScreen', () => {
     beforeEach(() => {
@@ -35,7 +36,16 @@ describe('WriteJournalScreen', () => {
             AuthData: AuthDataReducer,
             Mood: MoodReducer,
         })
-        navigation = {navigate: jest.fn()};
+
+
+
+        navigation = {navigate: jest.fn(), getParam: jest.fn((param) => 
+            {
+                let allParams = {'faceEmotion': 'neutral', 'face':'emoticon-neutral','happynessValue':3}
+                return allParams[param]
+            })} ;
+        //navigation = { navigate: jest.fn(),getParam:jest.fn().mockReturnValue('test_user_1') };
+
         store = createStore(rootReducers, initialState, applyMiddleware(ReduxThunk))
         element = render(<Provider store={store} ><WriteJournalScreen navigation={navigation} /></Provider>)
     })

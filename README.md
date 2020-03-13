@@ -1,6 +1,6 @@
 <h1 style="color:blue">A meditation application with extensive features!</h1>
 
-<h3> Features</h3>
+<h2> Features</h2>
 <ul>
  <li>Listen to Meditations</li>
   <li>Track Steps</li>
@@ -19,17 +19,17 @@ Choose a Meditation Course |  Choose a Meditation      |  Listen to the Meditati
 
 
 
-<h3>Filter Meditations Based off your Mood and Preferences</h3>
+<h4>Filter Meditations Based off your Mood and Preferences</h4>
 
 Filter for Mood                |  Filter for Preferences
 :-------------------------:|:-------------------------:
 <image src='images/docImages/filters.png'  width=250 height=400 />   |  <image src='images/docImages/setPreferences.png'  width=250 height=400 />
 
-<h3>Favorite Meditation Courses</h3>
+<h4>Favorite Meditation Courses</h4>
 <image src='images/docImages/favoritedCourse.png'  width=250 height=400 />
 
 <h2> Fitness </h2>
-<h3>Automatically Track Steps, Distance and Calories</h3>
+<h4>Automatically Track Steps, Distance and Calories</h4>
 
 Health Tracking            |  Set Goals
 :-------------------------:|:-------------------------:
@@ -38,17 +38,24 @@ Health Tracking            |  Set Goals
 
 <h2> Mood Tracking and Journaling </h2>
 
-<h3>Track your Moods to better understand your mental health</h3>
+<h4>Track your Moods to better understand your mental health</h4>
 <image src='images/docImages/neutralEmotion.png'  width=250 height=400 />
 <image src='images/docImages/ExcellentEmotion.png'  width=250 height=400 />
-<h3>Journal about your feelings</h3>
+<h4>Journal about your feelings</h4>
 <image src='images/docImages/writeJournal.png'  width=250 height=400 />
 <h3>Track your monthly and weekly Mood changes</h3>
 <image src='images/docImages/monthMoodGraph.png'  width=250 height=400 />
 <image src='images/docImages/weekMoodTrendGraph.png'  width=250 height=400 />
 
 <h2>Join the Community </h2>
+<h4>Add and Message your Friends</h4>
+
+Add Friends                |  Message Friends
+:-------------------------:|:-------------------------:
+<image src='images/docImages/friendsList.png'  width=250 height=400 />   |  <image src='images/docImages/messagingExample.png'  width=250 height=400 />
+
 <h3> Add Friends </h3>
+
 <image src='images/docImages/friendsList.png'  width=250 height=400 />
 <h3> Message Friends </h3>
 <image src='images/docImages/messagingExample.png'  width=250 height=400 />

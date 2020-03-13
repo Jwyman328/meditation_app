@@ -1,4 +1,4 @@
-<h1 style="color:blue;">A meditation application with extensive features !</h1>
+<h1 style="color:blue">A meditation application with extensive features!</h1>
 
 <h3> Features</h3>
 <ul>
@@ -17,7 +17,8 @@
 
 
 <h3> Choose a Meditation</h3>
-<image src='images/docImages/meditationCourse.png'  width=250 height=400 />
+<image src='images/docImages/meditationCourse.png'  width=250 height=400 /><image src='images/docImages/playMeditation.png'  width=250 height=400 />
+
 
 <h3> Listen to the Meditation</h3>
 <image src='images/docImages/playMeditation.png'  width=250 height=400 />

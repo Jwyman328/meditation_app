@@ -25,19 +25,16 @@ Filter for Mood                |  Filter for Preferences
 :-------------------------:|:-------------------------:
 <image src='images/docImages/filters.png'  width=250 height=400 />   |  <image src='images/docImages/setPreferences.png'  width=250 height=400 />
 
-
-<h3>Filter Meditations Based off your Preferences</h3>
-<image src='images/docImages/filters.png'  width=250 height=400 />
-
-<h3>Favorite courses</h3>
+<h3>Favorite Meditation Courses</h3>
 <image src='images/docImages/favoritedCourse.png'  width=250 height=400 />
 
 <h2> Fitness </h2>
-
 <h3>Automatically Track Steps, Distance and Calories</h3>
-<image src='images/docImages/healthDataLanding.png'  width=250 height=400 />
-<h3>Set Step Goals</h3>
-<image src='images/docImages/dailyStepGoal.png'  width=250 height=400 />
+
+Health Tracking            |  Set Goals
+:-------------------------:|:-------------------------:
+<image src='images/docImages/healthDataLanding.png'  width=250 height=400 />   |  <image src='images/docImages/dailyStepGoal.png'  width=250 height=400 />
+
 
 <h2> Mood Tracking and Journaling </h2>
 
@@ -55,13 +52,6 @@ Filter for Mood                |  Filter for Preferences
 <image src='images/docImages/friendsList.png'  width=250 height=400 />
 <h3> Message Friends </h3>
 <image src='images/docImages/messagingExample.png'  width=250 height=400 />
-
-
-
-
-
-
-
 
 
 <h4> Technologies Used </h4>

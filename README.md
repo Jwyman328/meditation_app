@@ -41,9 +41,17 @@ Health Tracking            |  Set Goals
 <h4>Track your Moods to better understand your mental health</h4>
 <image src='images/docImages/neutralEmotion.png'  width=250 height=400 />
 <image src='images/docImages/ExcellentEmotion.png'  width=250 height=400 />
+
 <h4>Journal about your feelings</h4>
 <image src='images/docImages/writeJournal.png'  width=250 height=400 />
+
 <h3>Track your monthly and weekly Mood changes</h3>
+
+Monthly Moods                |  Weekly Moods
+:-------------------------:|:-------------------------:
+<image src='images/docImages/monthMoodGraph.png'  width=250 height=400 />   |  <image src='images/docImages/weekMoodTrendGraph.png'  width=250 height=400 />
+
+
 <image src='images/docImages/monthMoodGraph.png'  width=250 height=400 />
 <image src='images/docImages/weekMoodTrendGraph.png'  width=250 height=400 />
 
@@ -54,11 +62,6 @@ Add Friends                |  Message Friends
 :-------------------------:|:-------------------------:
 <image src='images/docImages/friendsList.png'  width=250 height=400 />   |  <image src='images/docImages/messagingExample.png'  width=250 height=400 />
 
-<h3> Add Friends </h3>
-
-<image src='images/docImages/friendsList.png'  width=250 height=400 />
-<h3> Message Friends </h3>
-<image src='images/docImages/messagingExample.png'  width=250 height=400 />
 
 
 <h4> Technologies Used </h4>

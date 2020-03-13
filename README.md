@@ -1,4 +1,4 @@
-<h1 class='mainContainer'>A meditation application with extensive features !</h1>
+<h1 style="color:blue;text-align:center;">A meditation application with extensive features !</h1>
 
 <h3> Features</h3>
 <ul>

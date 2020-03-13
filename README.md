@@ -22,7 +22,7 @@ Choose a Meditation Course |  Choose a Meditation      |  Listen to the Meditati
 
 <h4>Filter your meditations to get a personalized experience</h4>
 
-Filter for Mood                |  Filter for Preferences
+Filter by Category               |  Filter for Preferences
 :-------------------------:|:-------------------------:
 <image src='images/docImages/filters.png'  width=250 height=400 />   |  <image src='images/docImages/setPreferences.png'  width=250 height=400 />
 

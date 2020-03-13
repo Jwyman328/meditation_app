@@ -61,8 +61,8 @@ Add Friends                |  Message Friends
 <image src='images/docImages/friendsList.png'  width=250 height=400 />   |  <image src='images/docImages/messagingExample.png'  width=250 height=400 />
 
 
-
-<h4> Technologies Used </h4>
+<br></br>
+<h2> Technologies Used </h2>
 <h6> Front End </h6>
 <ul>
  <li>React Native</li>

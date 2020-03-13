@@ -12,26 +12,17 @@
 
 
 <h2> Meditations </h2>
-<div style="display: inline-block;">
 <h3> Choose a Meditation Course </h3>
 <image src='images/docImages/chooseCourse.png'  width=250 height=400 />
-</div>
 
-<div style="display: inline-block;">
-<h3> Choose a Meditation Course </h3>
-<image src='images/docImages/chooseCourse.png'  width=250 height=400 />
-</div>
 
-<h3>View daily and monthly results in graph form. </h3>
-<image style={display: "inline-block"} src='images/dailyGraph.png'  width=600 height=400 />
-<image src='images/monthlyGraph.png'  width=600 height=400 />
-<br> </br>
-<h3>Set personal point goals and track your goal results.</h3>
-<image src='images/createGoal.png'  width=600 height=400 />
-<image src='images/challengeGraph.png' width=600 height=400 />
+<h3> Choose a Meditation</h3>
+<image src='images/docImages/meditationCourse.png'  width=250 height=400 />
 
-<h3> Invite others to compete against you in a fitness challenge.</h3>
-<image src='images/createChallenge.png' width=600 height=400 />
+<h3> Listen to the Meditation</h3>
+<image src='images/docImages/playMeditation.png'  width=250 height=400 />
+
+
 
 <h4> Technologies Used </h4>
 <h6> Front End </h6>

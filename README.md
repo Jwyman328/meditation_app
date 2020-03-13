@@ -39,7 +39,7 @@ Health Tracking            |  Set Goals
 <h2> Mood Tracking and Journaling </h2>
 
 <h4>Track your Moods to better understand your mental health</h4>
-Feeling Neutral                | Feeling Excellent
+Feeling Neutral            | Feeling Excellent
 :-------------------------:|:-------------------------:
 <image src='images/docImages/neutralEmotion.png'  width=250 height=400 />   |  <image src='images/docImages/ExcellentEmotion.png'  width=250 height=400 />
 
@@ -48,7 +48,7 @@ Feeling Neutral                | Feeling Excellent
 
 <h4>Track your monthly and weekly Mood changes</h4>
 
-Monthly Moods                |  Weekly Moods
+Monthly Moods              |  Weekly Moods
 :-------------------------:|:-------------------------:
 <image src='images/docImages/monthMoodGraph.png'  width=250 height=400 />   |  <image src='images/docImages/weekMoodTrendGraph.png'  width=250 height=400 />
 

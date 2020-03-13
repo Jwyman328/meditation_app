@@ -20,9 +20,10 @@ Choose a Meditation Course |  Choose a Meditation      |  Listen to the Meditati
 
 
 <h3>Filter Meditations Based off your Mood and Preferences</h3>
-Filter for Mood            | Filter for Preferences |
-:-------------------------:|:----------------------:|
-<image src='images/docImages/filters.png'  width=250 height=400 />  | <image src='images/docImages/setPreferences.png'  width=250 height=400 />
+
+Filter for Mood                |  Filter for Preferences
+:-------------------------:|:-------------------------:
+<image src='images/docImages/filters.png'  width=250 height=400 />   |  <image src='images/docImages/setPreferences.png'  width=250 height=400 />
 
 
 <h3>Filter Meditations Based off your Preferences</h3>

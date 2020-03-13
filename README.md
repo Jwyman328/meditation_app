@@ -13,20 +13,18 @@
 
 <h2> Meditations </h2>
 <p float='left'>
- <div>
+
 <h3> Choose a Meditation Course </h3>
 <image src='images/docImages/chooseCourse.png'  width=250 height=400 />
- </div>
-  <div>
+
 <h3> Choose a Meditation Course </h3>
 <image src='images/docImages/chooseCourse.png'  width=250 height=400 />
- </div>
 
 
 </p>
 
 <h3>View daily and monthly results in graph form. </h3>
-<image src='images/dailyGraph.png'  width=600 height=400 />
+<image style={display: "inline-block"} src='images/dailyGraph.png'  width=600 height=400 />
 <image src='images/monthlyGraph.png'  width=600 height=400 />
 <br> </br>
 <h3>Set personal point goals and track your goal results.</h3>

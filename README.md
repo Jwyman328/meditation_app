@@ -15,7 +15,7 @@
 
 Choose a Meditation Course |  Choose a Meditation      |  Listen to the Meditation |  Complete the Meditation
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-<image src='images/docImages/chooseCourse.png'  width=250 height=400 /> |  <image src='images/docImages/meditationCourse.png'  width=250 height=400 /> |  <image src='images/docImages/playMeditation.png'  width=250 height=400 />  | <image src='images/docImages/completedMeditation.png'  width=250 height=400 />
+<image src='images/docImages/chooseCourse.png'  width=250 height=400 /> |  <image src='images/docImages/favoritedCourse.png'  width=250 height=400 /> |  <image src='images/docImages/playMeditation.png'  width=250 height=400 />  | <image src='images/docImages/completedMeditation.png'  width=250 height=400 />
 
 
 
@@ -25,8 +25,6 @@ Filter for Mood                |  Filter for Preferences
 :-------------------------:|:-------------------------:
 <image src='images/docImages/filters.png'  width=250 height=400 />   |  <image src='images/docImages/setPreferences.png'  width=250 height=400 />
 
-<h4>Favorite Meditation Courses</h4>
-<image src='images/docImages/favoritedCourse.png'  width=250 height=400 />
 
 <h2> Fitness </h2>
 <h4>Automatically Track Steps, Distance and Calories</h4>
@@ -35,7 +33,7 @@ Health Tracking            |  Set Goals
 :-------------------------:|:-------------------------:
 <image src='images/docImages/healthDataLanding.png'  width=250 height=400 />   |  <image src='images/docImages/dailyStepGoal.png'  width=250 height=400 />
 
-
+<br></br>
 <h2> Mood Tracking and Journaling </h2>
 
 <h4>Track your Moods to better understand your mental health</h4>
@@ -53,7 +51,7 @@ Monthly Moods              |  Weekly Moods
 :-------------------------:|:-------------------------:
 <image src='images/docImages/monthMoodGraph.png'  width=250 height=400 />   |  <image src='images/docImages/weekMoodTrendGraph.png'  width=250 height=400 />
 
-
+<br></br>
 <h2>Join the Community </h2>
 <h4>Add and Message your Friends</h4>
 

@@ -25,6 +25,32 @@
 <h3> Complete the Meditation</h3>
 <image src='images/docImages/completedMeditation.png'  width=250 height=400 />
 
+<h3>Filter Meditations Based off your Mood</h3>
+<image src='images/docImages/setPreferences.png'  width=250 height=400 />
+
+<h3>Filter Meditations Based off your Preferences</h3>
+<image src='images/docImages/filters.png'  width=250 height=400 />
+
+<h2> Fitness </h2>
+
+<h3>Automatically Track Steps, Distance and Calories</h3>
+<image src='images/docImages/healthDataLanding.png'  width=250 height=400 />
+
+<h2> Mood Tracking and Journaling </h2>
+
+<h3>Track your Moods to better understand your mental health</h3>
+<image src='images/docImages/neutralEmotion.png'  width=250 height=400 />
+<image src='images/docImages/ExcellentEmotion.png'  width=250 height=400 />
+<h3>Journal about your feelings</h3>
+<image src='images/docImages/writeJournal.png'  width=250 height=400 />
+<h3>Track your monthly and weekly Mood changes</h3>
+<image src='images/docImages/monthMoodGraph.png'  width=250 height=400 />
+<image src='images/docImages/weekMoodTrendGraph.png'  width=250 height=400 />
+
+
+
+
+
 
 
 <h4> Technologies Used </h4>

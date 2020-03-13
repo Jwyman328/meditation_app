@@ -12,19 +12,12 @@
 
 
 <h2> Meditations </h2>
-<h3> Choose a Meditation Course </h3>
-<image src='images/docImages/chooseCourse.png'  width=250 height=400 />
+
+Choose a Meditation Course           |  Choose a Meditation |  Listen to the Meditation |  Complete the Meditation
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+<image src='images/docImages/chooseCourse.png'  width=250 height=400 /> |  <image src='images/docImages/meditationCourse.png'  width=250 height=400 /> |  <image src='images/docImages/playMeditation.png'  width=250 height=400 />  | <image src='images/docImages/completedMeditation.png'  width=250 height=400 />
 
 
-<h3> Choose a Meditation</h3>
-<image src='images/docImages/meditationCourse.png'  width=250 height=400 /><image src='images/docImages/playMeditation.png'  width=250 height=400 />
-
-
-<h3> Listen to the Meditation</h3>
-<image src='images/docImages/playMeditation.png'  width=250 height=400 />
-
-<h3> Complete the Meditation</h3>
-<image src='images/docImages/completedMeditation.png'  width=250 height=400 />
 
 <h3>Filter Meditations Based off your Mood</h3>
 <image src='images/docImages/setPreferences.png'  width=250 height=400 />

@@ -12,6 +12,9 @@
 
 
 <h2> Meditations </h2>
+<h4>Choose your meditation and meditate</h4>
+<h4>Filter your meditations to get a personalized experience</h4>
+
 
 Choose a Meditation Course |  Choose a Meditation      |  Listen to the Meditation |  Complete the Meditation
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:

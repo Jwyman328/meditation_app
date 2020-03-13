@@ -26,6 +26,7 @@ function FitnessApp() {
     const date = new Date()
     const stringDate = date.toLocaleDateString()
     const isCard = true
+    
     return (
         <View style={{ flex: 1 }}>
             <ImageBackground style={styles.backgroundImage}

@@ -10,7 +10,7 @@
    <li>Message Friends</li>
  </ul>
 
-
+<br></br>
 <h2> Meditations </h2>
 <h4>Choose your meditation and meditate</h4>
 

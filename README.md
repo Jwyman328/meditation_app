@@ -31,6 +31,9 @@
 <h3>Filter Meditations Based off your Preferences</h3>
 <image src='images/docImages/filters.png'  width=250 height=400 />
 
+<h3>Favorite courses</h3>
+<image src='images/docImages/favoritedCourse.png'  width=250 height=400 />
+
 <h2> Fitness </h2>
 
 <h3>Automatically Track Steps, Distance and Calories</h3>

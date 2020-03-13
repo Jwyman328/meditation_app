@@ -12,16 +12,15 @@
 
 
 <h2> Meditations </h2>
-<p float='left'>
-
+<div style="display: inline-block;">
 <h3> Choose a Meditation Course </h3>
 <image src='images/docImages/chooseCourse.png'  width=250 height=400 />
+</div>
 
+<div style="display: inline-block;">
 <h3> Choose a Meditation Course </h3>
 <image src='images/docImages/chooseCourse.png'  width=250 height=400 />
-
-
-</p>
+</div>
 
 <h3>View daily and monthly results in graph form. </h3>
 <image style={display: "inline-block"} src='images/dailyGraph.png'  width=600 height=400 />

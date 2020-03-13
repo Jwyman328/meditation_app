@@ -11,8 +11,9 @@
  </ul>
 
 <image src='images/scoring.png' width=600  height=400 />
-<h3> Input your daily health activities </h3>
-<image src='images/pointInput.png'  width=600 height=400 />
+<h2> Meditations </h2>
+<h3> Choose a Meditation Course </h3>
+<image src='images/docImages/chooseCourse.png'  width=600 height=400 />
 
 <h3>View daily and monthly results in graph form. </h3>
 <image src='images/dailyGraph.png'  width=600 height=400 />

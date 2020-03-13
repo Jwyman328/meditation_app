@@ -22,6 +22,9 @@
 <h3> Listen to the Meditation</h3>
 <image src='images/docImages/playMeditation.png'  width=250 height=400 />
 
+<h3> Complete the Meditation</h3>
+<image src='images/docImages/completedMeditation.png'  width=250 height=400 />
+
 
 
 <h4> Technologies Used </h4>

@@ -35,6 +35,8 @@
 
 <h3>Automatically Track Steps, Distance and Calories</h3>
 <image src='images/docImages/healthDataLanding.png'  width=250 height=400 />
+<h3>Set Step Goals</h3>
+<image src='images/docImages/dailyStepGoal.png'  width=250 height=400 />
 
 <h2> Mood Tracking and Journaling </h2>
 
@@ -46,6 +48,14 @@
 <h3>Track your monthly and weekly Mood changes</h3>
 <image src='images/docImages/monthMoodGraph.png'  width=250 height=400 />
 <image src='images/docImages/weekMoodTrendGraph.png'  width=250 height=400 />
+
+<h2>Join the Community </h2>
+<h3> Add Friends </h3>
+<image src='images/docImages/friendsList.png'  width=250 height=400 />
+<h3> Message Friends </h3>
+<image src='images/docImages/messagingExample.png'  width=250 height=400 />
+
+
 
 
 

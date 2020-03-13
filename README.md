@@ -25,7 +25,7 @@ Filter for Mood                |  Filter for Preferences
 :-------------------------:|:-------------------------:
 <image src='images/docImages/filters.png'  width=250 height=400 />   |  <image src='images/docImages/setPreferences.png'  width=250 height=400 />
 
-
+<br></br>
 <h2> Fitness </h2>
 <h4>Automatically Track Steps, Distance and Calories</h4>
 

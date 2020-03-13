@@ -10,10 +10,20 @@
    <li>Message Friends</li>
  </ul>
 
-<image src='images/scoring.png' width=600  height=400 />
+
 <h2> Meditations </h2>
+<p float='left'>
+ <div>
 <h3> Choose a Meditation Course </h3>
 <image src='images/docImages/chooseCourse.png'  width=250 height=400 />
+ </div>
+  <div>
+<h3> Choose a Meditation Course </h3>
+<image src='images/docImages/chooseCourse.png'  width=250 height=400 />
+ </div>
+
+
+</p>
 
 <h3>View daily and monthly results in graph form. </h3>
 <image src='images/dailyGraph.png'  width=600 height=400 />

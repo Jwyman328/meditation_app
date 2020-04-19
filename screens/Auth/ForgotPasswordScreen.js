@@ -23,7 +23,7 @@ import AuthInputBox from "./components/authInputBox";
 
 //customHooks
 import useGetForgotPasswordScreenState from "../../customHooks/authCustomHooks/useGetForgotPasswordScreenState";
-import useNavigateToLoginWhenEmailSent from '../../customHooks/authCustomHooks/useNavigateToLoginWhenEmailSent';
+import useNavigateToLoginWhenEmailSent from "../../customHooks/authCustomHooks/useNavigateToLoginWhenEmailSent";
 
 /**
  * Screen for allowing an existing user to reset password
@@ -38,7 +38,7 @@ function ForgotPasswordScreen(props) {
     resetPasswordEmailSent,
     resetPasswordLoading,
   } = useGetForgotPasswordScreenState();
-  useNavigateToLoginWhenEmailSent(props.navigation)
+  useNavigateToLoginWhenEmailSent(props.navigation);
 
   const dispatch = useDispatch();
 

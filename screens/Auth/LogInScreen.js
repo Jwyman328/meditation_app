@@ -9,6 +9,10 @@ import colors from '../../constants/colors';
 
 import MainButton from '../../components/MainButton'
 import AuthInputBox from './components/authInputBox'
+
+//customhooks
+import useLoginUserOnToken from '../../customHooks/useLoginUserOnToken';
+
 /**
  * Login screen for existing users to login.
  * 
@@ -30,11 +34,13 @@ function LoginScreen(props) {
     /**
      * Go to the app homeScreen when the user has successfully recieved a token from signing in.
      */
-    useEffect(() => {
+/*     useEffect(() => {
         if (token) {
             props.navigation.navigate('Tabs')
         }
-    }, [token])
+    }, [token]) */
+
+    useLoginUserOnToken(token, props.navigation)
 
     /**
      * Attempt to log in user with inputted userName and passWord.
@@ -42,6 +48,8 @@ function LoginScreen(props) {
     const loginUser = () => {
         dispatch(LogInUser(userName, passWord))
     }
+
+
 
     /**
      * Handle attempted login submission and reset username and password to empty string.
@@ -74,6 +82,8 @@ function LoginScreen(props) {
                 <ScrollView contentContainerStyle={styles.outerJustify} style={{ ...styles.outerContainer, }}>
                     {fetchLoading ? <Text>loading</Text> : <View style={{ ...styles.logCard }}>
                         <Text style={styles.title} > Meditation Login!</Text>
+                        <Text style={styles.guest} > Guest email: test123</Text>
+                        <Text style={styles.guest} > Guest password: test123</Text>
                         <AuthInputBox secureTextEntry={false} value={userName} placeholder='email' setValue={onChangeUserName} />
                         {fetchError ? <Text testID='loginError' style={styles.loginFail}>Username or password is invalid</Text> : null}
                         <AuthInputBox secureTextEntry={true} value={passWord} placeholder='password' setValue={onChangePassword} />
@@ -101,6 +111,10 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
         resizeMode: 'contain',
+    },
+    guest: {
+        fontSize: 18,
+        fontFamily: 'Helvetica-Oblique'
     },
     imageContainer: {
         flexDirection: 'column',

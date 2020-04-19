@@ -11,6 +11,9 @@ import FetchMyFeelings from '../../store/actions/FetchMyFeelings'
 import UpdateFeelings from '../../store/actions/UpdateFeeling'
 import AuthInputBox from '../Auth/components/authInputBox'
 
+//helper functions 
+import signUpUserWithUserData from './AuthHelperFunctions/signUpUserWithUserData'
+
 //custom hooks 
 import useGetSignUpScreenState from '../../customHooks/authCustomHooks/useGetSignUpScreenState';
 import useStartNewUserProcessOnToken from '../../customHooks/authCustomHooks/useStartNewUserProcessOnToken';
@@ -50,11 +53,14 @@ function SignupScreen(props) {
             console.log('passwords do not match')
         }
     }
+
+
     /**
      * On submission attempt to signUp user and reset user inputs.
      */
     const handlePress = () => {
-        signUpUser()
+        //signUpUser()
+        signUpUserWithUserData(passWord,passWordTwo,userName,firstName,lastName, dispatch)
         onChangeUserName('')
         onChangePassword('')
         onChangeUserFirstName('')

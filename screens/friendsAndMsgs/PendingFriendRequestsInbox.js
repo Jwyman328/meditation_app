@@ -11,28 +11,16 @@ import colors from '../../constants/colors';
 import { Ionicons } from '@expo/vector-icons'
 
 import AcceptDenyFriendRequestCard from './components/acceptDenyFriendRequestCard'
+//custom hooks 
+import useGetPendingFriendRequestsInboxState from '../../customHooks/friendsAndMsgsCustomHooks/useGetPendingFriendRequestsInboxState'
 
 /**
  * Screen showing all pending friend requests.
  * 
  */
 function PendingFriendRequestsInbox() {
+    const {pendingFriendRequests, fetchPendingFriendRequestsLoading,fetchPendingFriendRequestsError,username,token  } = useGetPendingFriendRequestsInboxState();
     const dispatch = useDispatch()
-    const pendingFriendRequests = useSelector((state) => state.FriendsAndMsgs.pendingFriendRequests)
-    const fetchPendingFriendRequestsLoading = useSelector((state) => state.FriendsAndMsgs.fetchPendingFriendRequestsLoading)
-    const fetchPendingFriendRequestsError = useSelector((state) => state.FriendsAndMsgs.fetchPendingFriendRequestsError)
-    const username = useSelector((state) => state.AuthData.username)
-    const token = useSelector((state) => state.AuthData.token)
-
-    /**
-     * Fetch all pending friend requests to the user.
-     * 
-     * These are friend requests that other users have sent this user, but he has
-     * not yet accepted or rejected.
-     */
-    useEffect(() => {
-        dispatch(FetchPendingFriendRequests(token))
-    }, [dispatch])
 
     /**
      * After user accepts or rejects a friend request, post results to the database.

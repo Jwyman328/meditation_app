@@ -14,6 +14,8 @@ function useGetLoginScreenState(){
     //get login fetch status
     const fetchLoading = useSelector((state) => state.AuthData.logInfetchLoading)
     const fetchError = useSelector((state) => state.AuthData.logInfetchError)
+    
+    return {loginFail, setLoginFail,userName, onChangeUserName,passWord, onChangePassword,dispatch,token,username,fetchLoading,fetchError }
 
 
 }

@@ -11,44 +11,34 @@ import FetchMyFeelings from '../../store/actions/FetchMyFeelings'
 import UpdateFeelings from '../../store/actions/UpdateFeeling'
 import AuthInputBox from '../Auth/components/authInputBox'
 
+//custom hooks 
+import useGetSignUpScreenState from '../../customHooks/authCustomHooks/useGetSignUpScreenState';
+import useStartNewUserProcessOnToken from '../../customHooks/authCustomHooks/useStartNewUserProcessOnToken';
 
 /**
  * Screen for allowing an existing user to login with their username and password.
  * 
  */
 function SignupScreen(props) {
-    const [firstName, onChangeUserFirstName] = React.useState('');
-    const [lastName, onChangeUserLastName] = React.useState('');
-    const [userName, onChangeUserName] = React.useState('');
-    const [passWord, onChangePassword] = React.useState('');
-    const [passWordTwo, onChangePasswordTwo] = React.useState('');
+    const {
+        firstName,
+        onChangeUserFirstName,
+        lastName,
+        onChangeUserLastName,
+        userName,
+        onChangeUserName,
+        passWord,
+        onChangePassword,
+        passWordTwo,
+        onChangePasswordTwo,
+        dispatch,
+        token,
+        signUpFetchError,
+        signUpFetchLoading,
+    
+      } = useGetSignUpScreenState();
 
-    const dispatch = useDispatch()
-    const token = useSelector((state) => state.AuthData.token)
-    // get signUp post request status
-    const signUpFetchError = useSelector((state) => state.AuthData.signUpFetchError)
-    const signUpFetchLoading = useSelector((state) => state.AuthData.signUpFetchLoading)
-
-    /**
-     * If signUp success user will recieve a token.
-     * 
-     * After token is recieved, set default feelings.
-     * Then navigate to introQuestionsStack to set initial profileData.
-     */
-    useEffect(() => {
-        if (token) {
-            // set up default initial feelings 
-            let feelings = {
-                "anxious": 1,
-                "depressed": 1,
-                "excited": 1,
-                "lost": 1,
-                "stressed": 1,
-            }
-            dispatch(UpdateFeelings(feelings, token))
-            props.navigation.navigate('introQuestionsStack')
-        }
-    }, [token])
+    useStartNewUserProcessOnToken(token,props.navigation)
 
     /**
      * Check password one and two are equal and attempt to signUp user.

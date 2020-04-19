@@ -22,8 +22,8 @@ import MainButton from "../../components/MainButton";
 import AuthInputBox from "./components/authInputBox";
 
 //customhooks
-import useLoginUserOnToken from "../../customHooks/useLoginUserOnToken";
-import useGetLoginScreenState from "../../customHooks/useGetLoginScreenState";
+import useLoginUserOnToken from "../../customHooks/authCustomHooks/useLoginUserOnToken";
+import useGetLoginScreenState from "../../customHooks/authCustomHooks/useGetLoginScreenState";
 
 /**
  * Login screen for existing users to login.

@@ -9,7 +9,6 @@ function useGetSearchUsersScreenState(props) {
   const token = useSelector((state) => state.AuthData.token);
   const allUsers = useSelector((state) => state.FriendsAndMsgs.allUsers);
   const friends = useSelector((state) => state.FriendsAndMsgs.friendsList);
-  // handle errors if no user data is found
   const fetchUsersLoading = useSelector(
     (state) => state.FriendsAndMsgs.fetchUsersLoading
   );

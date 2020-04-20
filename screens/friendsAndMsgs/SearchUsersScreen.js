@@ -44,8 +44,6 @@ function SearchUsersScreen() {
 
   const dispatch = useDispatch();
 
-
-
   return (
     <View testID={"viewMain"} styles={styles.container}>
       {fetchUsersLoading ? (

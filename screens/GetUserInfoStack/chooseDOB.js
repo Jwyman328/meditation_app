@@ -10,20 +10,24 @@ import navigateTo from './utils/dobPostOrUpdate'
 import createTickValues from './utils/scrollPickerArrayCreator'
 import postAllUserHealthData from './utils/dobPostOrUpdate'
 
+import useGetChooseDOBCustomHook from '../../customHooks/GetUserInfoStackCustomHooks/useGetChooseDOBCustomHook'
+import useCreateRoladexTickValues from '../../customHooks/GetUserInfoStackCustomHooks/useCreateRoladexTickValues'
+
 function ChooseDOB(props) {
-    const healthData = useSelector((state) => state.ProfileData.userHealthData)
-    const isInSignUpProcess = props.navigation.getParam('firstTime')
+    const {
+        healthData,
+        isInSignUpProcess,
+        month,
+        setmonth,
+        year,
+        setyeares,
+        monthChoosen,
+        setmonthChoosen,
+        yearChoosen,
+        setyearChoosen,
+        token
+      } = useGetChooseDOBCustomHook(props.navigation);
 
-    const [month, setmonth] = useState([])
-    const [year, setyeares] = useState([])
-
-    const [monthChoosen, setmonthChoosen] = isInSignUpProcess? useState(6) : useState(healthData.DOB.month)
-    const [yearChoosen, setyearChoosen] = isInSignUpProcess? useState(6) : useState(healthData.DOB.year)
-    
-    const dispatch = useDispatch()
-
-    // token healthData and firstTime required to make api request ot change data
-    const token = useSelector((state) => state.AuthData.token)
 
     const navigateToNextScreen = () => {
         healthData.DOB = {month:monthChoosen, year:yearChoosen}
@@ -31,19 +35,8 @@ function ChooseDOB(props) {
         //navigateTo(isInSignUpProcess,monthChoosen,yearChoosen,healthData,token, props.navigation.navigate, dispatch )
     }
 
-    useEffect(() => {
-        //create tick values for month and year scroll picker
-        createTickValues(setmonth,1,17)
-        createTickValues(setyeares,1935,2030)
-    }, [])
 
-    const monthValueChange= (selectedValue) => {
-        return selectedValue + 1
-    }
-
-    const yearValueChange = (selectedValue) => {
-        return selectedValue + 1935
-    }
+    useCreateRoladexTickValues()
 
     return (
         <View style={styles.container}>

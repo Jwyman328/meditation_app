@@ -28,6 +28,7 @@ function ChooseDOB(props) {
         token
       } = useGetChooseDOBCustomHook(props.navigation);
 
+      const dispatch = useDispatch();
 
     const navigateToNextScreen = () => {
         healthData.DOB = {month:monthChoosen, year:yearChoosen}
@@ -36,7 +37,7 @@ function ChooseDOB(props) {
     }
 
 
-    useCreateRoladexTickValues()
+    useCreateRoladexTickValues(setmonth,setyeares)
 
     return (
         <View style={styles.container}>

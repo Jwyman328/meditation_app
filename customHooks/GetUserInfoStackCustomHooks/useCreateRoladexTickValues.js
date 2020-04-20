@@ -3,7 +3,7 @@ import createTickValues from '../../screens/GetUserInfoStack/utils/scrollPickerA
         
 
 //create tick values for month and year scroll picker
-function useCreateRoladexTickValues() {
+function useCreateRoladexTickValues(setmonth,setyeares) {
     useEffect(() => {
         createTickValues(setmonth,1,17)
         createTickValues(setyeares,1935,2030)

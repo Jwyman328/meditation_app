@@ -9,6 +9,8 @@ import { Ionicons } from '@expo/vector-icons'
 import FetchMyFeelings from '../../store/actions/FetchMyFeelings'
 import PostUserHealthData from '../../store/actions/postUserHealthData'
 import FeelingsLabelIcons from './components/feelingsLabelIcons'
+import useGetMyFeelingsScreenState from '../../customHooks/meditationScreensCustomHooks/useGetMyFeelingsScreenState';
+//import handleColor from './utils/handleColor';
 
 /**
  * Landing screen after the user logs in.
@@ -16,18 +18,11 @@ import FeelingsLabelIcons from './components/feelingsLabelIcons'
  * As well necessarypost login actions like fetching meditations will take place
  */
 function MyFeelingsScreen(props) {
-
+    const {username,token,myFeelings,healthData,fetchFeelingsError,firstTime } = useGetMyFeelingsScreenState(props.navigation)
     const dispatch = useDispatch()
-    const username = useSelector((state) => state.AuthData.username)
-    const token = useSelector((state) => state.AuthData.token)
-    const myFeelings = useSelector((state) => state.meditation.myFeelings)
-    const healthData = useSelector((state) => state.ProfileData.userHealthData)
-
-    // handle feelings screen
-    const fetchFeelingsError = useSelector((state) => state.meditation.fetchFeelingsError)
-    const firstTime = props.navigation.getParam('firstTime')
 
     const handleColor = (num, feeling) => {
+        console.log(num, feeling);
         if (num <= myFeelings[feeling]) {
             return '#DF5286' //'#FE7F9C'//colors.primary
         }

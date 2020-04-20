@@ -5,7 +5,7 @@ import colors from '../../constants/colors'
 import MainHeaderButton from '../../components/HeaderButton'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import { Ionicons } from '@expo/vector-icons'
-
+import getRandomInt from './utils/getRandomInt';
 import imageUrls from '../../images/inspirationalImages/image_urls'
 
 /**
@@ -16,20 +16,8 @@ import imageUrls from '../../images/inspirationalImages/image_urls'
  */
 function MeditationCompletedScreen(props) {
     const meditationId = props.navigation.getParam('meditationId')
-    const meditationData = props.meditationId // audioBookPlaylist[meditationId]
+    const meditationData = props.meditationId 
 
-    /**
-     * Produce a random integer from the range given.
-     * 
-     * Used to pick a motivational image from an array of images.
-     * @param {number} min minimum value that can be returned
-     * @param {number} max Maximum value that can be returned
-     */
-    const getRandomInt = (min, max) => {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
     return (
         meditationId ?
             <View style={styles.outerContainer}>

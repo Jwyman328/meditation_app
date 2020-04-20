@@ -16,14 +16,20 @@ import MainButton from "../../components/MainButton";
 import colors from "../../constants/colors";
 
 import changeDailyStepGoal from "../../store/actions/changeDailyStepGoal";
-import useGetChangeStepGoalScreenState from "../../customHooks/meditationScreensCustomHooks/useGetChangeStepGoalScreenState";
+import useGetChangeStepGoalScreenState from "../../customHooks/settingScreensCustomHooks/useGetChangeStepGoalScreenState";
 
 /**
  * Allow user to change current daily step goal.
  *
  */
 function ChangeStepGoalScreen(props) {
-    const {isLoggedIn,token, dailyStepGoal,dailyGoalLocal, setdailyGoalLocal } = useGetChangeStepGoalScreenState();
+  const {
+    isLoggedIn,
+    token,
+    dailyStepGoal,
+    dailyGoalLocal,
+    setdailyGoalLocal,
+  } = useGetChangeStepGoalScreenState();
 
   /**
    * Change daily step goal input on inputText
@@ -50,7 +56,6 @@ function ChangeStepGoalScreen(props) {
     dispatch(changeDailyStepGoal(parseInt(dailyGoalLocal), token));
     goToProfileDataScreen();
   };
-
 
   return (
     <View>

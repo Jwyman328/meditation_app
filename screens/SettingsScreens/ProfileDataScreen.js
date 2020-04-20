@@ -5,49 +5,38 @@ import { Ionicons } from '@expo/vector-icons'
 import colors from '../../constants/colors'
 import MainButton from '../../components/MainButton'
 import LogOutUser from '../../store/actions/logOut'
+import logOutUser from './utils/logOutUser';
 
 import CatagoryValue from '../SettingsScreens/components/catagoryValue'
 import ValueTitle from '../SettingsScreens/components/valueTitle' 
+import useGetProfileDataScreenState from '../../customHooks/settingScreensCustomHooks/useGetProfileDataScreenState';
 /**
  * Display all profile data with ability to navigate to screen to modify values.
  * 
  * Include height, weight, DOB, sex, first name, lastname, and daily step goal.
  */
 function ProfileDataScreen(props) {
-    // get status of fitness data fetching
-    let fetchDailyStepsLoading = useSelector((state) => state.Fitness.fetchDailyStepsLoading)
-    let fetchDailyStepsError = useSelector((state) => state.Fitness.fetchDailyStepsError)
-    // get status of health profile data fetching
-    let fetchUserDataError = useSelector((state) => state.ProfileData.fetchUserDataError)
-    let fetchUserDataLoading = useSelector((state) => state.ProfileData.fetchUserDataLoading)
-    // get profile health data from state
-    const healthData = useSelector((state) => state.ProfileData.userHealthData)
-    // if each health data profile catagory exists, place it in own variable
-    const weight = healthData.weight ? healthData.weight : null
-    const heightFeet = healthData.height ? healthData.height.feet : null
-    const heightInch = healthData.height ? healthData.height.inch : null
-    const DOBMonth = healthData.DOB ? healthData.DOB.month : null
-    const DOBYear = healthData.DOB ? healthData.DOB.year : null
-    const gender = healthData ? healthData.gender : null
-    // get general user data and place in own variable
-    const generalUserData = useSelector((state) => state.ProfileData.generalUserData)
-    let dailyStepGoal = useSelector((state) => state.Fitness.dailyStepGoal)
-    const firstName = generalUserData.first_name
-    const lastName = generalUserData.last_name
-
-    // get general page data
-    const isLoggedIn = useSelector(state => state.AuthData.loggedIn)
-    const token = useSelector(state => state.AuthData.token)
+    const  {
+        fetchDailyStepsLoading,
+        fetchDailyStepsError,
+        fetchUserDataError,
+        fetchUserDataLoading,
+        healthData,
+        weight,
+        heightFeet,
+        heightInch,
+        DOBMonth,
+        DOBYear,
+        gender,
+        generalUserData,
+        dailyStepGoal,
+        firstName,
+        lastName,
+        isLoggedIn,
+        token,
+      } = useGetProfileDataScreenState();
     const dispatch = useDispatch()
 
-    /**
-     * Log out user.
-     * Navigate to login screen.
-     */
-    const logOutUser = () => {
-        props.navigation.navigate('Auth')
-        dispatch(LogOutUser())
-    }
     /**
      * Navigate to a specific profile data object updating screen.
      * @param {String} navigateTo screen to navigate to.
@@ -62,16 +51,6 @@ function ProfileDataScreen(props) {
     const changeHeight = () => profileDataChangeNavigator('ChooseHeight')
     const changeDOB = () => profileDataChangeNavigator('ChooseDOB')
     const changeStepGoal = () => profileDataChangeNavigator('ChangeStepGoalScreen')
-
-
-    //if the user is logged out send back to loginScreen
-    useEffect(() => {
-        if (isLoggedIn) {
-            //
-        } else {
-            props.navigation.navigate('Auth')
-        }
-    }, [isLoggedIn])
 
     return (
         isLoggedIn ?
@@ -93,7 +72,7 @@ function ProfileDataScreen(props) {
                                 <CatagoryValue changeNavigation={changeStepGoal} label='Daily Steps' value={dailyStepGoal} />}
 
                         <View style={styles.logoutButtonContainer}>
-                            <MainButton testID='logOutButton' onPress={logOutUser} title='logout' />
+                            <MainButton testID='logOutButton' onPress={() => logOutUser(props.navigation, dispatch)} title='logout' />
                         </View>
                     </View>}
 

@@ -22,7 +22,6 @@ function MyFeelingsScreen(props) {
     const dispatch = useDispatch()
 
     const handleColor = (num, feeling) => {
-        console.log(num, feeling);
         if (num <= myFeelings[feeling]) {
             return '#DF5286' //'#FE7F9C'//colors.primary
         }

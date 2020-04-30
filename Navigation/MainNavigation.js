@@ -11,7 +11,6 @@ import FullCourseScreen from '../screens/MeditationScreens/FullCourseScreen'
 import HomeScreen from '../screens/HomeScreen/HomeScreen'
 import SettingsScreen from '../screens/SettingsScreens/SettingsScreen'
 import ProfileDataScreen from '../screens/SettingsScreens/ProfileDataScreen'
-import StatsScreen from '../screens/StatsScreen'
 import LoginScreen from '../screens/Auth/LogInScreen'
 import SignupScreen from '../screens/Auth/signUpScreen'
 import UserFriendsScreen from '../screens/friendsAndMsgs/UserFriendsScreen'
@@ -124,7 +123,7 @@ const CommunityStackNavigation = createMaterialTopTabNavigator({
         style:{
             backgroundColor:colors.primary,
         },
-        activeTintColor: colors.strongPrimary, //strongPrimary
+        activeTintColor: colors.strongPrimary, 
         indicatorStyle: {backgroundColor:colors.strongPrimary}
       },
     
@@ -135,7 +134,7 @@ const FitnessStack = createStackNavigator({
         screen: Fitness
     },
     Community: {
-        screen: CommunityStackNavigation,//UserFriendsScreen,//StatsScreen,
+        screen: CommunityStackNavigation,
         navigationOptions: {
             tabBarIcon:<Ionicons color='black' size={25} name='ios-people'  />,
             tabBarLabel:'Community',
@@ -197,7 +196,7 @@ const BottomTabs = createBottomTabNavigator(
         }
             ,
         Fitness: {
-            screen: FitnessStack,//StatsScreen, 
+            screen: FitnessStack,
             navigationOptions: {
                 tabBarIcon:<Ionicons color='black' size={25} name='ios-fitness'  />,
                 
@@ -255,9 +254,8 @@ const AuthNavigator = createStackNavigator({
     ForgotPassword: ForgotPasswordScreen,
 })
 
-const MainNavigation = createSwitchNavigator({ // did this for the header it provides 
+const MainNavigation = createSwitchNavigator({ 
     Login: AuthNavigator,
-    //SignUp: SignupScreen,
     introQuestionsStack: {
         screen: getUserInfoStack ,
         navigationOptions:{

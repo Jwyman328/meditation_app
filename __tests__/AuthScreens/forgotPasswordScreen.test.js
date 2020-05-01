@@ -40,23 +40,4 @@ test('email', () => {
     expect(email.props.value).toEqual('testEmail@gmail.com')
 })
 
-test('email reset to empty string on reset button press', () => {
-
-    //    cant test because has a react navigation error 
-
-
-    //const { findByText, getByTestId, getByText } = renderWithNavigation();
-    //expect(getByTestId('resetButton').props.children);
-
-
-    //const email = getByPlaceholder('email')
-    //fireEvent(email, 'onChangeText', 'testEmail@gmail.com')
-    //expect(email.props.value).toEqual('testEmail@gmail.com')
-
-    //const resetButton = getByTestId('resetButton')
-    //fireEvent(resetButton,'onPress')
-
-    //expect(email.props.value).toEqual('')
-
-})
 

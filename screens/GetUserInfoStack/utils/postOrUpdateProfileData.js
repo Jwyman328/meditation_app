@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SetUserHealthData from '../../../store/actions/setUserHealthData'
+import SetUserHealthData from '../../../store/actions/getUserInfo_actions/setUserHealthData'
 /**
  * Update internal profileDataCatagory with new dataValue inside redux state.
  * 

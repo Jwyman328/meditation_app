@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, Dimensions, TouchableOpacity } from 're
 import colors from '../../constants/colors'
 import ScrollPicker from 'react-native-wheel-scroll-picker';
 import { useDispatch, useSelector } from 'react-redux'
-import SetUserHealthData from '../../store/actions/setUserHealthData'
+import SetUserHealthData from '../../store/actions/getUserInfo_actions/setUserHealthData'
 import MyScrollPicker from './components/scrollPicker'
 import ContinueButton from './components/continueButton'
 import navigateTo from './utils/dobPostOrUpdate'

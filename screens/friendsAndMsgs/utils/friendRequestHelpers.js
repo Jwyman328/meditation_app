@@ -1,8 +1,8 @@
 
 import React from 'react'
 
-import SendFriendRequest from '../../../store/actions/sendFriendRequest'
-import AddRemoveFriend from '../../../store/actions/addRemoveFriend'
+import SendFriendRequest from '../../../store/actions/friendsAndMsgs_actions/sendFriendRequest'
+import AddRemoveFriend from '../../../store/actions/friendsAndMsgs_actions/addRemoveFriend'
 import UserFriendCard from '../../friendsAndMsgs/components/userFriendCard'
 import UserCard from '../../friendsAndMsgs/components/userCard'
 

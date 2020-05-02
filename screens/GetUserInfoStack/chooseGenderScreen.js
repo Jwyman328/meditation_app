@@ -10,7 +10,7 @@ import {
 import colors from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
-import SetUserHealthData from "../../store/actions/setUserHealthData";
+import SetUserHealthData from "../../store/actions/getUserInfo_actions/setUserHealthData";
 import ContinueButton from "./components/continueButton";
 import postOrUpdateProfileData from "./utils/postOrUpdateProfileData";
 import useGetChooseGenderScreenState from "../../customHooks/GetUserInfoStackCustomHooks/useGetChooseGenderScreenState";

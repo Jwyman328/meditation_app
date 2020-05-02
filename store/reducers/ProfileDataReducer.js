@@ -1,4 +1,4 @@
-import FilterMeditations from '../actions/filterMeditations'
+import FilterMeditations from '../actions/meditation_actions/filterMeditations'
 import dummyData from '../../Data/dummyData'
 
 const initialState = {

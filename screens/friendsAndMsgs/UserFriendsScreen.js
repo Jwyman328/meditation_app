@@ -9,7 +9,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import FetchFavorites from "../../store/actions/fetchFavorites";
+import FetchFavorites from "../../store/actions/meditation_actions/fetchFavorites";
 import { useDispatch, useSelector } from "react-redux";
 import colors from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";

@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import MainHeaderButton from '../../components/HeaderButton';
-import currentStepCount from '../../store/actions/setCurrentStepCount'
+import currentStepCount from '../../store/actions/fitness_actions/setCurrentStepCount'
 import {calculateCaloriesBurned, calculateDistanceWalked} from './utils/fitnessFormulas'
 
 

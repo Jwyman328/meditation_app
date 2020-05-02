@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FetchAllUsers from "../../store/actions/FetchAllUsers";
+import FetchAllUsers from "../../store/actions/friendsAndMsgs_actions/FetchAllUsers";
 
 function useGetSearchUsersScreenState(props) {
   const [friendsUsernames, setFriendsUsernames] = useState([]);

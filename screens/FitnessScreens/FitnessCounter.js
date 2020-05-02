@@ -15,7 +15,7 @@ import ProgressCircle from "react-native-progress-circle";
 import colors from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
-import currentStepCount from "../../store/actions/setCurrentStepCount";
+import currentStepCount from "../../store/actions/fitness_actions/setCurrentStepCount";
 
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 

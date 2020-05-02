@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FetchPendingFriendRequests from '../../store/actions/fetchPendingFriendRequests'
+import FetchPendingFriendRequests from '../../store/actions/friendsAndMsgs_actions/fetchPendingFriendRequests'
 
 /**
  * Fetch all pending friend requests to the user.

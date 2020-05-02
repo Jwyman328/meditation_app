@@ -12,13 +12,13 @@ import {
   Dimensions,
   ImageBackground,
 } from "react-native";
-import SignUpUser from "../../store/actions/signUpUser";
+import SignUpUser from "../../store/actions/auth_actions/signUpUser";
 
 import { useDispatch, useSelector } from "react-redux";
 import MainButton from "../../components/MainButton";
 import colors from "../../constants/colors";
 
-import ResetPassword from "../../store/actions/ResetPassword";
+import ResetPassword from "../../store/actions/auth_actions/ResetPassword";
 import AuthInputBox from "./components/authInputBox";
 
 //customHooks

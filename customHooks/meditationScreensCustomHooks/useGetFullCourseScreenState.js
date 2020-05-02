@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FetchCourseData from "../../store/actions/fetchCourseData";
-import addFavorite2 from "../../store/actions/addFavorite";
+import FetchCourseData from "../../store/actions/meditation_actions/fetchCourseData";
+import addFavorite2 from "../../store/actions/meditation_actions/addFavorite";
 
 function useGetFullCourseScreenState(navigation) {
   const data = navigation.getParam("courseData");

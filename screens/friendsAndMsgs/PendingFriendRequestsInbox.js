@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, ImageBackground, Dimensions, FlatList, Image, TouchableOpacity } from 'react-native';
 
 
-import FetchPendingFriendRequests from '../../store/actions/fetchPendingFriendRequests'
-import AcceptDenyFriendRequest from '../../store/actions/acceptDenyFriendRequest'
+import FetchPendingFriendRequests from '../../store/actions/friendsAndMsgs_actions/fetchPendingFriendRequests'
+import AcceptDenyFriendRequest from '../../store/actions/friendsAndMsgs_actions/acceptDenyFriendRequest'
 
 
 import { useDispatch, useSelector } from 'react-redux'

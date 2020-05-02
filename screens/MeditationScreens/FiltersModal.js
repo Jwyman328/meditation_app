@@ -3,7 +3,7 @@ import { Modal, View, Text, Switch, StyleSheet, ScrollView, Dimensions } from 'r
 import colors from '../../constants/colors'
 
 import { useDispatch, useSelector } from 'react-redux'
-import FilterMeditations from '../../store/actions/filterMeditations'
+import FilterMeditations from '../../store/actions/meditation_actions/filterMeditations'
 
 import FilterLabelSwitch from './components/filterLabelSwitch'
 

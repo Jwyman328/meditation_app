@@ -12,7 +12,7 @@ import {
   Dimensions,
   ImageBackground,
 } from "react-native";
-import LogInUser from "../../store/actions/logInUser";
+import LogInUser from "../../store/actions/auth_actions/logInUser";
 
 import { useDispatch, useSelector } from "react-redux";
 

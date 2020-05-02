@@ -1,6 +1,6 @@
 import React from 'react'
 import {disptach, useDispatch} from 'react-redux';
-import LogOutUser from '../../../store/actions/logOut'
+import LogOutUser from '../../../store/actions/auth_actions/logOut'
 
     /**
      * Log out user.

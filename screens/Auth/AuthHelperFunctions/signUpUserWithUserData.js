@@ -1,5 +1,5 @@
 import React from 'react'
-import SignUpUser from '../../../store/actions/signUpUser'
+import SignUpUser from '../../../store/actions/auth_actions/signUpUser'
 import { useDispatch, useSelector } from "react-redux";
 
     /**

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import SetUserHealthData from '../../../store/actions/setUserHealthData'
+import SetUserHealthData from '../../../store/actions/getUserInfo_actions/setUserHealthData'
 
 /**
  * Update DOB profile data and post all user health data to database.

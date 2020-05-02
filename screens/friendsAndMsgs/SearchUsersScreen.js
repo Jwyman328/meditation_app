@@ -10,10 +10,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import FetchAllCourses from "../../store/actions/FetchAllCourses";
-import AddRemoveFriend from "../../store/actions/addRemoveFriend";
-import FetchUserFriends from "../../store/actions/FetchUserFriends";
-import SendFriendRequest from "../../store/actions/sendFriendRequest";
+import FetchAllCourses from "../../store/actions/meditation_actions/FetchAllCourses";
+import AddRemoveFriend from "../../store/actions/friendsAndMsgs_actions/addRemoveFriend";
+import FetchUserFriends from "../../store/actions/friendsAndMsgs_actions/FetchUserFriends";
+import SendFriendRequest from "../../store/actions/friendsAndMsgs_actions/sendFriendRequest";
 import { useDispatch, useSelector } from "react-redux";
 import colors from "../../constants/colors";
 

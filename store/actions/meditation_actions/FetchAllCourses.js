@@ -1,7 +1,7 @@
 import React from 'react'
-import LoadFetch from './fetchLoadErrorSucces/loadFetch'
-import FetchSuccess from './fetchLoadErrorSucces/fetchSuccess'
-import FetchError from './fetchLoadErrorSucces/fetchError'
+import LoadFetch from '../fetchLoadErrorSucces/loadFetch'
+import FetchSuccess from '../fetchLoadErrorSucces/fetchSuccess'
+import FetchError from '../fetchLoadErrorSucces/fetchError'
 import axios from 'axios'
 /**
  * Fetch All meditations

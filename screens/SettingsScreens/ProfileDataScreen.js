@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
 import colors from '../../constants/colors'
 import MainButton from '../../components/MainButton'
-import LogOutUser from '../../store/actions/logOut'
+import LogOutUser from '../../store/actions/auth_actions/logOut'
 import logOutUser from './utils/logOutUser';
 
 import CatagoryValue from '../SettingsScreens/components/catagoryValue'

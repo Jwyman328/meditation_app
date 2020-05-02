@@ -15,8 +15,8 @@ import MainHeaderButton from "../../components/HeaderButton";
 import { Ionicons } from "@expo/vector-icons";
 
 import { useDispatch, useSelector } from "react-redux";
-import addFavorite2 from "../../store/actions/addFavorite";
-import FetchCourseData from "../../store/actions/fetchCourseData";
+import addFavorite2 from "../../store/actions/meditation_actions/addFavorite";
+import FetchCourseData from "../../store/actions/meditation_actions/fetchCourseData";
 import IndividualMeditationCard from "./components/individualMeditationCard";
 import colors from "../../constants/colors";
 import convertSecToMinSec from "./components/convetSecToMinSec";

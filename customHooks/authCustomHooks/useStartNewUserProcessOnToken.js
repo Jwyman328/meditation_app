@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import UpdateFeelings from '../../store/actions/UpdateFeeling'
+import UpdateFeelings from '../../store/actions/journal_emotions_actions/UpdateFeeling'
 
     /**
      * If signUp success user will recieve a token.

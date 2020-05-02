@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import PostUserHealthData from '../actions/postUserHealthData'
+import PostUserHealthData from './postUserHealthData'
 
 
 /**

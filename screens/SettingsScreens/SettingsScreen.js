@@ -11,11 +11,11 @@ import {
 } from "react-native";
 
 import { useDispatch, useSelector } from "react-redux";
-import LogOutUser from "../../store/actions/logOut";
+import LogOutUser from "../../store/actions/auth_actions/logOut";
 import MainButton from "../../components/MainButton";
 import colors from "../../constants/colors";
 
-import changeDailyStepGoal from "../../store/actions/changeDailyStepGoal";
+import changeDailyStepGoal from "../../store/actions/fitness_actions/changeDailyStepGoal";
 
 function SettingsScreen(props) {
   const goToProfileDataScreen = () => {

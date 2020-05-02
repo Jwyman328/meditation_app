@@ -1,9 +1,9 @@
 import React from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import LoadFetch from './fetchLoadErrorSucces/loadFetch'
-import FetchSuccess from './fetchLoadErrorSucces/fetchSuccess'
-import FetchError from './fetchLoadErrorSucces/fetchError'
+import LoadFetch from '../fetchLoadErrorSucces/loadFetch'
+import FetchSuccess from '../fetchLoadErrorSucces/fetchSuccess'
+import FetchError from '../fetchLoadErrorSucces/fetchError'
 
 
 const ResetPassword = (username) => { 

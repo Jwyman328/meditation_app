@@ -6,9 +6,9 @@ import FetchPendingFriendRequests from './fetchPendingFriendRequests'
 import FetchUserFriends from './FetchUserFriends'
 import FetchAllUsers from './FetchAllUsers'
 
-import LoadFetch from './fetchLoadErrorSucces/loadFetch'
-import FetchSuccess from './fetchLoadErrorSucces/fetchSuccess'
-import FetchError from './fetchLoadErrorSucces/fetchError'
+import LoadFetch from '../fetchLoadErrorSucces/loadFetch'
+import FetchSuccess from '../fetchLoadErrorSucces/fetchSuccess'
+import FetchError from '../fetchLoadErrorSucces/fetchError'
 
 
 const AcceptDenyFriendRequest = (id, Bool, token) => {

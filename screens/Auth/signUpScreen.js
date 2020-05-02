@@ -12,14 +12,14 @@ import {
   Dimensions,
   ImageBackground,
 } from "react-native";
-import SignUpUser from "../../store/actions/signUpUser";
+import SignUpUser from "../../store/actions/auth_actions/signUpUser";
 
 import { useDispatch, useSelector } from "react-redux";
 import MainButton from "../../components/MainButton";
 import colors from "../../constants/colors";
 
-import FetchMyFeelings from "../../store/actions/FetchMyFeelings";
-import UpdateFeelings from "../../store/actions/UpdateFeeling";
+import FetchMyFeelings from "../../store/actions/meditation_actions/FetchMyFeelings";
+import UpdateFeelings from "../../store/actions/journal_emotions_actions/UpdateFeeling";
 import AuthInputBox from "../Auth/components/authInputBox";
 
 //helper functions

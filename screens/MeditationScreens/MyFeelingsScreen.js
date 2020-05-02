@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, ImageBackground, Dimensions, Button, ShadowPropTypesIOS } from 'react-native';
 import MainButton from '../../components/MainButton'
-import UpdateFeelings from '../../store/actions/UpdateFeeling'
-import changeLocalMyFeelings from '../../store/actions/changeLocalMyFeelings'
+import UpdateFeelings from '../../store/actions/journal_emotions_actions/UpdateFeeling'
+import changeLocalMyFeelings from '../../store/actions/journal_emotions_actions/changeLocalMyFeelings'
 import { useDispatch, useSelector } from 'react-redux'
 import colors from '../../constants/colors';
 import { Ionicons } from '@expo/vector-icons'
-import FetchMyFeelings from '../../store/actions/FetchMyFeelings'
-import PostUserHealthData from '../../store/actions/postUserHealthData'
+import FetchMyFeelings from '../../store/actions/meditation_actions/FetchMyFeelings'
+import PostUserHealthData from '../../store/actions/getUserInfo_actions/postUserHealthData'
 import FeelingsLabelIcons from './components/feelingsLabelIcons'
 import useGetMyFeelingsScreenState from '../../customHooks/meditationScreensCustomHooks/useGetMyFeelingsScreenState';
 //import handleColor from './utils/handleColor';

@@ -1,6 +1,5 @@
 import React from 'react';
 import {render, fireEvent} from 'react-native-testing-library';
-import NewMessageForm from '../../Hello';
 import { Updates } from 'expo';
 import { element } from 'prop-types';
 import ReduxThunk from 'redux-thunk'

@@ -11,13 +11,13 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import FetchAllCourses from "../../store/actions/FetchAllCourses";
-import FetchFavorites from "../../store/actions/fetchFavorites";
-import FetchUserFriends from "../../store/actions/FetchUserFriends";
-import FetchMyFeelings from "../../store/actions/FetchMyFeelings";
-import FetchDailyStepGoal from "../../store/actions/fetchDailyStepGoal";
-import FetchMoodData from "../../store/actions/FetchMoodData";
-import FetchProfileData from "../../store/actions/FetchProfileData";
+import FetchAllCourses from "../../store/actions/meditation_actions/FetchAllCourses";
+import FetchFavorites from "../../store/actions/meditation_actions/fetchFavorites";
+import FetchUserFriends from "../../store/actions/friendsAndMsgs_actions/FetchUserFriends";
+import FetchMyFeelings from "../../store/actions/meditation_actions/FetchMyFeelings";
+import FetchDailyStepGoal from "../../store/actions/fitness_actions/fetchDailyStepGoal";
+import FetchMoodData from "../../store/actions/journal_emotions_actions/FetchMoodData";
+import FetchProfileData from "../../store/actions/getUserInfo_actions/FetchProfileData";
 
 import { useDispatch, useSelector } from "react-redux";
 import colors from "../../constants/colors";

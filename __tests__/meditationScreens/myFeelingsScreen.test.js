@@ -1,6 +1,5 @@
 import React from 'react';
 import {render, fireEvent, waitForElement} from 'react-native-testing-library';
-import NewMessageForm from '../../Hello';
 import { Updates } from 'expo';
 import ReduxThunk from 'redux-thunk'
 import moxios from 'moxios'

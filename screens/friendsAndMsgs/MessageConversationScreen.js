@@ -14,8 +14,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import CreateMessage from "../../store/actions/createMessage";
-import FetchMessages from "../../store/actions/FetchMessages";
+import CreateMessage from "../../store/actions/friendsAndMsgs_actions/createMessage";
+import FetchMessages from "../../store/actions/friendsAndMsgs_actions/FetchMessages";
 
 import { useDispatch, useSelector } from "react-redux";
 import colors from "../../constants/colors";

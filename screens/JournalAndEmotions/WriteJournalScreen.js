@@ -20,7 +20,7 @@ import InputScrollView from "react-native-input-scroll-view";
 import { useDispatch, useSelector } from "react-redux";
 import { Ionicons } from "@expo/vector-icons";
 
-import CreateJournal from "../../store/actions/createJournal";
+import CreateJournal from "../../store/actions/journal_emotions_actions/createJournal";
 import useWriteJournalScreenState from "../../customHooks/journalAndEmotionsCustomHooks/useWriteJournalScreenState";
 
 import {

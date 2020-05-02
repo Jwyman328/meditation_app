@@ -1,86 +1,90 @@
-import FilterMeditations from '../actions/meditation_actions/filterMeditations'
-import dummyData from '../../Data/dummyData'
+import FilterMeditations from "../actions/meditation_actions/filterMeditations";
+import authData_initialState from "../initial_states/authData_initialState";
 
+const AuthDataReducer = (state = authData_initialState, action) => {
+  switch (action.type) {
+    case "signIn":
+      return {
+        ...state,
+        username: action.username,
+        password: action.password,
+        token: action.token,
+        loggedIn: true,
+      };
+      break;
 
-const initialState = {
+    case "signUp":
+      return {
+        ...state,
+        username: action.userName,
+        password: action.passWord,
+        token: action.token,
+        loggedIn: true,
+      };
+      break;
 
-    username: null,
-    password: null,
-    token: null,
-    loggedIn: false,
-    logInfetchError: false,
-    logInfetchLoading: false,
-    signUpFetchError: false,
-    signUpFetchLoading: false,
-    resetPasswordFetchError: false,
-    resetPasswordLoading: false,
-    resetPasswordEmailSent:false,
+    case "logOut":
+      // reset state to origin al empty state
 
-}
+      return {
+        ...state,
+        username: null,
+        password: null,
+        token: null,
+        loggedIn: false,
+        logInfetchError: false,
+        logInfetchLoading: false,
+        signUpFetchError: false,
+        signUpFetchLoading: false,
+        resetPasswordFetchError: false,
+        resetPasswordLoading: false,
+        resetPasswordEmailSent: false,
+      };
+    case "logInloadFetch":
+      return { ...state, logInfetchLoading: true, logInfetchError: false };
 
-const AuthDataReducer = (state = initialState, action) => {
-    switch (action.type) {
+    case "logInfetchError":
+      return { ...state, logInfetchLoading: false, logInfetchError: true };
 
-        case 'signIn':
-            return { ...state, username: action.username, password: action.password, token: action.token, loggedIn: true }
-            break;
+    case "logInfetchSuccess":
+      return { ...state, logInfetchLoading: false, logInfetchError: false };
 
-        case 'signUp':
-            return { ...state, username: action.userName, password: action.passWord, token: action.token, loggedIn: true }
-            break;
+    case "signUpFetchLoading":
+      return { ...state, signUpFetchLoading: true, signUpFetchError: false };
 
-        case 'logOut':
-            // reset state to origin al empty state 
+    case "signUpFetchError":
+      return { ...state, signUpFetchLoading: false, signUpFetchError: true };
 
-            return {
-                ...state, username: null,
-                password: null,
-                token: null,
-                loggedIn: false,
-                logInfetchError: false,
-                logInfetchLoading: false,
-                signUpFetchError: false,
-                signUpFetchLoading: false,
-                resetPasswordFetchError: false,
-                resetPasswordLoading: false,
-                resetPasswordEmailSent:false,
+    case "signUpFetchSuccess":
+      return { ...state, signUpFetchLoading: false, signUpFetchError: false };
 
-            }
-        case 'logInloadFetch':
-            return { ...state, logInfetchLoading: true, logInfetchError: false }
+    case "resetPasswordFetchError":
+      return {
+        ...state,
+        resetPasswordLoading: false,
+        resetPasswordFetchError: true,
+      };
 
-        case 'logInfetchError':
-            return { ...state, logInfetchLoading: false, logInfetchError: true }
+    case "resetPasswordLoading":
+      return {
+        ...state,
+        resetPasswordLoading: true,
+        resetPasswordFetchError: false,
+      };
 
-        case 'logInfetchSuccess':
-            return { ...state, logInfetchLoading: false, logInfetchError: false }
+    case "resetPasswordSuccess":
+      return {
+        ...state,
+        resetPasswordEmailSent: true,
+        resetPasswordLoading: false,
+        resetPasswordFetchError: false,
+      };
 
-        case 'signUpFetchLoading':
-            return { ...state, signUpFetchLoading: true, signUpFetchError: false }
+    case "resetPasswordEmailSentToFalse":
+      return { ...state, resetPasswordEmailSent: false };
+  }
 
-        case 'signUpFetchError':
-            return { ...state, signUpFetchLoading: false, signUpFetchError: true }
+  return state;
+};
 
-        case 'signUpFetchSuccess':
-            return { ...state, signUpFetchLoading: false, signUpFetchError: false }
-        
-        case 'resetPasswordFetchError':
-            return { ...state, resetPasswordLoading: false, resetPasswordFetchError: true }
-
-        case 'resetPasswordLoading':
-            return { ...state, resetPasswordLoading: true, resetPasswordFetchError: false }
-        
-        case 'resetPasswordSuccess':
-            return {...state, resetPasswordEmailSent:true, resetPasswordLoading: false, resetPasswordFetchError: false }
-        
-        case 'resetPasswordEmailSentToFalse':
-            return {...state, resetPasswordEmailSent:false,}
-            
-
-    }
-
-
-    return state
-}
-
-export default AuthDataReducer
+export default AuthDataReducer;
